@@ -1,0 +1,149 @@
+Aberration (noun) - (ab- errare-) - anomaly 
+A departure from what is normal, usual, or expected (often unwelcome).
+Example: The sudden warm weather in January was an aberration in this normally frigid climate.
+Sentences: 
+This kind of load on our servers looks like aberration for me.
+My friend uses this kind of aberration to bypass auth systems.
+
+Abstruse (adjective) - complex
+Difficult to understand; obscure or complex.
+Example: The philosopher's abstruse arguments left most of the audience puzzled.
+Sentences: 
+Sometimes intern developers and make abstruse code, but after few coding sessions their code becomes simplier.
+Your «readme» file in this project is too abstruse for common users.
+
+Acrimonious (adjective) - (acrid = acid) - acidic tone
+Angry and bitter in speech or debate.
+Example: The divorce proceedings turned acrimonious, with both sides hurling insults.
+Sentences: 
+Acrimonious speech from adults is very traumatic for kids.
+After using capslock with chat gpt, our conversations became so acrimonious
+
+Ambivalent (adjective) - feels conflicted
+Having mixed feelings or contradictory ideas about something.
+Example: She felt ambivalent about the promotion—it meant more money but less time with family.
+Sentences: 
+I feel ambivalent about to buy a new macbook: it’s powerful, but also expensive
+There are a lot of ambivalent choices for me
+
+Arcane (adjective) - esoteric
+Mysterious or secret; understood by few.
+Example: The professor specialized in arcane rituals from ancient civilizations.
+Sentences: 
+Even 5 years ago big language model like GPT was an arcane thing for most of people. This gameplay based on items with arcane powers
+
+Belligerent (adjective) - (belli - war, gerent - bring) - aggressive
+Hostile and aggressive.
+Example: His belligerent attitude during the meeting alienated his colleagues.
+Sentences: 
+Only belligerent actions helped Amazon to conquer whole world of online shoping. I’m sorry, my last message was a little bit belligerent.
+
+Capricious (adjective) - impulsive/naughty
+Given to sudden and unaccountable changes of mood
+Sentences: 
+I found a correlation between expensive gifts and kid’s capricious behavior!
+I don’t know any people in my circle that are capricious or aggressive
+
+
+——
+
+Exceedingly — to an unusually high degree
+The task was exceedingly difficult.
+
+Utterly — completely; totally (often with negative nuance)
+She was utterly devastated by the news.
+
+Profoundly — deeply or intensely (affecting thought/emotion)
+His speech was profoundly moving.
+> 
+
+Remarkably — in a way that is worthy of attention; surprisingly
+She recovered remarkably quickly.
+> 
+
+Strikingly — in a very noticeable or impressive way
+Their styles are strikingly similar.
+> 
+
+Egregiously (e-, -gragis, = out of society) — in a shockingly bad or unacceptable way
+The decision was egregiously unfair.
+> 
+
+Disproportionately — to an extent that is too large or too small in relation to something else
+Minor issues affected him disproportionately.
+> 
+
+Vastly — by a very great amount
+The new model is vastly superior.
+> 
+
+Manner / Attitude (how something is done, often with nuance)
+Begrudgingly — in a reluctant or resentful way (скрепя сердце, через силу, с внутренним недовольством)
+He begrudgingly admitted his mistake.
+
+Blatantly — in a very obvious and shameless way
+She blatantly ignored the rules.
+
+Clandestinely (“clan-destination”) — secretly or in a hidden way
+They met clandestinely to avoid detection.
+
+Disconcertingly — in a way that causes unease or confusion
+He smiled disconcertingly during the argument.
+
+Effortlessly — without difficulty or apparent effort
+She sings effortlessly.
+
+Meticulously — (carefully) with great care and precision
+The report was meticulously researched.
+
+Painstakingly — (carefully)  with careful effort and attention to detail
+The artist painstakingly restored the painting.
+> I’m always playing jenga painstakingly 
+
+Surreptitiously — secretly, especially in a way that avoids notice
+He surreptitiously checked his phone.
+> They met clandestinely for months.
+> He surreptitiously checked her messages.
+
+Unabashedly — (unabashed = не смущенный) without any shame or embarrassment
+She unabashedly expressed her opinions.
+> He was unabashedly proud of his work.
+> I unabashedly asked for a raise
+
+Logical / Conjunctive / Viewpoint (linking ideas, expressing certainty or appearance)
+Accordingly (в соответствии с) — in a way that is appropriate to the situation
+The rules changed; accordingly, we adapted. > Please act accordingly.
+> The policy changed, and we updated the settings accordingly.
+
+Consequently — as a result
+He was late; consequently, he missed the start.
+> The server ran out of memory. Consequently, the process crashed.
+> He missed the deadline; consequently, the release was delayed.
+
+Inevitably — in a way that cannot be avoided
+Arguments inevitably arise in such discussions. > If you push that change today, you’ll inevitably break something.
+
+Undoubtedly — (несомненно) without doubt; certainly
+She is undoubtedly the best candidate.
+> This is undoubtedly a big step forward.
+
+Unequivocally — (equivocal = двусмысленный -> +un = однозначно) in a way that leaves no room for doubt
+He unequivocally denied the accusations.
+> The data unequivocally shows a decline.
+
+Ostensibly — (по видимости) apparently or outwardly (but perhaps not really)
+Ostensibly for health reasons, he quit.
+> He left early, ostensibly because he was sick.
+
+Seemingly — (по-видимому) appearing to be the case
+Seemingly simple problems can be complex.
+> Seemingly, everything was fine.
+> He gave a seemingly honest answer.
+
+Paradoxically — in a way that seems contradictory but may be true
+Paradoxically, more choice can lead to less happiness.
+> Paradoxically, doing less improved the result.
+
+Ironically — in a way opposite to what is expected
+Ironically, the firefighter's house burned down.
+> Ironically, I started sleeping better after I stopped worrying about sleep.
