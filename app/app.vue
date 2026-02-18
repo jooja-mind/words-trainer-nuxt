@@ -1,9 +1,20 @@
+<script setup lang="ts">
+const route = useRoute()
+const isLogin = computed(() => route.path === '/login')
+
+async function logout() {
+  await $fetch('/api/auth/logout', { method: 'POST' })
+  window.location.href = '/login'
+}
+</script>
+
 <template>
   <div>
-    <header class="topnav">
+    <header v-if="!isLogin" class="topnav">
       <NuxtLink to="/settings" class="nav-item">⚙️ Settings</NuxtLink>
       <NuxtLink to="/trainer" class="nav-item">🧠 Trainer</NuxtLink>
       <NuxtLink to="/marathon" class="nav-item">🔥 Mistakes Marathon</NuxtLink>
+      <button class="nav-item logout" @click="logout">🚪 Logout</button>
     </header>
     <NuxtPage />
   </div>
@@ -27,9 +38,11 @@
   padding: .45rem .7rem;
   border-radius: 8px;
   background: #171d36;
+  cursor: pointer;
 }
 .nav-item.router-link-active {
   background: #2a3468;
   border-color: #4a5fcc;
 }
+.logout { margin-left: auto; }
 </style>
