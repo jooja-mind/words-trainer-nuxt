@@ -46,7 +46,7 @@ onMounted(loadStats)
           <template v-else>❌ Wrong<br /><span v-if="answerResult.correctDefinition">Correct: {{ answerResult.correctDefinition }}</span></template>
         </div>
       </div>
-      <p v-else>Нажми «Build test (20)» — подбор по ошибкам + давности + редкости повторения.</p>
+      <p v-else>Press «Build test (20)» — for selection based on mistakes, recency, and rarity of repetition.</p>
     </section>
     <section class="card" v-if="quizStats">
       <h2>Stats</h2>
