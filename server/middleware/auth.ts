@@ -11,6 +11,9 @@ export default defineEventHandler((event) => {
   const auth = getCookie(event, 'wt_auth')
   if (auth === '1') return
 
+  const appPassword = process.env.APP_PASSWORD || ''
+  if (!appPassword) return // fail open if no password configured
+
   // redirect to login for page routes, 401 for API
   if (path.startsWith('/api/')) {
     event.node.res.statusCode = 401

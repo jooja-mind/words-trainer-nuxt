@@ -2,8 +2,8 @@ import { defineEventHandler, readBody, setCookie } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ password?: string }>(event)
-  const config = useRuntimeConfig()
-  const ok = body?.password && config.appPassword && body.password === config.appPassword
+  const appPassword = process.env.APP_PASSWORD || ''
+  const ok = body?.password && appPassword && body.password === appPassword
 
   if (!ok) {
     event.node.res.statusCode = 401
