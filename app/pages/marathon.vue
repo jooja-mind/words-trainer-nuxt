@@ -42,7 +42,7 @@ function nextQuestion(){ if(quizIndex.value<quizQuestions.value.length-1){ quizI
           <template v-else>❌ Wrong<br /><span v-if="answerResult.correctDefinition">Correct: {{ answerResult.correctDefinition }}</span></template>
         </div>
       </div>
-      <p v-else>Нажми «Start marathon» — здесь будет чистая боль по ошибкам 🔥</p>
+      <p v-else>Press «Start marathon» — for pure pain from mistakes 🔥</p>
     </section>
   </main>
 </template>
