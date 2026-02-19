@@ -1,6 +1,13 @@
 <script setup lang="ts">
 const route = useRoute()
 const isLogin = computed(() => route.path === '/login')
+const showWords = ref(false)
+
+watch(() => route.path, () => { showWords.value = false })
+
+function toggleWords() {
+  showWords.value = !showWords.value
+}
 
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
@@ -11,15 +18,17 @@ async function logout() {
 <template>
   <div>
     <header v-if="!isLogin" class="topnav">
-      <span class="group">Words</span>
-      <NuxtLink to="/settings" class="nav-item">Setup</NuxtLink>
-      <NuxtLink to="/trainer" class="nav-item">Trainer</NuxtLink>
-      <NuxtLink to="/marathon" class="nav-item">Mistakes</NuxtLink>
-      <NuxtLink to="/stats" class="nav-item">Stats</NuxtLink>
-      <span class="sep">·</span>
+      <div class="dropdown" @mouseleave="showWords = false">
+        <button class="nav-item" @click="toggleWords">Words ▾</button>
+        <div v-if="showWords" class="menu">
+          <NuxtLink to="/settings" class="menu-item">Setup</NuxtLink>
+          <NuxtLink to="/trainer" class="menu-item">Trainer</NuxtLink>
+          <NuxtLink to="/marathon" class="menu-item">Mistakes</NuxtLink>
+          <NuxtLink to="/stats" class="menu-item">Stats</NuxtLink>
+        </div>
+      </div>
       <NuxtLink to="/recap" class="nav-item">Recap</NuxtLink>
-      <span class="sep">·</span>
-      <button class="nav-item logout" @click="logout">Logout</button>
+      <button class="nav-item" @click="logout">Logout</button>
     </header>
     <NuxtPage />
   </div>
@@ -28,7 +37,7 @@ async function logout() {
 <style scoped>
 .topnav {
   display: flex;
-  gap: .6rem; flex-wrap: wrap;
+  gap: .6rem;
   padding: .8rem 1rem;
   border-bottom: 1px solid #2a2e44;
   background: #12162a;
@@ -45,14 +54,34 @@ async function logout() {
   background: #171d36;
   cursor: pointer;
 }
-.nav-item.router-link-active {
-  background: #2a3468;
-  border-color: #4a5fcc;
+
+.dropdown { position: relative; }
+.menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #171d36;
+  border: 1px solid #39406a;
+  border-radius: 10px;
+  padding: .3rem;
+  display: grid;
+  gap: .25rem;
+  min-width: 160px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
-.logout { margin-left: auto; }
-@media (max-width: 640px){
-  .nav-item{padding:.35rem .5rem;font-size:12px}
+.menu-item {
+  color: #dbe1ff;
+  text-decoration: none;
+  padding: .4rem .6rem;
+  border-radius: 8px;
 }
-.group{color:#9aa4d8;font-weight:700;padding:.35rem .2rem;letter-spacing:.2px}
-.sep{color:#556; padding:0 .2rem}
+.menu-item:hover { background: #212a52; }
+
+@media (max-width: 640px) {
+  .topnav { flex-wrap: wrap; }
+  .nav-item { padding: .35rem .5rem; font-size: 12px; }
+  .menu { position: static; width: 100%; }
+  .dropdown { width: 100%; }
+  .menu-item { font-size: 12px; }
+}
 </style>
