@@ -2,29 +2,40 @@
 const route = useRoute()
 const isLogin = computed(() => route.path === '/login')
 const showWords = ref(false)
+const dropdownRef = ref<HTMLElement | null>(null)
 
 watch(() => route.path, () => { showWords.value = false })
 
-function openWords() { showWords.value = true }
-function closeWords() { showWords.value = false }
 function toggleWords() { showWords.value = !showWords.value }
+function closeWords() { showWords.value = false }
 
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
   window.location.href = '/login'
 }
+
+onMounted(() => {
+  const onDocClick = (e: MouseEvent) => {
+    if (!dropdownRef.value) return
+    if (!dropdownRef.value.contains(e.target as Node)) {
+      showWords.value = false
+    }
+  }
+  document.addEventListener('click', onDocClick)
+  onUnmounted(() => document.removeEventListener('click', onDocClick))
+})
 </script>
 
 <template>
   <div>
     <header v-if="!isLogin" class="topnav">
-      <div class="dropdown" @mouseenter="openWords" @mouseleave="closeWords">
+      <div class="dropdown" ref="dropdownRef">
         <button class="nav-item" @click="toggleWords">Words ▾</button>
         <div v-if="showWords" class="menu">
-          <NuxtLink to="/settings" class="menu-item">Setup</NuxtLink>
-          <NuxtLink to="/trainer" class="menu-item">Trainer</NuxtLink>
-          <NuxtLink to="/marathon" class="menu-item">Mistakes</NuxtLink>
-          <NuxtLink to="/stats" class="menu-item">Stats</NuxtLink>
+          <NuxtLink to="/settings" class="menu-item" @click="closeWords">Setup</NuxtLink>
+          <NuxtLink to="/trainer" class="menu-item" @click="closeWords">Trainer</NuxtLink>
+          <NuxtLink to="/marathon" class="menu-item" @click="closeWords">Mistakes</NuxtLink>
+          <NuxtLink to="/stats" class="menu-item" @click="closeWords">Stats</NuxtLink>
         </div>
       </div>
       <NuxtLink to="/recap" class="nav-item">Recap</NuxtLink>
@@ -60,9 +71,8 @@ async function logout() {
 .dropdown { position: relative; }
 .menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 6px);
   left: 0;
-  margin-top: 4px;
   background: #171d36;
   border: 1px solid #39406a;
   border-radius: 10px;
