@@ -10,7 +10,6 @@ const answerTranslation = ref<string | null>(null)
 const errorMessage = ref('')
 
 const quizCurrent = computed(() => quizQuestions.value[quizIndex.value] ?? null)
-const quizProgress = computed(() => `${Math.min(quizIndex.value + 1, quizQuestions.value.length)}/${quizQuestions.value.length || 0}`)
 
 async function startMarathon() {
   const data = await $fetch<{ questions: QuizQuestion[]; reason?: string }>(`/api/quiz/marathon?limit=50`)
@@ -67,7 +66,6 @@ function nextQuestion() {
     <section class="card">
       <div class="quiz-top">
         <button @click="startMarathon">Start marathon</button>
-        <span v-if="quizQuestions.length">Progress: {{ quizProgress }}</span>
         <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
       </div>
       <p v-if="errorMessage" class="error">{{ errorMessage }}</p>

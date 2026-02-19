@@ -25,12 +25,28 @@ export default defineEventHandler(async () => {
     .sort((a, b) => b.wrong - a.wrong)
     .slice(0, 5)
 
+
+  const topHardest = words
+    .map((w) => {
+      const wrong = w.reviews.filter((r) => !r.wasCorrect).length
+      const correct = w.reviews.length - wrong
+      const kpi = wrong ? correct / wrong : 999
+      return { term: w.term, wrong, correct, kpi }
+    })
+    .filter((w) => w.wrong > 0)
+    .sort((a, b) => {
+      if (a.kpi !== b.kpi) return a.kpi - b.kpi
+      return b.wrong - a.wrong
+    })
+    .slice(0, 20)
+
   return {
     totalWords,
     totalAnswers,
     totalCorrect,
     totalWrong,
     accuracy: totalAnswers ? totalCorrect / totalAnswers : 0,
-    toughest
+    toughest,
+    topHardest
   }
 })

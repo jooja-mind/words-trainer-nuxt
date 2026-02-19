@@ -14,6 +14,7 @@ async function logout() {
       <NuxtLink to="/settings" class="nav-item">⚙️ Settings</NuxtLink>
       <NuxtLink to="/trainer" class="nav-item">🧠 Trainer</NuxtLink>
       <NuxtLink to="/marathon" class="nav-item">🔥 Mistakes Marathon</NuxtLink>
+      <NuxtLink to="/stats" class="nav-item">📊 Stats</NuxtLink>
       <NuxtLink to="/recap" class="nav-item">🎙️ Recap</NuxtLink>
       <button class="nav-item logout" @click="logout">🚪 Logout</button>
     </header>
