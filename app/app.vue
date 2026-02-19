@@ -11,12 +11,15 @@ async function logout() {
 <template>
   <div>
     <header v-if="!isLogin" class="topnav">
-      <NuxtLink to="/settings" class="nav-item">⚙️ Settings</NuxtLink>
-      <NuxtLink to="/trainer" class="nav-item">🧠 Trainer</NuxtLink>
-      <NuxtLink to="/marathon" class="nav-item">🔥 Mistakes Marathon</NuxtLink>
-      <NuxtLink to="/stats" class="nav-item">📊 Stats</NuxtLink>
-      <NuxtLink to="/recap" class="nav-item">🎙️ Recap</NuxtLink>
-      <button class="nav-item logout" @click="logout">🚪 Logout</button>
+      <span class="group">Words</span>
+      <NuxtLink to="/settings" class="nav-item">Setup</NuxtLink>
+      <NuxtLink to="/trainer" class="nav-item">Trainer</NuxtLink>
+      <NuxtLink to="/marathon" class="nav-item">Mistakes</NuxtLink>
+      <NuxtLink to="/stats" class="nav-item">Stats</NuxtLink>
+      <span class="sep">·</span>
+      <NuxtLink to="/recap" class="nav-item">Recap</NuxtLink>
+      <span class="sep">·</span>
+      <button class="nav-item logout" @click="logout">Logout</button>
     </header>
     <NuxtPage />
   </div>
@@ -50,4 +53,6 @@ async function logout() {
 @media (max-width: 640px){
   .nav-item{padding:.35rem .5rem;font-size:12px}
 }
+.group{color:#9aa4d8;font-weight:700;padding:.35rem .2rem;letter-spacing:.2px}
+.sep{color:#556; padding:0 .2rem}
 </style>
