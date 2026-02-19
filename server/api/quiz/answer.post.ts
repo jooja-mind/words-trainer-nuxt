@@ -1,8 +1,8 @@
 import { prisma } from '../../utils/prisma'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody<{ wordId?: string; selectedOptionId?: string }>(event)
-  if (!body?.wordId || !body?.selectedOptionId) {
+  const body = await readBody<{ wordId?: string; selectedOptionId?: string; forceWrong?: boolean }>(event)
+  if (!body?.wordId || (!body?.selectedOptionId && !body?.forceWrong)) {
     throw createError({ statusCode: 400, statusMessage: 'wordId and selectedOptionId are required' })
   }
 
@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404, statusMessage: 'word not found' })
   }
 
-  const correct = body.selectedOptionId === word.id
+  const correct = body.forceWrong ? false : (body.selectedOptionId === word.id)
   const previousTwoCorrect = word.reviews.length === 2 && word.reviews.every((r) => r.wasCorrect)
 
   let statusAfter: 'NEW' | 'HARD' | 'EASY' = 'NEW'
