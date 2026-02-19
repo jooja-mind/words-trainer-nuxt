@@ -24,7 +24,7 @@ async function logout() {
 <style scoped>
 .topnav {
   display: flex;
-  gap: .6rem;
+  gap: .6rem; flex-wrap: wrap;
   padding: .8rem 1rem;
   border-bottom: 1px solid #2a2e44;
   background: #12162a;
@@ -46,4 +46,7 @@ async function logout() {
   border-color: #4a5fcc;
 }
 .logout { margin-left: auto; }
+@media (max-width: 640px){
+  .nav-item{padding:.35rem .5rem;font-size:12px}
+}
 </style>
