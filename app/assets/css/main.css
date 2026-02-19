@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+  --ui-radius: 0.125rem;
+  --ui-primary: black;
+}
+
+.dark {
+  --ui-primary: white;
+}
+
+h2{
+  color: #ffffff;
+  margin-bottom: 10px;
+  padding-left: 2px;
+  font-weight: bold;
+  cursor: default;
+}
+
+p.actionInfo{
+  padding-top: 10px;
+  opacity: 0.5;
+  margin-left: 9px;
+  border-left: 1px solid #ffffff38;
+  padding-left: 8px;
+}

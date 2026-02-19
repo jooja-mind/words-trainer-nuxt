@@ -36,7 +36,6 @@ async function submit() {
 </template>
 
 <style scoped>
-:global(body){font-family:Inter,system-ui,Arial,sans-serif;background:#0f1221;color:#e5e7eb;margin:0}
 .wrap{min-height:80vh;display:flex;align-items:center;justify-content:center}
 .card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1.5rem;display:grid;gap:.7rem;min-width:280px}
 input,button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}

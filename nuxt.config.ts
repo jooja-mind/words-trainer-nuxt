@@ -4,5 +4,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     appPassword: process.env.APP_PASSWORD || ''
+  },
+  modules: ['@nuxt/ui'],
+  css: ['~/assets/css/main.css'],
+  ui: {
+    // @ts-ignore
+    colors: {
+      neutral: 'neutral'
+    }
   }
-})
+});
