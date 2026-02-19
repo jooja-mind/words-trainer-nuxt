@@ -6,6 +6,7 @@ const selectedOptionId = ref<string | null>(null)
 const quizScore = ref(0)
 const answered = ref(false)
 const answerResult = ref<{ correct: boolean; correctDefinition?: string | null } | null>(null)
+const answerTranslation = ref<string | null>(null)
 const errorMessage = ref('')
 
 const quizCurrent = computed(() => quizQuestions.value[quizIndex.value] ?? null)
@@ -24,9 +25,9 @@ async function startMarathon(){
     errorMessage.value = data.reason || 'Not enough words for marathon'
   }
 }
-async function submitAnswer(){ if(!quizCurrent.value||!selectedOptionId.value||answered.value) return; const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{method:'POST',body:{wordId:quizCurrent.value.wordId,selectedOptionId:selectedOptionId.value}}); answered.value=true; answerResult.value=res; if(res.correct) quizScore.value++ }
-async function dontKnow(){ if(!quizCurrent.value||answered.value) return; const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{method:'POST',body:{wordId:quizCurrent.value.wordId,selectedOptionId:quizCurrent.value.wordId, forceWrong:true}}); answered.value=true; answerResult.value=res }
-function nextQuestion(){ if(quizIndex.value<quizQuestions.value.length-1){ quizIndex.value++; selectedOptionId.value=null; answered.value=false; answerResult.value=null }}
+async function submitAnswer(){ if(!quizCurrent.value||!selectedOptionId.value||answered.value) return; const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{method:'POST',body:{wordId:quizCurrent.value.wordId,selectedOptionId:selectedOptionId.value}}); answered.value=true; answerResult.value=res; answerTranslation.value = quizCurrent.value?.translationRu || null; answerTranslation.value = quizCurrent.value?.translationRu || null; if(res.correct) quizScore.value++ }
+async function dontKnow(){ if(!quizCurrent.value||answered.value) return; const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{method:'POST',body:{wordId:quizCurrent.value.wordId,selectedOptionId:quizCurrent.value.wordId, forceWrong:true}}); answered.value=true; answerResult.value=res; answerTranslation.value = quizCurrent.value?.translationRu || null }
+function nextQuestion(){ if(quizIndex.value<quizQuestions.value.length-1){ quizIndex.value++; selectedOptionId.value=null; answered.value=false; answerResult.value=null; answerTranslation.value=null }}
 </script>
 
 <template>
