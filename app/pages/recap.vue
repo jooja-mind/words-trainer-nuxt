@@ -1,17 +1,20 @@
 <script setup lang="ts">
 const generatedText = ref('')
 const status = ref('')
+const loading = ref(false)
 const recording = ref(false)
 const mediaRecorder = ref<MediaRecorder | null>(null)
 const chunks: Blob[] = []
 const evaluation = ref<any>(null)
 
 async function generateText() {
+  loading.value = true
   status.value = 'Generating...'
   evaluation.value = null
   const res = await $fetch<{ text: string }>('/api/recap/generate', { method: 'POST' })
   generatedText.value = res.text
   status.value = 'Text ready'
+  loading.value = false
 }
 
 async function startRecording() {
@@ -43,6 +46,7 @@ async function submitRecording(blob: Blob) {
     status.value = 'Generate a text first'
     return
   }
+  loading.value = true
   status.value = 'Uploading & analyzing...'
   const form = new FormData()
   form.append('audio', blob, 'recap.webm')
@@ -50,6 +54,7 @@ async function submitRecording(blob: Blob) {
   const res = await $fetch('/api/recap/submit', { method: 'POST', body: form })
   evaluation.value = res
   status.value = 'Done'
+  loading.value = false
 }
 </script>
 
@@ -57,12 +62,13 @@ async function submitRecording(blob: Blob) {
   <main class="wrap">
     <h1>Recap (Speaking)</h1>
     <section class="card">
-      <button @click="generateText">Create text</button>
+      <button v-if="!generatedText" @click="generateText">Create text</button>
       <p v-if="status" class="status">{{ status }}</p>
+      <p v-if="loading" class="status">Loading...</p>
       <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
     </section>
 
-    <section class="card">
+    <section class="card" v-if="generatedText">
       <div class="actions">
         <button v-if="!recording" @click="startRecording">Start recording</button>
         <button v-else @click="stopRecording">Stop & analyze</button>
