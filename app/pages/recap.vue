@@ -1,25 +1,30 @@
 <script setup lang="ts">
-const generatedText = ref('')
-const status = ref('')
+const generatedText = ref('');
+const status = reactive({
+  generatingText: false,
+  uploading: false,
+});
 const loading = ref(false)
 const recording = ref(false)
 const mediaRecorder = ref<MediaRecorder | null>(null)
 const chunks: Blob[] = []
-const evaluation = ref<any>(null)
+const evaluation = ref<any>(null);
+const step = ref<'generate' | 'record' | 'result'>('generate')
 
 async function generateText() {
   loading.value = true
-  status.value = 'Generating...'
+  status.generatingText = true
   evaluation.value = null
   const res = await $fetch<{ text: string }>('/api/recap/generate', { method: 'POST' })
   generatedText.value = res.text
-  status.value = 'Text ready'
+  status.generatingText = false
   loading.value = false
+  step.value = 'record'
 }
 
 async function startRecording() {
   evaluation.value = null
-  status.value = ''
+  status.uploading = false
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
   const rec = new MediaRecorder(stream)
   chunks.length = 0
@@ -38,22 +43,28 @@ async function stopRecording() {
   if (mediaRecorder.value && recording.value) {
     mediaRecorder.value.stop()
     recording.value = false
+    step.value = 'result'
   }
 }
 
 async function submitRecording(blob: Blob) {
   if (!generatedText.value.trim()) {
-    status.value = 'Generate a text first'
+    alert('Please generate a text first')
     return
   }
-  loading.value = true
-  status.value = 'Uploading & analyzing...'
-  const form = new FormData()
-  form.append('audio', blob, 'recap.webm')
-  form.append('text', generatedText.value)
-  const res = await $fetch('/api/recap/submit', { method: 'POST', body: form })
-  evaluation.value = res
-  status.value = 'Done'
+  try {
+    loading.value = true
+    status.uploading = true
+    const form = new FormData()
+    form.append('audio', blob, 'recap.webm')
+    form.append('text', generatedText.value)
+    const res = await $fetch('/api/recap/submit', { method: 'POST', body: form })
+    evaluation.value = res
+  } catch (error) {
+    console.error('Error submitting recording:', error)
+    alert('Failed to submit recording. Please try again.')
+  }
+  status.uploading = false
   loading.value = false
 }
 </script>
@@ -61,37 +72,41 @@ async function submitRecording(blob: Blob) {
 <template>
   <main class="wrap">
     <h1>Recap (Speaking)</h1>
-    <section class="card">
-      <button v-if="!generatedText" @click="generateText">Create text</button>
-      <p v-if="status" class="status">{{ status }}</p>
-      <p v-if="loading" class="status">Loading...</p>
-      <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
+    <section v-if="loading">
+      <p v-if="status.generatingText" class="status">Generating text...</p>
+      <p v-if="status.uploading" class="status">Uploading & analyzing...</p>
     </section>
+    <template v-else>
+      <section class="card" v-if="step === 'generate'">
+        <button v-if="!generatedText" @click="generateText">Create text</button>
+        <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
+      </section>
 
-    <section class="card" v-if="generatedText">
-      <div class="actions">
-        <button v-if="!recording" @click="startRecording">Start recording</button>
-        <button v-else @click="stopRecording">Stop & analyze</button>
-      </div>
-      <p class="hint">Record ~15–20 minutes retelling the text.</p>
-    </section>
+      <section class="card" v-if="step === 'record'">
+        <div class="actions">
+          <button v-if="!recording" @click="startRecording">Start recording</button>
+          <button v-else @click="stopRecording">Stop & analyze</button>
+        </div>
+        <p class="hint">Record ~15–20 minutes retelling the text.</p>
+      </section>
 
-    <section class="card" v-if="evaluation">
-      <h2>Result</h2>
-      <p><b>Score:</b> {{ evaluation.score }}/100</p>
-      <ul>
-        <li><b>Coverage:</b> {{ evaluation.coverage }}</li>
-        <li><b>Structure:</b> {{ evaluation.structure }}</li>
-        <li><b>Language:</b> {{ evaluation.language }}</li>
-        <li><b>Fluency:</b> {{ evaluation.fluency }}</li>
-      </ul>
-      <h3>Strengths</h3>
-      <ul><li v-for="s in evaluation.strengths" :key="s">{{ s }}</li></ul>
-      <h3>Improvements</h3>
-      <ul><li v-for="s in evaluation.improvements" :key="s">{{ s }}</li></ul>
-      <h3>Fixes</h3>
-      <ul><li v-for="s in evaluation.fixes" :key="s">{{ s }}</li></ul>
-    </section>
+      <section class="card" v-if="step === 'result'">
+        <h2>Result</h2>
+        <p><b>Score:</b> {{ evaluation.score }}/100</p>
+        <ul>
+          <li><b>Coverage:</b> {{ evaluation.coverage }}</li>
+          <li><b>Structure:</b> {{ evaluation.structure }}</li>
+          <li><b>Language:</b> {{ evaluation.language }}</li>
+          <li><b>Fluency:</b> {{ evaluation.fluency }}</li>
+        </ul>
+        <h3>Strengths</h3>
+        <ul><li v-for="s in evaluation.strengths" :key="s">{{ s }}</li></ul>
+        <h3>Improvements</h3>
+        <ul><li v-for="s in evaluation.improvements" :key="s">{{ s }}</li></ul>
+        <h3>Fixes</h3>
+        <ul><li v-for="s in evaluation.fixes" :key="s">{{ s }}</li></ul>
+      </section>
+    </template>
   </main>
 </template>
 
