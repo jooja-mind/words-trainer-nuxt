@@ -16,8 +16,11 @@ export default defineEventHandler(async (event) => {
   const baseDir = '/home/powerdot/Shared/words-trainer/recap'
   fs.mkdirSync(baseDir, { recursive: true })
   const stamp = new Date().toISOString().replace(/[:.]/g, '-')
-  const audioPath = path.join(baseDir, `${stamp}.webm`)
-  const textPath = path.join(baseDir, `${stamp}.txt`)
+  const sessionDir = path.join(baseDir, stamp)
+  fs.mkdirSync(sessionDir, { recursive: true })
+
+  const audioPath = path.join(sessionDir, `audio.webm`)
+  const textPath = path.join(sessionDir, `text.txt`)
   fs.writeFileSync(audioPath, audio.data)
   fs.writeFileSync(textPath, String(text.data))
 
@@ -35,7 +38,7 @@ export default defineEventHandler(async (event) => {
   const trData = await tr.json()
   const transcript = trData?.text || ''
 
-  const transcriptPath = path.join(baseDir, `${stamp}.transcript.txt`)
+  const transcriptPath = path.join(sessionDir, `transcript.txt`)
   fs.writeFileSync(transcriptPath, transcript)
 
   // Evaluate
@@ -58,7 +61,7 @@ export default defineEventHandler(async (event) => {
   let parsed
   try { parsed = JSON.parse(raw) } catch { parsed = { score: 0, coverage: 0, structure: 0, language: 0, fluency: 0, strengths: [], improvements: [], fixes: [] } }
 
-  const evalPath = path.join(baseDir, `${stamp}.eval.json`)
+  const evalPath = path.join(sessionDir, `eval.json`)
   fs.writeFileSync(evalPath, JSON.stringify(parsed, null, 2))
 
   return parsed
