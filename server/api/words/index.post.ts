@@ -15,7 +15,8 @@ export default defineEventHandler(async (event) => {
   return prisma.word.create({
     data: {
       term: body.term.trim(),
-      definition: body.definition?.trim() || null,
+      definition: body.definition,
+      translationRu: body.translationRu?.trim() || null,
       example: body.example?.trim() || null,
       status: body.status ?? 'NEW'
     }

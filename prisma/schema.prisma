@@ -14,15 +14,16 @@ enum WordStatus {
 }
 
 model Word {
-  id         String       @id @default(cuid())
-  term       String       @unique
-  definition String?
-  example    String?
-  status     WordStatus   @default(NEW)
-  lastSeenAt DateTime?
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  reviews    WordReview[]
+  id            String       @id @default(cuid())
+  term          String       @unique
+  definition    String?
+  example       String?
+  translationRu String?
+  status        WordStatus   @default(NEW)
+  lastSeenAt    DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  reviews       WordReview[]
 }
 
 model WordReview {

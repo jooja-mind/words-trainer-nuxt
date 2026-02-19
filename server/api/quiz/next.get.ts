@@ -33,6 +33,7 @@ export default defineEventHandler(async (event) => {
       id: true,
       term: true,
       definition: true,
+      translationRu: true,
       status: true,
       lastSeenAt: true,
       reviews: {
@@ -88,6 +89,7 @@ export default defineEventHandler(async (event) => {
     return {
       wordId: target.id,
       prompt: target.term,
+      translationRu: target.translationRu ?? null,
       options
     }
   })

@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
     term?: string
     definition?: string | null
     example?: string | null
+    translationRu?: string | null
     status?: 'NEW' | 'HARD' | 'EASY'
   }>(event)
 
@@ -19,6 +20,7 @@ export default defineEventHandler(async (event) => {
       ...(body.term !== undefined ? { term: body.term.trim() } : {}),
       ...(body.definition !== undefined ? { definition: body.definition || null } : {}),
       ...(body.example !== undefined ? { example: body.example || null } : {}),
+      ...(body.translationRu !== undefined ? { translationRu: body.translationRu || null } : {}),
       ...(body.status !== undefined ? { status: body.status } : {}),
       lastSeenAt: new Date()
     }
