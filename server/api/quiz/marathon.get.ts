@@ -67,6 +67,7 @@ export default defineEventHandler(async (event) => {
     return {
       wordId: target.id,
       prompt: target.term,
+      translationRu: target.translationRu ?? null,
       options
     }
   })
