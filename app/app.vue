@@ -5,9 +5,9 @@ const showWords = ref(false)
 
 watch(() => route.path, () => { showWords.value = false })
 
-function toggleWords() {
-  showWords.value = !showWords.value
-}
+function openWords() { showWords.value = true }
+function closeWords() { showWords.value = false }
+function toggleWords() { showWords.value = !showWords.value }
 
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
@@ -18,7 +18,7 @@ async function logout() {
 <template>
   <div>
     <header v-if="!isLogin" class="topnav">
-      <div class="dropdown" @mouseleave="showWords = false">
+      <div class="dropdown" @mouseenter="openWords" @mouseleave="closeWords">
         <button class="nav-item" @click="toggleWords">Words ▾</button>
         <div v-if="showWords" class="menu">
           <NuxtLink to="/settings" class="menu-item">Setup</NuxtLink>
@@ -28,7 +28,7 @@ async function logout() {
         </div>
       </div>
       <NuxtLink to="/recap" class="nav-item">Recap</NuxtLink>
-      <button class="nav-item" @click="logout">Logout</button>
+      <button class="nav-item logout" @click="logout">Logout</button>
     </header>
     <NuxtPage />
   </div>
@@ -44,6 +44,7 @@ async function logout() {
   position: sticky;
   top: 0;
   z-index: 20;
+  align-items: center;
 }
 .nav-item {
   color: #dbe1ff;
@@ -53,13 +54,15 @@ async function logout() {
   border-radius: 8px;
   background: #171d36;
   cursor: pointer;
+  font-size: 13px;
 }
 
 .dropdown { position: relative; }
 .menu {
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: 0;
+  margin-top: 4px;
   background: #171d36;
   border: 1px solid #39406a;
   border-radius: 10px;
@@ -76,6 +79,13 @@ async function logout() {
   border-radius: 8px;
 }
 .menu-item:hover { background: #212a52; }
+
+.logout {
+  margin-left: auto;
+  border-color: rgba(255,107,107,.7);
+  background: rgba(255,107,107,.12);
+  color: #ffb4b4;
+}
 
 @media (max-width: 640px) {
   .topnav { flex-wrap: wrap; }
