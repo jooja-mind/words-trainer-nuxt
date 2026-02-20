@@ -87,9 +87,11 @@ onMounted(async ()=> {
         <p v-else-if="status.loadingQuestion" class="status">Loading question...</p>
       </section>
       <template v-else>
-        <section class="card">
-          <button @click="loadQuestion">Get question</button>
-          <p class="actionInfo" v-if="noQuestionInDB">No interview questions yet. Please add some to DB.</p>
+        <section class="card firstCard">
+          <button class="refresh" @click="loadQuestion">
+            <Icon name="ion:md-refresh" />
+          </button>
+          <p v-if="noQuestionInDB">No interview questions yet. Please add some to DB.</p>
           <div v-if="item" class="questionHolder">
             <p class="question"><b>Question:</b> {{ item.question }}</p>
             <button class="ghost" @click="showAnswer = !showAnswer">
@@ -125,7 +127,25 @@ button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;backgroun
 .status{color:#c8d0ff}
 .actions{display:flex;gap:.6rem;align-items:center}.hint{color:#b8bfdb;font-size:12px}
 .ghost{border:1px solid #39406a;background:#171d36;color:#dbe1ff;padding:.3rem .55rem;border-radius:8px;cursor:pointer;font-size:12px}
-.question{margin-top:10px; margin-bottom:10px}
+.question{margin-bottom:10px}
 .answer{margin-top:10px;color:#c8d0ff}
 .evaluationTitle{margin-top:10px;margin-bottom:5px; font-weight: bold;}
+
+.firstCard{
+  position: relative;
+}
+
+.refresh{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.refresh:hover{
+  opacity: 1;
+}
 </style>
