@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@vite-pwa/nuxt'],
+  modules: ['@nuxt/ui', '@vite-pwa/nuxt'],
+  css: ['~/assets/css/main.css'],
   runtimeConfig: {
     appPassword: process.env.APP_PASSWORD || ''
   },
