@@ -61,11 +61,36 @@ Run dev:
 npm run dev
 ```
 
-Run production build output:
+Run production build output (manual):
 
 ```bash
-PORT=3018 HOST=127.0.0.1 node .output/server/index.mjs
+PORT=3018 HOST=127.0.0.1 DATABASE_URL="..." node .output/server/index.mjs
 ```
+
+## Production service (systemd user)
+
+Service file is tracked in repo:
+- `deploy/systemd/words-trainer.service`
+
+Install/update on host:
+
+```bash
+cp deploy/systemd/words-trainer.service ~/.config/systemd/user/words-trainer.service
+systemctl --user daemon-reload
+systemctl --user enable --now words-trainer.service
+```
+
+Useful commands:
+
+```bash
+systemctl --user status words-trainer.service
+systemctl --user restart words-trainer.service
+journalctl --user -u words-trainer.service -f
+```
+
+Notes:
+- Service reads DB credentials from `.env` via `EnvironmentFile=...`.
+- App listens on `127.0.0.1:3018` (for reverse proxy / tunnel).
 
 ---
 
