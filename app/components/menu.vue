@@ -6,7 +6,7 @@ async function logout() {
 
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-const items = ref<NavigationMenuItem[]>([[
+const items = ref<NavigationMenuItem[]>([
   {
     label: 'Vocab',
     icon: 'ion:library',
@@ -43,22 +43,52 @@ const items = ref<NavigationMenuItem[]>([[
     icon: 'ion:chatbubbles',
     to: '/interview'
   }
-]
 ])
 </script>
 
 <template>
-    <UHeader>
-        <template #title>
-          English Trainer
-        </template>
+  <UHeader mode="modal">
+    <template #title>
+      English Trainer
+    </template>
 
-        <UNavigationMenu :items="items" arrow content-orientation="vertical" class="w-full"/>
+    <UNavigationMenu
+      :items="items"
+      arrow
+      content-orientation="vertical"
+      class="hidden lg:flex w-full"
+    />
 
-        <template #right>
-          <UButton color="error" variant="ghost" @click="logout" icon="ion:log-out" aria-label="Logout" />
-        </template>
-      </UHeader>
+    <template #body>
+      <UNavigationMenu
+        :items="items"
+        orientation="vertical"
+        class="w-full"
+      />
+
+      <div class="my-4 border-t border-default" />
+
+      <UButton
+        label="Logout"
+        icon="ion:log-out"
+        color="error"
+        variant="soft"
+        class="w-full justify-center"
+        @click="logout"
+      />
+    </template>
+
+    <template #right>
+      <UButton
+        color="error"
+        variant="ghost"
+        icon="ion:log-out"
+        aria-label="Logout"
+        class="hidden lg:inline-flex"
+        @click="logout"
+      />
+    </template>
+  </UHeader>
 </template>
 
 <style scoped>
