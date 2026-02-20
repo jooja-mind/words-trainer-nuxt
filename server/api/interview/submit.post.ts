@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
   const transcript = trData?.text || ''
   fs.writeFileSync(path.join(sessionDir, 'transcript.txt'), transcript)
 
-  const evalPrompt = `You are an interview coach. Compare the candidate's spoken answer to the EXPECTED ANSWER.\n\nQUESTION:\n${question?.data || ''}\n\nEXPECTED ANSWER:\n${expected?.data || ''}\n\nTRANSCRIPT:\n${transcript}\n\nReturn JSON only with fields:\n- verdict: one of ["acceptable", "needs_improvement"]\n- missing_points: array of 3-7 key points that are present in EXPECTED but missing or weak in TRANSCRIPT\n- short_feedback: 3-5 concise bullet points\n\nBe strict but fair.`
+  const evalPrompt = `You are an interview coach. Compare the candidate's spoken answer to the EXPECTED ANSWER.\n\nQUESTION:\n${question?.data || ''}\n\nEXPECTED ANSWER:\n${expected?.data || ''}\n\nTRANSCRIPT:\n${transcript}\n\nRules:\n- If the CORE idea from EXPECTED is present, verdict should be \"acceptable\", even if there are extra clarifications.\n- Do NOT penalize for optional clarifications (e.g., visa mention) if core answer is present.\n- Missing points should be only truly missing key points from EXPECTED.\n\nReturn JSON only with fields:\n- verdict: one of [\"acceptable\", \"needs_improvement\"]\n- missing_points: array of 2-6 key points missing\n- short_feedback: 3-5 concise bullet points\n- optional_clarifications: array of 1-5 items that are extra/optional but not wrong\n\nBe fair and concise.`
 
   const er = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -59,7 +59,7 @@ export default defineEventHandler(async (event) => {
   const ed = await er.json()
   const raw = ed?.choices?.[0]?.message?.content || '{}'
   let parsed
-  try { parsed = JSON.parse(raw) } catch { parsed = { verdict: 'needs_improvement', missing_points: [], short_feedback: [] } }
+  try { parsed = JSON.parse(raw) } catch { parsed = { verdict: 'needs_improvement', missing_points: [], short_feedback: [], optional_clarifications: [] } }
 
   fs.writeFileSync(path.join(sessionDir, 'eval.json'), JSON.stringify(parsed, null, 2))
 
