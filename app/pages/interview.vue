@@ -1,4 +1,5 @@
 <script setup lang="ts">
+useHead({ title: "Interview" })
 const item = ref<{ id: string; question: string; answer?: string | null } | null>(null)
 const showAnswer = ref(false)
 const status = ref('')
@@ -62,7 +63,7 @@ onMounted(loadQuestion)
 
 <template>
   <main class="wrap">
-    <h1>Interview Practice</h1>
+    <h1>Interview</h1>
     <section class="card">
       <button @click="loadQuestion">New question</button>
       <p v-if="status" class="status">{{ status }}</p>
