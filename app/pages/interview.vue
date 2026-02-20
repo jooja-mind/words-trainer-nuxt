@@ -67,13 +67,13 @@ async function submitRecording(blob: Blob) {
 onMounted(async ()=> {
   await loadQuestion();
 
-  if(process.env.NODE_ENV === 'development') {
-    evaluation.value = {
-      verdict: 'Good job! You covered most of the points.',
-      missing_points: ['Point 1', 'Point 2', 'Point 3'],
-      short_feedback: ['Feedback 1', 'Feedback 2', 'Feedback 3']
-    }
-  }
+  // if(process.env.NODE_ENV === 'development') {
+  //   evaluation.value = {
+  //     verdict: 'Good job! You covered most of the points.',
+  //     missing_points: ['Point 1', 'Point 2', 'Point 3'],
+  //     short_feedback: ['Feedback 1', 'Feedback 2', 'Feedback 3']
+  //   }
+  // }
 })
 
 </script>
