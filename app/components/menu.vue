@@ -12,11 +12,6 @@ const items = ref<NavigationMenuItem[]>([[
     icon: 'ion:library',
     children: [
       {
-        label: 'Setup',
-        icon: 'ion:ios-settings',
-        to: '/settings'
-      },
-      {
         label: 'Trainer',
         icon: 'ion:book',
         to: '/trainer'
@@ -30,7 +25,12 @@ const items = ref<NavigationMenuItem[]>([[
         label: 'Stats',
         icon: 'ion:bar-chart',
         to: '/stats'
-      }
+      },
+      {
+        label: 'Setup',
+        icon: 'ion:ios-settings',
+        to: '/settings'
+      },
     ]
   },
   {
@@ -45,9 +45,8 @@ const items = ref<NavigationMenuItem[]>([[
   }
 ], [
   {
-    label: 'Logout',
-    onClick: logout,
-    color: 'error',
+    icon: 'ion:log-out',
+    onClick: logout
   }
 ]])
 </script>
