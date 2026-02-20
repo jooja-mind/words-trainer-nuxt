@@ -24,18 +24,16 @@ onMounted(loadStats)
 
 <template>
   <main class="wrap">
-    <!-- <h1>Multiple Choice Trainer</h1> -->
     <UPageHeader title="Multiple Choice Trainer" headline="Vocabulary" />
     <UPageBody>
-      <section class="card">
+      <UCard variant="subtle">
         <div class="quiz-top">
-          <button @click="startQuiz">Build test (20)</button>
+          <button v-if="!quizCurrent" @click="startQuiz">Build test (20)</button>
           <span v-if="quizQuestions.length">Progress: {{ quizProgress }}</span>
           <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
         </div>
         <div v-if="quizCurrent" class="current">
           <div class="term">{{ quizCurrent.prompt }}</div>
-          <p class="hint">Choose the correct definition:</p>
           <div class="options">
             <label v-for="(opt, idx) in quizCurrent.options" :key="opt.optionId" class="option">
               <input type="radio" name="answer" :value="opt.optionId" v-model="selectedOptionId" :disabled="answered" />
@@ -51,21 +49,18 @@ onMounted(loadStats)
           <div v-if="finished" class="finish">Test finished. <button class="ghost" @click="startQuiz">Build new test</button></div>
         </div>
         <p class="actionInfo" v-else>Press «Build test (20)» — for selection based on mistakes, recency, and rarity of repetition.</p>
-      </section>
-      <section class="card" v-if="quizStats">
+      </UCard>
+
+      <UCard variant="subtle" v-if="quizStats">
         <h2>Stats</h2>
         <p>Total words: <b>{{ quizStats.totalWords }}</b></p>
         <p>Total answers: <b>{{ quizStats.totalAnswers }}</b></p>
         <p>Accuracy: <b>{{ (quizStats.accuracy * 100).toFixed(1) }}%</b></p>
-      </section>
+      </UCard>
     </UPageBody>
   </main>
 </template>
 
 <style scoped>
-.wrap{max-width:980px;margin:1.2rem auto;padding:0 1rem}.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1rem;margin-bottom:1rem}
-.quiz-top{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}.current{padding:1rem;border:1px dashed #3d4468;border-radius:10px}.term{font-size:1.5rem;font-weight:700;}
-.hint{color:#b8bfdb}.options{display:grid;gap:.5rem;margin:.7rem 0}.option{display:flex;gap:.6rem;align-items:flex-start;background:#101327;border:1px solid #2f3554;padding:.55rem;border-radius:8px}
-input,button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}button{cursor:pointer}
-.actions{display:flex;gap:.5rem;margin-top:.7rem}.ghost{border:1px solid #39406a;background:#171d36;color:#dbe1ff;padding:.3rem .55rem;border-radius:8px;cursor:pointer;font-size:12px}.finish{margin-top:.7rem;color:#c8d0ff;display:flex;gap:.6rem;align-items:center}
+@import '~/assets/css/quiz.css';
 </style>

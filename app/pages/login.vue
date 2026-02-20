@@ -26,19 +26,40 @@ async function submit() {
 
 <template>
   <main class="wrap">
-    <div class="card">
-      <h1>Enter password</h1>
-      <input v-model="password" type="password" placeholder="Password" />
-      <button :disabled="loading" @click="submit">Login</button>
+    <UCard variant="subtle">
+      <div class="title">Enter password</div>
+      <div class="inputs">
+       <UInput v-model="password" type="password" placeholder="Password" @keyup.enter="submit" :disabled="loading" />
+       <UButton @click="submit" :disabled="loading">Login</UButton>
+      </div>
       <p v-if="error" class="err">{{ error }}</p>
-    </div>
+    </UCard>
   </main>
 </template>
 
 <style scoped>
-.wrap{min-height:80vh;display:flex;align-items:center;justify-content:center}
-.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1.5rem;display:grid;gap:.7rem;min-width:280px}
-input,button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}
-button{cursor:pointer}
-.err{color:#fca5a5}
+.title{
+  font-size: 18px;
+  font-weight: 500;
+  cursor: default;
+}
+.err{
+  color:#fca5a5;
+  margin-top: 10px;
+  font-size: 12px;
+}
+.wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.inputs{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+}
 </style>

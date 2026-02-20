@@ -6,7 +6,9 @@ const isLogin = computed(() => route.path === '/login')
 <template>
   <UApp>
     <Menu v-if="!isLogin" />
-    <NuxtPage />
+    <UContainer>
+      <NuxtPage />
+    </UContainer>
   </UApp>
 </template>
 

@@ -43,20 +43,23 @@ const items = ref<NavigationMenuItem[]>([[
     icon: 'ion:chatbubbles',
     to: '/interview'
   }
-], [
-  {
-    icon: 'ion:log-out',
-    onClick: logout
-  }
-]])
+]
+])
 </script>
 
 <template>
-  <div class="menu">
-    <UNavigationMenu :items="items" arrow content-orientation="vertical" class="w-full"/>
-  </div>
+    <UHeader>
+        <template #title>
+          English Trainer
+        </template>
+
+        <UNavigationMenu :items="items" arrow content-orientation="vertical" class="w-full"/>
+
+        <template #right>
+          <UButton color="error" variant="ghost" @click="logout" icon="ion:log-out" aria-label="Logout" />
+        </template>
+      </UHeader>
 </template>
 
 <style scoped>
-.menu{margin:0.5rem; padding-bottom: 0.5rem; border-bottom:1px solid #2a2e4475;margin-bottom:1rem}
 </style>

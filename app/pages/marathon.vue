@@ -62,18 +62,16 @@ function nextQuestion() {
 
 <template>
   <main class="wrap">
-    <!-- <h1>Mistakes Marathon</h1> -->
     <UPageHeader title="Mistakes Marathon" headline="Vocabulary" />
     <UPageBody>
-      <section class="card">
+      <UCard variant="subtle">
         <div class="quiz-top">
-          <button @click="startMarathon">Start marathon</button>
+          <button v-if="!quizCurrent" @click="startMarathon">Start marathon</button>
           <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
         </div>
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
         <div v-if="quizCurrent" class="current">
           <div class="term">{{ quizCurrent.prompt }}</div>
-          <p class="hint">Mode: only problematic words (mistakes/KPI).</p>
           <div class="options">
             <label v-for="(opt, idx) in quizCurrent.options" :key="opt.optionId" class="option">
               <input type="radio" name="answer" :value="opt.optionId" v-model="selectedOptionId" :disabled="answered" />
@@ -88,15 +86,11 @@ function nextQuestion() {
           <AnswerFeedback :result="answerResult" :translation="answerTranslation" />
         </div>
         <p class="actionInfo" v-else-if="!errorMessage">Click “Start marathon” — this mode drills only your weak spots 🔥</p>
-      </section>
+      </UCard>
     </UPageBody>
   </main>
 </template>
 
 <style scoped>
-.wrap{max-width:980px;margin:1.2rem auto;padding:0 1rem}.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1rem;margin-bottom:1rem}
-.quiz-top{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}.current{padding:1rem;border:1px dashed #3d4468;border-radius:10px}.term{font-size:1.5rem;font-weight:700}
-.hint{color:#b8bfdb}.options{display:grid;gap:.5rem;margin:.7rem 0}.option{display:flex;gap:.6rem;align-items:flex-start;background:#101327;border:1px solid #2f3554;padding:.55rem;border-radius:8px}
-input,button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}button{cursor:pointer}
-.actions{display:flex;gap:.5rem;margin-top:.7rem}.ghost{border:1px solid #39406a;background:#171d36;color:#dbe1ff;padding:.3rem .55rem;border-radius:8px;cursor:pointer;font-size:12px}.error{color:#fca5a5;margin-top:.6rem}
+@import '~/assets/css/quiz.css';
 </style>

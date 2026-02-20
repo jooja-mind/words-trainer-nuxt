@@ -10,16 +10,15 @@ onMounted(load)
 
 <template>
   <main class="wrap">
-    <!-- <h1>Stats</h1> -->
     <UPageHeader title="Stats" headline="Vocabulary" />
     <UPageBody>
-      <section class="card" v-if="data">
+      <UCard variant="subtle" v-if="data">
         <p>Total words: <b>{{ data.totalWords }}</b></p>
         <p>Total answers: <b>{{ data.totalAnswers }}</b></p>
         <p>Accuracy: <b>{{ (data.accuracy * 100).toFixed(1) }}%</b></p>
-      </section>
+      </UCard>
 
-      <section class="card" v-if="data?.topHardest">
+      <UCard variant="subtle" v-if="data?.topHardest">
         <h2>Top‑20 hardest (by KPI)</h2>
         <table>
           <thead>
@@ -37,13 +36,12 @@ onMounted(load)
             </tr>
           </tbody>
         </table>
-      </section>
+      </UCard>
     </UPageBody>
   </main>
 </template>
 
 <style scoped>
-.wrap{max-width:980px;margin:1.2rem auto;padding:0 1rem}.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1rem;margin-bottom:1rem}
 .list{padding-left:1.2rem}.list li{margin:.4rem 0}
 table{width:100%;border-collapse:collapse;margin-top:1rem}
 th,td{border:1px solid #2a2e44;padding:.6rem;text-align:left}

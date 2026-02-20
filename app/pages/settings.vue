@@ -36,10 +36,9 @@ watch(onlyStatus, loadWords)
 
 <template>
   <main class="wrap">
-    <!-- <h1>Words Settings</h1> -->
     <UPageHeader title="Words Settings" headline="Vocabulary" />
     <UPageBody>
-      <section class="card">
+      <UCard variant="subtle">
         <h2>Add word</h2>
         <div class="grid">
           <input v-model="form.term" placeholder="word" />
@@ -52,9 +51,9 @@ watch(onlyStatus, loadWords)
           </select>
           <button @click="addWord">Add</button>
         </div>
-      </section>
+      </UCard>
 
-      <section class="card">
+      <UCard variant="subtle">
         <h2>Words ({{ words.length }})</h2>
         <div class="filter">
           <label>Filter:</label>
@@ -74,13 +73,12 @@ watch(onlyStatus, loadWords)
             <button @click="removeWord(w.id)">delete</button>
           </li>
         </ul>
-      </section>
+      </UCard>
     </UPageBody>
   </main>
 </template>
 
 <style scoped>
-.wrap{max-width:980px;margin:1.2rem auto;padding:0 1rem}.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1rem;margin-bottom:1rem}
 .grid{display:grid;gap:.6rem}input,select,button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}
 button{cursor:pointer}.filter{display:flex;gap:.8rem;align-items:center;margin-bottom:.8rem}.list{list-style:none;padding:0;margin:0}
 .list li{display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid #262b44}.status{color:#9ca3af}

@@ -71,7 +71,6 @@ async function submitRecording(blob: Blob) {
 
 <template>
   <main class="wrap">
-    <!-- <h1>Recap (Speaking)</h1> -->
     <UPageHeader title="Recap (Speaking)" />
     <UPageBody>
       <section v-if="loading">
@@ -79,20 +78,21 @@ async function submitRecording(blob: Blob) {
         <p v-if="status.uploading" class="status">Uploading & analyzing...</p>
       </section>
       <template v-else>
-        <section class="card" v-if="step === 'generate'">
+        <UCard variant="subtle" v-if="step === 'generate'">
           <button v-if="!generatedText" @click="generateText">Create text</button>
+          <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
           <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
-        </section>
+        </UCard>
 
-        <section class="card" v-if="step === 'record'">
+        <UCard variant="subtle" v-if="step === 'record'">
           <div class="actions">
             <button v-if="!recording" @click="startRecording">Start recording</button>
             <button v-else @click="stopRecording">Stop & analyze</button>
           </div>
           <p class="hint">Record ~15–20 minutes retelling the text.</p>
-        </section>
+        </UCard>
 
-        <section class="card" v-if="step === 'result'">
+        <UCard variant="subtle" v-if="step === 'result'">
           <h2>Result</h2>
           <p><b>Score:</b> {{ evaluation.score }}/100</p>
           <ul>
@@ -107,14 +107,13 @@ async function submitRecording(blob: Blob) {
           <ul><li v-for="s in evaluation.improvements" :key="s">{{ s }}</li></ul>
           <h3>Fixes</h3>
           <ul><li v-for="s in evaluation.fixes" :key="s">{{ s }}</li></ul>
-        </section>
+        </UCard>
       </template>
     </UPageBody>
   </main>
 </template>
 
 <style scoped>
-.wrap{max-width:980px;margin:1.2rem auto;padding:0 1rem}.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1rem;margin-bottom:1rem}
 button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff;cursor:pointer}
 .text{white-space:pre-wrap;background:#101327;padding:12px;border-radius:10px;border:1px solid #2f3554;}
 .status{color:#c8d0ff}

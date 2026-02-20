@@ -87,7 +87,7 @@ onMounted(async ()=> {
         <p v-else-if="status.loadingQuestion" class="status">Loading question...</p>
       </section>
       <template v-else>
-        <section class="card firstCard">
+        <UCard variant="subtle" style="position: relative;">
           <button class="refresh" @click="loadQuestion">
             <Icon name="ion:md-refresh" />
           </button>
@@ -99,30 +99,29 @@ onMounted(async ()=> {
             </button>
             <p v-if="showAnswer && item.answer" class="answer"><b>Expected:</b> {{ item.answer }}</p>
           </div>
-        </section>
-
-        <section class="card" v-if="item && !evaluation">
+        </UCard>
+        
+        <UCard variant="subtle" v-if="item && !evaluation">
           <div class="actions">
             <button v-if="!recording" @click="startRecording">Start recording</button>
             <button v-else @click="stopRecording">Stop & analyze</button>
           </div>
           <p class="actionInfo">Record your answer aloud.</p>
-        </section>
+        </UCard>
 
-        <section class="card" v-if="evaluation">
+        <UCard variant="subtle" v-if="evaluation">
           <p><b>Verdict:</b> {{ evaluation.verdict }}</p>
           <div class="evaluationTitle">Missing points</div>
           <ul><li v-for="m in evaluation.missing_points" :key="m">{{ m }}</li></ul>
           <div class="evaluationTitle">Feedback</div>
           <ul><li v-for="m in evaluation.short_feedback" :key="m">{{ m }}</li></ul>
-        </section>
+        </UCard>
       </template>
     </UPageBody>
   </main>
 </template>
 
 <style scoped>
-.wrap{max-width:980px;margin:1.2rem auto;padding:0 1rem}.card{background:#171a2b;border:1px solid #2a2e44;border-radius:12px;padding:1rem;margin-bottom:1rem}
 button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff;cursor:pointer}
 .status{color:#c8d0ff}
 .actions{display:flex;gap:.6rem;align-items:center}.hint{color:#b8bfdb;font-size:12px}
@@ -137,8 +136,8 @@ button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;backgroun
 
 .refresh{
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   border: none;
   background: none;
   color: #fff;
