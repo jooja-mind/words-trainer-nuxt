@@ -45,3 +45,21 @@ model InterviewQA {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model WordTrainingStats {
+  id        Int     @id @default(autoincrement())
+  accuracy  Float
+  totalAnswers Int
+  totalWords   Int
+  createdAt DateTime @default(now())
+}
+
+model RecapTrainingStats {
+  id        Int     @id @default(autoincrement())
+  score     Int
+  coverage  Float
+  structure Float
+  language  Float
+  fluency   Float
+  createdAt DateTime @default(now())
+}

@@ -1,4 +1,5 @@
 import { prisma } from '../../utils/prisma'
+import * as stats from '../../utils/stats'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ wordId?: string; selectedOptionId?: string; forceWrong?: boolean }>(event)
@@ -51,7 +52,19 @@ export default defineEventHandler(async (event) => {
         lastSeenAt: new Date()
       }
     })
-  ])
+  ]);
+
+  // get stats
+  let currentStats = await stats.get()
+
+  // write stats to WordTrainingStats table
+  await prisma.wordTrainingStats.create({
+    data: {
+      accuracy: currentStats.accuracy,
+      totalAnswers: currentStats.totalAnswers,
+      totalWords: currentStats.totalWords
+    }
+  })
 
   return {
     correct,

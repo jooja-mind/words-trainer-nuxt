@@ -15,11 +15,16 @@ async function generateText() {
   loading.value = true
   status.generatingText = true
   evaluation.value = null
-  const res = await $fetch<{ text: string }>('/api/recap/generate', { method: 'POST' })
-  generatedText.value = res.text
+  try {
+    const res = await $fetch<{ text: string }>('/api/recap/generate', { method: 'POST' });
+    generatedText.value = res.text
+    step.value = 'record'
+  } catch (error) {
+    console.error('Error generating text:', error)
+    alert('Failed to generate text. Please try again.')
+  }
   status.generatingText = false
   loading.value = false
-  step.value = 'record'
 }
 
 async function startRecording() {
@@ -43,7 +48,6 @@ async function stopRecording() {
   if (mediaRecorder.value && recording.value) {
     mediaRecorder.value.stop()
     recording.value = false
-    step.value = 'result'
   }
 }
 
@@ -60,6 +64,7 @@ async function submitRecording(blob: Blob) {
     form.append('text', generatedText.value)
     const res = await $fetch('/api/recap/submit', { method: 'POST', body: form })
     evaluation.value = res
+    step.value = 'result'
   } catch (error) {
     console.error('Error submitting recording:', error)
     alert('Failed to submit recording. Please try again.')
@@ -81,7 +86,11 @@ async function submitRecording(blob: Blob) {
         <UCard variant="subtle" v-if="step === 'generate'">
           <button v-if="!generatedText" @click="generateText">Create text</button>
           <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
+        </UCard>
+
+        <UCard variant="subtle" v-if="step === 'record'">
           <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
+          <button @click="generateText" style="margin-top: 10px;">Regenerate text</button>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'record'">
@@ -89,18 +98,19 @@ async function submitRecording(blob: Blob) {
             <button v-if="!recording" @click="startRecording">Start recording</button>
             <button v-else @click="stopRecording">Stop & analyze</button>
           </div>
-          <p class="hint">Record ~15–20 minutes retelling the text.</p>
+          <p class="actionInfo">Record ~15–20 minutes retelling the text.</p>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'result'">
+          <h2>Text</h2>
+          <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
+          <hr>
           <h2>Result</h2>
           <p><b>Score:</b> {{ evaluation.score }}/100</p>
-          <ul>
-            <li><b>Coverage:</b> {{ evaluation.coverage }}</li>
-            <li><b>Structure:</b> {{ evaluation.structure }}</li>
-            <li><b>Language:</b> {{ evaluation.language }}</li>
-            <li><b>Fluency:</b> {{ evaluation.fluency }}</li>
-          </ul>
+          <p><b>Coverage:</b> {{ evaluation.coverage }}</p>
+          <p><b>Structure:</b> {{ evaluation.structure }}</p>
+          <p><b>Language:</b> {{ evaluation.language }}</p>
+          <p><b>Fluency:</b> {{ evaluation.fluency }}</p>
           <h3>Strengths</h3>
           <ul><li v-for="s in evaluation.strengths" :key="s">{{ s }}</li></ul>
           <h3>Improvements</h3>
@@ -119,4 +129,22 @@ button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;backgroun
 .status{color:#c8d0ff}
 .actions{display:flex;gap:.6rem;align-items:center}
 .hint{color:#b8bfdb;font-size:12px}
+hr{
+margin: 20px 0;
+opacity: 0.3;
+}
+h2{
+margin-bottom: 10px;
+font-size: 24px;
+}
+h3{
+margin-top: 15px;
+font-weight: bold;
+}
+ul{
+  padding-left: 16px;
+}
+ul li{
+  list-style: disc;
+}
 </style>

@@ -1,6 +1,7 @@
 import { defineEventHandler, readMultipartFormData } from 'h3'
 import fs from 'node:fs'
 import path from 'node:path'
+import * as GPT from '../../utils/GPT'
 
 export default defineEventHandler(async (event) => {
   const key = process.env.OPENAI_API_KEY
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
   const text = form.find(f => f.name === 'text')
   if (!audio || !text || !audio.data) throw createError({ statusCode: 400, statusMessage: 'audio/text required' })
 
-  const baseDir = '/home/powerdot/Shared/words-trainer/recap'
+  const baseDir = process.env.RECAP_BASE_DIR || '';
   fs.mkdirSync(baseDir, { recursive: true })
   const stamp = new Date().toISOString().replace(/[:.]/g, '-')
   const sessionDir = path.join(baseDir, stamp)
@@ -26,7 +27,7 @@ export default defineEventHandler(async (event) => {
 
   // Transcribe via OpenAI Whisper
   const formData = new FormData()
-  formData.append('model', 'whisper-1')
+  formData.append('model', 'gpt-4o-transcribe')
   formData.append('language', 'en')
   formData.append('file', new Blob([audio.data], { type: audio.type || 'audio/webm' }), 'recap.webm')
 
@@ -42,27 +43,66 @@ export default defineEventHandler(async (event) => {
   fs.writeFileSync(transcriptPath, transcript)
 
   // Evaluate
-  const evalPrompt = `You are an English speaking coach.\n\nORIGINAL TEXT:\n${text.data}\n\nTRANSCRIPT:\n${transcript}\n\nReturn JSON with fields:\nscore (0-100), coverage (0-100), structure (0-100), language (0-100), fluency (0-100), strengths (3 bullets), improvements (3 bullets), fixes (3 short corrected sentences).\nKeep it concise.`
-
-  const er = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'gpt-5.2',
-      messages: [
-        { role: 'system', content: 'You evaluate speaking summaries. Output only JSON.' },
-        { role: 'user', content: evalPrompt }
-      ],
-      temperature: 0.3
-    })
-  })
-  const ed = await er.json()
-  const raw = ed?.choices?.[0]?.message?.content || '{}'
-  let parsed
-  try { parsed = JSON.parse(raw) } catch { parsed = { score: 0, coverage: 0, structure: 0, language: 0, fluency: 0, strengths: [], improvements: [], fixes: [] } }
+  const evalResult = await GPT.ask<{
+    score: number,
+    coverage: number,
+    structure: number,
+    language: number,
+    fluency: number,
+    strengths: string[],
+    improvements: string[],
+    fixes: string[]
+  }>({
+    model: 'gpt-5.2',
+    reasoningEffort: 'high',
+    jsonSchema: {
+      "type": "json_schema",
+      "name": "EvaluationResult",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "score": { "type": "number", "description": "Overall score 0-100" },
+          "coverage": { "type": "number", "description": "How much of the original text was covered, 0-100" },
+          "structure": { "type": "number", "description": "How well structured the retelling is, 0-100" },
+          "language": { "type": "number", "description": "Language quality, 0-100" },
+          "fluency": { "type": "number", "description": "Fluency and naturalness, 0-100" },
+          "strengths": { 
+            "type": "array", 
+            "description": "Strengths of the retelling in 3 bullet points",
+            "items": { "type": "string" }
+          },
+          "improvements": { 
+            "type": "array", 
+            "description": "Areas for improvement in 3 bullet points",
+            "items": { "type": "string" }
+          },
+          "fixes": { 
+            "type": "array", 
+            "description": "3 Short corrected sentences",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["score", "coverage", "structure", "language", "fluency", "strengths", "improvements", "fixes"],
+        "additionalProperties": false
+      }
+    },
+    systemPrompt: 'You evaluate speaking summaries. Evaluate the following speaking transcript against the original text and return a JSON with scores and feedback.',
+    triggerPrompt: `ORIGINAL TEXT:\n${text.data}\n\n---\nTRANSCRIPT:\n${transcript}`
+  });
 
   const evalPath = path.join(sessionDir, `eval.json`)
-  fs.writeFileSync(evalPath, JSON.stringify(parsed, null, 2))
+  fs.writeFileSync(evalPath, JSON.stringify(evalResult, null, 2))
 
-  return parsed
+  await prisma.recapTrainingStats.create({
+    data: {
+      score: evalResult.score,
+      coverage: evalResult.coverage,
+      structure: evalResult.structure,
+      language: evalResult.language,
+      fluency: evalResult.fluency,
+    }
+  })
+
+  return evalResult;
 })
