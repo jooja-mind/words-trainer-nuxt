@@ -1,11 +1,7 @@
-<script setup lang="ts">
-console.log('index')
-</script>
-
 <template>
-  
+  <TrainerPage />
 </template>
 
-<style scoped>
-
-</style>
+<script setup lang="ts">
+import TrainerPage from './trainer.vue'
+</script>
