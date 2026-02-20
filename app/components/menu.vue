@@ -37,6 +37,11 @@ const items = ref<NavigationMenuItem[]>([[
     label: 'Recap',
     icon: 'ion:sparkles-sharp',
     to: '/recap'
+  },
+  {
+    label: 'Interview',
+    icon: 'ion:chatbubbles',
+    to: '/interview'
   }
 ], [
   {
