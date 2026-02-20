@@ -2,15 +2,34 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  modules: ['@vite-pwa/nuxt'],
   runtimeConfig: {
     appPassword: process.env.APP_PASSWORD || ''
   },
-  modules: ['@nuxt/ui'],
-  css: ['~/assets/css/main.css'],
-  ui: {
-    // @ts-ignore
-    colors: {
-      neutral: 'neutral'
+  app: {
+    head: {
+      link: [
+        { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon.png' }
+      ]
+    }
+  },
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Jooja Words Trainer',
+      short_name: 'Words Trainer',
+      description: 'Adaptive English words trainer with recap speaking mode',
+      theme_color: '#0f1221',
+      background_color: '#0f1221',
+      display: 'standalone',
+      start_url: '/trainer',
+      icons: [
+        { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' }
+      ]
+    },
+    workbox: {
+      navigateFallback: '/trainer'
     }
   }
-});
+})
