@@ -2,13 +2,16 @@
 const item = ref<{ id: string; question: string; answer?: string | null } | null>(null)
 const showAnswer = ref(false)
 const status = ref('')
+const loading = ref(false)
 const recording = ref(false)
+const evaluation = ref<any>(null)
 const mediaRecorder = ref<MediaRecorder | null>(null)
 const chunks: Blob[] = []
 
 async function loadQuestion() {
   status.value = 'Loading question...'
   showAnswer.value = false
+  evaluation.value = null
   const res = await $fetch<{ item: any }>('/api/interview/random')
   item.value = res.item
   status.value = item.value ? '' : 'No interview questions yet'
@@ -40,13 +43,18 @@ async function stopRecording() {
 
 async function submitRecording(blob: Blob) {
   if (!item.value) return
-  status.value = 'Saving recording...'
+  loading.value = true
+  status.value = 'Transcribing & evaluating...'
   const form = new FormData()
   form.append('audio', blob, 'interview.webm')
   form.append('questionId', item.value.id)
   form.append('question', item.value.question)
-  await $fetch('/api/interview/submit', { method: 'POST', body: form })
-  status.value = 'Saved'
+  form.append('expected', item.value.answer || '')
+
+  const res = await $fetch('/api/interview/submit', { method: 'POST', body: form })
+  evaluation.value = res
+  status.value = 'Done'
+  loading.value = false
 }
 
 onMounted(loadQuestion)
@@ -63,16 +71,25 @@ onMounted(loadQuestion)
         <button class="ghost" @click="showAnswer = !showAnswer">
           {{ showAnswer ? 'Hide answer' : 'Show answer' }}
         </button>
-        <p v-if="showAnswer && item.answer" class="answer"><b>Answer:</b> {{ item.answer }}</p>
+        <p v-if="showAnswer && item.answer" class="answer"><b>Expected:</b> {{ item.answer }}</p>
       </div>
     </section>
 
     <section class="card" v-if="item">
       <div class="actions">
         <button v-if="!recording" @click="startRecording">Start recording</button>
-        <button v-else @click="stopRecording">Stop</button>
+        <button v-else @click="stopRecording">Stop & analyze</button>
       </div>
-      <p class="hint">Record your answer aloud. The audio is saved to Shared.</p>
+      <p class="hint">Record your answer aloud.</p>
+    </section>
+
+    <section class="card" v-if="evaluation">
+      <h2>Result</h2>
+      <p><b>Verdict:</b> {{ evaluation.verdict }}</p>
+      <h3>Missing points</h3>
+      <ul><li v-for="m in evaluation.missing_points" :key="m">{{ m }}</li></ul>
+      <h3>Feedback</h3>
+      <ul><li v-for="m in evaluation.short_feedback" :key="m">{{ m }}</li></ul>
     </section>
   </main>
 </template>
