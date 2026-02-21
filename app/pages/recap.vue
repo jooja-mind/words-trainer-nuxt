@@ -84,19 +84,19 @@ async function submitRecording(blob: Blob) {
       </section>
       <template v-else>
         <UCard variant="subtle" v-if="step === 'generate'">
-          <button v-if="!generatedText" @click="generateText">Create text</button>
+          <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText">Create text</UButton>
           <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'record'">
           <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
-          <button @click="generateText" style="margin-top: 10px;">Regenerate text</button>
+          <UButton size="sm" variant="outline" style="margin-top: 10px;" @click="generateText">Regenerate text</UButton>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'record'">
           <div class="actions">
-            <button v-if="!recording" @click="startRecording">Start recording</button>
-            <button v-else @click="stopRecording">Stop & analyze</button>
+            <UButton size="lg" color="primary" v-if="!recording" @click="startRecording">Start recording</UButton>
+            <UButton size="lg" color="secondary" variant="outline" v-else @click="stopRecording">Stop & analyze</UButton>
           </div>
           <p class="actionInfo">Record ~15–20 minutes retelling the text.</p>
         </UCard>
@@ -124,7 +124,6 @@ async function submitRecording(blob: Blob) {
 </template>
 
 <style scoped>
-button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff;cursor:pointer}
 .text{white-space:pre-wrap;background:#101327;padding:12px;border-radius:10px;border:1px solid #2f3554;}
 .status{color:#c8d0ff}
 .actions{display:flex;gap:.6rem;align-items:center}

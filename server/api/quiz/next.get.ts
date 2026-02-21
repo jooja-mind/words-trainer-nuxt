@@ -3,7 +3,8 @@ import { prisma } from '../../utils/prisma'
 type QuizItem = {
   wordId: string
   prompt: string
-  options: Array<{ optionId: string; text: string }>
+  translationRu?: string | null
+  options: Array<{ optionId: string; text: string; translation?: string | null }>
 }
 
 function cleanDefinition(raw: string) {
@@ -82,8 +83,8 @@ export default defineEventHandler(async (event) => {
     const distractors = shuffle(distractorPool).slice(0, 3)
 
     const options = shuffle([
-      { optionId: target.id, text: cleanDefinition(target.definition as string) },
-      ...distractors.map((d) => ({ optionId: d.id, text: cleanDefinition(d.definition as string) }))
+      { optionId: target.id, text: cleanDefinition(target.definition as string), translation: target.translationRu || '' },
+      ...distractors.map((d) => ({ optionId: d.id, text: cleanDefinition(d.definition as string), translation: d.translationRu || '' }))
     ])
 
     return {

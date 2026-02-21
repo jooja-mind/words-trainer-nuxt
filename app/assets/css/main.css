@@ -19,9 +19,14 @@ h2{
 }
 
 p.actionInfo{
-  padding-top: 10px;
-  opacity: 0.5;
-  margin-left: 9px;
-  border-left: 1px solid #ffffff38;
-  padding-left: 8px;
+  margin-top: 16px;
+  padding-left: 32px;
+  background-image: url(~/assets/images/bulb-white.svg);
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: 0px 8px;
+  color: #ffffff99;
+  cursor: default;
+  line-height: 42px;
+  margin-bottom: -10px;
 }

@@ -88,23 +88,23 @@ onMounted(async ()=> {
       </section>
       <template v-else>
         <UCard variant="subtle" style="position: relative;">
-          <button class="refresh" @click="loadQuestion">
-            <Icon name="ion:md-refresh" />
-          </button>
+          <div class="refresh">
+            <UButton size="sm" variant="link" @click="loadQuestion" icon="ion:md-refresh"/>
+          </div>
           <p v-if="noQuestionInDB">No interview questions yet. Please add some to DB.</p>
           <div v-if="item" class="questionHolder">
             <p class="question"><b>Question:</b> {{ item.question }}</p>
-            <button class="ghost" @click="showAnswer = !showAnswer">
+            <UButton size="sm" variant="outline" class="ghost" @click="showAnswer = !showAnswer">
               {{ showAnswer ? 'Hide answer' : 'Show answer' }}
-            </button>
+            </UButton>
             <p v-if="showAnswer && item.answer" class="answer"><b>Expected:</b> {{ item.answer }}</p>
           </div>
         </UCard>
         
         <UCard variant="subtle" v-if="item && !evaluation">
           <div class="actions">
-            <button v-if="!recording" @click="startRecording">Start recording</button>
-            <button v-else @click="stopRecording">Stop & analyze</button>
+            <UButton size="lg" color="primary" v-if="!recording" @click="startRecording">Start recording</UButton>
+            <UButton size="lg" color="secondary" variant="outline" v-else @click="stopRecording">Stop & analyze</UButton>
           </div>
           <p class="actionInfo">Record your answer aloud.</p>
         </UCard>
@@ -122,11 +122,13 @@ onMounted(async ()=> {
 </template>
 
 <style scoped>
-button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff;cursor:pointer}
 .status{color:#c8d0ff}
 .actions{display:flex;gap:.6rem;align-items:center}.hint{color:#b8bfdb;font-size:12px}
 .ghost{border:1px solid #39406a;background:#171d36;color:#dbe1ff;padding:.3rem .55rem;border-radius:8px;cursor:pointer;font-size:12px}
-.question{margin-bottom:10px}
+.question{
+  margin-bottom:10px;
+  width: calc(100% - 16px);
+}
 .answer{margin-top:10px;color:#c8d0ff}
 .evaluationTitle{margin-top:10px;margin-bottom:5px; font-weight: bold;}
 
@@ -136,15 +138,8 @@ button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;backgroun
 
 .refresh{
   position: absolute;
-  top: 0px;
-  right: 0px;
-  border: none;
-  background: none;
+  top: 4px;
+  right: 4px;
   color: #fff;
-  cursor: pointer;
-  opacity: 0.7;
-}
-.refresh:hover{
-  opacity: 1;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type QuizQuestion = { wordId: string; prompt: string; translationRu?: string | null; options: Array<{ optionId: string; text: string }> }
+type QuizQuestion = { wordId: string; prompt: string; translationRu?: string | null; options: Array<{ optionId: string; text: string; translation: string }> }
 const quizQuestions = ref<QuizQuestion[]>([])
 const quizIndex = ref(0)
 const selectedOptionId = ref<string | null>(null)
@@ -58,6 +58,8 @@ function nextQuestion() {
     answerTranslation.value = null
   }
 }
+
+let { quizDisplayMode, items: quizDisplayModeItems } = useQuizDisplayMode();
 </script>
 
 <template>
@@ -66,8 +68,13 @@ function nextQuestion() {
     <UPageBody>
       <UCard variant="subtle">
         <div class="quiz-top">
-          <button v-if="!quizCurrent" @click="startMarathon">Start marathon</button>
-          <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
+          <div class="controls">
+            <UButton size="lg" color="success" variant="outline" v-if="!quizCurrent" @click="startMarathon">Start marathon</UButton>
+            <USelect size="lg" placeholder="Display mode" v-model="quizDisplayMode" :items="quizDisplayModeItems" />
+          </div>
+          <div class="stats">
+            <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
+          </div>
         </div>
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
         <div v-if="quizCurrent" class="current">
@@ -75,13 +82,13 @@ function nextQuestion() {
           <div class="options">
             <label v-for="(opt, idx) in quizCurrent.options" :key="opt.optionId" class="option">
               <input type="radio" name="answer" :value="opt.optionId" v-model="selectedOptionId" :disabled="answered" />
-              <span><b>{{ idx + 1 }}.</b> {{ opt.text }}</span>
+              <span><b>{{ idx + 1 }}.</b> {{ quizDisplayMode === 'DEFINITION' ? opt.text : opt.translation }}</span>
             </label>
           </div>
           <div class="actions">
-            <button v-if="!answered" :disabled="!selectedOptionId" @click="submitAnswer">Submit answer</button>
-            <button v-if="!answered" class="ghost" @click="dontKnow">I don't know</button>
-            <button v-else @click="nextQuestion">Next</button>
+            <UButton size="lg" color="primary" v-if="!answered" :disabled="!selectedOptionId" @click="submitAnswer">Submit answer</UButton>
+            <UButton size="lg" color="secondary" variant="outline" v-if="!answered" class="ghost" @click="dontKnow">I don't know</UButton>
+            <UButton size="lg" color="primary" v-if="answered" @click="nextQuestion">Next</UButton>
           </div>
           <AnswerFeedback :result="answerResult" :translation="answerTranslation" />
         </div>
