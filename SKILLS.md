@@ -1,32 +1,53 @@
-# SKILLS.md — project-specific operational playbooks
+# SKILLS.md - project operational playbooks
 
-## 1) Shared Postgres onboarding for this app
+## 1) DB + Prisma flow
 
-When reconnecting DB:
+Use migrations, not db push, for normal deploys.
 
-1. Read `.env` and confirm `DATABASE_URL` has `schema=words_trainer`.
-2. Run:
-   - `npx prisma db push`
-   - `npx prisma generate`
-3. Verify with:
+1. Ensure `.env` has correct `DATABASE_URL` (schema `words_trainer`).
+2. Load env for shell session:
+   - `set -a && source .env && set +a`
+3. Run:
+   - `npx prisma migrate deploy`
+4. Optional checks:
+   - `npx prisma migrate status`
    - `GET /api/quiz/stats`
 
-## 2) Cloudflare + nginx publishing playbook
+## 2) Nuxt deploy flow
 
-1. App process on `127.0.0.1:3018`.
-2. nginx vhost on `127.0.0.1:3000`, server_name `jooja-words-trainer.ilyich.ru`.
-3. Cloudflare DNS CNAME:
-   - `jooja-words-trainer.ilyich.ru -> <tunnel-id>.cfargotunnel.com`
-4. Tunnel ingress contains hostname route to `http://localhost:3000`.
-5. Verify URL responds over HTTPS.
+1. `git fetch origin`
+2. `git pull --rebase origin <branch>`
+3. `set -a && source .env && set +a`
+4. `npx prisma migrate deploy`
+5. `npm ci`
+6. `npm run build`
+7. `systemctl --user restart words-trainer.service`
+8. Verify health:
+   - local home (`/`) expected 200/302
+   - protected API may return 401 without auth (expected)
 
-## 3) Import words playbook
+Report always:
+- pulled: yes/no
+- deployed commit: <sha>
+- migrations applied: yes/no
+- pushed: yes/no
 
-Current fast path:
+## 3) Hosting topology
 
-- Drop teacher file into `data/imports/`
-- Update/extend importer script in `scripts/`
-- Run importer
-- Verify words count + trainer options
+- App process: `127.0.0.1:3018`
+- nginx upstream entrypoint: `127.0.0.1:3000`
+- Public hostname: `jooja-words-trainer.ilyich.ru`
+- Cloudflare Tunnel routes hostname -> local nginx
 
-Target (future): one generic parser endpoint for txt/csv/json.
+## 4) Auth + AI routes
+
+- App uses password login via `/api/auth/login`.
+- AI-assisted routes (recap/interview) require `OPENAI_API_KEY` in `.env`.
+- If AI routes fail, first check env in service context (`EnvironmentFile=.env`) and service restart.
+
+## 5) Content import
+
+Fast path:
+- Put source file into `data/imports/`
+- Use script in `scripts/`
+- Verify added words in Settings + Trainer

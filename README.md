@@ -1,13 +1,21 @@
 # words-trainer-nuxt
 
-Adaptive vocabulary trainer (Nuxt + Prisma + PostgreSQL) with 3 pages:
-
-- **Settings** — manage words
-- **Trainer** — multiple-choice session (adaptive)
-- **Mistakes Marathon** — focus on weak words only
+Adaptive English trainer (Nuxt + Prisma + PostgreSQL) with vocabulary and speaking/interview practice.
 
 Public URL (Cloudflare Tunnel):
 - `https://jooja-words-trainer.ilyich.ru`
+
+---
+
+## Current features
+
+- **Settings** - add/edit/delete/filter vocabulary
+- **Trainer** - adaptive multiple-choice quiz
+- **Mistakes Marathon** - drill weak words only
+- **Stats** - aggregate training metrics
+- **Recap** - short speaking/writing recap flow
+- **Interview** - AI-assisted interview practice
+- **Login/Auth** - password-based access for protected routes
 
 ---
 
@@ -16,56 +24,73 @@ Public URL (Cloudflare Tunnel):
 - Nuxt 4 (Vue 3)
 - Nitro server API routes
 - Prisma ORM
-- PostgreSQL (shared DB, separate schema)
+- PostgreSQL
+- Nuxt UI + Tailwind
+- vite-pwa
 
 ---
 
 ## Project structure
 
-- `app/app.vue` — top navigation
-- `app/pages/settings.vue` — add/filter/delete words
-- `app/pages/trainer.vue` — adaptive quiz
-- `app/pages/marathon.vue` — weak-words marathon
-- `server/api/words/*` — CRUD + review endpoints
-- `server/api/quiz/*` — adaptive selection, answer check, stats, marathon list
-- `server/utils/prisma.ts` — Prisma client singleton
-- `prisma/schema.prisma` — DB schema
-- `scripts/import-ilya-batch-1.mjs` — current import script for teacher batch
-- `data/imports/` — raw import files
+- `app/app.vue` - top navigation + layout
+- `app/pages/login.vue` - auth page
+- `app/pages/settings.vue` - vocabulary management
+- `app/pages/trainer.vue` - adaptive quiz
+- `app/pages/marathon.vue` - weak-words mode
+- `app/pages/stats.vue` - training stats
+- `app/pages/recap.vue` - recap practice
+- `app/pages/interview.vue` - interview practice
+- `app/composables/useQuizDisplayMode.ts` - quiz display mode (term/translation) persisted in localStorage
+
+- `server/api/auth/*` - login/logout
+- `server/api/words/*` - CRUD + review
+- `server/api/quiz/*` - next/answer/stats/marathon
+- `server/api/recap/*` - recap generation/submission
+- `server/api/interview/*` - interview random question/submission
+- `server/utils/prisma.ts` - Prisma client singleton
+- `prisma/schema.prisma` - DB schema
+
+- `deploy/systemd/words-trainer.service` - production systemd user service
+- `data/imports/` - raw import files
+- `scripts/` - import/maintenance scripts
 
 ---
 
 ## Local run
 
+1) Install deps:
+
 ```bash
-npm install
-npm run build
+npm ci
 ```
 
-Set DB URL in `.env` (important: use dedicated schema):
+2) Configure `.env` (minimum):
 
 ```bash
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DB?schema=words_trainer"
+PASSWORD="..."                 # app login password
+OPENAI_API_KEY="..."           # for AI-powered routes
 ```
 
-Apply schema and generate client:
+3) Apply migrations:
 
 ```bash
-npx prisma db push
-npx prisma generate
+npx prisma migrate deploy
 ```
 
-Run dev:
+4) Start dev:
 
 ```bash
 npm run dev
 ```
 
-Run production build output (manual):
+5) Production build:
 
 ```bash
-PORT=3018 HOST=127.0.0.1 DATABASE_URL="..." node .output/server/index.mjs
+npm run build
 ```
+
+---
 
 ## Production service (systemd user)
 
@@ -85,44 +110,50 @@ Useful commands:
 ```bash
 systemctl --user status words-trainer.service
 systemctl --user restart words-trainer.service
-journalctl --user -u words-trainer.service -f
+journalctl --user -u words-trainer.service -n 80 --no-pager
 ```
 
 Notes:
-- Service reads DB credentials from `.env` via `EnvironmentFile=...`.
-- App listens on `127.0.0.1:3018` (for reverse proxy / tunnel).
+- Service reads env from `.env` via `EnvironmentFile=...`.
+- App listens on `127.0.0.1:3018`.
+- For autostart after reboot without login, enable lingering once:
+
+```bash
+sudo loginctl enable-linger powerdot
+```
 
 ---
 
-## Adaptive methodology (current)
+## Adaptive methodology
 
 ### Trainer (`/trainer`)
-`GET /api/quiz/next` ranks words by a blended priority:
-
-- recent mistake pressure (wrong rate)
+`GET /api/quiz/next` ranks words by blended priority:
+- recent mistake pressure
 - time since last seen
 - low repetition count
 - status bonus (`HARD` > `NEW` > `EASY`)
 
-Each question is: **term → 4 definition options** (1 correct + 3 distractors).
+Question format: **term -> 4 definition options**.
+
+Display mode switch is available (term/translation) and persisted client-side.
 
 On answer (`POST /api/quiz/answer`):
-
-- wrong → `HARD`
-- correct and 2 previous correct → `EASY`
-- otherwise → `NEW`
+- wrong -> `HARD`
+- correct with enough history -> `EASY`
+- otherwise -> `NEW`
 
 ### Mistakes Marathon (`/marathon`)
-`GET /api/quiz/marathon` selects only words with mistakes and sorts by KPI:
-
+`GET /api/quiz/marathon` selects words with mistakes and sorts by KPI:
 - KPI = `correct / wrong`
 - lower KPI first, then higher wrong count
-
-This gives “drill where I fail” behavior similar to the original PTE approach.
 
 ---
 
 ## API summary
+
+### Auth
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
 
 ### Words
 - `GET /api/words?status=NEW|HARD|EASY`
@@ -137,11 +168,22 @@ This gives “drill where I fail” behavior similar to the original PTE approac
 - `GET /api/quiz/stats`
 - `GET /api/quiz/marathon?limit=50`
 
+### Recap
+- `POST /api/recap/generate`
+- `POST /api/recap/submit`
+
+### Interview
+- `GET /api/interview/random`
+- `POST /api/interview/submit`
+
 ---
 
-## Notes for future work
+## Deploy checklist (short)
 
-- Add robust bulk import endpoint (`txt/csv/json`) and parser with dedupe.
-- Add explicit training modes (repeat, rare, hardest KPI, mixed).
-- Add session history UI + per-day stats charts.
-- Add service autostart (systemd) for port `3018`.
+1. `git fetch && git pull --rebase`
+2. `set -a && source .env && set +a`
+3. `npx prisma migrate deploy`
+4. `npm ci`
+5. `npm run build`
+6. `systemctl --user restart words-trainer.service`
+7. health checks
