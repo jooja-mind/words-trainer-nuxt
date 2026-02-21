@@ -69,8 +69,8 @@ let { quizDisplayMode, items: quizDisplayModeItems } = useQuizDisplayMode();
       <UCard variant="subtle">
         <div class="quiz-top">
           <div class="controls">
-            <button v-if="!quizCurrent" @click="startMarathon">Start marathon</button>
-            <USelect size="xl" placeholder="Display mode" v-model="quizDisplayMode" :items="quizDisplayModeItems" />
+            <UButton size="lg" color="success" variant="outline" v-if="!quizCurrent" @click="startMarathon">Start marathon</UButton>
+            <USelect size="lg" placeholder="Display mode" v-model="quizDisplayMode" :items="quizDisplayModeItems" />
           </div>
           <div class="stats">
             <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
@@ -86,9 +86,9 @@ let { quizDisplayMode, items: quizDisplayModeItems } = useQuizDisplayMode();
             </label>
           </div>
           <div class="actions">
-            <button v-if="!answered" :disabled="!selectedOptionId" @click="submitAnswer">Submit answer</button>
-            <button v-if="!answered" class="ghost" @click="dontKnow">I don't know</button>
-            <button v-else @click="nextQuestion">Next</button>
+            <UButton size="lg" color="primary" v-if="!answered" :disabled="!selectedOptionId" @click="submitAnswer">Submit answer</UButton>
+            <UButton size="lg" color="secondary" variant="outline" v-if="!answered" class="ghost" @click="dontKnow">I don't know</UButton>
+            <UButton size="lg" color="primary" v-if="answered" @click="nextQuestion">Next</UButton>
           </div>
           <AnswerFeedback :result="answerResult" :translation="answerTranslation" />
         </div>

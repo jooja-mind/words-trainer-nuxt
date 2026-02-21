@@ -49,7 +49,7 @@ watch(onlyStatus, loadWords)
             <option value="HARD">HARD</option>
             <option value="EASY">EASY</option>
           </select>
-          <button @click="addWord">Add</button>
+          <UButton size="lg" color="primary" @click="addWord">Add</UButton>
         </div>
       </UCard>
 
@@ -70,7 +70,7 @@ watch(onlyStatus, loadWords)
             <b>{{ w.term }}</b>
             <span class="status">[{{ w.status }}]</span>
             <span v-if="w.definition"> — {{ w.definition }}</span>
-            <button @click="removeWord(w.id)">delete</button>
+            <UButton size="sm" variant="outline" color="error" @click="removeWord(w.id)">Delete</UButton>
           </li>
         </ul>
       </UCard>
@@ -79,7 +79,7 @@ watch(onlyStatus, loadWords)
 </template>
 
 <style scoped>
-.grid{display:grid;gap:.6rem}input,select,button{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}
-button{cursor:pointer}.filter{display:flex;gap:.8rem;align-items:center;margin-bottom:.8rem}.list{list-style:none;padding:0;margin:0}
+.grid{display:grid;gap:.6rem}input,select{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}
+.filter{display:flex;gap:.8rem;align-items:center;margin-bottom:.8rem}.list{list-style:none;padding:0;margin:0}
 .list li{display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid #262b44}.status{color:#9ca3af}
 </style>
