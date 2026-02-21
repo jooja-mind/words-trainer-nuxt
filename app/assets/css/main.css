@@ -19,7 +19,8 @@ h2{
 }
 
 p.actionInfo{
-  margin-top: 16px;
+  margin-top: 10px;
+  padding-top: 10px;
   padding-left: 32px;
   background-image: url(~/assets/images/bulb-white.svg);
   background-repeat: no-repeat;
@@ -27,6 +28,4 @@ p.actionInfo{
   background-position: 0px 8px;
   color: #ffffff99;
   cursor: default;
-  line-height: 42px;
-  margin-bottom: -10px;
 }
