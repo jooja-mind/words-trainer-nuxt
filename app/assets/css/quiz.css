@@ -4,6 +4,17 @@
   align-items:center;
   flex-wrap:wrap;
   margin-bottom: 10px;
+  justify-content: space-between;
+}
+.quiz-top .stats{
+  color:#b8bfdb;
+  font-size:14px;
+  display:flex;
+  gap:1rem;
+}
+.quiz-top .controls{
+  display:flex;
+  gap:.5rem;
 }
 .current{padding:1rem;border:1px dashed #3d4468;border-radius:10px}
 .term{font-size:1.5rem;font-weight:700;margin-top: -10px;}
