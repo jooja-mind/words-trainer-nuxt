@@ -7,7 +7,7 @@ let wordInfo = reactive({
     "term": "",
     "definition": "",
     "example": "",
-    "translationRu": "",
+    "translation": "",
     "status": "",
     "lastSeenAt": null,
     "createdAt": "",
@@ -48,7 +48,7 @@ async function addWord() {
         <div class="word">{{ wordInfo.term }}</div>
         <UButton color="primary" variant="link" icon="ion:close" @click="view='add'" />
       </div>
-      <p v-if="wordInfo.translationRu" class="text-gray-400">{{ wordInfo.translationRu }}</p>
+      <p v-if="wordInfo.translation" class="text-gray-400">{{ wordInfo.translation }}</p>
       <p v-if="wordInfo.definition" class="mt-1">{{ wordInfo.definition }}</p>
       <p v-if="wordInfo.example" class="mt-1 italic text-sm text-gray-400">Example: {{ wordInfo.example }}</p>
     </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 type WordStatus = 'NEW' | 'HARD' | 'EASY'
-type Word = { id: string; term: string; definition: string | null; example: string | null; status: WordStatus; translationRu: string }
+type Word = { id: string; term: string; definition: string | null; example: string | null; status: WordStatus; translation: string }
 
 const words = ref<Word[]>([])
 const loading = ref(false)
@@ -78,7 +78,7 @@ watch(onlyStatus, loadWords)
               </div>
               <UButton size="sm" variant="outline" color="error" @click="removeWord(w.id)">Delete</UButton>
             </div>
-            <p v-if="w.translationRu" class="mt-1 text-gray-400">{{ w.translationRu }}</p>
+            <p v-if="w.translation" class="mt-1 text-gray-400">{{ w.translation }}</p>
             <p v-if="w.definition" class="mt-1">{{ w.definition }}</p>
             <p v-if="w.example" class="mt-1 italic text-sm text-gray-400">Example: {{ w.example }}</p>
           </UCard>

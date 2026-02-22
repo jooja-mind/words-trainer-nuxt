@@ -16,8 +16,8 @@ Build and iterate on an adaptive English trainer for Илья with:
 ## Database policy
 
 - PostgreSQL instance is shared with other apps.
-- This project must use dedicated schema (`words_trainer`) in `DATABASE_URL`.
-- If Prisma attempts unsafe operations in wrong schema, stop and fix env first.
+- This project uses schema (`public`) in `DATABASE_URL`.
+- If Prisma attempts operations in a different schema, stop and fix env first.
 - Prefer `prisma migrate deploy` in runtime/deploy flows.
 
 ## Service policy

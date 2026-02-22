@@ -4,7 +4,7 @@
 
 Use migrations, not db push, for normal deploys.
 
-1. Ensure `.env` has correct `DATABASE_URL` (schema `words_trainer`).
+1. Ensure `.env` has correct `DATABASE_URL` (schema `public`).
 2. Load env for shell session:
    - `set -a && source .env && set +a`
 3. Run:

@@ -67,9 +67,10 @@ npm ci
 2) Configure `.env` (minimum):
 
 ```bash
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DB?schema=words_trainer"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DB?schema=public"
 PASSWORD="..."                 # app login password
 OPENAI_API_KEY="..."           # for AI-powered routes
+NATIVE_LANGUAGE="Russian"      # target translation language for imported words
 ```
 
 3) Apply migrations:
