@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type QuizQuestion = { wordId: string; prompt: string; translationRu?: string | null; options: Array<{ optionId: string; text: string; translation: string }> }
+type QuizQuestion = { wordId: string; prompt: string; translation?: string | null; options: Array<{ optionId: string; text: string; translation: string }> }
 const quizQuestions = ref<QuizQuestion[]>([])
 const quizIndex = ref(0)
 const selectedOptionId = ref<string | null>(null)
@@ -34,7 +34,7 @@ async function submitAnswer() {
   })
   answered.value = true
   answerResult.value = res
-  answerTranslation.value = quizCurrent.value?.translationRu || null
+  answerTranslation.value = quizCurrent.value?.translation || null
   if (res.correct) quizScore.value++
 }
 
@@ -46,7 +46,7 @@ async function dontKnow() {
   })
   answered.value = true
   answerResult.value = res
-  answerTranslation.value = quizCurrent.value?.translationRu || null
+  answerTranslation.value = quizCurrent.value?.translation || null
 }
 
 function nextQuestion() {

@@ -30,7 +30,7 @@ async function submit() {
       <div class="title">Enter password</div>
       <div class="inputs">
        <UInput v-model="password" type="password" placeholder="Password" @keyup.enter="submit" :disabled="loading" />
-       <UButton @click="submit" :disabled="loading">Login</UButton>
+       <UButton @click="submit" size="lg" :disabled="loading">Login</UButton>
       </div>
       <p v-if="error" class="err">{{ error }}</p>
     </UCard>

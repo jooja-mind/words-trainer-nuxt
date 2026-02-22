@@ -3,7 +3,7 @@ import { prisma } from '../../utils/prisma'
 type QuizItem = {
   wordId: string
   prompt: string
-  translationRu?: string | null
+  translation?: string | null
   options: Array<{ optionId: string; text: string; translation?: string | null }>
 }
 
@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
       id: true,
       term: true,
       definition: true,
-      translationRu: true,
+      translation: true,
       status: true,
       lastSeenAt: true,
       reviews: {
@@ -83,14 +83,14 @@ export default defineEventHandler(async (event) => {
     const distractors = shuffle(distractorPool).slice(0, 3)
 
     const options = shuffle([
-      { optionId: target.id, text: cleanDefinition(target.definition as string), translation: target.translationRu || '' },
-      ...distractors.map((d) => ({ optionId: d.id, text: cleanDefinition(d.definition as string), translation: d.translationRu || '' }))
+      { optionId: target.id, text: cleanDefinition(target.definition as string), translation: target.translation || '' },
+      ...distractors.map((d) => ({ optionId: d.id, text: cleanDefinition(d.definition as string), translation: d.translation || '' }))
     ])
 
     return {
       wordId: target.id,
       prompt: target.term,
-      translationRu: target.translationRu ?? null,
+      translation: target.translation ?? null,
       options
     }
   })

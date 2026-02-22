@@ -10,13 +10,15 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'text is required' })
   }
 
+  const nativeLanguage = (process.env.NATIVE_LANGUAGE || 'Russian').trim() || 'Russian'
+
   let wordsToAdd = await GPT.ask<{ words: {
     term: string,
     definition: string,
-    translationRu: string,
+    translation: string,
     example: string
   }[] }>({
-    systemPrompt: 'You are a helpful assistant who helps present words submitted by the user in a structured order.\nThe user can submit a single word, a word and its definition (in which case, the submitted definition should be used), several words at once, or several words with definitions—the format is free.',
+    systemPrompt: `You are a helpful assistant who helps present words submitted by the user in a structured order.\nThe user can submit a single word, a word and its definition (in which case, the submitted definition should be used), several words at once, or several words with definitions—the format is free.\nFor each term, provide translation in ${nativeLanguage}.`,
     triggerPrompt: body.text,
     reasoningEffort: 'high',
     jsonSchema: {
@@ -28,7 +30,7 @@ export default defineEventHandler(async (event) => {
         "properties": {
           "words": {
             "type": "array",
-            "description": "A list of vocabulary words with definitions, Russian translations, and examples.",
+            "description": `A list of vocabulary words with definitions, ${nativeLanguage} translations, and examples.`,
             "items": {
               "type": "object",
               "properties": {
@@ -40,9 +42,9 @@ export default defineEventHandler(async (event) => {
                   "type": "string",
                   "description": "A definition of the term in English."
                 },
-                "translationRu": {
+                "translation": {
                   "type": "string",
-                  "description": "Translation of the term into Russian."
+                  "description": `Translation of the term into ${nativeLanguage}.`
                 },
                 "example": {
                   "type": "string",
@@ -52,7 +54,7 @@ export default defineEventHandler(async (event) => {
               "required": [
                 "term",
                 "definition",
-                "translationRu",
+                "translation",
                 "example"
               ],
               "additionalProperties": false
@@ -87,7 +89,7 @@ export default defineEventHandler(async (event) => {
       data: {
         term: term,
         definition: w.definition?.trim() || null,
-        translationRu: w.translationRu?.trim() || null,
+        translation: w.translation?.trim() || null,
         example: w.example?.trim() || null,
         status: 'NEW'
       }

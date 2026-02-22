@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
       id: true,
       term: true,
       definition: true,
-      translationRu: true,
+      translation: true,
       reviews: {
         select: { wasCorrect: true, createdAt: true },
         orderBy: { createdAt: 'desc' },
@@ -61,14 +61,14 @@ export default defineEventHandler(async (event) => {
     const distractorPool = words.filter((w) => w.id !== target.id)
     const distractors = shuffle(distractorPool).slice(0, 3)
     const options = shuffle([
-      { optionId: target.id, text: cleanDefinition(target.definition as string), translation: target.translationRu || '' },
-      ...distractors.map((d) => ({ optionId: d.id, text: cleanDefinition(d.definition as string), translation: d.translationRu || '' }))
+      { optionId: target.id, text: cleanDefinition(target.definition as string), translation: target.translation || '' },
+      ...distractors.map((d) => ({ optionId: d.id, text: cleanDefinition(d.definition as string), translation: d.translation || '' }))
     ])
 
     return {
       wordId: target.id,
       prompt: target.term,
-      translationRu: target.translationRu ?? null,
+      translation: target.translation ?? null,
       options
     }
   })
