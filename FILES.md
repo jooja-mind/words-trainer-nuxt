@@ -11,6 +11,7 @@
 
 ## Frontend support
 - `app/composables/useQuizDisplayMode.ts` - quiz display mode and persistence
+- `app/components/addWord.vue` - floating quick-add widget
 - `app/assets/css/main.css` - global styles
 - `app/assets/css/quiz.css` - quiz-related styles
 
@@ -21,7 +22,7 @@
 
 ### words
 - `server/api/words/index.get.ts`
-- `server/api/words/index.post.ts`
+- `server/api/words/batch.post.ts`
 - `server/api/words/[id].patch.ts`
 - `server/api/words/[id].delete.ts`
 - `server/api/words/[id]/review.post.ts`

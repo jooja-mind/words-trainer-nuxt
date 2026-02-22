@@ -42,7 +42,9 @@ Report always:
 ## 4) Auth + AI routes
 
 - App uses password login via `/api/auth/login`.
-- AI-assisted routes (recap/interview) require `OPENAI_API_KEY` in `.env`.
+- AI-assisted routes require `OPENAI_API_KEY` in `.env`:
+  - `POST /api/words/batch` (batch parser/import)
+  - recap/interview routes
 - If AI routes fail, first check env in service context (`EnvironmentFile=.env`) and service restart.
 
 ## 5) Content import

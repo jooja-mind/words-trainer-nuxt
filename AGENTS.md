@@ -54,5 +54,7 @@ Final report format is mandatory:
 ## Current product notes
 
 - Quiz supports display mode toggle (term/translation).
+- Settings page uses batch word import via `POST /api/words/batch`.
+- Floating quick-add widget is shown outside login/settings pages.
 - Protected routes use auth middleware.
-- Recap and Interview features rely on OpenAI key.
+- Word batch import + Recap + Interview features rely on OpenAI key.

@@ -9,7 +9,8 @@ Public URL (Cloudflare Tunnel):
 
 ## Current features
 
-- **Settings** - add/edit/delete/filter vocabulary
+- **Settings** - batch add/edit/delete/filter vocabulary
+- **Quick Add Widget** - floating add-word panel on non-login/non-settings pages
 - **Trainer** - adaptive multiple-choice quiz
 - **Mistakes Marathon** - drill weak words only
 - **Stats** - aggregate training metrics
@@ -34,7 +35,8 @@ Public URL (Cloudflare Tunnel):
 
 - `app/app.vue` - top navigation + layout
 - `app/pages/login.vue` - auth page
-- `app/pages/settings.vue` - vocabulary management
+- `app/pages/settings.vue` - vocabulary management (batch import + list)
+- `app/components/addWord.vue` - floating quick-add widget
 - `app/pages/trainer.vue` - adaptive quiz
 - `app/pages/marathon.vue` - weak-words mode
 - `app/pages/stats.vue` - training stats
@@ -157,7 +159,7 @@ On answer (`POST /api/quiz/answer`):
 
 ### Words
 - `GET /api/words?status=NEW|HARD|EASY`
-- `POST /api/words`
+- `POST /api/words/batch` (GPT parsing + dedupe + create)
 - `PATCH /api/words/:id`
 - `DELETE /api/words/:id`
 - `POST /api/words/:id/review`
