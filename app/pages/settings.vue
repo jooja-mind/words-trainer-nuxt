@@ -6,8 +6,6 @@ const words = ref<Word[]>([])
 const loading = ref(false)
 const onlyStatus = ref<'ALL' | WordStatus>('ALL')
 
-const form = reactive({ term: '', definition: '', example: '', status: 'NEW' as WordStatus })
-
 async function loadWords() {
   loading.value = true
   try {
@@ -18,11 +16,18 @@ async function loadWords() {
   }
 }
 
-async function addWord() {
-  if (!form.term.trim()) return
-  await $fetch('/api/words', { method: 'POST', body: { ...form } })
-  form.term = ''; form.definition = ''; form.example = ''; form.status = 'NEW'
-  await loadWords()
+let addWordsLoading = ref(false)
+let wordsToAdd = ref('');
+async function addWords() {
+  if (!wordsToAdd.value.trim()) return
+  addWordsLoading.value = true
+  try {
+    await $fetch('/api/words/batch', { method: 'POST', body: { text: wordsToAdd.value } })
+    wordsToAdd.value = ''
+    await loadWords()
+  } finally {
+    addWordsLoading.value = false
+  }
 }
 
 async function removeWord(id: string) {
@@ -39,18 +44,9 @@ watch(onlyStatus, loadWords)
     <UPageHeader title="Words Settings" headline="Vocabulary" />
     <UPageBody>
       <UCard variant="subtle">
-        <h2>Add word</h2>
-        <div class="grid">
-          <input v-model="form.term" placeholder="word" />
-          <input v-model="form.definition" placeholder="definition / translation" />
-          <input v-model="form.example" placeholder="example (optional)" />
-          <select v-model="form.status">
-            <option value="NEW">NEW</option>
-            <option value="HARD">HARD</option>
-            <option value="EASY">EASY</option>
-          </select>
-          <UButton size="lg" color="primary" @click="addWord">Add</UButton>
-        </div>
+        <h2>Add words</h2>
+        <UTextarea v-model="wordsToAdd" class="w-full" :rows="12" :disabled="addWordsLoading" placeholder="Paste words in free format" />
+        <UButton size="lg" color="primary" class="mt-3" @click="addWords" :loading="addWordsLoading">Add words</UButton>
       </UCard>
 
       <UCard variant="subtle">
