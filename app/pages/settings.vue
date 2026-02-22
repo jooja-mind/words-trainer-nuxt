@@ -1,6 +1,6 @@
 <script setup lang="ts">
 type WordStatus = 'NEW' | 'HARD' | 'EASY'
-type Word = { id: string; term: string; definition: string | null; example: string | null; status: WordStatus }
+type Word = { id: string; term: string; definition: string | null; example: string | null; status: WordStatus; translationRu: string }
 
 const words = ref<Word[]>([])
 const loading = ref(false)
@@ -31,6 +31,10 @@ async function addWords() {
 }
 
 async function removeWord(id: string) {
+  let word = words.value.find(w => w.id === id);
+  if(!word) return;
+  let confirmDelete = confirm(`Are you sure you want to delete "${word.term}"?`)
+  if (!confirmDelete) return;
   await $fetch(`/api/words/${id}`, { method: 'DELETE' })
   await loadWords()
 }
@@ -53,22 +57,34 @@ watch(onlyStatus, loadWords)
         <h2>Words ({{ words.length }})</h2>
         <div class="filter">
           <label>Filter:</label>
-          <select v-model="onlyStatus">
-            <option value="ALL">ALL</option>
-            <option value="NEW">NEW</option>
-            <option value="HARD">HARD</option>
-            <option value="EASY">EASY</option>
-          </select>
+          <USelect v-model="onlyStatus" :items="[
+            { value: 'ALL', label: 'ALL' },
+            { value: 'NEW', label: 'NEW' },
+            { value: 'HARD', label: 'HARD' },
+            { value: 'EASY', label: 'EASY' },
+          ]" />
         </div>
         <p v-if="loading">Loading...</p>
-        <ul v-else class="list">
-          <li v-for="w in words" :key="w.id">
-            <b>{{ w.term }}</b>
-            <span class="status">[{{ w.status }}]</span>
-            <span v-if="w.definition"> — {{ w.definition }}</span>
-            <UButton size="sm" variant="outline" color="error" @click="removeWord(w.id)">Delete</UButton>
-          </li>
-        </ul>
+        <template v-else>
+          <UCard variant="subtle" v-for="w in words" :key="w.id" class="mb-2">
+            <div>
+              <div class="flex justify-between items-start">
+                <div class="word">
+                  <b>{{ w.term }}</b>
+                  <UBadge :color="({
+                    NEW: 'neutral',
+                    HARD: 'error',
+                    EASY: 'success'
+                  }[w.status as WordStatus] || 'neutral') as 'neutral' | 'error' | 'success'" variant="soft">{{ w.status }}</UBadge>
+                </div>
+                <UButton size="sm" variant="outline" color="error" @click="removeWord(w.id)">Delete</UButton>
+              </div>
+              <p v-if="w.translationRu" class="mt-1 text-gray-400">{{ w.translationRu }}</p>
+              <p v-if="w.definition" class="mt-1">{{ w.definition }}</p>
+              <p v-if="w.example" class="mt-1 italic text-sm text-gray-400">Example: {{ w.example }}</p>
+            </div>
+          </UCard>
+        </template>
       </UCard>
     </UPageBody>
   </main>
@@ -77,5 +93,9 @@ watch(onlyStatus, loadWords)
 <style scoped>
 .grid{display:grid;gap:.6rem}input,select{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}
 .filter{display:flex;gap:.8rem;align-items:center;margin-bottom:.8rem}.list{list-style:none;padding:0;margin:0}
-.list li{display:flex;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid #262b44}.status{color:#9ca3af}
+.word{
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
 </style>
