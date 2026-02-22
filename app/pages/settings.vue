@@ -67,22 +67,20 @@ watch(onlyStatus, loadWords)
         <p v-if="loading">Loading...</p>
         <template v-else>
           <UCard variant="subtle" v-for="w in words" :key="w.id" class="mb-2">
-            <div>
-              <div class="flex justify-between items-start">
-                <div class="word">
-                  <b>{{ w.term }}</b>
-                  <UBadge :color="({
-                    NEW: 'neutral',
-                    HARD: 'error',
-                    EASY: 'success'
-                  }[w.status as WordStatus] || 'neutral') as 'neutral' | 'error' | 'success'" variant="soft">{{ w.status }}</UBadge>
-                </div>
-                <UButton size="sm" variant="outline" color="error" @click="removeWord(w.id)">Delete</UButton>
+            <div class="flex justify-between items-start">
+              <div class="word">
+                <b>{{ w.term }}</b>
+                <UBadge :color="({
+                  NEW: 'neutral',
+                  HARD: 'error',
+                  EASY: 'success'
+                }[w.status as WordStatus] || 'neutral') as 'neutral' | 'error' | 'success'" variant="soft">{{ w.status }}</UBadge>
               </div>
-              <p v-if="w.translationRu" class="mt-1 text-gray-400">{{ w.translationRu }}</p>
-              <p v-if="w.definition" class="mt-1">{{ w.definition }}</p>
-              <p v-if="w.example" class="mt-1 italic text-sm text-gray-400">Example: {{ w.example }}</p>
+              <UButton size="sm" variant="outline" color="error" @click="removeWord(w.id)">Delete</UButton>
             </div>
+            <p v-if="w.translationRu" class="mt-1 text-gray-400">{{ w.translationRu }}</p>
+            <p v-if="w.definition" class="mt-1">{{ w.definition }}</p>
+            <p v-if="w.example" class="mt-1 italic text-sm text-gray-400">Example: {{ w.example }}</p>
           </UCard>
         </template>
       </UCard>
