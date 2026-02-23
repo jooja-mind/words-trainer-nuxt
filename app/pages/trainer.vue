@@ -14,9 +14,13 @@ const quizProgress = computed(() => `${Math.min(quizIndex.value + 1, quizQuestio
 const finished = computed(() => answered.value && quizIndex.value >= quizQuestions.value.length - 1)
 
 
-async function submitAnswer(){ if(!quizCurrent.value||!selectedOptionId.value||answered.value) return; const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{method:'POST',body:{wordId:quizCurrent.value.wordId,selectedOptionId:selectedOptionId.value}}); answered.value=true; answerResult.value=res; answerTranslation.value = quizCurrent.value?.translation || null; if(res.correct) quizScore.value++; await loadStats() }
-async function dontKnow(){ if(!quizCurrent.value||answered.value) return; const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{method:'POST',body:{wordId:quizCurrent.value.wordId,selectedOptionId:quizCurrent.value.wordId, forceWrong:true}}); answered.value=true; answerResult.value=res; answerTranslation.value = quizCurrent.value?.translation || null; await loadStats() }
-function nextQuestion(){ if(quizIndex.value<quizQuestions.value.length-1){ quizIndex.value++; selectedOptionId.value=null; answered.value=false; answerResult.value=null; answerTranslation.value=null }}
+async function submitAnswer({correct}: {correct:boolean}){
+  if(correct) quizScore.value++; 
+  await loadStats() 
+}
+async function dontKnow(){ 
+  await loadStats() 
+}
 
 //
 
@@ -48,10 +52,11 @@ onMounted(loadStats)
         v-model:answered="answered"
         v-model:answerResult="answerResult"
         v-model:answerTranslation="answerTranslation"
+        v-model:quiz-index="quizIndex"
+        v-model:quiz-questions="quizQuestions"
         @start="startQuiz"
-        @submitAnswer="submitAnswer"
-        @dontKnow="dontKnow"
-        @nextQuestion="nextQuestion"
+        @answer-submitted="submitAnswer"
+        @dont-knowed="dontKnow"
       >
         <template #stats>
           <span v-if="quizQuestions.length">Progress: {{ quizProgress }}</span>

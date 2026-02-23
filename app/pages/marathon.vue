@@ -26,37 +26,8 @@ async function startMarathon() {
   }
 }
 
-async function submitAnswer() {
-  if (!quizCurrent.value || !selectedOptionId.value || answered.value) return
-  const res = await $fetch<{ correct: boolean; correctDefinition?: string | null }>('/api/quiz/answer', {
-    method: 'POST',
-    body: { wordId: quizCurrent.value.wordId, selectedOptionId: selectedOptionId.value }
-  })
-  answered.value = true
-  answerResult.value = res
-  answerTranslation.value = quizCurrent.value?.translation || null
-  if (res.correct) quizScore.value++
-}
-
-async function dontKnow() {
-  if (!quizCurrent.value || answered.value) return
-  const res = await $fetch<{ correct: boolean; correctDefinition?: string | null }>('/api/quiz/answer', {
-    method: 'POST',
-    body: { wordId: quizCurrent.value.wordId, selectedOptionId: quizCurrent.value.wordId, forceWrong: true }
-  })
-  answered.value = true
-  answerResult.value = res
-  answerTranslation.value = quizCurrent.value?.translation || null
-}
-
-function nextQuestion() {
-  if (quizIndex.value < quizQuestions.value.length - 1) {
-    quizIndex.value++
-    selectedOptionId.value = null
-    answered.value = false
-    answerResult.value = null
-    answerTranslation.value = null
-  }
+async function submitAnswer({correct}: {correct:boolean}){
+  if(correct) quizScore.value++;
 }
 </script>
 
@@ -72,10 +43,10 @@ function nextQuestion() {
         v-model:answered="answered"
         v-model:answerResult="answerResult"
         v-model:answerTranslation="answerTranslation"
+        v-model:quiz-index="quizIndex"
+        v-model:quiz-questions="quizQuestions"
         @start="startMarathon"
-        @submitAnswer="submitAnswer"
-        @dontKnow="dontKnow"
-        @nextQuestion="nextQuestion"
+        @answer-submitted="submitAnswer"
       >
         <template #stats>
           <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>

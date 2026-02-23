@@ -1,7 +1,7 @@
 <script setup lang="ts">
 type QuizQuestion = { wordId: string; prompt: string; translation?: string | null; options: Array<{ optionId: string; text: string; translation: string }> }
 
-let emit = defineEmits(['start', 'nextQuestion', 'submitAnswer', 'dontKnow']);
+let emit = defineEmits(['start', 'nextQuestioned', 'dontKnowed', 'answerSubmitted']);
 
 let { quizDisplayMode, items: quizDisplayModeItems } = useQuizDisplayMode();
 
@@ -9,22 +9,50 @@ let selectedOptionId = defineModel<string | null>('selectedOptionId');
 let answered = defineModel<boolean>('answered', { default: false });
 let answerResult = defineModel<{ correct: boolean; correctDefinition?: string | null } | null>('answerResult', { default: null });
 let answerTranslation = defineModel<string | null>('answerTranslation', { default: null });
+let quizIndex = defineModel<number>('quizIndex', { default: 0 });
+let quizQuestions = defineModel<QuizQuestion[]>('quizQuestions', { default: () => [] });
 
 function start(){
   emit('start');
 }
 
 function nextQuestion(){
-  emit('nextQuestion');
+  if(quizIndex.value<quizQuestions.value.length-1){ 
+    quizIndex.value++;
+    selectedOptionId.value=null;
+    answered.value=false;
+    answerResult.value=null;
+    answerTranslation.value=null
+  }
 }
 
-function submitAnswer(){
-  emit('submitAnswer', selectedOptionId.value);
+async function submitAnswer(){
+  if(!props.quizCurrent||!selectedOptionId.value||answered.value) return; 
+  const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{
+    method:'POST',
+    body:{
+      wordId:props.quizCurrent.wordId,
+      selectedOptionId:selectedOptionId.value
+    }
+  }); 
+  answered.value=true; 
+  answerResult.value=res; 
+  answerTranslation.value = props.quizCurrent?.translation || null;
+  emit('answerSubmitted', res);
 }
 
-function dontKnow(){
-  emit('dontKnow');
+async function dontKnow(){
+  if (!props.quizCurrent || answered.value) return
+  const res = await $fetch<{ correct: boolean; correctDefinition?: string | null }>('/api/quiz/answer', {
+    method: 'POST',
+    body: { wordId: props.quizCurrent.wordId, selectedOptionId: props.quizCurrent.wordId, forceWrong: true }
+  })
+  answered.value = true
+  answerResult.value = res
+  answerTranslation.value = props.quizCurrent?.translation || null
+  emit('dontKnowed');
 }
+
 
 let props = defineProps({
   quizCurrent: Object as () => QuizQuestion | null,
