@@ -23,9 +23,9 @@ async function dontKnow(){
 }
 
 //
-
+let limit = 5;
 async function startQuiz(){
-  const data = await $fetch<{questions:QuizQuestion[]}>('/api/quiz/next?limit=20');
+  const data = await $fetch<{questions:QuizQuestion[]}>('/api/quiz/next?limit=' + limit);
   quizQuestions.value = data.questions;
   quizIndex.value = 0;
   quizScore.value = 0;
@@ -47,7 +47,7 @@ onMounted(loadStats)
       <Quiz
         :quizCurrent="quizCurrent" 
         :finished="finished"
-        :start-click-info="`Press «Build test (20)» — for selection based on mistakes, recency, and rarity of repetition.`"
+        :start-click-info="`Press «Build test (${limit})» — for selection based on mistakes, recency, and rarity of repetition.`"
         v-model:selectedOptionId="selectedOptionId" 
         v-model:answered="answered"
         v-model:answerResult="answerResult"
