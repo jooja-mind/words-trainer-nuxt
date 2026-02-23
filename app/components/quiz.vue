@@ -13,6 +13,7 @@ let quizIndex = defineModel<number>('quizIndex', { default: 0 });
 let quizQuestions = defineModel<QuizQuestion[]>('quizQuestions', { default: () => [] });
 
 function start(){
+  translation.value = '';
   emit('start');
 }
 
