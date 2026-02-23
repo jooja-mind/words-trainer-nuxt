@@ -112,7 +112,7 @@ let props = defineProps({
       <div v-if="quizDisplayMode === 'TRANSLATION_INPUT'">
         <input type="text" class="w-full mt-2" v-model="translation" :disabled="answered || loading" placeholder="Type your translation here" @keypress.enter="submitAnswer" />
       </div>
-      <div class="actions">
+      <div class="actions" v-if="!finished">
         <UButton size="lg" color="primary" v-if="!answered" :disabled="quizDisplayMode === 'TRANSLATION_INPUT' ? !translation : !selectedOptionId" @click="submitAnswer" :loading="loading">Submit answer</UButton>
         <UButton size="lg" color="secondary" variant="outline" v-if="!answered" class="ghost" @click="dontKnow" :disabled="loading">I don't know</UButton>
         <UButton size="lg" color="primary" v-if="answered" @click="nextQuestion" :disabled="loading">Next</UButton>
