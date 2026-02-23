@@ -1,5 +1,5 @@
 import { prisma } from '../../utils/prisma'
-import * as stats from '../../utils/stats'
+import * as wordService from '../../utils/word'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ wordId?: string; selectedOptionId?: string; forceWrong?: boolean }>(event)
@@ -26,51 +26,9 @@ export default defineEventHandler(async (event) => {
   }
 
   const correct = body.forceWrong ? false : (body.selectedOptionId === word.id)
-  const previousTwoCorrect = word.reviews.length === 2 && word.reviews.every((r) => r.wasCorrect)
 
-  let statusAfter: 'NEW' | 'HARD' | 'EASY' = 'NEW'
-  if (!correct) {
-    statusAfter = 'HARD'
-  } else if (previousTwoCorrect) {
-    statusAfter = 'EASY'
-  } else {
-    statusAfter = 'NEW'
-  }
-
-  await prisma.$transaction([
-    prisma.wordReview.create({
-      data: {
-        wordId: word.id,
-        wasCorrect: correct,
-        statusAfter
-      }
-    }),
-    prisma.word.update({
-      where: { id: word.id },
-      data: {
-        status: statusAfter,
-        lastSeenAt: new Date()
-      }
-    })
-  ]);
-
-  // get stats
-  let currentStats = await stats.get()
-
-  // write stats to WordTrainingStats table
-  await prisma.wordTrainingStats.create({
-    data: {
-      accuracy: currentStats.accuracy,
-      totalAnswers: currentStats.totalAnswers,
-      totalWords: currentStats.totalWords
-    }
-  })
-
-  return {
+  return await wordService.applyAnswerToWord({
     correct,
-    statusAfter,
-    correctWordId: word.id,
-    prompt: word.term,
-    correctDefinition: word.definition
-  }
+    wordId: body.wordId
+  })
 })

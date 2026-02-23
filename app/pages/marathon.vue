@@ -26,78 +26,32 @@ async function startMarathon() {
   }
 }
 
-async function submitAnswer() {
-  if (!quizCurrent.value || !selectedOptionId.value || answered.value) return
-  const res = await $fetch<{ correct: boolean; correctDefinition?: string | null }>('/api/quiz/answer', {
-    method: 'POST',
-    body: { wordId: quizCurrent.value.wordId, selectedOptionId: selectedOptionId.value }
-  })
-  answered.value = true
-  answerResult.value = res
-  answerTranslation.value = quizCurrent.value?.translation || null
-  if (res.correct) quizScore.value++
+async function submitAnswer({correct}: {correct:boolean}){
+  if(correct) quizScore.value++;
 }
-
-async function dontKnow() {
-  if (!quizCurrent.value || answered.value) return
-  const res = await $fetch<{ correct: boolean; correctDefinition?: string | null }>('/api/quiz/answer', {
-    method: 'POST',
-    body: { wordId: quizCurrent.value.wordId, selectedOptionId: quizCurrent.value.wordId, forceWrong: true }
-  })
-  answered.value = true
-  answerResult.value = res
-  answerTranslation.value = quizCurrent.value?.translation || null
-}
-
-function nextQuestion() {
-  if (quizIndex.value < quizQuestions.value.length - 1) {
-    quizIndex.value++
-    selectedOptionId.value = null
-    answered.value = false
-    answerResult.value = null
-    answerTranslation.value = null
-  }
-}
-
-let { quizDisplayMode, items: quizDisplayModeItems } = useQuizDisplayMode();
 </script>
 
 <template>
   <main class="wrap">
     <UPageHeader title="Mistakes Marathon" headline="Vocabulary" />
     <UPageBody>
-      <UCard variant="subtle">
-        <div class="quiz-top">
-          <div class="controls">
-            <UButton size="lg" color="success" variant="outline" v-if="!quizCurrent" @click="startMarathon">Start marathon</UButton>
-            <USelect size="lg" placeholder="Display mode" v-model="quizDisplayMode" :items="quizDisplayModeItems" />
-          </div>
-          <div class="stats">
-            <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
-          </div>
-        </div>
-        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
-        <div v-if="quizCurrent" class="current">
-          <div class="term">{{ quizCurrent.prompt }}</div>
-          <div class="options">
-            <label v-for="(opt, idx) in quizCurrent.options" :key="opt.optionId" class="option">
-              <input type="radio" name="answer" :value="opt.optionId" v-model="selectedOptionId" :disabled="answered" />
-              <span><b>{{ idx + 1 }}.</b> {{ quizDisplayMode === 'DEFINITION' ? opt.text : opt.translation }}</span>
-            </label>
-          </div>
-          <div class="actions">
-            <UButton size="lg" color="primary" v-if="!answered" :disabled="!selectedOptionId" @click="submitAnswer">Submit answer</UButton>
-            <UButton size="lg" color="secondary" variant="outline" v-if="!answered" class="ghost" @click="dontKnow">I don't know</UButton>
-            <UButton size="lg" color="primary" v-if="answered" @click="nextQuestion">Next</UButton>
-          </div>
-          <AnswerFeedback :result="answerResult" :translation="answerTranslation" />
-        </div>
-        <p class="actionInfo" v-else-if="!errorMessage">Click “Start marathon” — this mode drills only your weak spots 🔥</p>
-      </UCard>
+      <Quiz
+        :quizCurrent="quizCurrent"
+        :start-click-info="`Click “Start marathon” — this mode drills only your weak spots 🔥`"
+        :error-message="errorMessage"
+        v-model:selectedOptionId="selectedOptionId" 
+        v-model:answered="answered"
+        v-model:answerResult="answerResult"
+        v-model:answerTranslation="answerTranslation"
+        v-model:quiz-index="quizIndex"
+        v-model:quiz-questions="quizQuestions"
+        @start="startMarathon"
+        @answer-submitted="submitAnswer"
+      >
+        <template #stats>
+          <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
+        </template>
+      </Quiz>
     </UPageBody>
   </main>
 </template>
-
-<style scoped>
-@import '~/assets/css/quiz.css';
-</style>

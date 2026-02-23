@@ -1,17 +1,25 @@
 <script setup lang="ts">
 const props = defineProps<{
   result: { correct: boolean; correctDefinition?: string | null } | null
-  translation?: string | null
+  translation?: string | null,
+  mode: 'DEFINITION' | 'TRANSLATION_INPUT' | 'TRANSLATION'
 }>()
 </script>
 
 <template>
   <div v-if="result" class="feedback" :class="result.correct ? 'ok' : 'bad'">
-    <template v-if="result.correct">✅ Correct</template>
+    <template v-if="result.correct">
+      <template v-if="mode == 'TRANSLATION_INPUT'">
+        <span v-if="result.correctDefinition"><b>Meaning:</b> {{ result.correctDefinition }}</span>
+        <span v-if="translation"><br /><b>Translation:</b> {{ translation }}</span>
+      </template>
+      <template v-else>
+        Correct!
+      </template>
+    </template>
     <template v-else>
-      ❌ Wrong<br />
-      <span v-if="result.correctDefinition">Correct: {{ result.correctDefinition }}</span>
-      <span v-if="translation"><br />Translation: {{ translation }}</span>
+      <span v-if="result.correctDefinition"><b>Correct:</b> {{ result.correctDefinition }}</span>
+      <span v-if="translation"><br /><b>Translation:</b> {{ translation }}</span>
     </template>
   </div>
 </template>
