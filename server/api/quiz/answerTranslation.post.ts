@@ -80,6 +80,7 @@ Rules:
     }
   })
 
+  console.log('Evaluation result:', evaluation);
   const correct = evaluation.isCorrect;
   
   return await wordService.applyAnswerToWord({

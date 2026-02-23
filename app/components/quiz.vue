@@ -23,22 +23,46 @@ function nextQuestion(){
     answered.value=false;
     answerResult.value=null;
     answerTranslation.value=null
+    translation.value = '';
+    emit('nextQuestioned');
   }
 }
 
+let translation = ref('');
+let loading = ref(false);
+
 async function submitAnswer(){
-  if(!props.quizCurrent||!selectedOptionId.value||answered.value) return; 
-  const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{
-    method:'POST',
-    body:{
-      wordId:props.quizCurrent.wordId,
-      selectedOptionId:selectedOptionId.value
-    }
-  }); 
-  answered.value=true; 
-  answerResult.value=res; 
-  answerTranslation.value = props.quizCurrent?.translation || null;
-  emit('answerSubmitted', res);
+  if(quizDisplayMode.value === 'TRANSLATION_INPUT'){
+    if(!props.quizCurrent||!translation.value.trim()||answered.value) return;
+    loading.value = true;
+    const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answerTranslation',{
+      method:'POST',
+      body:{
+        wordId:props.quizCurrent.wordId,
+        translation:translation.value
+      }
+    });
+    answered.value=true; 
+    answerResult.value=res; 
+    answerTranslation.value = props.quizCurrent?.translation || null;
+    emit('answerSubmitted', {correct: res.correct});
+  }else{
+    if(!props.quizCurrent||!selectedOptionId.value||answered.value) return; 
+    loading.value = true;
+    // Definition or translation mode
+    const res=await $fetch<{correct:boolean;correctDefinition?:string|null}>('/api/quiz/answer',{
+      method:'POST',
+      body:{
+        wordId:props.quizCurrent.wordId,
+        selectedOptionId:selectedOptionId.value
+      }
+    }); 
+    answered.value=true; 
+    answerResult.value=res; 
+    answerTranslation.value = props.quizCurrent?.translation || null;
+    emit('answerSubmitted', {correct: res.correct});
+  }
+  loading.value = false;
 }
 
 async function dontKnow(){
@@ -78,18 +102,21 @@ let props = defineProps({
     <p v-if="!!errorMessage" class="error">{{ errorMessage }}</p>
     <div v-if="quizCurrent" class="current">
       <div class="term">{{ quizCurrent.prompt }}</div>
-      <div class="options">
+      <div class="options" v-if="quizDisplayMode == 'DEFINITION' || quizDisplayMode == 'TRANSLATION'">
         <label v-for="(opt, idx) in quizCurrent.options" :key="opt.optionId" class="option">
           <input type="radio" name="answer" :value="opt.optionId" v-model="selectedOptionId" :disabled="answered" />
           <span><b>{{ idx + 1 }}.</b> {{ quizDisplayMode === 'DEFINITION' ? opt.text : opt.translation }}</span>
         </label>
       </div>
-      <div class="actions">
-        <UButton size="lg" color="primary" v-if="!answered" :disabled="!selectedOptionId" @click="submitAnswer">Submit answer</UButton>
-        <UButton size="lg" color="secondary" variant="outline" v-if="!answered" class="ghost" @click="dontKnow">I don't know</UButton>
-        <UButton size="lg" color="primary" v-if="answered" @click="nextQuestion">Next</UButton>
+      <div v-if="quizDisplayMode === 'TRANSLATION_INPUT'">
+        <input type="text" class="w-full mt-2" v-model="translation" :disabled="answered || loading" placeholder="Type your translation here" @keypress.enter="submitAnswer" />
       </div>
-      <AnswerFeedback :result="answerResult" :translation="answerTranslation" />
+      <div class="actions">
+        <UButton size="lg" color="primary" v-if="!answered" :disabled="quizDisplayMode === 'TRANSLATION_INPUT' ? !translation : !selectedOptionId" @click="submitAnswer" :loading="loading">Submit answer</UButton>
+        <UButton size="lg" color="secondary" variant="outline" v-if="!answered" class="ghost" @click="dontKnow" :disabled="loading">I don't know</UButton>
+        <UButton size="lg" color="primary" v-if="answered" @click="nextQuestion" :disabled="loading">Next</UButton>
+      </div>
+      <AnswerFeedback :result="answerResult" :translation="answerTranslation" :mode="quizDisplayMode" />
       <div v-if="finished" class="finish">Test finished. 
         <UButton size="lg" color="primary" @click="start">Build new test</UButton>
       </div>
