@@ -45,6 +45,7 @@ Given an ${LANGUAGE} word (or short phrase), a list of acceptable ${NATIVE_LANGU
 Rules:
 - Accept close synonyms and natural ${NATIVE_LANGUAGE} paraphrases that preserve the meaning.
 - Accept minor typos if it is clearly the same word.
+- If the user gave only 1 word in response, and the word has several possible translations, then this is also considered correct.
 - Reject:
   - different meaning or different sense (polysemy mismatch),
   - antonyms,
