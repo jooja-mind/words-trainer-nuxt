@@ -58,8 +58,15 @@ async function submitRecording(blob: Blob) {
   form.append('question', item.value.question)
   form.append('expected', item.value.answer || '')
 
-  const res = await $fetch('/api/interview/submit', { method: 'POST', body: form })
-  evaluation.value = res
+  try {
+    const res = await $fetch('/api/interview/submit', { method: 'POST', body: form })
+    evaluation.value = res
+    showAnswer.value = true;
+  } catch (error) {
+    console.error('Error submitting recording:', error)
+    alert('Failed to submit recording. Please try again.')
+  }
+
   status.uploading = false
   loading.value = false
 }
@@ -67,13 +74,13 @@ async function submitRecording(blob: Blob) {
 onMounted(async ()=> {
   await loadQuestion();
 
-  // if(process.env.NODE_ENV === 'development') {
-  //   evaluation.value = {
-  //     verdict: 'Good job! You covered most of the points.',
-  //     missing_points: ['Point 1', 'Point 2', 'Point 3'],
-  //     short_feedback: ['Feedback 1', 'Feedback 2', 'Feedback 3']
-  //   }
-  // }
+  if(process.env.NODE_ENV === 'development') {
+    evaluation.value = {
+      verdict: 'Good job! You covered most of the points.',
+      missing_points: ['Point 1', 'Point 2', 'Point 3'],
+      short_feedback: ['Feedback 1', 'Feedback 2', 'Feedback 3']
+    }
+  }
 })
 
 </script>
@@ -113,6 +120,9 @@ onMounted(async ()=> {
           <p><b>Verdict:</b> {{ evaluation.verdict }}</p>
           <div class="evaluationTitle">Missing points</div>
           <ul><li v-for="m in evaluation.missing_points" :key="m">{{ m }}</li></ul>
+          <div v-if="!evaluation.missing_points.length">
+            <p>Great! You covered all the points.</p>
+          </div>
           <div class="evaluationTitle">Feedback</div>
           <ul><li v-for="m in evaluation.short_feedback" :key="m">{{ m }}</li></ul>
         </UCard>
@@ -129,7 +139,7 @@ onMounted(async ()=> {
   margin-bottom:10px;
   width: calc(100% - 16px);
 }
-.answer{margin-top:10px;color:#c8d0ff;white-space: pre;}
+.answer{margin-top:10px;color:#c8d0ff;white-space: pre-line;}
 .evaluationTitle{margin-top:10px;margin-bottom:5px; font-weight: bold;}
 
 .firstCard{
@@ -141,5 +151,13 @@ onMounted(async ()=> {
   top: 4px;
   right: 4px;
   color: #fff;
+}
+
+ul{
+  padding-left: 16px;
+}
+
+ul li{
+  list-style: disc;
 }
 </style>
