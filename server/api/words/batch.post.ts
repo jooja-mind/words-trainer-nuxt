@@ -36,19 +36,19 @@ export default defineEventHandler(async (event) => {
               "properties": {
                 "term": {
                   "type": "string",
-                  "description": "The vocabulary word or phrase."
+                  "description": "The vocabulary word. Example: train"
                 },
                 "definition": {
                   "type": "string",
-                  "description": "A definition of the term in English."
+                  "description": "A definition of the term in English. Example: A series of connected railway cars pulled by a locomotive; to teach or practice a skill through instruction and repeated exercise."
                 },
                 "translation": {
                   "type": "string",
-                  "description": `Translation of the term into ${nativeLanguage}.`
+                  "description": `Translation of the term into ${nativeLanguage}. Example: поезд; тренировать`
                 },
                 "example": {
                   "type": "string",
-                  "description": "Example sentence using the term."
+                  "description": "Example sentence using the term. Example: I take the train to work every day."
                 }
               },
               "required": [

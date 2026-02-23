@@ -97,7 +97,7 @@ onMounted(async ()=> {
             <UButton size="sm" variant="outline" class="ghost" @click="showAnswer = !showAnswer">
               {{ showAnswer ? 'Hide answer' : 'Show answer' }}
             </UButton>
-            <p v-if="showAnswer && item.answer" class="answer"><b>Expected:</b> {{ item.answer }}</p>
+            <p v-if="showAnswer && item.answer" class="answer">{{ item.answer }}</p>
           </div>
         </UCard>
         
@@ -129,7 +129,7 @@ onMounted(async ()=> {
   margin-bottom:10px;
   width: calc(100% - 16px);
 }
-.answer{margin-top:10px;color:#c8d0ff}
+.answer{margin-top:10px;color:#c8d0ff;white-space: pre;}
 .evaluationTitle{margin-top:10px;margin-bottom:5px; font-weight: bold;}
 
 .firstCard{
