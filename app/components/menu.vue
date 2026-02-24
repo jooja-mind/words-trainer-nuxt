@@ -38,11 +38,28 @@ const items = ref<NavigationMenuItem[]>([
     icon: 'ion:sparkles-sharp',
     to: '/recap'
   },
+  // {
+  //   label: 'Interview',
+  //   icon: 'ion:chatbubbles',
+  //   to: '/interview'
+  // }
+
   {
     label: 'Interview',
     icon: 'ion:chatbubbles',
-    to: '/interview'
-  }
+    children: [
+      {
+        label: 'Train',
+        icon: 'ion:mic',
+        to: '/interview'
+      },
+      {
+        label: 'Stats',
+        icon: 'ion:bar-chart',
+        to: '/interview/stats'
+      },
+    ]
+  },
 ])
 </script>
 

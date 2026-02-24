@@ -22,14 +22,14 @@ export default defineEventHandler(async (event) => {
 
   const audioPath = path.join(sessionDir, `audio.webm`)
   const textPath = path.join(sessionDir, `text.txt`)
-  fs.writeFileSync(audioPath, audio.data)
+  fs.writeFileSync(audioPath, audio.data as any)
   fs.writeFileSync(textPath, String(text.data))
 
   // Transcribe via OpenAI Whisper
   const formData = new FormData()
   formData.append('model', 'gpt-4o-transcribe')
   formData.append('language', 'en')
-  formData.append('file', new Blob([audio.data], { type: audio.type || 'audio/webm' }), 'recap.webm')
+  formData.append('file', new Blob([audio.data as any], { type: audio.type || 'audio/webm' }), 'recap.webm')
 
   const tr = await fetch('https://api.openai.com/v1/audio/transcriptions', {
     method: 'POST',

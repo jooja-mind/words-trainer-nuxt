@@ -18,7 +18,7 @@ async function loadQuestion() {
   status.loadingQuestion = true
   showAnswer.value = false
   evaluation.value = null
-  const res = await $fetch<{ item: any }>('/api/interview/random')
+  const res = await $fetch<{ item: any }>('/api/interview')
   item.value = res.item
   noQuestionInDB.value = !item.value
   status.loadingQuestion = false
@@ -71,16 +71,21 @@ async function submitRecording(blob: Blob) {
   loading.value = false
 }
 
+function retellAgain(){
+  evaluation.value = null;
+  showAnswer.value = false;
+}
+
 onMounted(async ()=> {
   await loadQuestion();
 
-  if(process.env.NODE_ENV === 'development') {
-    evaluation.value = {
-      verdict: 'Good job! You covered most of the points.',
-      missing_points: ['Point 1', 'Point 2', 'Point 3'],
-      short_feedback: ['Feedback 1', 'Feedback 2', 'Feedback 3']
-    }
-  }
+  // if(process.env.NODE_ENV === 'development') {
+  //   evaluation.value = {
+  //     verdict: 'Good job! You covered most of the points.',
+  //     missing_points: ['Point 1', 'Point 2', 'Point 3'],
+  //     short_feedback: ['Feedback 1', 'Feedback 2', 'Feedback 3']
+  //   }
+  // }
 })
 
 </script>
@@ -125,6 +130,8 @@ onMounted(async ()=> {
           </div>
           <div class="evaluationTitle">Feedback</div>
           <ul><li v-for="m in evaluation.short_feedback" :key="m">{{ m }}</li></ul>
+
+          <UButton size="lg" variant="soft" color="primary" class="mt-4 w-full" @click="retellAgain" icon="ion:refresh">Answer again</UButton>
         </UCard>
       </template>
     </UPageBody>

@@ -42,6 +42,10 @@ model InterviewQA {
   id        String   @id @default(cuid())
   question  String
   answer    String?
+  timesAnswered Int      @default(0)
+  timesCorrect  Int      @default(0)
+  timesIncorrect Int    @default(0)
+  timesShown     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
