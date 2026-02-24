@@ -53,6 +53,7 @@ model InterviewQA {
 model WordTrainingStats {
   id        Int     @id @default(autoincrement())
   accuracy  Float
+  accuracy100 Float @default(0)
   totalAnswers Int
   totalWords   Int
   createdAt DateTime @default(now())

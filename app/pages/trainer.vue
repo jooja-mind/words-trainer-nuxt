@@ -69,6 +69,10 @@ onMounted(loadStats)
         <p>Total words: <b>{{ quizStats.totalWords }}</b></p>
         <p>Total answers: <b>{{ quizStats.totalAnswers }}</b></p>
         <p>Accuracy: <b>{{ (quizStats.accuracy * 100).toFixed(1) }}%</b></p>
+        <p>
+          Accuracy100:
+          <b>{{ (quizStats.accuracy100 * 100).toFixed(1) }}%</b>
+        </p>
       </UCard>
     </UPageBody>
   </main>
