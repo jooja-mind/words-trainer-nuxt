@@ -37,6 +37,7 @@ export default defineEventHandler(async (event) => {
       translation: true,
       status: true,
       lastSeenAt: true,
+      example: true,
       reviews: {
         select: { wasCorrect: true, createdAt: true },
         orderBy: { createdAt: 'desc' },
@@ -91,7 +92,8 @@ export default defineEventHandler(async (event) => {
       wordId: target.id,
       prompt: target.term,
       translation: target.translation ?? null,
-      options
+      options,
+      example: target.example
     }
   })
 
