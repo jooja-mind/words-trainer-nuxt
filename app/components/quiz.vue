@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type QuizQuestion = { wordId: string; prompt: string; translation?: string | null; options: Array<{ optionId: string; text: string; translation: string }> }
+type QuizQuestion = { wordId: string; example?: string; prompt: string; translation?: string | null; options: Array<{ optionId: string; text: string; translation: string }> }
 
 let emit = defineEmits(['start', 'nextQuestioned', 'dontKnowed', 'answerSubmitted']);
 
@@ -78,6 +78,7 @@ async function dontKnow(){
   emit('dontKnowed');
 }
 
+let showExample = ref(false);
 
 let props = defineProps({
   quizCurrent: Object as () => QuizQuestion | null,
@@ -103,6 +104,13 @@ let props = defineProps({
     <p v-if="!!errorMessage" class="error">{{ errorMessage }}</p>
     <div v-if="quizCurrent" class="current">
       <div class="term">{{ quizCurrent.prompt }}</div>
+      <UButton v-if="!showExample" class="mt-2" size="sm" icon="ion:eye" variant="outline" @click="showExample = !showExample">Show in sentence</UButton>
+      <div class="exampleHolder" v-if="quizCurrent.example && showExample">
+        <UButton size="sm" icon="ion:eye-off" variant="link" @click="showExample = !showExample" style="margin-top: 0px;"/>
+        <div class="example">
+          {{ quizCurrent.example }}
+        </div>
+      </div>
       <div class="options" v-if="quizDisplayMode == 'DEFINITION' || quizDisplayMode == 'TRANSLATION'">
         <label v-for="(opt, idx) in quizCurrent.options" :key="opt.optionId" class="option">
           <input type="radio" name="answer" :value="opt.optionId" v-model="selectedOptionId" :disabled="answered" />
@@ -151,4 +159,16 @@ let props = defineProps({
 input{padding:.65rem .8rem;border-radius:8px;border:1px solid #343b5a;background:#0f1221;color:#fff}
 .actions{display:flex;gap:.5rem;margin-top:.7rem}.ghost{border:1px solid #39406a;background:#171d36;color:#dbe1ff;padding:.3rem .75rem;border-radius:8px;cursor:pointer;font-size:12px}.finish{margin-top:.7rem;color:#c8d0ff;display:flex;gap:.6rem;align-items:center}
 
+.example{
+  font-style: italic;
+  color: #b8bfdb;
+  cursor: default;
+}
+
+.exampleHolder{
+  margin-top: 8px;
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}
 </style>
