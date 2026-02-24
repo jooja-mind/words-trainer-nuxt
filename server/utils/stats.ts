@@ -1,6 +1,8 @@
 import { prisma } from './prisma'
 
 export async function get(){
+  const accuracyWindow = 100
+
   const words = await prisma.word.findMany({
     select: {
       id: true,
@@ -9,11 +11,18 @@ export async function get(){
       reviews: { select: { wasCorrect: true } }
     }
   })
+  const recentReviews = await prisma.wordReview.findMany({
+    select: { wasCorrect: true },
+    orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+    take: accuracyWindow
+  })
 
   const totalWords = words.length
   const totalAnswers = words.reduce((a, w) => a + w.reviews.length, 0)
   const totalWrong = words.reduce((a, w) => a + w.reviews.filter((r) => !r.wasCorrect).length, 0)
   const totalCorrect = totalAnswers - totalWrong
+  const totalAnswers100 = recentReviews.length
+  const totalCorrect100 = recentReviews.filter((r) => r.wasCorrect).length
 
   const toughest = words
     .map((w) => {
@@ -40,13 +49,32 @@ export async function get(){
     })
     .slice(0, 20)
 
+  let accuracyLearningProgress: {i: number, a: number, a100: number}[] = [];
+  let wordTrainingStats = await prisma.wordTrainingStats.findMany({
+    orderBy: { id: 'desc' },
+    take: 1000
+  });
+  for(let wordTrainingStat of wordTrainingStats){
+    accuracyLearningProgress.push({
+      i: wordTrainingStat.totalAnswers,
+      a: wordTrainingStat.accuracy,
+      a100: wordTrainingStat.accuracy100
+    })
+  }
+  accuracyLearningProgress = accuracyLearningProgress.sort((a, b) => a.i - b.i)
+  
+
   return {
     totalWords,
     totalAnswers,
     totalCorrect,
     totalWrong,
     accuracy: totalAnswers ? totalCorrect / totalAnswers : 0,
+    accuracy100: totalAnswers100 ? totalCorrect100 / totalAnswers100 : 0,
+    accuracy100Answers: totalAnswers100,
+    accuracy100Window: accuracyWindow,
     toughest,
-    topHardest
+    topHardest,
+    accuracyLearningProgress
   }
 }

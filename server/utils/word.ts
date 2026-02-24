@@ -55,6 +55,7 @@ export async function applyAnswerToWord({correct, wordId}: { correct: boolean, w
   await prisma.wordTrainingStats.create({
     data: {
       accuracy: currentStats.accuracy,
+      accuracy100: currentStats.accuracy100,
       totalAnswers: currentStats.totalAnswers,
       totalWords: currentStats.totalWords
     }
