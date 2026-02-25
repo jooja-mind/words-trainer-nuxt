@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
 
   if (!audio || !audio.data || !qid) throw createError({ statusCode: 400, statusMessage: 'audio/questionId required' })
 
-  const baseDir = process.env.INTERVIEW_BASE_DIR || '';
+  const baseDir = process.env.INTERVIEW_BASE_DIR || '/tmp/words-trainer-interview';
   fs.mkdirSync(baseDir, { recursive: true })
   const stamp = new Date().toISOString().replace(/[:.]/g, '-')
   const sessionDir = path.join(baseDir, `${stamp}`)
