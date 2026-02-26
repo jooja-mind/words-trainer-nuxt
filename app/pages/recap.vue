@@ -98,7 +98,7 @@ async function submitRecording(blob: Blob) {
             <UButton size="lg" color="primary" v-if="!recording" @click="startRecording">Start recording</UButton>
             <UButton size="lg" color="secondary" variant="outline" v-else @click="stopRecording">Stop & analyze</UButton>
           </div>
-          <p class="actionInfo">Record ~15–20 minutes retelling the text.</p>
+          <p class="actionInfo">Record ~5 minutes retelling the text.</p>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'result'">
