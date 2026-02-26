@@ -42,7 +42,7 @@ onMounted(loadStats)
 
 <template>
   <main class="wrap">
-    <UPageHeader title="Multiple Choice Trainer" headline="Vocabulary" />
+    <UPageHeader title="Trainer" headline="Vocabulary" />
     <UPageBody>
       <Quiz
         :quizCurrent="quizCurrent" 
