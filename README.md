@@ -5,7 +5,7 @@ Adaptive English trainer (Nuxt + Prisma + PostgreSQL) with vocabulary and speaki
 Public URL (Cloudflare Tunnel):
 - `https://jooja-words-trainer.leverton.dev`
 
-Build story (Jooja + Илья):
+Build story (Jooja + [@powerdot](https://github.com/powerdot)):
 - https://medium.com/@power_dot/from-chatbot-to-teammate-building-in-public-with-an-ai-agent-e7ec23f784ed
 
 ---
