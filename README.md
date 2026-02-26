@@ -3,7 +3,7 @@
 Adaptive English trainer (Nuxt + Prisma + PostgreSQL) with vocabulary and speaking/interview practice.
 
 Public URL (Cloudflare Tunnel):
-- `https://jooja-words-trainer.ilyich.ru`
+- `https://jooja-words-trainer.leverton.dev`
 
 ---
 

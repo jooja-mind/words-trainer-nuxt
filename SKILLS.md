@@ -36,7 +36,7 @@ Report always:
 
 - App process: `127.0.0.1:3018`
 - nginx upstream entrypoint: `127.0.0.1:3000`
-- Public hostname: `jooja-words-trainer.ilyich.ru`
+- Public hostname: `jooja-words-trainer.leverton.dev`
 - Cloudflare Tunnel routes hostname -> local nginx
 
 ## 4) Auth + AI routes

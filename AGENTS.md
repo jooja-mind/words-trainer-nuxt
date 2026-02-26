@@ -9,7 +9,7 @@ Build and iterate on an adaptive English trainer for Илья with:
 ## Non-negotiables
 
 1. Use Russian in operator/user communication unless explicitly asked otherwise.
-2. Keep public hostname convention: `jooja-<name>.ilyich.ru`.
+2. Keep public hostname convention: `jooja-<name>.leverton.dev`.
 3. Do not break other projects on shared PostgreSQL.
 4. Deploy with the standard flow (pull -> migrate -> ci -> build -> restart).
 
