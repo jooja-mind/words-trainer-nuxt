@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   const text = form.find(f => f.name === 'text')
   if (!audio || !text || !audio.data) throw createError({ statusCode: 400, statusMessage: 'audio/text required' })
 
-  const baseDir = process.env.RECAP_BASE_DIR || '';
+  const baseDir = process.env.RECAP_BASE_DIR || '/tmp/words-trainer-recap';
   fs.mkdirSync(baseDir, { recursive: true })
   const stamp = new Date().toISOString().replace(/[:.]/g, '-')
   const sessionDir = path.join(baseDir, stamp)
@@ -25,20 +25,60 @@ export default defineEventHandler(async (event) => {
   fs.writeFileSync(audioPath, audio.data as any)
   fs.writeFileSync(textPath, String(text.data))
 
-  // Transcribe via OpenAI Whisper
-  const formData = new FormData()
-  formData.append('model', 'gpt-4o-transcribe')
-  formData.append('language', 'en')
-  formData.append('file', new Blob([audio.data as any], { type: audio.type || 'audio/webm' }), 'recap.webm')
+  const transcriptionEndpoint = 'https://api.openai.com/v1/audio/transcriptions'
+  const audioMime = audio.type || 'audio/webm'
 
-  const tr = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}` },
-    body: formData
-  })
-  const trData = await tr.json()
-  const transcript = trData?.text || ''
+  async function transcribeWithModel(model: 'gpt-4o-transcribe' | 'whisper-1') {
+    const formData = new FormData()
+    formData.append('model', model)
+    formData.append('language', 'en')
+    formData.append('file', new Blob([audio.data as any], { type: audioMime }), 'recap.webm')
 
+    const tr = await fetch(transcriptionEndpoint, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}` },
+      body: formData
+    })
+
+    let trData: any = null
+    try {
+      trData = await tr.json()
+    } catch {
+      trData = { error: { message: 'Non-JSON transcription response' } }
+    }
+
+    return {
+      ok: tr.ok,
+      status: tr.status,
+      model,
+      data: trData,
+      text: String(trData?.text || '').trim()
+    }
+  }
+
+  const primary = await transcribeWithModel('gpt-4o-transcribe')
+  const fallback = (!primary.ok || !primary.text) ? await transcribeWithModel('whisper-1') : null
+
+  const chosen = (fallback && fallback.ok && fallback.text) ? fallback : primary
+
+  const sttDebugPath = path.join(sessionDir, 'stt-response.json')
+  fs.writeFileSync(sttDebugPath, JSON.stringify({ primary, fallback }, null, 2))
+
+  if (!chosen.ok) {
+    throw createError({
+      statusCode: 502,
+      statusMessage: `Transcription failed (${chosen.model}, HTTP ${chosen.status})`
+    })
+  }
+
+  if (!chosen.text) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: 'Transcription is empty. Please re-record with clearer speech.'
+    })
+  }
+
+  const transcript = chosen.text
   const transcriptPath = path.join(sessionDir, `transcript.txt`)
   fs.writeFileSync(transcriptPath, transcript)
 
