@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const generatedText = ref('');
 const theme = ref('')
+const THEME_STORAGE_KEY = 'recap_theme'
 const status = reactive({
   generatingText: false,
   uploading: false,
@@ -11,6 +12,17 @@ const mediaRecorder = ref<MediaRecorder | null>(null)
 const chunks: Blob[] = []
 const evaluation = ref<any>(null);
 const step = ref<'generate' | 'record' | 'result'>('generate')
+
+onMounted(() => {
+  if (!import.meta.client) return
+  const saved = localStorage.getItem(THEME_STORAGE_KEY)
+  if (saved) theme.value = saved
+})
+
+watch(theme, (val) => {
+  if (!import.meta.client) return
+  localStorage.setItem(THEME_STORAGE_KEY, val)
+})
 
 async function generateText() {
   loading.value = true
