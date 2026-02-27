@@ -100,14 +100,16 @@ async function submitRecording(blob: Blob) {
       </section>
       <template v-else>
         <UCard variant="subtle" v-if="step === 'generate'">
-          <p class="actionInfo">Optional: set a theme for the story (for example: IT, startup life, travel, product design).</p>
-          <UTextarea
-            v-model="theme"
-            :rows="3"
-            placeholder="Theme (optional): e.g. A day in a software team preparing for release"
-          />
-          <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Create text</UButton>
-          <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
+          <div class="generateControls">
+            <p class="actionInfo">Optional: set a theme for the story (for example: IT, startup life, travel, product design).</p>
+            <UTextarea
+              v-model="theme"
+              :rows="3"
+              placeholder="Theme (optional): e.g. A day in a software team preparing for release"
+            />
+            <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Create text</UButton>
+            <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
+          </div>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'record'">
@@ -148,6 +150,7 @@ async function submitRecording(blob: Blob) {
 <style scoped>
 .text{white-space:pre-wrap;background:#101327;padding:12px;border-radius:10px;border:1px solid #2f3554;}
 .status{color:#c8d0ff}
+.generateControls{display:flex;flex-direction:column;gap:.6rem}
 .actions{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
 .hint{color:#b8bfdb;font-size:12px}
 hr{
@@ -174,7 +177,9 @@ ul li{
     flex-direction: column;
     align-items: stretch;
   }
-  .actions :deep(button) {
+  .actions :deep(button),
+  .generateControls :deep(button),
+  .generateControls :deep(textarea) {
     width: 100%;
   }
 }
