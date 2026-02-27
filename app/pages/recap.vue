@@ -126,7 +126,15 @@ async function submitRecording(blob: Blob) {
       <template v-else>
         <UCard variant="subtle" v-if="step === 'generate'">
           <div class="generateControls">
-            <UCheckbox v-model="useRandomTheme" label="Use one random theme" />
+            <UCheckbox
+              v-model="useRandomTheme"
+              label="Use one random theme"
+              :ui="{
+                base: 'size-5 rounded-sm ring ring-inset ring-primary/60 bg-default',
+                container: 'h-5',
+                indicator: 'bg-primary text-inverted'
+              }"
+            />
             <UTextarea
               v-if="!useRandomTheme"
               v-model="theme"
