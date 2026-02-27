@@ -1,0 +1,149 @@
+<script setup lang="ts">
+useHead({ title: 'Daily Lesson' })
+
+const lesson = ref<any | null>(null)
+const loading = ref(false)
+const actionLoading = ref(false)
+const errorText = ref('')
+
+const statusText = computed(() => {
+  if (!lesson.value) return 'No lesson'
+  if (lesson.value.status === 'completed') return 'Completed'
+  if (lesson.value.status === 'active') return 'In progress'
+  return 'Planned'
+})
+
+const blocks = computed(() => {
+  const planBlocks = lesson.value?.planJson?.blocks || []
+  const progressBlocks = lesson.value?.progressJson?.blocks || {}
+
+  return planBlocks.map((b: any) => {
+    const p = progressBlocks[b.id] || {}
+    return {
+      id: b.id,
+      title: b.title,
+      target: b.target,
+      done: Boolean(p.done),
+      progress: p
+    }
+  })
+})
+
+const completedCount = computed(() => blocks.value.filter((b: any) => b.done).length)
+
+async function loadToday() {
+  loading.value = true
+  errorText.value = ''
+  try {
+    const res = await $fetch<{ lesson: any }>('/api/daily/today')
+    lesson.value = res.lesson
+  } catch (e: any) {
+    errorText.value = e?.data?.statusMessage || e?.message || 'Failed to load daily lesson'
+  } finally {
+    loading.value = false
+  }
+}
+
+async function startDaily() {
+  actionLoading.value = true
+  errorText.value = ''
+  try {
+    const res = await $fetch<{ lesson: any }>('/api/daily/start', { method: 'POST' })
+    lesson.value = res.lesson
+  } catch (e: any) {
+    errorText.value = e?.data?.statusMessage || e?.message || 'Failed to start daily lesson'
+  } finally {
+    actionLoading.value = false
+  }
+}
+
+async function markDone(block: string) {
+  if (!['quiz', 'recap', 'interview', 'fluency'].includes(block)) return
+  actionLoading.value = true
+  errorText.value = ''
+  try {
+    const res = await $fetch<{ lesson: any }>('/api/daily/progress', {
+      method: 'POST',
+      body: { block, event: 'done' }
+    })
+    lesson.value = res.lesson
+  } catch (e: any) {
+    errorText.value = e?.data?.statusMessage || e?.message || 'Failed to update progress'
+  } finally {
+    actionLoading.value = false
+  }
+}
+
+async function completeDaily() {
+  actionLoading.value = true
+  errorText.value = ''
+  try {
+    const res = await $fetch<{ lesson: any }>('/api/daily/complete', { method: 'POST' })
+    lesson.value = res.lesson
+  } catch (e: any) {
+    errorText.value = e?.data?.statusMessage || e?.message || 'Failed to complete daily lesson'
+  } finally {
+    actionLoading.value = false
+  }
+}
+
+onMounted(loadToday)
+</script>
+
+<template>
+  <main class="wrap">
+    <UPageHeader title="Daily Lesson" headline="UTC+0" />
+    <UPageBody>
+      <UCard variant="subtle" v-if="loading">
+        <p>Loading daily lesson...</p>
+      </UCard>
+
+      <template v-else>
+        <UAlert v-if="errorText" color="error" variant="subtle" :title="errorText" />
+
+        <UCard variant="subtle" v-if="lesson">
+          <p><b>Date:</b> {{ lesson.dateKey }}</p>
+          <p><b>Status:</b> {{ statusText }}</p>
+          <p><b>Progress:</b> {{ completedCount }}/{{ blocks.length }}</p>
+
+          <div class="actions">
+            <UButton color="primary" :loading="actionLoading" @click="startDaily">Start daily</UButton>
+            <UButton variant="outline" :loading="actionLoading" @click="loadToday">Refresh</UButton>
+            <UButton color="success" variant="soft" :loading="actionLoading" @click="completeDaily">Complete now</UButton>
+          </div>
+        </UCard>
+
+        <UCard variant="subtle" v-if="blocks.length">
+          <h3>Blocks</h3>
+          <div class="block" v-for="b in blocks" :key="b.id">
+            <div>
+              <p><b>{{ b.title }}</b></p>
+              <p class="muted">Target: {{ JSON.stringify(b.target) }}</p>
+              <p class="muted">Done: {{ b.done ? 'yes' : 'no' }}</p>
+            </div>
+            <UButton size="sm" :disabled="b.done" :loading="actionLoading" @click="markDone(b.id)">Mark done</UButton>
+          </div>
+        </UCard>
+
+        <UCard variant="subtle" color="success" v-if="lesson?.status === 'completed' || lesson?.progressJson?.completed">
+          <h2>🎉 Congratulations!</h2>
+          <p>You completed today’s daily lesson.</p>
+        </UCard>
+      </template>
+    </UPageBody>
+  </main>
+</template>
+
+<style scoped>
+.actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 10px; }
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.block:last-child { border-bottom: none; }
+.muted { opacity: .8; font-size: 13px; }
+</style>
