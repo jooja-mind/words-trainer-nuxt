@@ -68,3 +68,18 @@ model RecapTrainingStats {
   fluency   Float
   createdAt DateTime @default(now())
 }
+
+model DailyLesson {
+  id           String   @id @default(cuid())
+  dateKey      String
+  profile      String   @default("standard")
+  startedAt    DateTime?
+  completedAt  DateTime?
+  status       String   @default("planned")
+  planJson     Json
+  progressJson Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([dateKey])
+}
