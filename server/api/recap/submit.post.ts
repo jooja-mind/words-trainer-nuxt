@@ -2,6 +2,7 @@ import { defineEventHandler, readMultipartFormData } from 'h3'
 import fs from 'node:fs'
 import path from 'node:path'
 import * as GPT from '../../utils/GPT'
+import { updateDailyProgress } from '../../utils/daily'
 
 export default defineEventHandler(async (event) => {
   const key = process.env.OPENAI_API_KEY
@@ -143,6 +144,12 @@ export default defineEventHandler(async (event) => {
       fluency: evalResult.fluency,
     }
   })
+
+  try {
+    await updateDailyProgress('recap', 'attempt_completed')
+  } catch (e) {
+    console.error('Daily progress update failed (recap):', e)
+  }
 
   return evalResult;
 })

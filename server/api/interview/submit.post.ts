@@ -2,6 +2,7 @@ import { defineEventHandler, readMultipartFormData } from 'h3'
 import fs from 'node:fs'
 import path from 'node:path'
 import * as GPT from '../../utils/GPT'
+import { updateDailyProgress } from '../../utils/daily'
 
 export default defineEventHandler(async (event) => {
   const key = process.env.OPENAI_API_KEY
@@ -98,6 +99,14 @@ export default defineEventHandler(async (event) => {
       timesIncorrect: { increment: evaluation.verdict === 'needs_improvement' ? 1 : 0 }
     }
   })
+
+  try {
+    await updateDailyProgress('interview', 'attempt_completed', {
+      acceptable: evaluation.verdict === 'acceptable'
+    })
+  } catch (e) {
+    console.error('Daily progress update failed (interview):', e)
+  }
 
   return evaluation;
 })
