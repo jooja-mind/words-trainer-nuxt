@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test:daily-contract": "bash ./scripts/daily-contract-check.sh"
   },
   "dependencies": {
     "@nuxt/ui": "^4.4.0",
