@@ -136,7 +136,7 @@ async function submitRecording(blob: Blob) {
 <style scoped>
 .text{white-space:pre-wrap;background:#101327;padding:12px;border-radius:10px;border:1px solid #2f3554;}
 .status{color:#c8d0ff}
-.actions{display:flex;gap:.6rem;align-items:center}
+.actions{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
 .hint{color:#b8bfdb;font-size:12px}
 hr{
 margin: 20px 0;
@@ -155,5 +155,15 @@ ul{
 }
 ul li{
   list-style: disc;
+}
+
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .actions :deep(button) {
+    width: 100%;
+  }
 }
 </style>
