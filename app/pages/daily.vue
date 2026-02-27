@@ -31,6 +31,13 @@ const blocks = computed(() => {
 
 const completedCount = computed(() => blocks.value.filter((b: any) => b.done).length)
 
+const currentBlock = computed(() => blocks.value.find((b: any) => !b.done) || null)
+const nextBlock = computed(() => {
+  if (!currentBlock.value) return null
+  const idx = blocks.value.findIndex((b: any) => b.id === currentBlock.value.id)
+  return idx >= 0 ? (blocks.value[idx + 1] || null) : null
+})
+
 async function loadToday() {
   loading.value = true
   errorText.value = ''
@@ -114,7 +121,23 @@ onMounted(loadToday)
         </UCard>
 
         <UCard variant="subtle" v-if="blocks.length">
-          <h3>Blocks</h3>
+          <h3>Flow</h3>
+
+          <div v-if="currentBlock" class="focusBlock">
+            <p class="muted">Current step</p>
+            <p><b>{{ currentBlock.title }}</b></p>
+            <p class="muted">Target: {{ JSON.stringify(currentBlock.target) }}</p>
+            <UButton size="sm" :loading="actionLoading" @click="markDone(currentBlock.id)">Mark current as done</UButton>
+          </div>
+
+          <div v-if="nextBlock" class="focusBlock next">
+            <p class="muted">Next step</p>
+            <p><b>{{ nextBlock.title }}</b></p>
+            <p class="muted">Target: {{ JSON.stringify(nextBlock.target) }}</p>
+          </div>
+
+          <hr>
+          <h4>All blocks</h4>
           <div class="block" v-for="b in blocks" :key="b.id">
             <div>
               <p><b>{{ b.title }}</b></p>
@@ -136,6 +159,22 @@ onMounted(loadToday)
 
 <style scoped>
 .actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 10px; }
+.focusBlock {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 8px;
+}
+.focusBlock.next {
+  opacity: .9;
+}
+hr {
+  margin: 14px 0;
+  opacity: .3;
+}
+h4 {
+  margin-bottom: 6px;
+}
 .block {
   display: flex;
   align-items: center;
