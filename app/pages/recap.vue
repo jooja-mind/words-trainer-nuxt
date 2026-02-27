@@ -1,7 +1,20 @@
 <script setup lang="ts">
 const generatedText = ref('');
 const theme = ref('')
+const useRandomTheme = ref(true)
 const THEME_STORAGE_KEY = 'recap_theme'
+const PRESET_THEMES = [
+  'A software team preparing a release under deadline pressure',
+  'A product manager balancing user feedback and business goals',
+  'A junior developer solving a bug with help from a mentor',
+  'A remote engineering team handling a production incident',
+  'A startup founder pitching an idea to potential investors',
+  'A data analyst discovering an unexpected pattern in reports',
+  'A designer and developer negotiating a better UX solution',
+  'A QA engineer preventing a risky feature from going live',
+  'A team doing a retrospective after a failed sprint',
+  'An engineer deciding between speed and code quality in a project'
+]
 const status = reactive({
   generatingText: false,
   uploading: false,
@@ -15,8 +28,11 @@ const step = ref<'generate' | 'record' | 'result'>('generate')
 
 onMounted(() => {
   if (!import.meta.client) return
-  const saved = localStorage.getItem(THEME_STORAGE_KEY)
-  if (saved) theme.value = saved
+  const saved = localStorage.getItem(THEME_STORAGE_KEY)?.trim() || ''
+  if (saved) {
+    theme.value = saved
+    useRandomTheme.value = false
+  }
 })
 
 watch(theme, (val) => {
@@ -24,14 +40,23 @@ watch(theme, (val) => {
   localStorage.setItem(THEME_STORAGE_KEY, val)
 })
 
+function pickRandomTheme() {
+  return PRESET_THEMES[Math.floor(Math.random() * PRESET_THEMES.length)]
+}
+
 async function generateText() {
   loading.value = true
   status.generatingText = true
   evaluation.value = null
+  const customTheme = theme.value.trim()
+  const selectedTheme = useRandomTheme.value
+    ? pickRandomTheme()
+    : (customTheme || pickRandomTheme())
+
   try {
     const res = await $fetch<{ text: string }>('/api/recap/generate', {
       method: 'POST',
-      body: { theme: theme.value.trim() || undefined }
+      body: { theme: selectedTheme }
     });
     generatedText.value = res.text
     step.value = 'record'
@@ -101,11 +126,12 @@ async function submitRecording(blob: Blob) {
       <template v-else>
         <UCard variant="subtle" v-if="step === 'generate'">
           <div class="generateControls">
-            <p class="actionInfo">Optional: set a theme for the story (for example: IT, startup life, travel, product design).</p>
+            <UCheckbox v-model="useRandomTheme" label="Use one random theme" />
             <UTextarea
+              v-if="!useRandomTheme"
               v-model="theme"
               :rows="3"
-              placeholder="Theme (optional): e.g. A day in a software team preparing for release"
+              placeholder="Your theme: e.g. A day in a software team preparing for release"
             />
             <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Create text</UButton>
             <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
