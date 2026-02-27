@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const generatedText = ref('');
+const theme = ref('')
 const status = reactive({
   generatingText: false,
   uploading: false,
@@ -16,7 +17,10 @@ async function generateText() {
   status.generatingText = true
   evaluation.value = null
   try {
-    const res = await $fetch<{ text: string }>('/api/recap/generate', { method: 'POST' });
+    const res = await $fetch<{ text: string }>('/api/recap/generate', {
+      method: 'POST',
+      body: { theme: theme.value.trim() || undefined }
+    });
     generatedText.value = res.text
     step.value = 'record'
   } catch (error) {
@@ -84,7 +88,13 @@ async function submitRecording(blob: Blob) {
       </section>
       <template v-else>
         <UCard variant="subtle" v-if="step === 'generate'">
-          <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText">Create text</UButton>
+          <p class="actionInfo">Optional: set a theme for the story (for example: IT, startup life, travel, product design).</p>
+          <UTextarea
+            v-model="theme"
+            :rows="3"
+            placeholder="Theme (optional): e.g. A day in a software team preparing for release"
+          />
+          <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Create text</UButton>
           <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
         </UCard>
 
