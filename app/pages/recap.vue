@@ -134,6 +134,11 @@ async function submitRecording(blob: Blob) {
   status.uploading = false
   loading.value = false
 }
+
+function backToGenerate() {
+  step.value = 'generate'
+  generatedText.value = ''
+}
 </script>
 
 <template>
@@ -164,7 +169,7 @@ async function submitRecording(blob: Blob) {
 
         <UCard variant="subtle" v-if="step === 'record'">
           <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
-          <UButton size="sm" variant="outline" style="margin-top: 10px;" @click="generateText">Regenerate text</UButton>
+          <UButton size="sm" variant="outline" style="margin-top: 10px;" @click="backToGenerate">Regenerate text</UButton>
         </UCard>
 
         <UCard variant="subtle" v-if="step === 'record'">
