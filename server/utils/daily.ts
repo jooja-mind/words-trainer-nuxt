@@ -20,7 +20,7 @@ function buildDefaultProgress() {
     started: false,
     completed: false,
     blocks: {
-      quiz: { roundsCompleted: 0, done: false },
+      quiz: { answersCompleted: 0, roundsCompleted: 0, done: false },
       recap: { attempts: 0, done: false },
       interview: { attempts: 0, acceptable: false, done: false },
       fluency: { promptsCompleted: 0, done: false }
@@ -41,7 +41,11 @@ function ensureProgressShape(progress: any) {
     started: Boolean(progress?.started),
     completed: Boolean(progress?.completed),
     blocks: {
-      quiz: { roundsCompleted: Number(progress?.blocks?.quiz?.roundsCompleted || 0), done: Boolean(progress?.blocks?.quiz?.done) },
+      quiz: {
+        answersCompleted: Number(progress?.blocks?.quiz?.answersCompleted || 0),
+        roundsCompleted: Number(progress?.blocks?.quiz?.roundsCompleted || 0),
+        done: Boolean(progress?.blocks?.quiz?.done)
+      },
       recap: { attempts: Number(progress?.blocks?.recap?.attempts || 0), done: Boolean(progress?.blocks?.recap?.done) },
       interview: {
         attempts: Number(progress?.blocks?.interview?.attempts || 0),
@@ -76,10 +80,19 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
 
   switch (block) {
     case 'quiz': {
+      if (event === 'answer_submitted') {
+        progress.blocks.quiz.answersCompleted += 1
+        const derivedRounds = Math.floor(progress.blocks.quiz.answersCompleted / 5)
+        if (derivedRounds > progress.blocks.quiz.roundsCompleted) {
+          progress.blocks.quiz.roundsCompleted = derivedRounds
+        }
+      }
+
       const rounds = Number(payload.roundsCompleted ?? payload.rounds ?? 0)
       if (Number.isFinite(rounds) && rounds > progress.blocks.quiz.roundsCompleted) {
         progress.blocks.quiz.roundsCompleted = rounds
       }
+
       if (event === 'done' || progress.blocks.quiz.roundsCompleted >= 10) {
         progress.blocks.quiz.done = true
       }
