@@ -129,11 +129,6 @@ async function submitRecording(blob: Blob) {
             <UCheckbox
               v-model="useRandomTheme"
               label="Use one random theme"
-              :ui="{
-                base: 'size-5 rounded-sm ring ring-inset ring-primary/60 bg-default',
-                container: 'h-5',
-                indicator: 'bg-primary text-inverted'
-              }"
             />
             <UTextarea
               v-if="!useRandomTheme"
