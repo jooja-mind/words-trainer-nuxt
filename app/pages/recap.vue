@@ -3,17 +3,28 @@ const generatedText = ref('');
 const theme = ref('')
 const useRandomTheme = ref(true)
 const THEME_STORAGE_KEY = 'recap_theme'
+const RANDOM_ENABLED_STORAGE_KEY = 'recap_random_enabled'
 const PRESET_THEMES = [
-  'A software team preparing a release under deadline pressure',
-  'A product manager balancing user feedback and business goals',
-  'A junior developer solving a bug with help from a mentor',
-  'A remote engineering team handling a production incident',
-  'A startup founder pitching an idea to potential investors',
-  'A data analyst discovering an unexpected pattern in reports',
-  'A designer and developer negotiating a better UX solution',
-  'A QA engineer preventing a risky feature from going live',
-  'A team doing a retrospective after a failed sprint',
-  'An engineer deciding between speed and code quality in a project'
+  'A developer accidentally breaking something important right before the weekend',
+  'A person moving to a new country and facing small daily challenges',
+  'A team celebrating a success that almost did not happen',
+  'Someone receiving unexpected bad news during an ordinary workday',
+  'A beginner trying a new hobby and failing in a funny way',
+  'A difficult conversation between two coworkers with different opinions',
+  'A person making a risky decision that later changes everything',
+  'A customer having a surprisingly good or bad service experience',
+  'A small misunderstanding that turns into a big problem',
+  'Someone learning an important lesson after making a confident mistake',
+  'A person missing an important bus or train and having to improvise',
+  'Someone meeting an old friend by accident in an unexpected place',
+  'A family preparing for guests when everything starts going wrong',
+  'A person losing their phone for a few stressful hours',
+  'Someone trying to cook a meal for the first time and making mistakes',
+  'A neighbor asking for help at an inconvenient moment',
+  'A person forgetting about an important appointment and rushing to fix it',
+  'Someone buying something expensive and immediately regretting it',
+  'A quiet day that suddenly turns into a memorable adventure',
+  'A small argument between friends that leads to an honest conversation'
 ]
 const status = reactive({
   generatingText: false,
@@ -31,13 +42,23 @@ onMounted(() => {
   const saved = localStorage.getItem(THEME_STORAGE_KEY)?.trim() || ''
   if (saved) {
     theme.value = saved
-    useRandomTheme.value = false
+  }
+
+  const randomEnabledItem = localStorage.getItem(RANDOM_ENABLED_STORAGE_KEY)
+  const randomEnabled = randomEnabledItem === '1'
+  if(randomEnabledItem !== null){
+    useRandomTheme.value = randomEnabled;
   }
 })
 
 watch(theme, (val) => {
   if (!import.meta.client) return
   localStorage.setItem(THEME_STORAGE_KEY, val)
+})
+
+watch(useRandomTheme, (val) => {
+  if (!import.meta.client) return
+  localStorage.setItem(RANDOM_ENABLED_STORAGE_KEY, val ? '1' : '0')
 })
 
 function pickRandomTheme() {
@@ -205,11 +226,6 @@ ul li{
   .actions {
     flex-direction: column;
     align-items: stretch;
-  }
-  .actions :deep(button),
-  .generateControls :deep(button),
-  .generateControls :deep(textarea) {
-    width: 100%;
   }
 }
 </style>
