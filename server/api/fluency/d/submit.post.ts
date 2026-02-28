@@ -2,6 +2,7 @@ import { readBody } from 'h3'
 import { prisma } from '../../../utils/prisma'
 import * as GPT from '../../../utils/GPT'
 import { updateDailyProgress } from '../../../utils/daily'
+import { computeFluencyMetrics } from '../../../utils/fluencyMetrics'
 
 function inferErrorType(line: string): 'ARTICLE' | 'TENSE' | 'VERB_FORM' | 'PREPOSITION' | 'WORD_CHOICE' {
   const t = line.toLowerCase()
@@ -59,6 +60,15 @@ export default defineEventHandler(async (event) => {
     triggerPrompt: `MODE: Pressure (D)\nTIME_LIMIT_SEC: ${timeLimitSec}\nPROMPT: ${prompt}\nTRANSCRIPT: ${transcript}\n\nScore 0-100 with practical standards, not perfectionism.`
   })
 
+  const metrics = computeFluencyMetrics({
+    transcript,
+    timeLimitSec,
+    timeToFirstWordMs: body?.timeToFirstWordMs,
+    speechRateWpm: body?.speechRateWpm,
+    longPauseCount: body?.longPauseCount,
+    selfCorrectionCount: body?.selfCorrectionCount
+  })
+
   const attempt = await prisma.fluencyAttempt.create({
     data: {
       mode: 'D',
@@ -66,10 +76,10 @@ export default defineEventHandler(async (event) => {
       transcript,
       verdict: evaluation.verdict,
       score: evaluation.score,
-      timeToFirstWordMs: Number.isFinite(body?.timeToFirstWordMs as number) ? Number(body?.timeToFirstWordMs) : null,
-      speechRateWpm: Number.isFinite(body?.speechRateWpm as number) ? Number(body?.speechRateWpm) : null,
-      longPauseCount: Number.isFinite(body?.longPauseCount as number) ? Number(body?.longPauseCount) : null,
-      selfCorrectionCount: Number.isFinite(body?.selfCorrectionCount as number) ? Number(body?.selfCorrectionCount) : null,
+      timeToFirstWordMs: metrics.timeToFirstWordMs,
+      speechRateWpm: metrics.speechRateWpm,
+      longPauseCount: metrics.longPauseCount,
+      selfCorrectionCount: metrics.selfCorrectionCount,
       feedbackJson: evaluation
     }
   })

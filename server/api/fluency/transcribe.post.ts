@@ -1,30 +1,27 @@
 import { defineEventHandler, readMultipartFormData } from 'h3'
+import { getSTTProvider, transcribeAudio } from '../../utils/stt'
 
 export default defineEventHandler(async (event) => {
-  const key = process.env.OPENAI_API_KEY
-  if (!key) throw createError({ statusCode: 500, statusMessage: 'OPENAI_API_KEY missing' })
-
   const form = await readMultipartFormData(event)
   if (!form) throw createError({ statusCode: 400, statusMessage: 'No form data' })
 
   const audio = form.find((f) => f.name === 'audio')
   if (!audio?.data) throw createError({ statusCode: 400, statusMessage: 'audio is required' })
 
-  const sttForm = new FormData()
-  sttForm.append('model', 'whisper-1')
-  sttForm.append('language', 'en')
-  sttForm.append('file', new Blob([audio.data as any], { type: audio.type || 'audio/webm' }), 'fluency.webm')
+  try {
+    const stt = await transcribeAudio({
+      audio: audio.data as Buffer,
+      mimeType: audio.type || 'audio/webm',
+      language: 'en'
+    })
 
-  const tr = await fetch('https://api.openai.com/v1/audio/transcriptions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}` },
-    body: sttForm
-  })
-
-  if (!tr.ok) {
+    return {
+      provider: getSTTProvider(),
+      text: stt.text,
+      segments: stt.segments || [],
+      words: stt.words || []
+    }
+  } catch {
     throw createError({ statusCode: 502, statusMessage: 'Transcription failed' })
   }
-
-  const data = await tr.json()
-  return { text: String(data?.text || '').trim() }
 })
