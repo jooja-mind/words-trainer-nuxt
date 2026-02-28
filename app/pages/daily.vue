@@ -14,6 +14,19 @@ const statusText = computed(() => {
   return 'Planned'
 })
 
+function formatTarget(target: any) {
+  if (!target || typeof target !== 'object') return '-'
+  const parts: string[] = []
+  if (target.rounds) parts.push(`${target.rounds} rounds`)
+  if (target.wordsPerRound) parts.push(`${target.wordsPerRound} words/round`)
+  if (target.attempts) parts.push(`${target.attempts} attempt(s)`)
+  if (target.prompts) parts.push(`${target.prompts} prompt(s)`)
+  if (target.items) parts.push(`${target.items} item(s)`)
+  if (target.maxAttempts) parts.push(`max ${target.maxAttempts} attempts`)
+  if (target.acceptable) parts.push('until acceptable')
+  return parts.length ? parts.join(' · ') : JSON.stringify(target)
+}
+
 const blocks = computed(() => {
   const planBlocks = lesson.value?.planJson?.blocks || []
   const progressBlocks = lesson.value?.progressJson?.blocks || {}
@@ -33,6 +46,7 @@ const blocks = computed(() => {
       id: b.id,
       title: b.title,
       target: b.target,
+      required: b.required !== false,
       done: Boolean(p.done),
       progress: p,
       route: routeMap[b.id] || '/'
@@ -40,13 +54,14 @@ const blocks = computed(() => {
   })
 })
 
-const completedCount = computed(() => blocks.value.filter((b: any) => b.done).length)
+const requiredBlocks = computed(() => blocks.value.filter((b: any) => b.required))
+const completedRequiredCount = computed(() => requiredBlocks.value.filter((b: any) => b.done).length)
 
-const currentBlock = computed(() => blocks.value.find((b: any) => !b.done) || null)
+const currentBlock = computed(() => requiredBlocks.value.find((b: any) => !b.done) || null)
 const nextBlock = computed(() => {
   if (!currentBlock.value) return null
-  const idx = blocks.value.findIndex((b: any) => b.id === currentBlock.value.id)
-  return idx >= 0 ? (blocks.value[idx + 1] || null) : null
+  const idx = requiredBlocks.value.findIndex((b: any) => b.id === currentBlock.value.id)
+  return idx >= 0 ? (requiredBlocks.value[idx + 1] || null) : null
 })
 
 async function loadToday() {
@@ -76,37 +91,6 @@ async function startDaily() {
   }
 }
 
-async function markDone(block: string) {
-  if (!['quiz', 'recap', 'interview', 'fluency', 'fluency_c', 'fluency_b'].includes(block)) return
-  actionLoading.value = true
-  track('daily_mark_done_clicked', { block })
-  errorText.value = ''
-  try {
-    const res = await $fetch<{ lesson: any }>('/api/daily/progress', {
-      method: 'POST',
-      body: { block, event: 'done' }
-    })
-    lesson.value = res.lesson
-  } catch (e: any) {
-    errorText.value = e?.data?.statusMessage || e?.message || 'Failed to update progress'
-  } finally {
-    actionLoading.value = false
-  }
-}
-
-async function completeDaily() {
-  actionLoading.value = true
-  errorText.value = ''
-  try {
-    const res = await $fetch<{ lesson: any }>('/api/daily/complete', { method: 'POST' })
-    lesson.value = res.lesson
-  } catch (e: any) {
-    errorText.value = e?.data?.statusMessage || e?.message || 'Failed to complete daily lesson'
-  } finally {
-    actionLoading.value = false
-  }
-}
-
 onMounted(() => {
   track('daily_page_view')
   loadToday()
@@ -127,45 +111,42 @@ onMounted(() => {
         <UCard variant="subtle" v-if="lesson">
           <p><b>Date:</b> {{ lesson.dateKey }}</p>
           <p><b>Status:</b> {{ statusText }}</p>
-          <p><b>Progress:</b> {{ completedCount }}/{{ blocks.length }}</p>
+          <p><b>Progress:</b> {{ completedRequiredCount }}/{{ requiredBlocks.length }} required blocks</p>
 
           <div class="actions">
             <UButton color="primary" :loading="actionLoading" @click="startDaily">Start daily</UButton>
             <UButton variant="outline" :loading="actionLoading" @click="loadToday">Refresh</UButton>
-            <UButton color="success" variant="soft" :loading="actionLoading" @click="completeDaily">Complete now</UButton>
           </div>
         </UCard>
 
-        <UCard variant="subtle" v-if="blocks.length">
+        <UCard variant="subtle" v-if="requiredBlocks.length">
           <h3>Flow</h3>
 
           <div v-if="currentBlock" class="focusBlock">
             <p class="muted">Current step</p>
             <p><b>{{ currentBlock.title }}</b></p>
-            <p class="muted">Target: {{ JSON.stringify(currentBlock.target) }}</p>
+            <p class="muted">Target: {{ formatTarget(currentBlock.target) }}</p>
             <div class="actions">
               <UButton size="sm" :to="currentBlock.route" variant="outline">Open module</UButton>
-              <UButton size="sm" :loading="actionLoading" @click="markDone(currentBlock.id)">Mark current as done</UButton>
             </div>
           </div>
 
           <div v-if="nextBlock" class="focusBlock next">
             <p class="muted">Next step</p>
             <p><b>{{ nextBlock.title }}</b></p>
-            <p class="muted">Target: {{ JSON.stringify(nextBlock.target) }}</p>
+            <p class="muted">Target: {{ formatTarget(nextBlock.target) }}</p>
           </div>
 
           <hr>
           <h4>All blocks</h4>
           <div class="block" v-for="b in blocks" :key="b.id">
             <div>
-              <p><b>{{ b.title }}</b></p>
-              <p class="muted">Target: {{ JSON.stringify(b.target) }}</p>
+              <p><b>{{ b.title }}</b> <span class="muted" v-if="!b.required">(optional)</span></p>
+              <p class="muted">Target: {{ formatTarget(b.target) }}</p>
               <p class="muted">Done: {{ b.done ? 'yes' : 'no' }}</p>
             </div>
             <div class="actions">
               <UButton size="sm" variant="outline" :to="b.route">Open</UButton>
-              <UButton size="sm" :disabled="b.done" :loading="actionLoading" @click="markDone(b.id)">Mark done</UButton>
             </div>
           </div>
         </UCard>
