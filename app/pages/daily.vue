@@ -19,12 +19,20 @@ const blocks = computed(() => {
 
   return planBlocks.map((b: any) => {
     const p = progressBlocks[b.id] || {}
+    const routeMap: Record<string, string> = {
+      quiz: '/trainer',
+      recap: '/recap',
+      interview: '/interview',
+      fluency: '/fluency'
+    }
+
     return {
       id: b.id,
       title: b.title,
       target: b.target,
       done: Boolean(p.done),
-      progress: p
+      progress: p,
+      route: routeMap[b.id] || '/'
     }
   })
 })
@@ -127,7 +135,10 @@ onMounted(loadToday)
             <p class="muted">Current step</p>
             <p><b>{{ currentBlock.title }}</b></p>
             <p class="muted">Target: {{ JSON.stringify(currentBlock.target) }}</p>
-            <UButton size="sm" :loading="actionLoading" @click="markDone(currentBlock.id)">Mark current as done</UButton>
+            <div class="actions">
+              <UButton size="sm" :to="currentBlock.route" variant="outline">Open module</UButton>
+              <UButton size="sm" :loading="actionLoading" @click="markDone(currentBlock.id)">Mark current as done</UButton>
+            </div>
           </div>
 
           <div v-if="nextBlock" class="focusBlock next">
@@ -144,7 +155,10 @@ onMounted(loadToday)
               <p class="muted">Target: {{ JSON.stringify(b.target) }}</p>
               <p class="muted">Done: {{ b.done ? 'yes' : 'no' }}</p>
             </div>
-            <UButton size="sm" :disabled="b.done" :loading="actionLoading" @click="markDone(b.id)">Mark done</UButton>
+            <div class="actions">
+              <UButton size="sm" variant="outline" :to="b.route">Open</UButton>
+              <UButton size="sm" :disabled="b.done" :loading="actionLoading" @click="markDone(b.id)">Mark done</UButton>
+            </div>
           </div>
         </UCard>
 
