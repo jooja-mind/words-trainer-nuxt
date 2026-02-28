@@ -6,6 +6,7 @@ const item = ref<any | null>(null)
 const selected = ref('')
 const result = ref<any | null>(null)
 const errorText = ref('')
+const { track } = useTelemetry()
 
 async function nextItem() {
   loading.value = true
@@ -22,6 +23,7 @@ async function nextItem() {
 }
 
 async function submit() {
+  track('fluency_b_submit')
   if (!item.value || !selected.value) return
   loading.value = true
   errorText.value = ''

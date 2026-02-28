@@ -6,6 +6,7 @@ const promptData = ref<{ mode: 'A'; prompt: string; targetPattern?: string; time
 const transcript = ref('')
 const result = ref<any | null>(null)
 const errorText = ref('')
+const { track } = useTelemetry()
 const timerRef = ref<any>(null)
 
 async function nextPrompt() {
@@ -28,6 +29,7 @@ function onRecordedTranscript(text: string) {
 }
 
 async function submit() {
+  track('fluency_a_submit')
   if (!promptData.value || !transcript.value.trim()) return
   loading.value = true
   errorText.value = ''
@@ -47,7 +49,10 @@ async function submit() {
   }
 }
 
-onMounted(nextPrompt)
+onMounted(() => {
+  track('fluency_a_view')
+  nextPrompt()
+})
 </script>
 
 <template>

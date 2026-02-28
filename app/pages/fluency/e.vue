@@ -4,6 +4,7 @@ useHead({ title: 'Fluency E - Metrics' })
 const loading = ref(false)
 const data = ref<any | null>(null)
 const errorText = ref('')
+const { track } = useTelemetry()
 
 function barWidth(value: number, max = 100) {
   const v = Math.max(0, Math.min(value || 0, max))
@@ -11,6 +12,7 @@ function barWidth(value: number, max = 100) {
 }
 
 async function loadMetrics() {
+  track('fluency_e_refresh')
   loading.value = true
   errorText.value = ''
   try {
@@ -22,7 +24,10 @@ async function loadMetrics() {
   }
 }
 
-onMounted(loadMetrics)
+onMounted(() => {
+  track('fluency_e_view')
+  loadMetrics()
+})
 </script>
 
 <template>

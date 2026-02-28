@@ -5,6 +5,7 @@ const lesson = ref<any | null>(null)
 const loading = ref(false)
 const actionLoading = ref(false)
 const errorText = ref('')
+const { track } = useTelemetry()
 
 const statusText = computed(() => {
   if (!lesson.value) return 'No lesson'
@@ -63,6 +64,7 @@ async function loadToday() {
 
 async function startDaily() {
   actionLoading.value = true
+  track('daily_start_clicked')
   errorText.value = ''
   try {
     const res = await $fetch<{ lesson: any }>('/api/daily/start', { method: 'POST' })
@@ -77,6 +79,7 @@ async function startDaily() {
 async function markDone(block: string) {
   if (!['quiz', 'recap', 'interview', 'fluency', 'fluency_c', 'fluency_b'].includes(block)) return
   actionLoading.value = true
+  track('daily_mark_done_clicked', { block })
   errorText.value = ''
   try {
     const res = await $fetch<{ lesson: any }>('/api/daily/progress', {
@@ -104,7 +107,10 @@ async function completeDaily() {
   }
 }
 
-onMounted(loadToday)
+onMounted(() => {
+  track('daily_page_view')
+  loadToday()
+})
 </script>
 
 <template>

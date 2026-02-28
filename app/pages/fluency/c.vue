@@ -4,6 +4,7 @@ useHead({ title: 'Fluency C - Mistake Bank' })
 const loading = ref(false)
 const items = ref<any[]>([])
 const errorText = ref('')
+const { track } = useTelemetry()
 
 async function loadItems() {
   loading.value = true
@@ -19,6 +20,7 @@ async function loadItems() {
 }
 
 async function markResolved(id: string) {
+  track('fluency_c_resolve', { id })
   loading.value = true
   try {
     await $fetch('/api/fluency/c/submit', {
@@ -39,7 +41,10 @@ async function markResolved(id: string) {
   }
 }
 
-onMounted(loadItems)
+onMounted(() => {
+  track('fluency_c_view')
+  loadItems()
+})
 </script>
 
 <template>
