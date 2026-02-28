@@ -5,7 +5,14 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@vite-pwa/nuxt', "nuxt-charts"],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
-    appPassword: process.env.APP_PASSWORD || ''
+    appPassword: process.env.APP_PASSWORD || '',
+    public: {
+      appVersion: process.env.APP_VERSION || process.env.npm_package_version || 'dev',
+      features: {
+        daily: String(process.env.FEATURE_DAILY || 'true') === 'true',
+        fluency: String(process.env.FEATURE_FLUENCY || 'true') === 'true'
+      }
+    }
   },
   app: {
     head: {

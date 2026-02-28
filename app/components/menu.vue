@@ -1,66 +1,46 @@
 <script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
+
+const config = useRuntimeConfig()
+const features = config.public.features as { daily?: boolean; fluency?: boolean }
+
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
   window.location.href = '/login'
 }
 
-import type { NavigationMenuItem } from '@nuxt/ui'
+const items = computed<NavigationMenuItem[]>(() => {
+  const base: NavigationMenuItem[] = [
+    {
+      label: 'Vocab',
+      icon: 'ion:library',
+      children: [
+        { label: 'Trainer', icon: 'ion:book', to: '/trainer' },
+        { label: 'Marathon', icon: 'ion:fireball', to: '/marathon' },
+        { label: 'Stats', icon: 'ion:bar-chart', to: '/stats' },
+        { label: 'Setup', icon: 'ion:ios-settings', to: '/settings' }
+      ]
+    },
+    { label: 'Recap', icon: 'ion:sparkles-sharp', to: '/recap' },
+    {
+      label: 'Interview',
+      icon: 'ion:chatbubbles',
+      children: [
+        { label: 'Train', icon: 'ion:mic', to: '/interview' },
+        { label: 'Stats', icon: 'ion:bar-chart', to: '/interview/stats' }
+      ]
+    }
+  ]
 
-const items = ref<NavigationMenuItem[]>([
-  {
-    label: 'Vocab',
-    icon: 'ion:library',
-    children: [
-      {
-        label: 'Trainer',
-        icon: 'ion:book',
-        to: '/trainer'
-      },
-      {
-        label: 'Marathon',
-        icon: 'ion:fireball',
-        to: '/marathon'
-      },
-      {
-        label: 'Stats',
-        icon: 'ion:bar-chart',
-        to: '/stats'
-      },
-      {
-        label: 'Setup',
-        icon: 'ion:ios-settings',
-        to: '/settings'
-      },
-    ]
-  },
-  {
-    label: 'Recap',
-    icon: 'ion:sparkles-sharp',
-    to: '/recap'
-  },
-  // {
-  //   label: 'Interview',
-  //   icon: 'ion:chatbubbles',
-  //   to: '/interview'
-  // }
+  if (features?.fluency !== false) {
+    base.push({ label: 'Fluency', icon: 'ion:flash', to: '/fluency' })
+  }
+  if (features?.daily !== false) {
+    base.push({ label: 'Daily', icon: 'ion:today', to: '/daily' })
+  }
 
-  {
-    label: 'Interview',
-    icon: 'ion:chatbubbles',
-    children: [
-      {
-        label: 'Train',
-        icon: 'ion:mic',
-        to: '/interview'
-      },
-      {
-        label: 'Stats',
-        icon: 'ion:bar-chart',
-        to: '/interview/stats'
-      },
-    ]
-  },
-])
+  return base
+})
 </script>
 
 <template>
