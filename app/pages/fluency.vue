@@ -11,6 +11,7 @@ useHead({ title: 'Fluency Hub' })
         <div class="actions">
           <UButton to="/fluency/a" color="primary">A - Pattern Drills</UButton>
           <UButton to="/fluency/d" color="secondary" variant="outline">D - Pressure Mode</UButton>
+          <UButton to="/fluency/c" variant="soft">C - Mistake Bank</UButton>
         </div>
       </UCard>
     </UPageBody>

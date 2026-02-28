@@ -4,6 +4,15 @@ import path from 'node:path'
 import * as GPT from '../../utils/GPT'
 import { updateDailyProgress } from '../../utils/daily'
 
+function inferErrorType(line: string): 'ARTICLE' | 'TENSE' | 'VERB_FORM' | 'PREPOSITION' | 'WORD_CHOICE' {
+  const t = line.toLowerCase()
+  if (t.includes('article')) return 'ARTICLE'
+  if (t.includes('tense') || t.includes('past') || t.includes('present') || t.includes('perfect')) return 'TENSE'
+  if (t.includes('verb')) return 'VERB_FORM'
+  if (t.includes('preposition')) return 'PREPOSITION'
+  return 'WORD_CHOICE'
+}
+
 export default defineEventHandler(async (event) => {
   const key = process.env.OPENAI_API_KEY
   if (!key) throw createError({ statusCode: 500, statusMessage: 'OPENAI_API_KEY missing' })
@@ -99,6 +108,20 @@ export default defineEventHandler(async (event) => {
       timesIncorrect: { increment: evaluation.verdict === 'needs_improvement' ? 1 : 0 }
     }
   })
+
+  if (evaluation.verdict === 'needs_improvement' && Array.isArray(evaluation.missing_points) && evaluation.missing_points.length) {
+    const firstLine = String(evaluation.missing_points[0] || '').trim()
+    if (firstLine) {
+      await prisma.fluencyError.create({
+        data: {
+          source: 'interview',
+          errorType: inferErrorType(firstLine),
+          wrongFragment: firstLine,
+          suggestedFragment: 'Answer directly and include this missing key point.'
+        }
+      })
+    }
+  }
 
   try {
     await updateDailyProgress('interview', 'attempt_completed', {

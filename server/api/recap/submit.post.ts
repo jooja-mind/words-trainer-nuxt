@@ -4,6 +4,15 @@ import path from 'node:path'
 import * as GPT from '../../utils/GPT'
 import { updateDailyProgress } from '../../utils/daily'
 
+function inferErrorType(line: string): 'ARTICLE' | 'TENSE' | 'VERB_FORM' | 'PREPOSITION' | 'WORD_CHOICE' {
+  const t = line.toLowerCase()
+  if (t.includes('article')) return 'ARTICLE'
+  if (t.includes('tense') || t.includes('past') || t.includes('present') || t.includes('perfect')) return 'TENSE'
+  if (t.includes('verb')) return 'VERB_FORM'
+  if (t.includes('preposition')) return 'PREPOSITION'
+  return 'WORD_CHOICE'
+}
+
 export default defineEventHandler(async (event) => {
   const key = process.env.OPENAI_API_KEY
   if (!key) throw createError({ statusCode: 500, statusMessage: 'OPENAI_API_KEY missing' })
@@ -144,6 +153,20 @@ export default defineEventHandler(async (event) => {
       fluency: evalResult.fluency,
     }
   })
+
+  if (Array.isArray(evalResult.improvements) && evalResult.improvements.length) {
+    const firstLine = String(evalResult.improvements[0] || '').trim()
+    if (firstLine) {
+      await prisma.fluencyError.create({
+        data: {
+          source: 'recap',
+          errorType: inferErrorType(firstLine),
+          wrongFragment: firstLine,
+          suggestedFragment: 'Retell with clearer grammar and structure while preserving key points.'
+        }
+      })
+    }
+  }
 
   try {
     await updateDailyProgress('recap', 'attempt_completed')
