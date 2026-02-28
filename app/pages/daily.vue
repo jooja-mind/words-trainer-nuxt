@@ -99,7 +99,7 @@ onMounted(() => {
 
 <template>
   <main class="wrap">
-    <UPageHeader title="Daily Lesson" headline="UTC+0" />
+    <UPageHeader title="Daily Lesson" />
     <UPageBody>
       <UCard variant="subtle" v-if="loading">
         <p>Loading daily lesson...</p>
