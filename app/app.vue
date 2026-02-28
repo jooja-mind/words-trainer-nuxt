@@ -2,6 +2,7 @@
 const route = useRoute()
 const isLogin = computed(() => route.path === '/login')
 const isSettings = computed(() => route.path === '/settings')
+const isFluency = computed(() => route.path.startsWith('/fluency'))
 const config = useRuntimeConfig()
 </script>
 
@@ -10,7 +11,7 @@ const config = useRuntimeConfig()
     <Menu v-if="!isLogin" />
     <UContainer>
       <NuxtPage />
-      <AddWord v-if="!isLogin && !isSettings" />
+      <AddWord v-if="!isLogin && !isSettings && !isFluency" />
     </UContainer>
   </UApp>
 </template>

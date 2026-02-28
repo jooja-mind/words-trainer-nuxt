@@ -8,6 +8,10 @@ const modes = [
   { key: 'c', label: 'C - Mistake Bank', to: '/fluency/c' },
   { key: 'e', label: 'E - Metrics', to: '/fluency/e' }
 ]
+
+function openMode(path: string) {
+  window.location.href = path
+}
 </script>
 
 <template>
@@ -17,7 +21,15 @@ const modes = [
       <UCard variant="subtle">
         <p>Choose training mode:</p>
         <div class="actions">
-          <a v-for="m in modes" :key="m.key" :href="m.to" class="modeLink">{{ m.label }}</a>
+          <button
+            v-for="m in modes"
+            :key="m.key"
+            class="modeBtn"
+            type="button"
+            @click="openMode(m.to)"
+          >
+            {{ m.label }}
+          </button>
         </div>
       </UCard>
     </UPageBody>
@@ -26,19 +38,20 @@ const modes = [
 
 <style scoped>
 .actions { display: flex; gap: .6rem; flex-wrap: wrap; }
-.modeLink {
+.modeBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 10px;
   padding: 8px 12px;
-  text-decoration: none;
   color: inherit;
   background: rgba(255,255,255,.03);
+  cursor: pointer;
+  pointer-events: auto;
 }
-.modeLink:hover { background: rgba(255,255,255,.08); }
+.modeBtn:hover { background: rgba(255,255,255,.08); }
 @media (max-width: 640px) {
-  .modeLink { width: 100%; }
+  .modeBtn { width: 100%; }
 }
 </style>
