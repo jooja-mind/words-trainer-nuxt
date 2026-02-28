@@ -1,6 +1,8 @@
 <script setup lang="ts">
 useHead({ title: 'Fluency Hub' })
 
+const router = useRouter()
+
 const modes = [
   { key: 'a', label: 'A - Pattern Drills', to: '/fluency/a' },
   { key: 'b', label: 'B - Minimal Pairs', to: '/fluency/b' },
@@ -9,8 +11,8 @@ const modes = [
   { key: 'e', label: 'E - Metrics', to: '/fluency/e' }
 ]
 
-function openMode(path: string) {
-  return navigateTo(path)
+async function openMode(path: string) {
+  await router.push(path)
 }
 </script>
 
@@ -26,6 +28,7 @@ function openMode(path: string) {
             :key="m.key"
             color="primary"
             variant="outline"
+            type="button"
             @click="openMode(m.to)"
           >
             {{ m.label }}
