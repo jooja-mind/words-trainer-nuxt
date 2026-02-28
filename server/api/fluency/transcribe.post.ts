@@ -21,7 +21,8 @@ export default defineEventHandler(async (event) => {
       segments: stt.segments || [],
       words: stt.words || []
     }
-  } catch {
-    throw createError({ statusCode: 502, statusMessage: 'Transcription failed' })
+  } catch (e: any) {
+    console.error('Fluency transcribe failed:', e?.message || e)
+    throw createError({ statusCode: 502, statusMessage: String(e?.message || 'Transcription failed') })
   }
 })
