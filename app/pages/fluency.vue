@@ -1,8 +1,6 @@
 <script setup lang="ts">
 useHead({ title: 'Fluency Hub' })
 
-const router = useRouter()
-
 const modes = [
   { key: 'a', label: 'A - Pattern Drills', to: '/fluency/a' },
   { key: 'b', label: 'B - Minimal Pairs', to: '/fluency/b' },
@@ -10,10 +8,6 @@ const modes = [
   { key: 'c', label: 'C - Mistake Bank', to: '/fluency/c' },
   { key: 'e', label: 'E - Metrics', to: '/fluency/e' }
 ]
-
-async function openMode(path: string) {
-  await router.push(path)
-}
 </script>
 
 <template>
@@ -23,16 +17,7 @@ async function openMode(path: string) {
       <UCard variant="subtle">
         <p>Choose training mode:</p>
         <div class="actions">
-          <UButton
-            v-for="m in modes"
-            :key="m.key"
-            color="primary"
-            variant="outline"
-            type="button"
-            @click="openMode(m.to)"
-          >
-            {{ m.label }}
-          </UButton>
+          <a v-for="m in modes" :key="m.key" :href="m.to" class="modeLink">{{ m.label }}</a>
         </div>
       </UCard>
     </UPageBody>
@@ -41,10 +26,19 @@ async function openMode(path: string) {
 
 <style scoped>
 .actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.modeLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 10px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255,255,255,.03);
+}
+.modeLink:hover { background: rgba(255,255,255,.08); }
 @media (max-width: 640px) {
-  .actions :deep(button),
-  .actions button {
-    width: 100%;
-  }
+  .modeLink { width: 100%; }
 }
 </style>
