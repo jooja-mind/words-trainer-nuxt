@@ -92,4 +92,11 @@ onMounted(() => {
 }
 .item:last-child { border-bottom: none; }
 .muted { opacity: .8; font-size: 13px; }
+
+@media (max-width: 640px) {
+  .actions :deep(button),
+  .actions button {
+    width: 100%;
+  }
+}
 </style>

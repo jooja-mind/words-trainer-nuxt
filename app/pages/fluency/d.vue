@@ -101,4 +101,11 @@ onMounted(() => {
 .actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 10px; }
 ul { padding-left: 16px; }
 li { list-style: disc; }
+
+@media (max-width: 640px) {
+  .actions :deep(button),
+  .actions button {
+    width: 100%;
+  }
+}
 </style>

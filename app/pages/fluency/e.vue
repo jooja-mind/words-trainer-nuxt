@@ -95,4 +95,15 @@ onMounted(() => {
 .fill { height: 100%; }
 .fill.score { background: #7c8cff; }
 .fill.ok { background: #22c55e; }
+
+@media (max-width: 640px) {
+  .actions :deep(button),
+  .actions button {
+    width: 100%;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: .2rem;
+  }
+}
 </style>
