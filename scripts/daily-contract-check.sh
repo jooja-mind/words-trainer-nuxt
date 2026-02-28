@@ -43,10 +43,13 @@ call POST /api/daily/progress '{"block":"recap","event":"attempt_completed"}' >/
 echo "[4/6] interview progress -> acceptable=true"
 call POST /api/daily/progress '{"block":"interview","event":"attempt_completed","payload":{"acceptable":true}}' >/dev/null
 
-echo "[5/6] fluency progress -> promptsCompleted=10"
+echo "[5/7] fluency progress -> promptsCompleted=10"
 call POST /api/daily/progress '{"block":"fluency","event":"progress","payload":{"promptsCompleted":10}}' >/dev/null
 
-echo "[6/6] verify completed"
+echo "[6/7] fluency C progress -> itemsCompleted=5"
+call POST /api/daily/progress '{"block":"fluency_c","event":"progress","payload":{"itemsCompleted":5}}' >/dev/null
+
+echo "[7/7] verify completed"
 JSON="$(call GET /api/daily/today)"
 
 python3 - <<'PY' "$JSON"
@@ -56,7 +59,7 @@ lesson=obj["lesson"]
 progress=lesson["progressJson"]
 assert lesson["status"]=="completed", f"status={lesson['status']}"
 assert progress["completed"] is True
-for b in ["quiz","recap","interview","fluency"]:
+for b in ["quiz","recap","interview","fluency","fluency_c"]:
     assert progress["blocks"][b]["done"] is True, f"{b} not done"
 print("OK: daily contract checks passed")
 PY

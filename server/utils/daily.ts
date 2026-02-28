@@ -1,6 +1,6 @@
 import { prisma } from './prisma'
 
-type DailyBlock = 'quiz' | 'recap' | 'interview' | 'fluency'
+type DailyBlock = 'quiz' | 'recap' | 'interview' | 'fluency' | 'fluency_c'
 
 function buildDefaultPlan() {
   return {
@@ -10,7 +10,8 @@ function buildDefaultPlan() {
       { id: 'quiz', title: 'Quiz', target: { rounds: 10, wordsPerRound: 5 }, required: true },
       { id: 'recap', title: 'Recap', target: { attempts: 1 }, required: true },
       { id: 'interview', title: 'Interview', target: { acceptable: true, maxAttempts: 3 }, required: true },
-      { id: 'fluency', title: 'Fluency', target: { prompts: 10 }, required: true }
+      { id: 'fluency', title: 'Fluency', target: { prompts: 10 }, required: true },
+      { id: 'fluency_c', title: 'Fluency C', target: { items: 5 }, required: true }
     ]
   }
 }
@@ -23,7 +24,8 @@ function buildDefaultProgress() {
       quiz: { answersCompleted: 0, roundsCompleted: 0, done: false },
       recap: { attempts: 0, done: false },
       interview: { attempts: 0, acceptable: false, done: false },
-      fluency: { promptsCompleted: 0, done: false }
+      fluency: { promptsCompleted: 0, done: false },
+      fluency_c: { itemsCompleted: 0, done: false }
     }
   }
 }
@@ -52,7 +54,8 @@ function ensureProgressShape(progress: any) {
         acceptable: Boolean(progress?.blocks?.interview?.acceptable),
         done: Boolean(progress?.blocks?.interview?.done)
       },
-      fluency: { promptsCompleted: Number(progress?.blocks?.fluency?.promptsCompleted || 0), done: Boolean(progress?.blocks?.fluency?.done) }
+      fluency: { promptsCompleted: Number(progress?.blocks?.fluency?.promptsCompleted || 0), done: Boolean(progress?.blocks?.fluency?.done) },
+      fluency_c: { itemsCompleted: Number(progress?.blocks?.fluency_c?.itemsCompleted || 0), done: Boolean(progress?.blocks?.fluency_c?.done) }
     }
   }
 }
@@ -137,13 +140,28 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
       }
       break
     }
+    case 'fluency_c': {
+      if (event === 'item_resolved') {
+        progress.blocks.fluency_c.itemsCompleted += 1
+      }
+
+      const items = Number(payload.itemsCompleted ?? payload.items ?? 0)
+      if (Number.isFinite(items) && items > progress.blocks.fluency_c.itemsCompleted) {
+        progress.blocks.fluency_c.itemsCompleted = items
+      }
+      if (event === 'done' || progress.blocks.fluency_c.itemsCompleted >= 5) {
+        progress.blocks.fluency_c.done = true
+      }
+      break
+    }
   }
 
   const allDone =
     progress.blocks.quiz.done &&
     progress.blocks.recap.done &&
     progress.blocks.interview.done &&
-    progress.blocks.fluency.done
+    progress.blocks.fluency.done &&
+    progress.blocks.fluency_c.done
 
   progress.completed = allDone
 

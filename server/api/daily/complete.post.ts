@@ -17,6 +17,7 @@ function markAllDone(progress: any) {
     completed: true,
     blocks: {
       quiz: {
+        answersCompleted: Number(blocks?.quiz?.answersCompleted || 0),
         roundsCompleted: Number(blocks?.quiz?.roundsCompleted || 0),
         done: true
       },
@@ -31,6 +32,10 @@ function markAllDone(progress: any) {
       },
       fluency: {
         promptsCompleted: Number(blocks?.fluency?.promptsCompleted || 0),
+        done: true
+      },
+      fluency_c: {
+        itemsCompleted: Number(blocks?.fluency_c?.itemsCompleted || 0),
         done: true
       }
     }

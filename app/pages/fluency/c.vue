@@ -25,6 +25,14 @@ async function markResolved(id: string) {
       method: 'POST',
       body: { id, isResolved: true }
     })
+
+    try {
+      await $fetch('/api/daily/progress', {
+        method: 'POST',
+        body: { block: 'fluency_c', event: 'item_resolved' }
+      })
+    } catch {}
+
     await loadItems()
   } finally {
     loading.value = false

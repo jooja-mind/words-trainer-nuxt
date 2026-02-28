@@ -2,7 +2,7 @@ import { readBody } from 'h3'
 import { updateDailyProgress } from '../../utils/daily'
 
 type ProgressBody = {
-  block: 'quiz' | 'recap' | 'interview' | 'fluency'
+  block: 'quiz' | 'recap' | 'interview' | 'fluency' | 'fluency_c'
   event: string
   payload?: Record<string, any>
 }
