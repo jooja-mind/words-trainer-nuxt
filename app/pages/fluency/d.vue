@@ -52,7 +52,11 @@ onMounted(nextPrompt)
 
 <template>
   <main class="wrap">
-    <UPageHeader title="Fluency D" headline="Pressure Mode" />
+    <UPageHeader title="Fluency D" headline="Pressure Mode">
+      <template #links>
+        <UButton to="/daily" size="sm" variant="outline">Back to Daily</UButton>
+      </template>
+    </UPageHeader>
     <UPageBody>
       <UAlert v-if="errorText" color="error" variant="subtle" :title="errorText" />
 

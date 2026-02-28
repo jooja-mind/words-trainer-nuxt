@@ -3,6 +3,15 @@ import { prisma } from '../../../utils/prisma'
 import * as GPT from '../../../utils/GPT'
 import { updateDailyProgress } from '../../../utils/daily'
 
+function inferErrorType(line: string): 'ARTICLE' | 'TENSE' | 'VERB_FORM' | 'PREPOSITION' | 'WORD_CHOICE' {
+  const t = line.toLowerCase()
+  if (t.includes('article')) return 'ARTICLE'
+  if (t.includes('tense') || t.includes('past') || t.includes('present') || t.includes('perfect')) return 'TENSE'
+  if (t.includes('verb')) return 'VERB_FORM'
+  if (t.includes('preposition')) return 'PREPOSITION'
+  return 'WORD_CHOICE'
+}
+
 type SubmitBody = {
   prompt?: string
   transcript?: string
@@ -64,6 +73,20 @@ export default defineEventHandler(async (event) => {
       feedbackJson: evaluation
     }
   })
+
+  if (evaluation.verdict === 'needs_improvement' && evaluation.feedback?.length) {
+    const firstLine = String(evaluation.feedback[0] || '').trim()
+    if (firstLine) {
+      await prisma.fluencyError.create({
+        data: {
+          source: 'fluency',
+          errorType: inferErrorType(firstLine),
+          wrongFragment: firstLine,
+          suggestedFragment: 'Rephrase the answer with correct grammar and clearer structure.'
+        }
+      })
+    }
+  }
 
   try {
     await updateDailyProgress('fluency', 'prompt_completed')
