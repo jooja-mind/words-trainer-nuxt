@@ -6,6 +6,7 @@ const promptData = ref<{ mode: 'A'; prompt: string; targetPattern?: string; time
 const transcript = ref('')
 const result = ref<any | null>(null)
 const errorText = ref('')
+const timerRef = ref<any>(null)
 
 async function nextPrompt() {
   loading.value = true
@@ -19,6 +20,11 @@ async function nextPrompt() {
   } finally {
     loading.value = false
   }
+}
+
+function onRecordedTranscript(text: string) {
+  if (!text) return
+  transcript.value = text
 }
 
 async function submit() {
@@ -53,7 +59,10 @@ onMounted(nextPrompt)
       <UCard variant="subtle" v-if="promptData">
         <p><b>Target pattern:</b> {{ promptData.targetPattern || 'n/a' }}</p>
         <p><b>Time limit:</b> {{ promptData.timeLimitSec }} sec</p>
+        <FluencyTimer ref="timerRef" :seconds="promptData.timeLimitSec" />
         <p class="prompt">{{ promptData.prompt }}</p>
+
+        <FluencyRecorder :disabled="loading" @transcript-ready="onRecordedTranscript" @error="errorText = $event" />
 
         <UTextarea
           v-model="transcript"
