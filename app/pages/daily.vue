@@ -6,6 +6,7 @@ const loading = ref(false)
 const actionLoading = ref(false)
 const errorText = ref('')
 const { track } = useTelemetry()
+const router = useRouter()
 
 const statusText = computed(() => {
   if (!lesson.value) return 'No lesson'
@@ -58,6 +59,9 @@ const requiredBlocks = computed(() => blocks.value.filter((b: any) => b.required
 const completedRequiredCount = computed(() => requiredBlocks.value.filter((b: any) => b.done).length)
 
 const currentBlock = computed(() => requiredBlocks.value.find((b: any) => !b.done) || null)
+const canStartDaily = computed(() => !lesson.value || lesson.value.status === 'planned')
+const canContinueDaily = computed(() => Boolean(currentBlock.value?.route) && !canStartDaily.value)
+
 const nextBlock = computed(() => {
   if (!currentBlock.value) return null
   const idx = requiredBlocks.value.findIndex((b: any) => b.id === currentBlock.value.id)
@@ -78,12 +82,17 @@ async function loadToday() {
 }
 
 async function startDaily() {
+  if (!canStartDaily.value) return
   actionLoading.value = true
   track('daily_start_clicked')
   errorText.value = ''
   try {
     const res = await $fetch<{ lesson: any }>('/api/daily/start', { method: 'POST' })
     lesson.value = res.lesson
+    const route = (requiredBlocks.value.find((b: any) => !b.done) || requiredBlocks.value[0])?.route
+    if (route) {
+      await router.replace(route)
+    }
   } catch (e: any) {
     errorText.value = e?.data?.statusMessage || e?.message || 'Failed to start daily lesson'
   } finally {
@@ -114,9 +123,11 @@ onMounted(() => {
           <p><b>Progress:</b> {{ completedRequiredCount }}/{{ requiredBlocks.length }} required blocks</p>
 
           <div class="actions">
-            <UButton color="primary" :loading="actionLoading" @click="startDaily">Start daily</UButton>
+            <UButton v-if="canStartDaily" color="primary" :loading="actionLoading" @click="startDaily">Start daily</UButton>
+            <UButton v-else-if="canContinueDaily" color="primary" variant="outline" :to="currentBlock.route">Continue daily</UButton>
             <UButton variant="outline" :loading="actionLoading" @click="loadToday">Refresh</UButton>
           </div>
+          <p v-if="!canStartDaily" class="muted">Daily already started for today.</p>
         </UCard>
 
         <UCard variant="subtle" v-if="requiredBlocks.length">
