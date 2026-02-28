@@ -1,6 +1,6 @@
 import { prisma } from './prisma'
 
-type DailyBlock = 'quiz' | 'recap' | 'interview' | 'fluency' | 'fluency_c'
+type DailyBlock = 'quiz' | 'recap' | 'interview' | 'fluency' | 'fluency_c' | 'fluency_b'
 
 function buildDefaultPlan() {
   return {
@@ -11,7 +11,8 @@ function buildDefaultPlan() {
       { id: 'recap', title: 'Recap', target: { attempts: 1 }, required: true },
       { id: 'interview', title: 'Interview', target: { acceptable: true, maxAttempts: 3 }, required: true },
       { id: 'fluency', title: 'Fluency', target: { prompts: 10 }, required: true },
-      { id: 'fluency_c', title: 'Fluency C', target: { items: 5 }, required: true }
+      { id: 'fluency_c', title: 'Fluency C', target: { items: 5 }, required: true },
+      { id: 'fluency_b', title: 'Fluency B', target: { items: 5 }, required: false }
     ]
   }
 }
@@ -25,7 +26,8 @@ function buildDefaultProgress() {
       recap: { attempts: 0, done: false },
       interview: { attempts: 0, acceptable: false, done: false },
       fluency: { promptsCompleted: 0, done: false },
-      fluency_c: { itemsCompleted: 0, done: false }
+      fluency_c: { itemsCompleted: 0, done: false },
+      fluency_b: { itemsCompleted: 0, done: false }
     }
   }
 }
@@ -55,7 +57,8 @@ function ensureProgressShape(progress: any) {
         done: Boolean(progress?.blocks?.interview?.done)
       },
       fluency: { promptsCompleted: Number(progress?.blocks?.fluency?.promptsCompleted || 0), done: Boolean(progress?.blocks?.fluency?.done) },
-      fluency_c: { itemsCompleted: Number(progress?.blocks?.fluency_c?.itemsCompleted || 0), done: Boolean(progress?.blocks?.fluency_c?.done) }
+      fluency_c: { itemsCompleted: Number(progress?.blocks?.fluency_c?.itemsCompleted || 0), done: Boolean(progress?.blocks?.fluency_c?.done) },
+      fluency_b: { itemsCompleted: Number(progress?.blocks?.fluency_b?.itemsCompleted || 0), done: Boolean(progress?.blocks?.fluency_b?.done) }
     }
   }
 }
@@ -90,12 +93,10 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
           progress.blocks.quiz.roundsCompleted = derivedRounds
         }
       }
-
       const rounds = Number(payload.roundsCompleted ?? payload.rounds ?? 0)
       if (Number.isFinite(rounds) && rounds > progress.blocks.quiz.roundsCompleted) {
         progress.blocks.quiz.roundsCompleted = rounds
       }
-
       if (event === 'done' || progress.blocks.quiz.roundsCompleted >= 10) {
         progress.blocks.quiz.done = true
       }
@@ -117,11 +118,7 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
       if (payload.acceptable === true) {
         progress.blocks.interview.acceptable = true
       }
-      if (
-        event === 'done' ||
-        progress.blocks.interview.acceptable === true ||
-        progress.blocks.interview.attempts >= 3
-      ) {
+      if (event === 'done' || progress.blocks.interview.acceptable === true || progress.blocks.interview.attempts >= 3) {
         progress.blocks.interview.done = true
       }
       break
@@ -130,7 +127,6 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
       if (event === 'prompt_completed') {
         progress.blocks.fluency.promptsCompleted += 1
       }
-
       const prompts = Number(payload.promptsCompleted ?? payload.prompts ?? 0)
       if (Number.isFinite(prompts) && prompts > progress.blocks.fluency.promptsCompleted) {
         progress.blocks.fluency.promptsCompleted = prompts
@@ -144,13 +140,25 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
       if (event === 'item_resolved') {
         progress.blocks.fluency_c.itemsCompleted += 1
       }
-
       const items = Number(payload.itemsCompleted ?? payload.items ?? 0)
       if (Number.isFinite(items) && items > progress.blocks.fluency_c.itemsCompleted) {
         progress.blocks.fluency_c.itemsCompleted = items
       }
       if (event === 'done' || progress.blocks.fluency_c.itemsCompleted >= 5) {
         progress.blocks.fluency_c.done = true
+      }
+      break
+    }
+    case 'fluency_b': {
+      if (event === 'item_completed') {
+        progress.blocks.fluency_b.itemsCompleted += 1
+      }
+      const items = Number(payload.itemsCompleted ?? payload.items ?? 0)
+      if (Number.isFinite(items) && items > progress.blocks.fluency_b.itemsCompleted) {
+        progress.blocks.fluency_b.itemsCompleted = items
+      }
+      if (event === 'done' || progress.blocks.fluency_b.itemsCompleted >= 5) {
+        progress.blocks.fluency_b.done = true
       }
       break
     }

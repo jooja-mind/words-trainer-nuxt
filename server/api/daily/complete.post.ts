@@ -37,6 +37,10 @@ function markAllDone(progress: any) {
       fluency_c: {
         itemsCompleted: Number(blocks?.fluency_c?.itemsCompleted || 0),
         done: true
+      },
+      fluency_b: {
+        itemsCompleted: Number(blocks?.fluency_b?.itemsCompleted || 0),
+        done: true
       }
     }
   }

@@ -10,6 +10,7 @@ useHead({ title: 'Fluency Hub' })
         <p>Choose training mode:</p>
         <div class="actions">
           <UButton to="/fluency/a" color="primary">A - Pattern Drills</UButton>
+          <UButton to="/fluency/b" color="primary" variant="outline">B - Minimal Pairs</UButton>
           <UButton to="/fluency/d" color="secondary" variant="outline">D - Pressure Mode</UButton>
           <UButton to="/fluency/c" variant="soft">C - Mistake Bank</UButton>
           <UButton to="/fluency/e" variant="outline">E - Metrics</UButton>

@@ -1,4 +1,4 @@
-export type FluencyMode = 'A' | 'D'
+export type FluencyMode = 'A' | 'B' | 'D'
 
 const patternDrills = [
   {
@@ -50,5 +50,45 @@ export function nextPressurePrompt() {
     mode: 'D' as const,
     prompt: randomOf(pressurePrompts),
     timeLimitSec: 30
+  }
+}
+
+
+const minimalPairs = [
+  {
+    prompt: 'Choose the more natural sentence about your current task.',
+    options: ['I am working on a new feature now.', 'I work on a new feature now.'],
+    correctOption: 'I am working on a new feature now.'
+  },
+  {
+    prompt: 'Choose the correct article usage.',
+    options: ['I fixed bug in the payment module.', 'I fixed a bug in the payment module.'],
+    correctOption: 'I fixed a bug in the payment module.'
+  },
+  {
+    prompt: 'Choose the better tense for completed action yesterday.',
+    options: ['I have deployed it yesterday.', 'I deployed it yesterday.'],
+    correctOption: 'I deployed it yesterday.'
+  },
+  {
+    prompt: 'Choose the natural preposition.',
+    options: ['We discussed about the issue.', 'We discussed the issue.'],
+    correctOption: 'We discussed the issue.'
+  },
+  {
+    prompt: 'Choose the better form for a habitual action.',
+    options: ['She checks logs every morning.', 'She is checking logs every morning.'],
+    correctOption: 'She checks logs every morning.'
+  }
+]
+
+export function nextMinimalPair() {
+  const item = randomOf(minimalPairs)
+  return {
+    mode: 'B' as const,
+    prompt: item.prompt,
+    options: item.options,
+    correctOption: item.correctOption,
+    timeLimitSec: 15
   }
 }

@@ -24,7 +24,8 @@ const blocks = computed(() => {
       recap: '/recap',
       interview: '/interview',
       fluency: '/fluency',
-      fluency_c: '/fluency/c'
+      fluency_c: '/fluency/c',
+      fluency_b: '/fluency/b'
     }
 
     return {
@@ -74,7 +75,7 @@ async function startDaily() {
 }
 
 async function markDone(block: string) {
-  if (!['quiz', 'recap', 'interview', 'fluency', 'fluency_c'].includes(block)) return
+  if (!['quiz', 'recap', 'interview', 'fluency', 'fluency_c', 'fluency_b'].includes(block)) return
   actionLoading.value = true
   errorText.value = ''
   try {
