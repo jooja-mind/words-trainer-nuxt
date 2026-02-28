@@ -107,6 +107,9 @@ model FluencyError {
   wrongFragment     String
   suggestedFragment String
   isResolved        Boolean  @default(false)
+  reviewCount       Int      @default(0)
+  lastReviewedAt    DateTime?
+  nextReviewAt      DateTime?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }

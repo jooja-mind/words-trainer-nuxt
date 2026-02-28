@@ -10,13 +10,34 @@ type Body = {
   source?: 'recap' | 'interview' | 'fluency'
 }
 
+function nextIntervalDays(reviewCount: number) {
+  if (reviewCount <= 1) return 1
+  if (reviewCount === 2) return 3
+  return 7
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody<Body>(event)
 
   if (body?.id) {
+    const current = await prisma.fluencyError.findUnique({ where: { id: body.id } })
+    if (!current) throw createError({ statusCode: 404, statusMessage: 'FluencyError not found' })
+
+    const willResolve = Boolean(body.isResolved)
+    const nextReviewCount = willResolve ? (current.reviewCount + 1) : current.reviewCount
+    const intervalDays = nextIntervalDays(nextReviewCount)
+    const nextReviewAt = willResolve
+      ? new Date(Date.now() + intervalDays * 24 * 60 * 60 * 1000)
+      : null
+
     const item = await prisma.fluencyError.update({
       where: { id: body.id },
-      data: { isResolved: Boolean(body.isResolved) }
+      data: {
+        isResolved: willResolve,
+        reviewCount: nextReviewCount,
+        lastReviewedAt: willResolve ? new Date() : current.lastReviewedAt,
+        nextReviewAt
+      }
     })
     return { item }
   }
@@ -31,7 +52,9 @@ export default defineEventHandler(async (event) => {
       errorType: body.errorType,
       wrongFragment: body.wrongFragment,
       suggestedFragment: body.suggestedFragment,
-      isResolved: false
+      isResolved: false,
+      reviewCount: 0,
+      nextReviewAt: null
     }
   })
 

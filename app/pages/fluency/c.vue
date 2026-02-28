@@ -69,8 +69,9 @@ onMounted(() => {
             <p><b>{{ it.errorType }}</b> · <span class="muted">{{ it.source }}</span></p>
             <p class="muted">Issue: {{ it.wrongFragment }}</p>
             <p class="muted">Suggestion: {{ it.suggestedFragment }}</p>
+            <p class="muted">Reviews: {{ it.reviewCount || 0 }} · Next: {{ it.nextReviewAt ? new Date(it.nextReviewAt).toLocaleDateString() : "-" }}</p>
           </div>
-          <UButton size="sm" color="success" variant="soft" :loading="loading" @click="markResolved(it.id)">Resolve</UButton>
+          <UButton size="sm" color="success" variant="soft" :loading="loading" @click="markResolved(it.id)">{{ it.isResolved ? "Practice again" : "Resolve" }}</UButton>
         </div>
       </UCard>
 
