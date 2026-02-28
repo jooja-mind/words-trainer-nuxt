@@ -1,19 +1,35 @@
 <script setup lang="ts">
 useHead({ title: 'Fluency Hub' })
+
+const modes = [
+  { key: 'a', label: 'A - Pattern Drills', to: '/fluency/a' },
+  { key: 'b', label: 'B - Minimal Pairs', to: '/fluency/b' },
+  { key: 'd', label: 'D - Pressure Mode', to: '/fluency/d' },
+  { key: 'c', label: 'C - Mistake Bank', to: '/fluency/c' },
+  { key: 'e', label: 'E - Metrics', to: '/fluency/e' }
+]
+
+function openMode(path: string) {
+  return navigateTo(path)
+}
 </script>
 
 <template>
   <main class="wrap">
-    <UPageHeader title="Fluency" headline="A / D MVP" />
+    <UPageHeader title="Fluency" />
     <UPageBody>
       <UCard variant="subtle">
         <p>Choose training mode:</p>
         <div class="actions">
-          <UButton to="/fluency/a" color="primary">A - Pattern Drills</UButton>
-          <UButton to="/fluency/b" color="primary" variant="outline">B - Minimal Pairs</UButton>
-          <UButton to="/fluency/d" color="secondary" variant="outline">D - Pressure Mode</UButton>
-          <UButton to="/fluency/c" variant="soft">C - Mistake Bank</UButton>
-          <UButton to="/fluency/e" variant="outline">E - Metrics</UButton>
+          <UButton
+            v-for="m in modes"
+            :key="m.key"
+            color="primary"
+            variant="outline"
+            @click="openMode(m.to)"
+          >
+            {{ m.label }}
+          </UButton>
         </div>
       </UCard>
     </UPageBody>
@@ -22,4 +38,10 @@ useHead({ title: 'Fluency Hub' })
 
 <style scoped>
 .actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .actions :deep(button),
+  .actions button {
+    width: 100%;
+  }
+}
 </style>
