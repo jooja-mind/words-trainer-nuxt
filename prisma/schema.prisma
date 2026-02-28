@@ -83,3 +83,19 @@ model DailyLesson {
 
   @@unique([dateKey])
 }
+
+model FluencyAttempt {
+  id                  String   @id @default(cuid())
+  mode                String
+  prompt              String
+  targetPattern       String?
+  transcript          String?
+  verdict             String?
+  score               Float?
+  timeToFirstWordMs   Int?
+  speechRateWpm       Float?
+  longPauseCount      Int?
+  selfCorrectionCount Int?
+  feedbackJson        Json?
+  createdAt           DateTime @default(now())
+}

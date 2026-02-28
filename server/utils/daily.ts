@@ -124,6 +124,10 @@ export async function updateDailyProgress(block: DailyBlock, event: string, payl
       break
     }
     case 'fluency': {
+      if (event === 'prompt_completed') {
+        progress.blocks.fluency.promptsCompleted += 1
+      }
+
       const prompts = Number(payload.promptsCompleted ?? payload.prompts ?? 0)
       if (Number.isFinite(prompts) && prompts > progress.blocks.fluency.promptsCompleted) {
         progress.blocks.fluency.promptsCompleted = prompts
