@@ -4,11 +4,12 @@ export type NormalizedSTT = {
   words?: Array<{ word: string; startMs: number; endMs: number }>
 }
 
-export type STTProvider = 'openai'
+export type STTProvider = 'openai' | 'openai_timestamps'
 
 export function getSTTProvider(): STTProvider {
   const raw = String(process.env.STT_PROVIDER || 'openai').toLowerCase()
-  return raw === 'openai' ? 'openai' : 'openai'
+  if (raw === 'openai_timestamps') return 'openai_timestamps'
+  return 'openai'
 }
 
 export async function transcribeAudio(params: {
@@ -17,7 +18,6 @@ export async function transcribeAudio(params: {
   language?: string
 }): Promise<NormalizedSTT> {
   const provider = getSTTProvider()
-  if (provider !== 'openai') throw new Error('Unsupported STT provider')
 
   const key = process.env.OPENAI_API_KEY
   if (!key) throw new Error('OPENAI_API_KEY missing')
@@ -26,6 +26,11 @@ export async function transcribeAudio(params: {
   form.append('model', 'whisper-1')
   form.append('language', params.language || 'en')
   form.append('file', new Blob([params.audio as any], { type: params.mimeType || 'audio/webm' }), 'audio.webm')
+
+  if (provider === 'openai_timestamps') {
+    form.append('response_format', 'verbose_json')
+    form.append('timestamp_granularities[]', 'segment')
+  }
 
   const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
     method: 'POST',
@@ -36,7 +41,20 @@ export async function transcribeAudio(params: {
   if (!res.ok) throw new Error(`STT failed: ${res.status}`)
   const data = await res.json()
 
+  const text = String(data?.text || '').trim()
+
+  const segments = Array.isArray(data?.segments)
+    ? data.segments
+        .map((s: any) => ({
+          startMs: Number(s?.start || 0) * 1000,
+          endMs: Number(s?.end || 0) * 1000,
+          text: String(s?.text || '').trim()
+        }))
+        .filter((s: any) => s.text)
+    : undefined
+
   return {
-    text: String(data?.text || '').trim()
+    text,
+    segments
   }
 }
