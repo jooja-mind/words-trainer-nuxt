@@ -1,6 +1,5 @@
 import { prisma } from '../../utils/prisma'
 import * as wordService from '../../utils/word'
-import { updateDailyProgress } from '../../utils/daily'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ wordId?: string; selectedOptionId?: string; forceWrong?: boolean }>(event)
@@ -32,12 +31,6 @@ export default defineEventHandler(async (event) => {
     correct,
     wordId: body.wordId
   })
-
-  try {
-    await updateDailyProgress('quiz', 'answer_submitted')
-  } catch (e) {
-    console.error('Daily progress update failed (quiz answer):', e)
-  }
 
   return result
 })

@@ -2,7 +2,6 @@ import { defineEventHandler, readMultipartFormData } from 'h3'
 import fs from 'node:fs'
 import path from 'node:path'
 import * as GPT from '../../utils/GPT'
-import { updateDailyProgress } from '../../utils/daily'
 
 function inferErrorType(line: string): 'ARTICLE' | 'TENSE' | 'VERB_FORM' | 'PREPOSITION' | 'WORD_CHOICE' {
   const t = line.toLowerCase()
@@ -153,26 +152,6 @@ export default defineEventHandler(async (event) => {
       fluency: evalResult.fluency,
     }
   })
-
-  if (Array.isArray(evalResult.improvements) && evalResult.improvements.length) {
-    const firstLine = String(evalResult.improvements[0] || '').trim()
-    if (firstLine) {
-      await prisma.fluencyError.create({
-        data: {
-          source: 'recap',
-          errorType: inferErrorType(firstLine),
-          wrongFragment: firstLine,
-          suggestedFragment: 'Retell with clearer grammar and structure while preserving key points.'
-        }
-      })
-    }
-  }
-
-  try {
-    await updateDailyProgress('recap', 'attempt_completed')
-  } catch (e) {
-    console.error('Daily progress update failed (recap):', e)
-  }
 
   return evalResult;
 })

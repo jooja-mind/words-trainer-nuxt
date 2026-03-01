@@ -7,11 +7,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     appPassword: process.env.APP_PASSWORD || '',
     public: {
-      appVersion: process.env.APP_VERSION || process.env.npm_package_version || 'dev',
-      features: {
-        daily: String(process.env.FEATURE_DAILY || 'true') === 'true',
-        fluency: String(process.env.FEATURE_FLUENCY || 'true') === 'true'
-      }
+      appVersion: process.env.APP_VERSION || process.env.npm_package_version || 'dev'
     }
   },
   app: {

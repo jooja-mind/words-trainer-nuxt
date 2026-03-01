@@ -2,7 +2,6 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
 
 const config = useRuntimeConfig()
-const features = config.public.features as { daily?: boolean; fluency?: boolean }
 
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
@@ -31,25 +30,6 @@ const items = computed<NavigationMenuItem[]>(() => {
       ]
     }
   ]
-
-  if (features?.fluency !== false) {
-    base.push({
-      label: 'Fluency',
-      icon: 'ion:flash',
-      children: [
-        { label: 'Hub', icon: 'ion:grid', to: '/fluency' },
-        { label: 'A - Pattern Drills', icon: 'ion:flash-outline', to: '/fluency/a' },
-        { label: 'B - Minimal Pairs', icon: 'ion:git-compare', to: '/fluency/b' },
-        { label: 'C - Mistake Bank', icon: 'ion:construct', to: '/fluency/c' },
-        { label: 'D - Pressure Mode', icon: 'ion:timer', to: '/fluency/d' },
-        { label: 'E - Metrics', icon: 'ion:analytics', to: '/fluency/e' }
-      ]
-    })
-  }
-
-  if (features?.daily !== false) {
-    base.push({ label: 'Daily', icon: 'ion:today', to: '/daily' })
-  }
 
   return base
 })

@@ -1,7 +1,6 @@
 import { prisma } from '../../utils/prisma'
 import * as wordService from '../../utils/word'
 import * as GPT from '../../utils/GPT'
-import { updateDailyProgress } from '../../utils/daily'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ wordId: string; translation: string }>(event)
@@ -120,12 +119,6 @@ Never reveal the correct translation(s).`,
     correct,
     wordId: body.wordId
   })
-
-  try {
-    await updateDailyProgress('quiz', 'answer_submitted')
-  } catch (e) {
-    console.error('Daily progress update failed (quiz translation answer):', e)
-  }
 
   return {
     ...result,
