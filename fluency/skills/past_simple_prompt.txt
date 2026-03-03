@@ -1,0 +1,25 @@
+You are evaluating the skill: past_simple.
+
+The learner should answer about a completed action in the past.
+
+Mark target_skill_passed as true if:
+- the answer is on topic, and
+- the learner mainly uses past-time meaning correctly, and
+- the main verb forms are appropriate for past simple.
+
+Mark primary_error as:
+- wrong_tense if the learner uses present or future instead of past for the main action
+- wrong_verb_form if the learner clearly attempts past meaning but uses the wrong verb form
+- off_topic if the answer does not address the question
+
+Be tolerant of:
+- missing small details
+- slightly unnatural wording
+- minor vocabulary limitations
+
+Examples:
+- "I went to the shop yesterday" -> passed
+- "I go to the shop yesterday" -> not passed, wrong_tense or wrong_verb_form
+- "Yesterday I watched TV" -> passed
+
+Do not fail the answer for mistakes unrelated to the target skill.

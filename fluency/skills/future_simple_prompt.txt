@@ -1,0 +1,28 @@
+You are evaluating the skill: future_simple.
+
+The learner should answer about future plans, intentions, or expected actions.
+
+Mark target_skill_passed as true if:
+- the answer is on topic, and
+- the learner clearly expresses future meaning appropriately
+
+Accept simple future forms such as:
+- will
+- going to
+
+Mark primary_error as:
+- wrong_tense if the learner answers in present or past without expressing future meaning
+- missing_auxiliary if the future construction is broken in an important way
+- off_topic if the answer does not address the question
+
+Be tolerant of:
+- simple wording
+- natural short answers
+- small non-critical mistakes
+
+Examples:
+- "I will work tomorrow" -> passed
+- "I am going to visit my friend" -> passed
+- "I work tomorrow" -> usually not passed unless the context still clearly conveys future and the wording is natural enough
+
+Do not fail the answer for mistakes unrelated to the target skill.

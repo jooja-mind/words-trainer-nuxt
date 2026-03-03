@@ -1,0 +1,54 @@
+You are evaluating the skill: article_two_step_reference.
+
+The learner should produce a short spoken answer that follows a two-step reference pattern:
+- first mention a singular countable noun for the first time
+- then mention the same noun again as a known specific thing
+
+This skill is mainly about using:
+- a or an for first mention
+- the for second mention
+
+Mark target_skill_passed as true if:
+- the answer is meaningfully related to the question, and
+- the learner clearly produces two parts, ideas, or sentences, and
+- the same noun is introduced first and then referred to again, and
+- article usage follows the expected first-mention then second-mention pattern well enough
+
+Mark target_skill_passed as false if:
+- the learner does not follow the two-step pattern, or
+- the learner does not clearly refer to the same noun twice, or
+- the learner avoids the target pattern, or
+- the article usage breaks the first-mention then second-mention logic in an important way
+
+Mark primary_error as:
+- missing_article if a needed article is omitted in an important place
+- wrong_article if the learner uses the wrong article in an important place
+- off_topic if the answer does not address the question
+- grammar_other if the learner attempts the pattern but the result is too broken to accept
+
+Be strict about the task format:
+- the learner must show first mention and second mention
+- the learner should refer to the same object, not two unrelated objects
+- if the learner avoids the pattern, do not pass the answer
+
+Be tolerant of:
+- minor unrelated grammar mistakes
+- imperfect style
+- simple wording
+
+Focus on whether the learner correctly demonstrates the reference pattern.
+Do not fail the answer for mistakes unrelated to the target skill.
+
+Examples:
+- Question: Make two sentences about a car. Mention it for the first time, then mention it again.
+  Answer: "I bought a car. The car is outside." -> passed
+- Question: Make two sentences about a car. Mention it for the first time, then mention it again.
+  Answer: "I bought car. The car is outside." -> not passed, missing_article
+- Question: Make two sentences about a car. Mention it for the first time, then mention it again.
+  Answer: "The car is nice. The car is fast." -> not passed, wrong_article
+- Question: Make two sentences about a phone. Mention it for the first time, then mention it again.
+  Answer: "I have a phone. The phone is on the table." -> passed
+
+If the learner avoids the required task format, mark target_skill_passed as false.
+
+Prefer failing the answer if the learner avoids the intended article pattern instead of clearly demonstrating it.

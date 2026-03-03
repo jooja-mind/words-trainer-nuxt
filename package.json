@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "fluency:filldb": "bash -c 'set -a && source .env && set +a && npx tsx fluency/fillDB.ts'",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@vite-pwa/nuxt": "^1.1.1",
-    "prisma": "^6.14.0"
+    "prisma": "^6.14.0",
+    "tsx": "^4.21.0"
   }
 }

@@ -1,0 +1,1498 @@
+What did you do yesterday morning?
+
+
+What did you do yesterday afternoon?
+
+
+What did you do yesterday evening?
+
+
+What time did you wake up yesterday?
+
+
+What did you eat for breakfast yesterday?
+
+
+What did you drink yesterday?
+
+
+Where did you go yesterday?
+
+
+Who did you talk to yesterday?
+
+
+What did you watch yesterday?
+
+
+What did you listen to yesterday?
+
+
+What did you cook yesterday?
+
+
+What did you buy yesterday?
+
+
+What did you read yesterday?
+
+
+What did you learn yesterday?
+
+
+What made you laugh yesterday?
+
+
+What annoyed you yesterday?
+
+
+How did you spend your lunch break yesterday?
+
+
+What did you do right before bed yesterday?
+
+
+Did you exercise yesterday? What did you do?
+
+
+Did anything unexpected happen yesterday?
+
+
+What did you do last Monday?
+
+
+What was the busiest thing you did last week?
+
+
+What project did you work on last week?
+
+
+What did you finish last week?
+
+
+What did you postpone last week?
+
+
+What did you do after work last week?
+
+
+What meeting did you have last week?
+
+
+What problem did you solve last week?
+
+
+What did you clean last week?
+
+
+What did you cook last week?
+
+
+Where did you go last week?
+
+
+What did you enjoy most last week?
+
+
+What tired you out last week?
+
+
+Who did you help last week?
+
+
+Who helped you last week?
+
+
+What did you buy last week?
+
+
+What did you forget last week?
+
+
+What did you practice last week?
+
+
+What did you avoid last week?
+
+
+What was the best part of last week?
+
+
+Where did you live when you were a child?
+
+
+What games did you play as a child?
+
+
+What did you do after school when you were young?
+
+
+What cartoons did you watch as a child?
+
+
+Who was your best friend at school?
+
+
+What subject did you like most at school?
+
+
+What subject did you dislike at school?
+
+
+What did your teachers often say to you?
+
+
+What did you want to become when you were a child?
+
+
+How did you spend your summers when you were young?
+
+
+What food did you love as a child?
+
+
+What food did you hate as a child?
+
+
+Did you collect anything when you were young?
+
+
+What did you learn from your parents as a child?
+
+
+What was your favorite toy when you were little?
+
+
+Did you get into trouble at school? What happened?
+
+
+What book did you love when you were young?
+
+
+What birthday present made you happiest as a child?
+
+
+What place did you visit often with your family?
+
+
+What is one funny memory from your childhood?
+
+
+What did you work on yesterday?
+
+
+What task did you finish most recently?
+
+
+What bug did you fix recently?
+
+
+What problem did you deal with at work last week?
+
+
+What did you study yesterday?
+
+
+What did you practice most this week?
+
+
+What did you improve in your work recently?
+
+
+What difficult task did you complete recently?
+
+
+What meeting did you have recently?
+
+
+What did you explain to someone recently?
+
+
+What new tool did you try recently?
+
+
+What did you write recently?
+
+
+What did you build recently?
+
+
+What did you test recently?
+
+
+What slowed you down recently?
+
+
+What made your work easier recently?
+
+
+What skill did you use most recently?
+
+
+What did you plan last night for today?
+
+
+What did you change in your workflow recently?
+
+
+What small success did you have at work recently?
+
+
+What did you do at home yesterday evening?
+
+
+What did you clean most recently?
+
+
+What did you fix at home recently?
+
+
+What did you organize recently?
+
+
+What did you throw away recently?
+
+
+What did you move in your room recently?
+
+
+What did you wash yesterday?
+
+
+What did you cook at home recently?
+
+
+What did you buy for the house recently?
+
+
+What broke at home recently?
+
+
+What did you do in the kitchen yesterday?
+
+
+What did you do before leaving home today?
+
+
+What did you forget at home recently?
+
+
+What did you change in your room recently?
+
+
+What did you do right after you got home yesterday?
+
+
+What chore did you do last?
+
+
+What annoying household task did you do recently?
+
+
+What useful thing did you do at home this week?
+
+
+What did you need to repair recently?
+
+
+What did you do to make your home more comfortable?
+
+
+What did you eat last night?
+
+
+What did you cook most recently?
+
+
+What did you order the last time you got delivery?
+
+
+What new food did you try recently?
+
+
+What did you have for dinner yesterday?
+
+
+What snack did you eat recently?
+
+
+What drink did you enjoy recently?
+
+
+What meal disappointed you recently?
+
+
+What restaurant did you visit recently?
+
+
+What did you buy at the store last time?
+
+
+What ingredient did you forget to buy recently?
+
+
+What dish did you make well recently?
+
+
+What recipe did you follow recently?
+
+
+What food did you share with someone recently?
+
+
+What did you eat when you were really hungry recently?
+
+
+What was the last sweet thing you ate?
+
+
+What was the last spicy thing you ate?
+
+
+What did you eat during your last walk or outing?
+
+
+What food smelled amazing recently?
+
+
+What meal made you happiest recently?
+
+
+Where did you go last weekend?
+
+
+What was the last new place you visited?
+
+
+How did you get there?
+
+
+Who did you go with?
+
+
+What did you do there?
+
+
+What did you see on the way?
+
+
+What place did you enjoy most on your last trip?
+
+
+What surprised you on your last trip?
+
+
+What did you pack for your last trip?
+
+
+What did you forget to pack on your last trip?
+
+
+What did you eat on your last trip?
+
+
+What photo did you take on your last trip?
+
+
+What was the most beautiful place you visited recently?
+
+
+What was the most boring place you visited recently?
+
+
+What did you do the last time you went to the city center?
+
+
+What did you do the last time you visited a park?
+
+
+What store did you visit most recently?
+
+
+What happened the last time you used public transport?
+
+
+What place did you return to recently?
+
+
+What place do you remember best from last year?
+
+
+Who did you talk to yesterday?
+
+
+Who did you call most recently?
+
+
+Who visited you recently?
+
+
+Whom did you visit recently?
+
+
+What did you discuss with a friend recently?
+
+
+What did you do with your family last weekend?
+
+
+What did someone help you with recently?
+
+
+Whom did you help recently?
+
+
+What funny thing did someone say to you recently?
+
+
+What did you celebrate with someone recently?
+
+
+What gift did you give someone recently?
+
+
+What gift did you receive recently?
+
+
+What did you cook for someone recently?
+
+
+Where did you go with a friend recently?
+
+
+What did you and your partner do recently?
+
+
+What did you learn from someone recently?
+
+
+What kind thing did someone do for you recently?
+
+
+What did you do for your parents recently?
+
+
+What was your last long conversation about?
+
+
+What memory did you talk about with someone recently?
+
+
+What movie did you watch most recently?
+
+
+What series did you watch recently?
+
+
+What video did you watch yesterday?
+
+
+What song did you listen to recently?
+
+
+What game did you play recently?
+
+
+What book did you finish recently?
+
+
+What article did you read recently?
+
+
+What content made you laugh recently?
+
+
+What content bored you recently?
+
+
+What did you watch before sleeping last night?
+
+
+What app did you spend time in yesterday?
+
+
+What channel or creator did you watch recently?
+
+
+What scene do you remember from the last movie you watched?
+
+
+What was the last thing you rewatched?
+
+
+What did you listen to while working recently?
+
+
+What did you stop watching because it was bad?
+
+
+What story impressed you recently?
+
+
+What game level or mission did you finish recently?
+
+
+What did you do for fun last night?
+
+
+What made your evening more entertaining yesterday?
+
+
+What app did you use most yesterday?
+
+
+What device did you use first this morning?
+
+
+What website did you open most recently?
+
+
+What software did you update recently?
+
+
+What feature did you test recently?
+
+
+What technical issue did you have recently?
+
+
+What did you install recently?
+
+
+What did you delete recently?
+
+
+What did you search for online recently?
+
+
+What did you debug recently?
+
+
+What code did you write recently?
+
+
+What tool saved you time recently?
+
+
+What bug annoyed you recently?
+
+
+What setting did you change recently?
+
+
+What file did you open last?
+
+
+What notification did you get recently?
+
+
+What did you back up recently?
+
+
+What did you automate recently?
+
+
+What update improved something for you recently?
+
+
+What update caused problems recently?
+
+
+What was the last thing you bought?
+
+
+Where did you buy it?
+
+
+Why did you buy it?
+
+
+What was the last useful thing you bought?
+
+
+What was the last unnecessary thing you bought?
+
+
+What did you pay for recently?
+
+
+What did you order online recently?
+
+
+What did you compare before buying recently?
+
+
+What did you decide not to buy recently?
+
+
+What store did you visit last?
+
+
+What deal did you find recently?
+
+
+What expensive thing did you buy last year?
+
+
+What cheap thing helped you a lot recently?
+
+
+What did you buy for someone else recently?
+
+
+What did you return recently?
+
+
+What did you want to buy but skip recently?
+
+
+What did you spend too much money on recently?
+
+
+What was your smartest purchase recently?
+
+
+What was your most disappointing purchase recently?
+
+
+What did you forget to buy recently?
+
+
+What was the weather like yesterday where you were?
+
+
+How did the weather affect you yesterday?
+
+
+What did you do because of the weather recently?
+
+
+Did rain change your plans recently? What happened?
+
+
+What did you wear because of the weather yesterday?
+
+
+What weather did you enjoy recently?
+
+
+What weather annoyed you recently?
+
+
+What did you do on the last rainy day?
+
+
+What did you do on the last sunny day?
+
+
+How did you feel yesterday morning?
+
+
+What improved your mood recently?
+
+
+What ruined your mood recently?
+
+
+What made you feel relaxed recently?
+
+
+What made you feel stressed recently?
+
+
+What did you do when you felt tired recently?
+
+
+What did you do when you felt happy recently?
+
+
+What small thing made you smile recently?
+
+
+What did you do to calm down recently?
+
+
+What happened on the last cold day you remember?
+
+
+What happened on the last very hot day you remember?
+
+
+What did you do for your health yesterday?
+
+
+What did you eat that felt healthy recently?
+
+
+What did you do when you felt tired recently?
+
+
+What exercise did you do most recently?
+
+
+What walk did you take recently?
+
+
+What did you do to relax your body recently?
+
+
+What part of your body hurt recently, and what did you do?
+
+
+What helped you feel better recently?
+
+
+What unhealthy thing did you do recently?
+
+
+What good habit did you follow yesterday?
+
+
+What bad habit did you notice yesterday?
+
+
+What did you do before going to sleep last night?
+
+
+How many hours did you sleep last night, and how did you feel?
+
+
+What did you do the last time you had low energy?
+
+
+What did you drink to wake up recently?
+
+
+What did you do to reduce stress recently?
+
+
+What did you avoid eating recently?
+
+
+What healthy choice did you make recently?
+
+
+What simple thing improved your energy recently?
+
+
+What did you do for a short rest recently?
+
+
+What did you study yesterday?
+
+
+What new word did you learn recently?
+
+
+What rule did you practice recently?
+
+
+What lesson did you finish recently?
+
+
+What mistake did you notice in your English recently?
+
+
+What did you repeat several times recently?
+
+
+What did you memorize recently?
+
+
+What difficult topic did you review recently?
+
+
+What did you understand better recently?
+
+
+What confused you recently while learning?
+
+
+What did you write down recently to remember later?
+
+
+What did you practice speaking about recently?
+
+
+What did you read to improve your English recently?
+
+
+What video did you use for learning recently?
+
+
+What exercise helped you recently?
+
+
+What learning method did you try recently?
+
+
+What part of English felt easier recently?
+
+
+What part of English felt harder recently?
+
+
+What did you do well in your last practice session?
+
+
+What do you remember from your last lesson?
+
+
+What did you do last weekend?
+
+
+What did you do last Saturday morning?
+
+
+What did you do last Saturday night?
+
+
+What did you do last Sunday afternoon?
+
+
+Where did you go last weekend?
+
+
+Who did you spend time with last weekend?
+
+
+What did you do for fun last weekend?
+
+
+What did you avoid doing last weekend?
+
+
+What did you watch last weekend?
+
+
+What did you eat last weekend?
+
+
+What did you clean or organize last weekend?
+
+
+What lazy thing did you do last weekend?
+
+
+What useful thing did you do last weekend?
+
+
+What surprised you last weekend?
+
+
+What made you tired last weekend?
+
+
+What made you feel good last weekend?
+
+
+What was the best moment from last weekend?
+
+
+What was the most boring moment from last weekend?
+
+
+What did you do differently last weekend?
+
+
+How did last weekend end for you?
+
+
+What changed in your life last month?
+
+
+What was your biggest task last month?
+
+
+What good habit did you build last month?
+
+
+What bad habit did you notice last month?
+
+
+What place did you visit last month?
+
+
+What did you achieve last month?
+
+
+What disappointed you last month?
+
+
+What did you learn last month?
+
+
+What did you spend a lot of time on last month?
+
+
+What did you stop doing last month?
+
+
+What was your best purchase last month?
+
+
+What event did you attend last month?
+
+
+What project did you finish last month?
+
+
+What made last month memorable?
+
+
+What was the hardest part of last month?
+
+
+What was the best thing that happened last year?
+
+
+What did you improve last year?
+
+
+What did you start last year?
+
+
+What did you leave behind last year?
+
+
+What important lesson did you learn last year?
+
+
+What problem did you have yesterday?
+
+
+How did you solve it?
+
+
+What technical issue did you fix recently?
+
+
+What mistake did you make recently?
+
+
+What happened after that mistake?
+
+
+What did you do when something failed recently?
+
+
+What did you do when your plans changed recently?
+
+
+What did you do when you forgot something important recently?
+
+
+What went wrong recently at home?
+
+
+What went wrong recently at work?
+
+
+What small problem wasted your time recently?
+
+
+What annoying task did you finally finish recently?
+
+
+What did you try first when you had that problem?
+
+
+What helped you solve it faster?
+
+
+Who helped you solve a problem recently?
+
+
+What problem did you solve alone recently?
+
+
+What did you learn from a recent mistake?
+
+
+What simple fix worked well recently?
+
+
+What problem came back again recently?
+
+
+What did you do differently the next time?
+
+
+What was the last important decision you made?
+
+
+Why did you make that decision?
+
+
+What did you choose yesterday that saved you time?
+
+
+What did you decide not to do yesterday?
+
+
+What did you change your mind about recently?
+
+
+What did you pick the last time you had two options?
+
+
+What did you choose for dinner yesterday, and why?
+
+
+What did you choose to watch recently?
+
+
+What did you decide to buy recently?
+
+
+What did you decide to postpone recently?
+
+
+What did you choose to focus on recently?
+
+
+What did you reject recently?
+
+
+What did you say yes to recently?
+
+
+What did you say no to recently?
+
+
+What quick decision did you make recently?
+
+
+What slow decision did you make recently?
+
+
+What choice helped you recently?
+
+
+What choice created more work recently?
+
+
+What risky choice did you make recently?
+
+
+What safe choice did you make recently?
+
+
+What was the last message you sent?
+
+
+Who did you text most recently?
+
+
+What did you write in your last email?
+
+
+What did you ask someone recently?
+
+
+What did someone ask you recently?
+
+
+What did you explain to someone recently?
+
+
+What did you apologize for recently?
+
+
+What did you thank someone for recently?
+
+
+What did you promise recently?
+
+
+What did you discuss in your last call?
+
+
+What did you say in your last meeting?
+
+
+What did you tell a friend recently?
+
+
+What did someone tell you that surprised you recently?
+
+
+What did you misunderstand recently?
+
+
+What did you clarify recently?
+
+
+What did you repeat because someone did not understand?
+
+
+What funny message did you receive recently?
+
+
+What voice message did you send recently?
+
+
+What did you forget to reply to recently?
+
+
+What conversation stayed in your mind recently?
+
+
+What was the last event you attended?
+
+
+What did you do there?
+
+
+Who did you meet there?
+
+
+What did you wear to that event?
+
+
+What did you enjoy most there?
+
+
+What disappointed you there?
+
+
+What was the last cafe you visited?
+
+
+What did you order there?
+
+
+What happened during your last walk outside?
+
+
+What did you notice during your last walk?
+
+
+What did you do the last time you visited the city center?
+
+
+What did you do the last time you went to a mall?
+
+
+What did you do the last time you went to a restaurant?
+
+
+What was the last celebration you joined?
+
+
+What was the last public place you visited?
+
+
+What small event made your day better recently?
+
+
+What happened during your last evening out?
+
+
+What happened during your last short trip?
+
+
+What did you do differently during your last outing?
+
+
+What made your last outing memorable?
+
+
+What did you usually do after school when you were younger?
+
+
+What did you often eat when you were a child?
+
+
+Where did you usually spend your summers in the past?
+
+
+What did you often do on weekends when you were younger?
+
+
+What games did you often play in the past?
+
+
+What did you usually watch on TV when you were younger?
+
+
+Who did you spend the most time with in the past?
+
+
+What music did you listen to a lot in the past?
+
+
+What time did you usually go to bed in the past?
+
+
+What did your family usually do on holidays in the past?
+
+
+What did you often buy with your pocket money?
+
+
+What did you often do during winter when you were younger?
+
+
+What did you often do during summer when you were younger?
+
+
+What did you usually do before exams in the past?
+
+
+What did you often worry about in the past?
+
+
+What did you often dream about in the past?
+
+
+What did you often avoid in the past?
+
+
+What did you often do with your friends in the past?
+
+
+What did you usually carry with you in the past?
+
+
+What small habit did you have in the past?
+
+
+What made you happy yesterday?
+
+
+What made you angry recently?
+
+
+What made you feel proud recently?
+
+
+What made you feel embarrassed recently?
+
+
+What made you feel tired recently?
+
+
+What made you feel calm recently?
+
+
+What made you worry recently?
+
+
+What disappointed you recently?
+
+
+What excited you recently?
+
+
+What surprised you recently?
+
+
+What made you laugh recently?
+
+
+What made you feel grateful recently?
+
+
+What made you feel impatient recently?
+
+
+What made you feel motivated recently?
+
+
+What made you feel bored recently?
+
+
+What made you feel more confident recently?
+
+
+What made you feel stressed recently?
+
+
+What made you feel relieved recently?
+
+
+What made you feel nostalgic recently?
+
+
+What made you feel closer to someone recently?
+
+
+What happened on your last birthday?
+
+
+What happened the last time you met an old friend?
+
+
+What happened the last time you missed a bus or ride?
+
+
+What happened the last time you lost something important?
+
+
+What happened the last time you cooked for someone?
+
+
+What happened the last time you stayed up very late?
+
+
+What happened the last time you woke up too early?
+
+
+What happened the last time you changed your plans suddenly?
+
+
+What happened the last time you visited a doctor or clinic?
+
+
+What happened the last time you bought clothes?
+
+
+What happened the last time you had guests at home?
+
+
+What happened the last time you traveled somewhere new?
+
+
+What happened the last time you had a great evening?
+
+
+What happened the last time you had a bad day?
+
+
+What happened the last time you got unexpected good news?
+
+
+What happened the last time you solved a hard problem?
+
+
+What happened the last time you forgot an important date or task?
+
+
+What happened the last time you laughed so hard you could not stop?
+
+
+What happened the last time you tried something for the first time?
+
+
+What happened the last time you felt really proud of yourself?
+
+
+What did you do on your first day of your last trip?
+
+
+What did you do on the last evening of your last trip?
+
+
+What did you enjoy most during your last vacation?
+
+
+What did you dislike during your last vacation?
+
+
+What did you do at the airport or station last time?
+
+
+What did you do right after you arrived at your destination last time?
+
+
+What did you do before you left home for your last trip?
+
+
+What did you buy during your last trip?
+
+
+What did you photograph during your last trip?
+
+
+What did you learn from your last trip?
+
+
+What mistake did you make on your last trip?
+
+
+What funny thing happened on your last trip?
+
+
+What did you do when the weather changed on your last trip?
+
+
+What transport did you use on your last trip?
+
+
+What food did you try on your last trip?
+
+
+What place did you recommend to someone after your last trip?
+
+
+What did you miss from home during your last trip?
+
+
+What did you do differently on your last trip compared with earlier trips?
+
+
+What did you do on the most relaxing day of your last trip?
+
+
+What memory stayed with you from your last trip?
+
+
+What interrupted your routine yesterday?
+
+
+What delayed you recently?
+
+
+What did you do when you woke up later than usual recently?
+
+
+What did you do when the internet stopped working recently?
+
+
+What did you do when you ran out of something important recently?
+
+
+What did you do when your phone battery got low recently?
+
+
+What did you do when someone canceled plans recently?
+
+
+What did you do when you had less time than expected recently?
+
+
+What did you do when you forgot your charger or cable recently?
+
+
+What did you do when you felt too tired to do your usual routine recently?
+
+
+What did you do when the weather changed your plan recently?
+
+
+What did you do when you missed your usual schedule recently?
+
+
+What did you do when something at home broke unexpectedly recently?
+
+
+What did you do when a task took longer than expected recently?
+
+
+What did you do when you got unexpected good news recently?
+
+
+What did you do when you got unexpected bad news recently?
+
+
+What did you do when you had to help someone suddenly recently?
+
+
+What did you do when you lost focus recently?
+
+
+What did you do when you changed your plan at the last minute recently?
+
+
+What did you do when your normal day turned into a weird day recently?

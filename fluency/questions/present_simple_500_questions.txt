@@ -1,0 +1,1498 @@
+What time do you usually wake up?
+
+
+What do you do first in the morning?
+
+
+What do you usually drink in the morning?
+
+
+What do you usually eat for breakfast?
+
+
+How do you usually start your workday?
+
+
+What do you do before you check your phone?
+
+
+What do you usually do after breakfast?
+
+
+How do you usually prepare for the day?
+
+
+What do you do every morning without fail?
+
+
+What small thing helps you wake up?
+
+
+What do you usually work on during the day?
+
+
+How do you usually plan your tasks?
+
+
+What do you do when you start working?
+
+
+What tools do you use every day at work?
+
+
+How do you organize your work?
+
+
+What kind of tasks take most of your time?
+
+
+What do you do when you get stuck on a task?
+
+
+How do you usually communicate with coworkers?
+
+
+What do you check most often during work?
+
+
+What part of your work requires the most focus?
+
+
+How do you practice English now?
+
+
+What do you usually study when you have free time?
+
+
+How do you remember new words?
+
+
+What helps you learn better?
+
+
+What do you do when you forget a word?
+
+
+How do you practice speaking?
+
+
+What kind of content do you use for learning?
+
+
+How often do you review old material?
+
+
+What part of English feels hardest for you now?
+
+
+What part of English feels easiest for you now?
+
+
+What do you do every day?
+
+
+What habit helps you the most?
+
+
+What bad habit do you want to change?
+
+
+What do you always do before bed?
+
+
+What do you often forget to do?
+
+
+What do you do when you want to be productive?
+
+
+What do you usually do on busy days?
+
+
+What habit saves you time?
+
+
+What habit makes your life easier?
+
+
+What do you rarely skip?
+
+
+What do you usually do at home in the evening?
+
+
+How do you keep your room organized?
+
+
+What chores do you do regularly?
+
+
+What do you clean most often?
+
+
+What do you usually do in the kitchen?
+
+
+How do you make your home more comfortable?
+
+
+What do you do before guests arrive?
+
+
+What do you usually fix or adjust at home?
+
+
+What household task do you dislike most?
+
+
+What household task do you do well?
+
+
+What do you usually eat for lunch?
+
+
+What do you usually eat for dinner?
+
+
+What snacks do you like most?
+
+
+What do you usually drink during the day?
+
+
+How do you choose what to eat?
+
+
+What food do you cook most often?
+
+
+What food do you avoid?
+
+
+What do you eat when you are very hungry?
+
+
+What do you drink when you need energy?
+
+
+What simple meal do you make often?
+
+
+What food do you like most?
+
+
+What drinks do you prefer?
+
+
+Do you prefer tea or coffee, and why?
+
+
+Do you prefer mornings or evenings, and why?
+
+
+Do you prefer working at home or outside, and why?
+
+
+What kind of music do you like?
+
+
+What weather do you enjoy most?
+
+
+What kind of movies do you prefer?
+
+
+What places do you like to visit?
+
+
+What type of weekend do you prefer?
+
+
+What do you enjoy doing after work?
+
+
+What kind of tasks do you enjoy most?
+
+
+What kind of tasks do you dislike most?
+
+
+What food do you dislike?
+
+
+What sounds annoy you?
+
+
+What small things make you happy?
+
+
+What things stress you out?
+
+
+What kind of people do you enjoy talking to?
+
+
+What type of content bores you?
+
+
+What kind of situations make you uncomfortable?
+
+
+What apps do you use every day?
+
+
+What device do you use most often?
+
+
+What websites do you visit most often?
+
+
+How do you use technology in your daily life?
+
+
+What app saves you the most time?
+
+
+What tool helps you work faster?
+
+
+What notifications do you check first?
+
+
+How do you organize your files?
+
+
+What kind of software do you use for work?
+
+
+What do you usually search for online?
+
+
+Who do you talk to most often during the day?
+
+
+How do you usually message your friends?
+
+
+What do you usually write in work chats?
+
+
+How do you start a conversation with someone?
+
+
+What do you usually talk about with your friends?
+
+
+How do you explain difficult things to other people?
+
+
+What do you do when someone does not understand you?
+
+
+How do you usually reply to messages?
+
+
+What kind of conversations do you enjoy most?
+
+
+Who do you call most often?
+
+
+Who do you spend the most time with?
+
+
+What do you usually do with your partner?
+
+
+How do you support people close to you?
+
+
+What do you often talk about with your family?
+
+
+How do you spend quiet time together?
+
+
+What do you do when someone close to you feels tired?
+
+
+What small things do you do for people you love?
+
+
+How do you show care in everyday life?
+
+
+What kind of moments do you enjoy with family?
+
+
+What do you usually do together on weekends?
+
+
+What do you do for fun?
+
+
+How do you spend your evenings?
+
+
+What do you usually do on weekends?
+
+
+What do you do when you want to relax?
+
+
+How do you entertain yourself at home?
+
+
+What hobbies do you have now?
+
+
+What do you do when you have an hour of free time?
+
+
+How do you recharge after a busy day?
+
+
+What activities help you feel better?
+
+
+What do you do when you do not want to think too much?
+
+
+What do you usually watch online?
+
+
+What kind of videos do you enjoy?
+
+
+What music do you listen to most often?
+
+
+What do you read for fun?
+
+
+What games do you play now?
+
+
+What kind of channels or creators do you follow?
+
+
+What do you watch before sleep?
+
+
+How do you choose what to watch?
+
+
+What type of stories do you like?
+
+
+What content makes you laugh?
+
+
+What do you do to stay healthy?
+
+
+How do you rest when you feel tired?
+
+
+What helps you feel better when you are low on energy?
+
+
+What healthy habits do you have now?
+
+
+What unhealthy habits do you try to control?
+
+
+What do you do when your body feels tense?
+
+
+How do you relax after stress?
+
+
+What do you do before sleep to rest better?
+
+
+What kind of movement do you do during the day?
+
+
+How do you take care of yourself when you are busy?
+
+
+What usually improves your mood?
+
+
+What usually ruins your mood?
+
+
+What makes you feel calm?
+
+
+What makes you feel stressed?
+
+
+What makes you feel motivated?
+
+
+What do you do when you feel irritated?
+
+
+What do you do when you feel bored?
+
+
+What helps you feel more confident?
+
+
+What usually makes you smile?
+
+
+How do you calm yourself down?
+
+
+What kind of weather do you like?
+
+
+How does bad weather affect your mood?
+
+
+What do you do on rainy days?
+
+
+What do you do on hot days?
+
+
+What do you do on cold days?
+
+
+What weather helps you work better?
+
+
+What weather makes you want to stay home?
+
+
+How do you dress when it is cold?
+
+
+How do you dress when it is hot?
+
+
+What season do you enjoy most?
+
+
+What do you usually buy every week?
+
+
+How do you choose what to buy?
+
+
+What stores do you visit most often?
+
+
+What do you usually buy online?
+
+
+How do you compare products before buying?
+
+
+What do you spend money on most often?
+
+
+What small things do you buy regularly?
+
+
+What do you never buy without thinking first?
+
+
+What do you look at before you pay for something?
+
+
+What kind of purchases make you happiest?
+
+
+What places do you visit often?
+
+
+How do you usually get around the city?
+
+
+What kind of places do you enjoy visiting?
+
+
+What do you do when you go to the city center?
+
+
+What do you do when you visit a park?
+
+
+What places help you relax?
+
+
+What places feel too noisy for you?
+
+
+How do you choose where to go on a walk?
+
+
+What kind of cafes or restaurants do you like?
+
+
+What place do you return to again and again?
+
+
+What is on your desk right now?
+
+
+What do you keep near your bed?
+
+
+What things do you use every day at home?
+
+
+What do you always keep in your bag?
+
+
+What is usually on your table?
+
+
+What objects help you work better?
+
+
+What do you keep close because you use it often?
+
+
+What thing in your room do you use the most?
+
+
+What do you always have with you?
+
+
+What things do you rarely touch but still keep?
+
+
+What does your room look like?
+
+
+What does your workspace look like?
+
+
+How do you arrange things on your desk?
+
+
+What makes your room comfortable?
+
+
+What do you like most about your home?
+
+
+What do you change when your room feels messy?
+
+
+How do you keep your workspace usable?
+
+
+What part of your home do you use most?
+
+
+What part of your home feels the most relaxing?
+
+
+What small details make your space nicer?
+
+
+How do you decide what to do first in the day?
+
+
+How do you choose what task to start with?
+
+
+What do you do when you have too many things to do?
+
+
+How do you decide what to eat?
+
+
+How do you decide what to watch?
+
+
+What do you do when you cannot choose between two options?
+
+
+How do you choose what is most important today?
+
+
+What do you do when your plans change?
+
+
+How do you choose when to rest?
+
+
+What helps you make decisions faster?
+
+
+What do you do when a task feels too hard?
+
+
+What do you do when technology does not work?
+
+
+How do you solve small daily problems?
+
+
+What do you do when something breaks at home?
+
+
+What do you do when you forget something important?
+
+
+How do you handle simple work problems?
+
+
+What do you do when you need help?
+
+
+How do you usually fix mistakes?
+
+
+What is your first step when something goes wrong?
+
+
+What helps you solve problems faster?
+
+
+What do you think makes a good day?
+
+
+What makes a good conversation?
+
+
+What makes a good friend?
+
+
+What makes work enjoyable for you?
+
+
+What makes learning effective for you?
+
+
+What makes a home comfortable?
+
+
+What makes a hobby interesting?
+
+
+What makes a movie boring for you?
+
+
+What makes people easier to trust?
+
+
+What makes a routine sustainable?
+
+
+How do you explain your job in simple words?
+
+
+How do you explain your hobby to a beginner?
+
+
+How do you explain your daily routine to someone new?
+
+
+How do you explain why you learn English?
+
+
+How do you explain what you do on weekends?
+
+
+How do you explain your favorite food to someone?
+
+
+How do you explain your workspace to another person?
+
+
+How do you explain a habit that helps you?
+
+
+How do you explain your learning method?
+
+
+How do you explain what kind of person you are?
+
+
+What is on the table near you?
+
+
+What is in the room around you?
+
+
+Do you have a window near you?
+
+
+Is there a chair near your desk?
+
+
+What is the most useful thing on your desk?
+
+
+What is a thing you use every day?
+
+
+What is the first thing you see in the room?
+
+
+Do you keep a bottle of water near you?
+
+
+What is the noisiest thing around you right now?
+
+
+What is a simple object that helps you every day?
+
+
+What do you usually do in the morning?
+
+
+What do you usually do in the afternoon?
+
+
+What do you usually do in the evening?
+
+
+What do you usually do late at night?
+
+
+What do you do first on workdays?
+
+
+What do you do last before sleep?
+
+
+What part of the day feels most productive for you?
+
+
+What part of the day feels the slowest for you?
+
+
+What do you do at the same time every day?
+
+
+How do you structure your day?
+
+
+How do you prefer to start a difficult task?
+
+
+What kind of work environment do you like?
+
+
+What tools do you like using most?
+
+
+How do you prefer to communicate at work?
+
+
+What kind of tasks do you enjoy more: simple or complex ones?
+
+
+How do you prefer to track your tasks?
+
+
+What helps you focus during work?
+
+
+What distracts you during work?
+
+
+How do you prefer to learn a new tool?
+
+
+What kind of workflow works best for you?
+
+
+How do you act when you meet new people?
+
+
+What do you usually say when you greet someone?
+
+
+How do you behave when you feel shy?
+
+
+What do you do when a conversation becomes awkward?
+
+
+How do you react when someone asks for help?
+
+
+What kind of people do you feel comfortable with?
+
+
+How do you keep conversations going?
+
+
+What do you do when someone talks too much?
+
+
+How do you show interest in what someone says?
+
+
+What makes communication easy for you?
+
+
+What plans do you usually make for the week?
+
+
+How do you prepare for tomorrow in the evening?
+
+
+What do you usually plan before the weekend?
+
+
+How do you organize the next day?
+
+
+What do you usually schedule in advance?
+
+
+What do you do now to make tomorrow easier?
+
+
+How do you prepare for important tasks?
+
+
+What do you usually think about before sleep?
+
+
+How do you set yourself up for a productive morning?
+
+
+What small things do you do now for later?
+
+
+How do you describe yourself in a few words?
+
+
+What kind of person are you in daily life?
+
+
+What values matter most to you?
+
+
+What do you care about most right now?
+
+
+What kind of lifestyle suits you best?
+
+
+What motivates you in normal life?
+
+
+What kind of atmosphere do you like around you?
+
+
+What do you try to improve in yourself?
+
+
+What do people often notice about you?
+
+
+What feels most important to you these days?
+
+
+What do you do when you wake up too early?
+
+
+What do you do when you cannot sleep?
+
+
+What do you do when you lose focus?
+
+
+What do you do when you feel hungry during work?
+
+
+What do you do when someone interrupts you?
+
+
+What do you do when the internet gets slow?
+
+
+What do you do when you feel cold at home?
+
+
+What do you do when you need a quick break?
+
+
+What do you do when you have only ten minutes free?
+
+
+What do you do when you want quiet?
+
+
+What kind of English do you practice most now?
+
+
+How do you use English in your daily life?
+
+
+What do you do when you want to speak more naturally?
+
+
+How do you check if your sentence sounds right?
+
+
+What do you do when you feel stuck while speaking?
+
+
+What kind of mistakes do you notice most often?
+
+
+How do you try to fix repeated mistakes?
+
+
+What helps you speak faster?
+
+
+What helps you remember sentence patterns?
+
+
+What makes speaking practice useful for you?
+
+
+What usually goes well in your day?
+
+
+What part of your routine works best?
+
+
+What helps you stay consistent?
+
+
+What usually takes too much of your energy?
+
+
+What part of your day feels the easiest?
+
+
+What part of your day feels the hardest?
+
+
+What helps you keep balance in life?
+
+
+What do you appreciate in your daily routine?
+
+
+What usually brings order to your day?
+
+
+What simple thing makes your day better?
+
+
+What do you do right after you wake up?
+
+
+What do you do right before sleep?
+
+
+What do you do when you feel tired?
+
+
+What do you do when you need energy?
+
+
+What do you do when you are in a good mood?
+
+
+What do you do when you are in a bad mood?
+
+
+What do you do during a short break?
+
+
+What do you do when you wait for something?
+
+
+What do you do when you are alone at home?
+
+
+What do you do when you want to relax quickly?
+
+
+What do you usually carry with you every day?
+
+
+What do you wear most often at home?
+
+
+What kind of shoes do you wear most often?
+
+
+What kind of bag do you use now?
+
+
+What color do you wear most often?
+
+
+What kind of desk setup do you have?
+
+
+What kind of chair do you use?
+
+
+What drink do you keep near you most often?
+
+
+What item do you lose most often?
+
+
+What item do you always check before you leave home?
+
+
+What makes your room feel cozy?
+
+
+What makes your workspace comfortable?
+
+
+What makes you feel uncomfortable at home?
+
+
+What kind of lighting do you like while working?
+
+
+What sounds help you focus?
+
+
+What sounds distract you?
+
+
+What temperature feels best to you?
+
+
+What do you do when your room feels stuffy?
+
+
+What do you change when your space feels uncomfortable?
+
+
+What little things improve comfort for you?
+
+
+What do you usually do together with your partner in the evening?
+
+
+What do you usually talk about with close people?
+
+
+How do you spend calm time together?
+
+
+What do you do when someone at home needs help?
+
+
+How do you divide small daily tasks with others?
+
+
+What do you do when you want to make someone feel better?
+
+
+What do you usually do together on a free evening?
+
+
+What do you do when you and another person want different things?
+
+
+How do you make shared time more enjoyable?
+
+
+What do you do to keep daily life smoother with other people?
+
+
+What do you repeat every day without thinking?
+
+
+What do you always check before you start working?
+
+
+What do you do in the same order every morning?
+
+
+What routine do you keep even on bad days?
+
+
+What do you do again and again because it works well?
+
+
+What pattern in your day stays the same?
+
+
+What habit feels automatic now?
+
+
+What do you still need to remind yourself to do?
+
+
+What routine do you trust most?
+
+
+What simple repeated action helps you the most?
+
+
+What kind of day do you have most often?
+
+
+What do you usually pay attention to first in a room?
+
+
+How do you handle simple stress in everyday life?
+
+
+What details do you notice quickly?
+
+
+What do you value in a normal day?
+
+
+How do you make boring tasks easier?
+
+
+What keeps you grounded during the day?
+
+
+What kind of rhythm suits your life best?
+
+
+How do you keep your mind clear?
+
+
+What do you rely on most in your everyday routine?
+
+
+What do you usually notice first when you enter a room?
+
+
+What do you usually do when you feel unmotivated?
+
+
+How do you usually bring yourself back to focus?
+
+
+What do you usually do when your day starts badly?
+
+
+What kind of tasks do you finish fastest?
+
+
+What kind of tasks do you avoid the longest?
+
+
+How do you usually react when someone disagrees with you?
+
+
+What do you usually do when a plan changes suddenly?
+
+
+What usually helps you stay patient?
+
+
+What usually makes you lose patience?
+
+
+What do you usually do when you need silence?
+
+
+What do you usually do when you want inspiration?
+
+
+How do you usually create a calm atmosphere around you?
+
+
+What kind of routine helps you feel in control?
+
+
+What do you usually do when your head feels overloaded?
+
+
+How do you usually reset after a long work session?
+
+
+What kind of break works best for you?
+
+
+What do you usually do when you need a fast decision?
+
+
+What do you usually do when you have no clear plan?
+
+
+What kind of environment helps you think clearly?
+
+
+What do you usually do when someone asks for quick advice?
+
+
+How do you usually explain something complicated in simple words?
+
+
+What do you usually do when you do not know the right word in English?
+
+
+How do you usually continue speaking when you make a mistake?
+
+
+What do you usually do when you want to sound more natural in English?
+
+
+What kind of phrases do you use most often in daily speech?
+
+
+What do you usually say when you need more time to think?
+
+
+How do you usually keep speaking when you feel nervous?
+
+
+What usually helps you answer faster in English?
+
+
+What do you usually practice first when you study English?
+
+
+How do you usually turn a new word into a sentence?
+
+
+What do you usually do when you hear a useful phrase?
+
+
+How do you usually remember useful sentence patterns?
+
+
+What do you usually focus on first: speed or accuracy?
+
+
+What helps you stay consistent with language practice?
+
+
+What kind of speaking exercises help you most?
+
+
+What do you usually do when practice feels boring?
+
+
+How do you usually make practice more interesting?
+
+
+What kind of mistakes do you accept while speaking?
+
+
+What do you usually do after you notice a repeated mistake?
+
+
+What do you usually keep on your phone home screen?
+
+
+What apps do you open first after waking up?
+
+
+What do you usually do when your battery gets low?
+
+
+How do you usually keep your devices charged?
+
+
+What settings do you often change on your devices?
+
+
+What kind of notifications do you ignore?
+
+
+What kind of notifications do you check immediately?
+
+
+How do you usually keep your digital life organized?
+
+
+What files do you access most often?
+
+
+What kind of tabs do you always keep open?
+
+
+What do you usually do before you update software?
+
+
+How do you usually save useful links or notes?
+
+
+What kind of tech problems happen to you most often?
+
+
+What do you usually try first when tech stops working?
+
+
+What do you usually back up and why?
+
+
+How do you usually protect important data?
+
+
+What kind of digital tools do you trust most?
+
+
+What do you use automation for in daily life?
+
+
+How do you usually reduce digital distraction?
+
+
+What do you usually do when a device feels slow?
+
+
+What do you usually notice about people when you first meet them?
+
+
+What kind of behavior do you respect most?
+
+
+What kind of behavior annoys you quickly?
+
+
+How do you usually react when someone is rude?
+
+
+What do you usually do when someone is quiet?
+
+
+How do you usually make other people feel comfortable?
+
+
+What do you usually do when someone needs emotional support?
+
+
+How do you usually listen in a serious conversation?
+
+
+What do you usually do when you disagree politely?
+
+
+How do you usually show that you understand someone?
+
+
+What kind of people do you learn from most?
+
+
+What kind of people drain your energy?
+
+
+How do you usually protect your personal space?
+
+
+What do you usually do when you need to say no?
+
+
+What do you usually do when you want to avoid conflict?
+
+
+How do you usually rebuild a good mood after a tense talk?
+
+
+What kind of social situations feel easiest for you?
+
+
+What kind of social situations feel hardest for you?
+
+
+What do you usually do in a group conversation?
+
+
+How do you usually keep social balance in daily life?
+
+
+What do you usually do when the day feels too repetitive?
+
+
+What small changes do you make to keep life interesting?
+
+
+What kind of moments feel the most meaningful to you now?
+
+
+What do you usually pay attention to in a normal day?
+
+
+How do you usually make ordinary days feel better?
+
+
+What kind of simple pleasures matter most to you?
+
+
+What do you usually do when you want more energy in the day?
+
+
+How do you usually return to a good routine after a messy day?
+
+
+What keeps your days stable when life gets busy?
+
+
+What kind of structure helps you function well?
+
+
+What usually gives you a sense of progress?
+
+
+What usually makes a day feel wasted to you?
+
+
+How do you usually define a productive day?
+
+
+What do you usually do when you want a slower day?
+
+
+How do you usually create balance between work and rest?
+
+
+What kind of daily rhythm feels natural to you?
+
+
+What do you usually protect in your schedule no matter what?
+
+
+How do you usually keep daily stress from growing too much?
+
+
+What do you usually do to end the day well?
+
+
+What kind of routine feels most like you?
+
+
+What questions do you ask yourself during the day?
+
+
+What kind of thoughts come to you most often while working?
+
+
+How do you usually bring your attention back when your mind drifts?
+
+
+What do you usually do when your brain feels tired?
+
+
+How do you usually know that you need rest?
+
+
+What usually tells you that you need a break?
+
+
+What do you usually do when you want to think more clearly?
+
+
+How do you usually stop overthinking simple things?
+
+
+What helps you stay mentally organized?
+
+
+What do you usually do when you feel mentally scattered?
