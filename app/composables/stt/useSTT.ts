@@ -77,9 +77,10 @@ type UseSTTOptions = {
   onBridgeStop?: (payload: STTBridgeStopPayload) => void
   onBridgeAudio?: (payload: STTBridgeAudioPayload) => void
   onProviderError?: (payload: STTProviderErrorPayload) => void
+  onFinalTranscript?: (sourceType: STTSourceType, finalizedObject: HistoryEntry) => void
 }
 
-type HistoryEntry = {
+export type HistoryEntry = {
   timestampStart: number
   timestampEnd: number
   text: string
@@ -582,12 +583,16 @@ export function useSTT(options: UseSTTOptions = {}) {
 
   function setFinalTranscript(sourceType: STTSourceType, text: string) {
     state[sourceType].finalText = text
-    state[sourceType].liveText = ''
-    state[sourceType].history.push({
+    state[sourceType].liveText = '';
+    let finalizedObject = {
       timestampStart: state[sourceType].liveTextStartedAt,
       timestampEnd: Date.now(),
       text,
-    })
+    };
+    state[sourceType].history.push(finalizedObject)
+    if(options.onFinalTranscript){
+      options.onFinalTranscript(sourceType, finalizedObject)
+    }
   }
 
   function stopAll() {
@@ -596,6 +601,16 @@ export function useSTT(options: UseSTTOptions = {}) {
 
     // Ensure no stale connections remain if provider changed mid-session.
     elevenLabsClient.stopAll()
+
+    state.mic.history = []
+    state.screen.history = []
+    state.mic.finalText = ''
+    state.screen.finalText = ''
+    state.mic.liveText = ''
+    state.screen.liveText = ''
+    state.mic.liveTextStartedAt = 0
+    state.screen.liveTextStartedAt = 0
+    clearError()
   }
 
   function getProviderOptions(): readonly STTProvider[] {

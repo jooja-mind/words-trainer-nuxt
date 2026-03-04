@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  let evaliation = await GPT.ask<{
+  let evaluation = await GPT.ask<{
     target_skill_passed: boolean;
     explanation: string;
     corrected_answer: string;
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
     primary_error: 'none' | 'off_topic' | 'wrong_tense' | 'wrong_verb_form' | 'missing_article' | 'wrong_article' | 'missing_auxiliary' | 'grammar_other' | 'format_not_followed';
   }>({
     systemPrompt: foundQuestion.skill.evaluationPrompt,
-    triggerPrompt: body.answer,
+    triggerPrompt: `TASK:\n${foundQuestion.text}\n\nUSER TEXT:\n${body.answer}`,
     model: 'gpt-5.2',
     jsonSchema: {
       "type": "json_schema",
@@ -92,7 +92,7 @@ export default defineEventHandler(async (event) => {
     data: {
       questionId: body.questionId,
       skillId: foundQuestion.skillId,
-      isCorrect: evaliation.target_skill_passed,
+      isCorrect: evaluation.target_skill_passed,
       speechDurationMs: body.speechDurationMs,
       reactionDelayMs: body.reactionDelayMs,
       answer: body.answer,
@@ -100,7 +100,7 @@ export default defineEventHandler(async (event) => {
   });
 
   return {
-    evaliation: evaliation,
+    evaluation,
     body
   };
 })

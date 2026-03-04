@@ -1,7 +1,9 @@
 import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async (event) => {
-  let body = await readBody<{skillId: number | null}>(event);
+  let body = await getQuery<{skillId?: string | null}>(event);
+  const selectedSkillId = parseSkillId(body.skillId);
+  console.log('Received request for question with skillId', selectedSkillId);
 
   let last2Answers = await prisma.fluencyAnswer.findMany({
     orderBy: {
@@ -23,24 +25,36 @@ export default defineEventHandler(async (event) => {
   } | null = null;
 
   if(last2Answers.length === 0){
-    found = await findAnyQuestion(body.skillId);
+    found = await findAnyQuestion(selectedSkillId);
   }else if(last2Answers.length === 1){
     if(last2Answers[0]){
       if(last2Answers[0].isCorrect){
-        found = await findAnyQuestion(body.skillId);
+        found = await findAnyQuestion(selectedSkillId);
       }else{
-        found = await findExactlySameQuestion(last2Answers[0].questionId);
+        if(!selectedSkillId || selectedSkillId === last2Answers[0].skillId){
+          found = await findExactlySameQuestion(last2Answers[0].questionId);
+        }else{
+          found = await findAnyQuestion(selectedSkillId);
+        }
       }
     }
-  }else if(last2Answers.length === 2){
+  }else if(last2Answers.length >= 2){
     if(last2Answers[0] && last2Answers[1]){
       if(!last2Answers[0].isCorrect){
-        found = await findExactlySameQuestion(last2Answers[0].questionId);
+        if(!selectedSkillId || selectedSkillId === last2Answers[0].skillId){
+          found = await findExactlySameQuestion(last2Answers[0].questionId);
+        }else{
+          found = await findAnyQuestion(selectedSkillId);
+        }
       }else{
         if(!last2Answers[1].isCorrect){
-          found = await findAnyQuestionFromSameSkill(last2Answers[1].skillId);
+          if(!selectedSkillId || selectedSkillId === last2Answers[1].skillId){
+            found = await findAnyQuestionFromSameSkill(last2Answers[1].skillId);
+          }else{
+            found = await findAnyQuestion(selectedSkillId);
+          }
         }else{
-          found = await findAnyQuestion(body.skillId);
+          found = await findAnyQuestion(selectedSkillId);
         }
       }
     }
@@ -68,26 +82,15 @@ export default defineEventHandler(async (event) => {
 
 
 async function findAnyQuestion(skillId: number | null){
-  let found = await prisma.fluencyQuestion.findFirst({
-    where: {
-      skillId: skillId || undefined
-    },
-    orderBy: {
-      timesShown: 'asc'
-    },
-    include: {
-      skill: {
-        select: {
-          id: true,
-          name: true
-        }
-      }
-    }
+  console.log('findAnyQuestion ->', skillId);
+  let found = await findRandomQuestionWithMinTimesShown({
+    skillId: skillId || undefined
   });
   return found;
 }
 
 async function findExactlySameQuestion(questionId: number){
+  console.log('findExactlySameQuestion ->', questionId);
   let found = await prisma.fluencyQuestion.findFirst({
     where: {
       id: questionId
@@ -105,21 +108,69 @@ async function findExactlySameQuestion(questionId: number){
 }
 
 async function findAnyQuestionFromSameSkill(skillId: number){
-  let found = await prisma.fluencyQuestion.findFirst({
-    where: {
-      skillId: skillId
+  console.log('findAnyQuestionFromSameSkill ->', skillId);
+  let found = await findRandomQuestionWithMinTimesShown({ skillId });
+  return found;
+}
+
+async function findRandomQuestionWithMinTimesShown(where: {skillId?: number}){
+  const minTimesShownResult = await prisma.fluencyQuestion.aggregate({
+    where,
+    _min: {
+      timesShown: true,
     },
-    orderBy: {
-      timesShown: 'asc'
+  });
+
+  const minTimesShown = minTimesShownResult._min.timesShown;
+  if(minTimesShown === null){
+    return null;
+  }
+
+  const candidates = await prisma.fluencyQuestion.findMany({
+    where: {
+      ...where,
+      timesShown: minTimesShown,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if(candidates.length === 0){
+    return null;
+  }
+
+  const randomCandidate = candidates[Math.floor(Math.random() * candidates.length)];
+  if(!randomCandidate){
+    return null;
+  }
+
+  const found = await prisma.fluencyQuestion.findFirst({
+    where: {
+      id: randomCandidate.id,
     },
     include: {
       skill: {
         select: {
           id: true,
-          name: true
-        }
-      }
-    }
+          name: true,
+        },
+      },
+    },
   });
+
   return found;
+}
+
+function parseSkillId(rawSkillId: string | null | undefined){
+  if(!rawSkillId){
+    return null;
+  }
+
+  const parsed = Number(rawSkillId);
+  if(!Number.isInteger(parsed) || parsed <= 0){
+    return null;
+  }
+
+  return parsed;
 }
