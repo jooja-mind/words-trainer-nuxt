@@ -114,7 +114,11 @@ async function loadSkills(){
   skill.loading = true;
   try {
     const list = (await $fetch('/api/fluency/skill/list')) as unknown as {id: number, name: string}[];
-    skill.list = [{'id': 0, 'name': 'All'}, ...list]
+    if(list.length === 0){
+      alert('No skills found. Please create some skills in the settings page first.')
+      return;
+    }
+    skill.list = [{'id': 0, 'name': 'All, mixed'}, ...list]
   } catch (error) {
     console.error('Failed to load skill list:', error)
     alert('Failed to load skill list. Please try again later.')
@@ -276,47 +280,51 @@ onUnmounted(() => {
       <UCard variant="subtle" v-if="screen === 'welcome'">
         What skill would you like to practice?
         <div class="skillSelector">
-          <USelect style="width: 200px" v-model="skill.selected" :items="skill.list.map(s=>({label: s.name, value: s.id}))" placeholder="Select a skill" />
+          <USelect style="max-width: 350px; width: 100%;" v-model="skill.selected" :items="skill.list.map(s=>({label: s.name, value: s.id}))" placeholder="Select a skill" :disabled="skill.loading" />
         </div>
-        <UButton @click="startPracticing" label="Start practicing" color="primary" variant="soft" :loading="skill.loading"/>
+        <UButton @click="startPracticing" label="Start practicing" size="lg" color="primary" :loading="skill.loading"/>
       </UCard>
 
       <UCard variant="subtle" v-if="screen === 'loading'">
-        Loading question...
+        <Loader style="margin: 0 auto;"/>
       </UCard>
 
       <UCard variant="subtle" v-if="screen === 'question'">
-        <h2>{{ question.skill.name }}</h2>
-        <p>{{ question.text }}</p>
-        <hr>
-        <div class="speaking">
-          <div class="live" v-if="!!state.mic.liveText">{{ state.mic.liveText }}</div>
-          <div class="final" v-if="!state.mic.liveText && lastFinalized">{{ lastFinalized.text }}</div>
-          <div class="empty" v-if="!state.mic.liveText && !lastFinalized">
-            <em>Start speaking...</em>
+        <div class="question">
+          <div class="skillName">{{ question.skill.name }}</div>
+          <p class="questionText">{{ question.text }}</p>
+          <div class="speaking">
+            <div class="live" v-if="!!state.mic.liveText">{{ state.mic.liveText }}</div>
+            <div class="final" v-if="!state.mic.liveText && lastFinalized">{{ lastFinalized.text }}</div>
+            <div class="empty shimmer" v-if="!state.mic.liveText && !lastFinalized">
+              Start speaking...
+            </div>
+          </div>
+          <div class="actions">
+            <UButton @click="stopTraining" label="Stop training" color="error" variant="soft" />
           </div>
         </div>
-        <hr>
-        <UButton @click="stopTraining" label="Stop training" color="primary" variant="soft" />
       </UCard>
 
       <UCard variant="subtle" v-if="screen === 'evaluating'">
-        Evaluating your answer...
+        <Loader style="margin: 0 auto;"/>
       </UCard>
 
       <UCard variant="subtle" v-if="screen === 'result'">
-        <div v-if="result.passed" class="passed">
-          <Icon name="ion:checkmark-circle"/>
-        </div>
-        <div v-else>
-          <div class="yourAnswer">{{ result.yourAnswer }}</div>
-          <div class="correctAnswer">{{ result.correctAnswer }}</div>
-          <div class="explanation">{{ result.feedback }}</div>
-          <UButton @click="getQuestion" label="Try again" color="primary" variant="soft"/>
+        <div class="result">
+          <div v-if="result.passed" class="passed">
+            <Icon name="ion:checkmark-circle"/>
+          </div>
+          <div v-else>
+            <div class="yourAnswer">{{ result.yourAnswer }}</div>
+            <div class="correctAnswer">{{ result.correctAnswer }}</div>
+            <div class="explanation">{{ result.feedback }}</div>
+            <UButton @click="getQuestion" label="Try again" color="primary" icon="ion:refresh"/>
+          </div>
         </div>
       </UCard>
 
-      <UCard variant="subtle" v-if="isLocalhost">
+      <UCard variant="outline" v-if="isLocalhost">
         Debug:
         Mic state: {{ isMicActive ? 'active' : 'inactive' }}, vol: {{ micVol.toFixed(2) }}, sound detected: {{ isMicSoundDetected }}
         <br>
@@ -334,15 +342,74 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.speaking{
-  text-align: center;
-  font-size: 1.5em;
+.skillSelector{
+  margin: 1rem 0;
+}
 
-  .live{
-    color: #ffffff9a;
+.question{
+  .skillName{
+    text-align: center;
+    font-style: italic;
+    font-size: 14px;
+    color: #b8bfdb;
   }
-  .final{
-    color: #fff;
+
+  .questionText{
+    margin: 1rem 0;
+    white-space: pre-wrap;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .speaking{
+    text-align: center;
+    font-size: 1.5em;
+    margin: 10px 0;
+
+    .live{
+      color: #ffffff9a;
+    }
+    .final{
+      color: #fff;
+    }
+    .empty{
+      color: rgba(255, 255, 255, 0.18);
+      font-style: italic;
+    }
+  }
+
+  .actions{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+}
+
+.result{
+  text-align: center;
+
+  .passed{
+    color: #4ade80;
+    font-size: 4em;
+    margin-bottom: -15px;
+  }
+
+  .yourAnswer{
+    font-size: 16px;
+    margin-bottom: 1rem;
+    text-decoration: line-through;
+  }
+
+  .correctAnswer{
+    font-size: 18px;
+    margin-bottom: 1rem;
+  }
+
+  .explanation{
+    font-size: 14px;
+    color: #b8bfdb;
+    margin-bottom: 2rem;
   }
 }
 </style>
