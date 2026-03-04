@@ -121,7 +121,8 @@ async function loadSkills(){
     skill.list = [{'id': 0, 'name': 'All, mixed'}, ...list]
   } catch (error) {
     console.error('Failed to load skill list:', error)
-    alert('Failed to load skill list. Please try again later.')
+    alert('Failed to load skill list. Please try again later.');
+    backToWelcome();
   } finally {
     skill.loading = false;
   }
@@ -132,6 +133,8 @@ async function startPracticing(){
   await getQuestion();
 }
 
+let uniqueQuestionsPassed = ref<number[]>([]);
+let questionsCountChallenge = ref(20);
 let question = reactive({
   id: 0,
   text: '',
@@ -143,6 +146,11 @@ let question = reactive({
   loading: false
 })
 async function getQuestion(){
+  if(uniqueQuestionsPassed.value.length >= questionsCountChallenge.value){
+    backToWelcome();
+    return;
+  }
+
   question.loading = true;
   try {
     let query = {};
@@ -164,9 +172,13 @@ async function getQuestion(){
     question.skill = res.skill;
     question.displayedAt = new Date();
     screen.value = 'question';
+    if(!uniqueQuestionsPassed.value.includes(res.id)){
+      uniqueQuestionsPassed.value.push(res.id);
+    }
   } catch (error) {
     console.error('Failed to load question:', error)
-    alert('Failed to load question. Please try again later.')
+    alert('Failed to load question. Please try again later.');
+    backToWelcome();
   } finally {
     question.loading = false;
   }
@@ -180,53 +192,55 @@ let result = reactive({
   feedback: '',
 });
 async function answerQuestion(finalizedObject: HistoryEntry){
- stopListening();
- screen.value = 'evaluating';
+  if(finalizedObject.text.trim() === '') return;
+  stopListening();
+  screen.value = 'evaluating';
 
- result.loading = true;
- try {
-  let body = {
-    questionId: question.id,
-    answer: finalizedObject.text,
-    speechDurationMs: finalizedObject.timestampEnd - finalizedObject.timestampStart,
-    reactionDelayMs: finalizedObject.timestampStart - question.displayedAt.getTime(),
+  result.loading = true;
+  try {
+    let body = {
+      questionId: question.id,
+      answer: finalizedObject.text,
+      speechDurationMs: finalizedObject.timestampEnd - finalizedObject.timestampStart,
+      reactionDelayMs: finalizedObject.timestampStart - question.displayedAt.getTime(),
+    }
+    let res = await $fetch<{ 
+      evaluation: {
+        target_skill_passed: boolean;
+        explanation: string;
+        corrected_answer: string;
+        short_feedback: string;
+        primary_error: "none" | "off_topic" | "wrong_tense" | "wrong_verb_form" | "missing_article" | "wrong_article" | "missing_auxiliary" | "grammar_other" | "format_not_followed";
+      },
+      body: typeof body
+    }>('/api/fluency/question/submitAnswer', {
+      method: 'POST',
+      body
+    });
+
+    result.yourAnswer = body.answer;
+    result.correctAnswer = res.evaluation.corrected_answer;
+    result.feedback = res.evaluation.short_feedback;
+    result.passed = res.evaluation.target_skill_passed;
+    screen.value = 'result';
+
+    if(res.evaluation.target_skill_passed){
+      setTimeout(()=>{
+        getQuestion();
+      }, 1000)
+    }
+  } catch (error) {
+    console.error('Failed to answer question:', error)
+    alert('Failed to answer question. Please try again later.');
+    backToWelcome();
+  } finally {
+    result.loading = false;
   }
-  let res = await $fetch<{ 
-    evaluation: {
-      target_skill_passed: boolean;
-      explanation: string;
-      corrected_answer: string;
-      short_feedback: string;
-      primary_error: "none" | "off_topic" | "wrong_tense" | "wrong_verb_form" | "missing_article" | "wrong_article" | "missing_auxiliary" | "grammar_other" | "format_not_followed";
-    },
-    body: typeof body
-   }>('/api/fluency/question/submitAnswer', {
-    method: 'POST',
-    body
-  });
-
-  result.yourAnswer = body.answer;
-  result.correctAnswer = res.evaluation.corrected_answer;
-  result.feedback = res.evaluation.short_feedback;
-  result.passed = res.evaluation.target_skill_passed;
-  screen.value = 'result';
-
-  if(res.evaluation.target_skill_passed){
-    setTimeout(()=>{
-      getQuestion();
-    }, 1000)
-  }
- } catch (error) {
-  console.error('Failed to answer question:', error)
-  alert('Failed to answer question. Please try again later.')
- } finally {
-  result.loading = false;
- }
 }
 
 async function stopTraining(){
   stopListening();
-  screen.value = 'welcome';
+  backToWelcome();
 }
 
 let isLocalhost = ref(false);
@@ -257,6 +271,12 @@ function debugScreen(targetScreen: 'welcome' | 'loading' | 'question' | 'evaluat
   }
 }
 
+function backToWelcome(){
+  uniqueQuestionsPassed.value = [];
+  uniqueQuestionsPassed.value.length = 0;
+  screen.value = 'welcome';
+}
+
 onMounted(()=>{
   loadSkills()
   if(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'){
@@ -276,6 +296,10 @@ onUnmounted(() => {
       <RecorderControl :isActive="isMicActive" :vol="micVol" :isSoundDetected="isMicSoundDetected"
       :inputDevices="inputDevices" @start="startMicRecorder" @stop="stopMicRecorder"
       v-model:selected-input-device="selectedInputDevice" v-show="false" />
+
+      <div class="challenge" :class="{passed: uniqueQuestionsPassed.length == questionsCountChallenge}" v-if="screen != 'welcome'">
+        {{ uniqueQuestionsPassed.length }} / {{ questionsCountChallenge }}
+      </div>
 
       <UCard variant="subtle" v-if="screen === 'welcome'">
         What skill would you like to practice?
@@ -342,6 +366,18 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
+.challenge{
+  text-align: right;
+  font-size: 14px;
+  color: #b8bfdb;
+  margin-bottom: 1rem;
+
+  &.passed{
+    color: #4ade80;
+    font-weight: bold;
+  }
+}
+
 .skillSelector{
   margin: 1rem 0;
 }
