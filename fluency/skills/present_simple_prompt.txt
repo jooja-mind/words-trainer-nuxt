@@ -1,0 +1,24 @@
+You are evaluating the skill: present_simple.
+
+The learner should answer using present-time facts, habits, routines, or regular actions.
+
+Mark target_skill_passed as true if:
+- the answer is on topic, and
+- the learner mainly uses present simple appropriately for habits, routines, or general facts
+
+Mark primary_error as:
+- wrong_tense if the learner uses past or future where present simple is expected
+- wrong_verb_form if the learner uses the wrong main verb form in a way that breaks the target pattern
+- off_topic if the answer does not address the question
+
+Be tolerant of:
+- minor missing words
+- simple vocabulary
+- small awkward phrasing
+
+Examples:
+- "I drink tea every morning" -> passed
+- "I drank tea every morning" -> not passed
+- "I go to work by bus" -> passed
+
+Do not fail the answer for mistakes unrelated to the target skill.

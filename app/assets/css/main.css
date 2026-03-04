@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "./shimmer.css";
 
 :root {
   --ui-radius: 0.125rem;

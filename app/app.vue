@@ -2,6 +2,7 @@
 const route = useRoute()
 const isLogin = computed(() => route.path === '/login')
 const isSettings = computed(() => route.path === '/settings')
+const config = useRuntimeConfig()
 </script>
 
 <template>
@@ -14,6 +15,3 @@ const isSettings = computed(() => route.path === '/settings')
   </UApp>
 </template>
 
-<style scoped>
-
-</style>

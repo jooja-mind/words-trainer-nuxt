@@ -1,66 +1,39 @@
 <script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
+
+const config = useRuntimeConfig()
+
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
   window.location.href = '/login'
 }
 
-import type { NavigationMenuItem } from '@nuxt/ui'
+const items = computed<NavigationMenuItem[]>(() => {
+  const base: NavigationMenuItem[] = [
+    {
+      label: 'Vocab',
+      icon: 'ion:library',
+      children: [
+        { label: 'Trainer', icon: 'ion:book', to: '/trainer' },
+        { label: 'Marathon', icon: 'ion:fireball', to: '/marathon' },
+        { label: 'Stats', icon: 'ion:bar-chart', to: '/stats' },
+        { label: 'Setup', icon: 'ion:ios-settings', to: '/settings' }
+      ]
+    },
+    { label: 'Recap', icon: 'ion:sparkles-sharp', to: '/recap' },
+    {
+      label: 'Interview',
+      icon: 'ion:chatbubbles',
+      children: [
+        { label: 'Train', icon: 'ion:mic', to: '/interview' },
+        { label: 'Stats', icon: 'ion:bar-chart', to: '/interview/stats' }
+      ]
+    },
+    { label: 'Fluency', icon: 'ion:rocket', to: '/fluency' }
+  ]
 
-const items = ref<NavigationMenuItem[]>([
-  {
-    label: 'Vocab',
-    icon: 'ion:library',
-    children: [
-      {
-        label: 'Trainer',
-        icon: 'ion:book',
-        to: '/trainer'
-      },
-      {
-        label: 'Marathon',
-        icon: 'ion:fireball',
-        to: '/marathon'
-      },
-      {
-        label: 'Stats',
-        icon: 'ion:bar-chart',
-        to: '/stats'
-      },
-      {
-        label: 'Setup',
-        icon: 'ion:ios-settings',
-        to: '/settings'
-      },
-    ]
-  },
-  {
-    label: 'Recap',
-    icon: 'ion:sparkles-sharp',
-    to: '/recap'
-  },
-  // {
-  //   label: 'Interview',
-  //   icon: 'ion:chatbubbles',
-  //   to: '/interview'
-  // }
-
-  {
-    label: 'Interview',
-    icon: 'ion:chatbubbles',
-    children: [
-      {
-        label: 'Train',
-        icon: 'ion:mic',
-        to: '/interview'
-      },
-      {
-        label: 'Stats',
-        icon: 'ion:bar-chart',
-        to: '/interview/stats'
-      },
-    ]
-  },
-])
+  return base
+})
 </script>
 
 <template>

@@ -1,11 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import type { PluginOption } from 'vite'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@vite-pwa/nuxt', "nuxt-charts"],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
-    appPassword: process.env.APP_PASSWORD || ''
+    appPassword: process.env.APP_PASSWORD || '',
+    public: {
+      appVersion: process.env.APP_VERSION || process.env.npm_package_version || 'dev'
+    }
+  },
+  vite: {
+    plugins: [
+      // @ts-ignore
+      nodePolyfills({
+        globals: { Buffer: true, process: true, global: true },
+        include: ['buffer', 'process', 'stream'],
+      }) as unknown as PluginOption,
+    ],
+    define: {
+      global: 'globalThis',
+    },
   },
   app: {
     head: {

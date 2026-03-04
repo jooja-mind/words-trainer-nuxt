@@ -14,16 +14,16 @@ enum WordStatus {
 }
 
 model Word {
-  id            String       @id @default(cuid())
-  term          String       @unique
-  definition    String?
-  example       String?
+  id          String       @id @default(cuid())
+  term        String       @unique
+  definition  String?
+  example     String?
   translation String?
-  status        WordStatus   @default(NEW)
-  lastSeenAt    DateTime?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  reviews       WordReview[]
+  status      WordStatus   @default(NEW)
+  lastSeenAt  DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  reviews     WordReview[]
 }
 
 model WordReview {
@@ -39,28 +39,28 @@ model WordReview {
 }
 
 model InterviewQA {
-  id        String   @id @default(cuid())
-  question  String
-  answer    String?
-  timesAnswered Int      @default(0)
-  timesCorrect  Int      @default(0)
-  timesIncorrect Int    @default(0)
+  id             String   @id @default(cuid())
+  question       String
+  answer         String?
+  timesAnswered  Int      @default(0)
+  timesCorrect   Int      @default(0)
+  timesIncorrect Int      @default(0)
   timesShown     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model WordTrainingStats {
-  id        Int     @id @default(autoincrement())
-  accuracy  Float
-  accuracy100 Float @default(0)
+  id           Int      @id @default(autoincrement())
+  accuracy     Float
+  accuracy100  Float    @default(0)
   totalAnswers Int
   totalWords   Int
-  createdAt DateTime @default(now())
+  createdAt    DateTime @default(now())
 }
 
 model RecapTrainingStats {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   score     Int
   coverage  Float
   structure Float
@@ -69,17 +69,32 @@ model RecapTrainingStats {
   createdAt DateTime @default(now())
 }
 
-model DailyLesson {
-  id           String   @id @default(cuid())
-  dateKey      String
-  profile      String   @default("standard")
-  startedAt    DateTime?
-  completedAt  DateTime?
-  status       String   @default("planned")
-  planJson     Json
-  progressJson Json
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+model FluencySkill {
+  id               Int               @id @default(autoincrement())
+  name             String            @unique
+  evaluationPrompt String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  fluencyQuestions FluencyQuestion[]
+}
 
-  @@unique([dateKey])
+model FluencyQuestion {
+  id         Int      @id @default(autoincrement())
+  text       String
+  skillId    Int
+  timesShown Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  skill FluencySkill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+}
+
+model FluencyAnswer {
+  id        Int      @id @default(autoincrement())
+  questionId Int
+  skillId    Int
+  isCorrect  Boolean
+  speechDurationMs Int
+  reactionDelayMs    Int
+  answer String
+  createdAt DateTime @default(now())
 }

@@ -1,0 +1,48 @@
+You are evaluating the skill: article_guided_noun.
+
+The learner should produce a short spoken answer that follows the task instruction and uses English articles appropriately around the required noun.
+
+The question will tell the learner to use a specific word in one short sentence or a very short answer.
+
+Mark target_skill_passed as true if:
+- the answer is meaningfully related to the question, and
+- the learner uses the required noun from the question, and
+- the learner uses that noun as a normal noun in the sentence, and
+- article usage around that noun is acceptable
+
+Mark target_skill_passed as false if:
+- the learner does not use the required word, or
+- the learner avoids the target pattern by changing the structure too much, or
+- the learner uses the required noun but article usage around it is clearly wrong in an important place
+
+Mark primary_error as:
+- missing_article if a singular countable noun clearly needs an article and it is missing
+- wrong_article if the learner uses the wrong article in an important place
+- off_topic if the answer does not address the question
+- grammar_other if the learner is trying to answer correctly but the result is too broken to accept for the target skill
+
+Be strict about the task format:
+- the learner must use the required word from the question
+- if the learner avoids the intended article pattern by not using the required noun properly, do not pass the answer
+
+Be tolerant of:
+- minor unrelated grammar mistakes
+- imperfect style
+- short and simple wording
+
+Focus only on the most important article issue around the required noun.
+Do not fail the answer for mistakes unrelated to the target skill.
+
+Examples:
+- Question: Use the word "book" in one sentence.
+  Answer: "I bought a book yesterday." -> passed
+- Question: Use the word "book" in one sentence.
+  Answer: "I bought book yesterday." -> not passed, missing_article
+- Question: Use the word "book" in one sentence.
+  Answer: "It is very useful." -> not passed, off_topic
+- Question: Use the word "apple" in one sentence.
+  Answer: "I ate an apple." -> passed
+
+If the learner avoids the required task format, mark target_skill_passed as false.
+
+Prefer failing the answer if the learner avoids the intended article pattern instead of clearly demonstrating it.

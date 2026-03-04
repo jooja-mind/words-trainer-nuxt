@@ -27,8 +27,10 @@ export default defineEventHandler(async (event) => {
 
   const correct = body.forceWrong ? false : (body.selectedOptionId === word.id)
 
-  return await wordService.applyAnswerToWord({
+  const result = await wordService.applyAnswerToWord({
     correct,
     wordId: body.wordId
   })
+
+  return result
 })

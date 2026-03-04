@@ -33,7 +33,7 @@ const chartDataAccuracy = computed(() => {
   return data.value?.accuracyLearningProgress.map(p => ({ i: p.i, a: Number((p.a).toFixed(3)) })) || []
 })
 const chartDataAccuracy100 = computed(() => {
-  return data.value?.accuracyLearningProgress.map(p => ({ i: p.i, a100: Number((p.a100).toFixed(3)) })) || []
+  return data.value?.accuracyLearningProgress.map(p => ({ i: p.i, a: Number((p.a100).toFixed(3)) })) || []
 })
 
 onMounted(load)

@@ -1,0 +1,1998 @@
+Make two sentences about a book.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a phone.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a laptop.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a charger.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a cable.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a keyboard.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a mouse.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a monitor.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bottle.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a cup.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a glass.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a plate.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a fork.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a spoon.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a knife.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bag.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a wallet.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a key.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a ticket.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a watch.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a table.
+First use "a", then use "the".
+
+
+Make two sentences about a desk.
+First use "a", then use "the".
+
+
+Make two sentences about a chair.
+First use "a", then use "the".
+
+
+Make two sentences about a sofa.
+First use "a", then use "the".
+
+
+Make two sentences about a bed.
+First use "a", then use "the".
+
+
+Make two sentences about a pillow.
+First use "a", then use "the".
+
+
+Make two sentences about a blanket.
+First use "a", then use "the".
+
+
+Make two sentences about a lamp.
+First use "a", then use "the".
+
+
+Make two sentences about a window.
+First use "a", then use "the".
+
+
+Make two sentences about a door.
+First use "a", then use "the".
+
+
+Make two sentences about a shelf.
+First use "a", then use "the".
+
+
+Make two sentences about a cabinet.
+First use "a", then use "the".
+
+
+Make two sentences about a drawer.
+First use "a", then use "the".
+
+
+Make two sentences about a mirror.
+First use "a", then use "the".
+
+
+Make two sentences about a carpet.
+First use "a", then use "the".
+
+
+Make two sentences about a curtain.
+First use "a", then use "the".
+
+
+Make two sentences about a closet.
+First use "a", then use "the".
+
+
+Make two sentences about a fan.
+First use "a", then use "the".
+
+
+Make two sentences about a heater.
+First use "a", then use "the".
+
+
+Make two sentences about a remote.
+First use "a", then use "the".
+
+
+Make two sentences about an apple.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a banana.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an orange.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a tomato.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a potato.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an onion.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a carrot.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an egg.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a sandwich.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a pizza.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a burger.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a salad.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a cookie.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a cake.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a pan.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a pot.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a fridge.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an oven.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a kettle.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a toaster.
+Start by introducing it, then mention it again.
+
+
+Create two short sentences about a shirt.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a jacket.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a coat.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a hat.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a cap.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a shoe.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a sock.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a belt.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a ring.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a glove.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a scarf.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a backpack.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about an umbrella.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a towel.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a brush.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a comb.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a razor.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a passport.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a camera.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a card.
+Mention it once, then refer to it again.
+
+
+Say two sentences about a room.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a kitchen.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a bathroom.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a bedroom.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an office.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a shop.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a store.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a cafe.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a restaurant.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a park.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a street.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a station.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an airport.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a hotel.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a bank.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a hospital.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a school.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a library.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a market.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a garage.
+First mention it, then mention the same thing again.
+
+
+Make two sentences about a project.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a task.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a meeting.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a document.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a report.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about an email.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a message.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a notebook.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a pen.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a pencil.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a lesson.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about an exercise.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a question.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about an answer.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about an idea.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a plan.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a deadline.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a schedule.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a file.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a folder.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a printer.
+First use "a", then use "the".
+
+
+Make two sentences about a router.
+First use "a", then use "the".
+
+
+Make two sentences about a speaker.
+First use "a", then use "the".
+
+
+Make two sentences about a calendar.
+First use "a", then use "the".
+
+
+Make two sentences about a map.
+First use "a", then use "the".
+
+
+Make two sentences about an app.
+First use "an", then use "the".
+
+
+Make two sentences about a website.
+First use "a", then use "the".
+
+
+Make two sentences about a button.
+First use "a", then use "the".
+
+
+Make two sentences about a page.
+First use "a", then use "the".
+
+
+Make two sentences about a screen.
+First use "a", then use "the".
+
+
+Make two sentences about a tab.
+First use "a", then use "the".
+
+
+Make two sentences about a window.
+First use "a", then use "the".
+
+
+Make two sentences about a password.
+First use "a", then use "the".
+
+
+Make two sentences about a server.
+First use "a", then use "the".
+
+
+Make two sentences about a backup.
+First use "a", then use "the".
+
+
+Make two sentences about an update.
+First use "an", then use "the".
+
+
+Make two sentences about a plugin.
+First use "a", then use "the".
+
+
+Make two sentences about a device.
+First use "a", then use "the".
+
+
+Make two sentences about a camera.
+First use "a", then use "the".
+
+
+Make two sentences about a microphone.
+First use "a", then use "the".
+
+
+Make two sentences about a bike.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a car.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bus.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a train.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a taxi.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a passport.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a ticket.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a hotel.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an airport.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a station.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bridge.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a road.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bench.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a map.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a suitcase.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a backpack.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a gate.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a platform.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a seat.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a stop.
+Start by introducing it, then mention it again.
+
+
+Create two short sentences about a cat.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a dog.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a bird.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a tree.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a flower.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a leaf.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a plant.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a river.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a mountain.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a cloud.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a star.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a sun.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a moon.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a garden.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a forest.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a stone.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a branch.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a park.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a path.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a bench.
+Mention it once, then refer to it again.
+
+
+Say two sentences about a word.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a sentence.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a mistake.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an exercise.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an answer.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a question.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a lesson.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a notebook.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a rule.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a pattern.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a phrase.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an example.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a conversation.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a dialogue.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a topic.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a recording.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an accent.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a verb.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an article.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a prompt.
+First mention it, then mention the same thing again.
+
+
+Make two sentences about a chair.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a window.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a desk.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a lamp.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a door.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a shelf.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a mirror.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bed.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a table.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a carpet.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a fan.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a heater.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a speaker.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a clock.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a picture.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a box.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a plant.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a blanket.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a pillow.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a remote.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a monitor.
+First use "a", then use "the".
+
+
+Make two sentences about a keyboard.
+First use "a", then use "the".
+
+
+Make two sentences about a mouse.
+First use "a", then use "the".
+
+
+Make two sentences about a notebook.
+First use "a", then use "the".
+
+
+Make two sentences about a cable.
+First use "a", then use "the".
+
+
+Make two sentences about a phone.
+First use "a", then use "the".
+
+
+Make two sentences about a laptop.
+First use "a", then use "the".
+
+
+Make two sentences about a pen.
+First use "a", then use "the".
+
+
+Make two sentences about a charger.
+First use "a", then use "the".
+
+
+Make two sentences about a screen.
+First use "a", then use "the".
+
+
+Make two sentences about a bottle.
+First use "a", then use "the".
+
+
+Make two sentences about a cup.
+First use "a", then use "the".
+
+
+Make two sentences about a glass.
+First use "a", then use "the".
+
+
+Make two sentences about a document.
+First use "a", then use "the".
+
+
+Make two sentences about a file.
+First use "a", then use "the".
+
+
+Make two sentences about a folder.
+First use "a", then use "the".
+
+
+Make two sentences about a speaker.
+First use "a", then use "the".
+
+
+Make two sentences about a camera.
+First use "a", then use "the".
+
+
+Make two sentences about a card.
+First use "a", then use "the".
+
+
+Make two sentences about a watch.
+First use "a", then use "the".
+
+
+Make two sentences about a key.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a wallet.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a ticket.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a charger.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a passport.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a card.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a phone.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a notebook.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a pen.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bottle.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a camera.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a map.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an umbrella.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a brush.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a comb.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a towel.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a cable.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a book.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a snack.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a gift.
+Start by introducing it, then mention it again.
+
+
+Create two short sentences about a project.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a task.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a meeting.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a deadline.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a document.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a report.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about an email.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a message.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a plan.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about an idea.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a file.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a folder.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a printer.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a calendar.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a button.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a page.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a ticket.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a notebook.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a pen.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a monitor.
+Mention it once, then refer to it again.
+
+
+Say two sentences about a sofa.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a pillow.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a blanket.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a lamp.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a chair.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a table.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a window.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a door.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a fridge.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an oven.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a kettle.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a pan.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a pot.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a mirror.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a shelf.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a carpet.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a fan.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a heater.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a speaker.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a clock.
+First mention it, then mention the same thing again.
+
+
+Make two sentences about an apple.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about an orange.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about an egg.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a banana.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a cup.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a glass.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a plate.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a spoon.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a fork.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a knife.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a sandwich.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a cookie.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a cake.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bottle.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a kettle.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a toaster.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a chair.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a table.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a napkin.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a tray.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a pizza.
+First use "a", then use "the".
+
+
+Make two sentences about a burger.
+First use "a", then use "the".
+
+
+Make two sentences about a salad.
+First use "a", then use "the".
+
+
+Make two sentences about a plate.
+First use "a", then use "the".
+
+
+Make two sentences about a glass.
+First use "a", then use "the".
+
+
+Make two sentences about a cup.
+First use "a", then use "the".
+
+
+Make two sentences about a fork.
+First use "a", then use "the".
+
+
+Make two sentences about a spoon.
+First use "a", then use "the".
+
+
+Make two sentences about a knife.
+First use "a", then use "the".
+
+
+Make two sentences about a table.
+First use "a", then use "the".
+
+
+Make two sentences about a chair.
+First use "a", then use "the".
+
+
+Make two sentences about a bottle.
+First use "a", then use "the".
+
+
+Make two sentences about a pan.
+First use "a", then use "the".
+
+
+Make two sentences about a pot.
+First use "a", then use "the".
+
+
+Make two sentences about an oven.
+First use "an", then use "the".
+
+
+Make two sentences about a cake.
+First use "a", then use "the".
+
+
+Make two sentences about a cookie.
+First use "a", then use "the".
+
+
+Make two sentences about a sandwich.
+First use "a", then use "the".
+
+
+Make two sentences about a napkin.
+First use "a", then use "the".
+
+
+Make two sentences about a tray.
+First use "a", then use "the".
+
+
+Make two sentences about a book.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a phone.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a jacket.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a watch.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a lamp.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a chair.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a pan.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a ticket.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bag.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a wallet.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an apple.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an orange.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an umbrella.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a camera.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bike.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a card.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a toy.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a gift.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a map.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a speaker.
+Start by introducing it, then mention it again.
+
+
+Create two short sentences about a charger.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a key.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a document.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a pen.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about an umbrella.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a ticket.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a bag.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a phone.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a laptop.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a book.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about an answer.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about an idea.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a plan.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a report.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a file.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a folder.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a coat.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a towel.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a camera.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a card.
+Mention it once, then refer to it again.
+
+
+Say two sentences about a bag.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a ticket.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a plan.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a question.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a phone.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a book.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a laptop.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a charger.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a key.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a wallet.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a jacket.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a watch.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an idea.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an email.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a file.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a document.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a notebook.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a pen.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a task.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a meeting.
+First mention it, then mention the same thing again.
+
+
+Make two sentences about a lamp.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a chair.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a table.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a book.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a phone.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bottle.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a window.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a door.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a sofa.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bed.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a monitor.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a keyboard.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a mouse.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a plate.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a cup.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a bag.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a shelf.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a mirror.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a carpet.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a fan.
+Mention it for the first time, then mention it again.
+
+
+Make two sentences about a book.
+First use "a", then use "the".
+
+
+Make two sentences about a phone.
+First use "a", then use "the".
+
+
+Make two sentences about a chair.
+First use "a", then use "the".
+
+
+Make two sentences about a lamp.
+First use "a", then use "the".
+
+
+Make two sentences about an apple.
+First use "an", then use "the".
+
+
+Make two sentences about an egg.
+First use "an", then use "the".
+
+
+Make two sentences about an idea.
+First use "an", then use "the".
+
+
+Make two sentences about an answer.
+First use "an", then use "the".
+
+
+Make two sentences about an umbrella.
+First use "an", then use "the".
+
+
+Make two sentences about an airport.
+First use "an", then use "the".
+
+
+Make two sentences about a bag.
+First use "a", then use "the".
+
+
+Make two sentences about a ticket.
+First use "a", then use "the".
+
+
+Make two sentences about a hotel.
+First use "a", then use "the".
+
+
+Make two sentences about a project.
+First use "a", then use "the".
+
+
+Make two sentences about a meeting.
+First use "a", then use "the".
+
+
+Make two sentences about a document.
+First use "a", then use "the".
+
+
+Make two sentences about a photo.
+First use "a", then use "the".
+
+
+Make two sentences about a movie.
+First use "a", then use "the".
+
+
+Make two sentences about a dog.
+First use "a", then use "the".
+
+
+Make two sentences about a tree.
+First use "a", then use "the".
+
+
+Make two sentences about a street.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a park.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a cafe.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a restaurant.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a market.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a shop.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a store.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bank.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a library.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a garage.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a hotel.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a station.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about an airport.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bridge.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a road.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bench.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a bus.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a train.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a taxi.
+Start by introducing it, then mention it again.
+
+
+Make two sentences about a ticket.
+Start by introducing it, then mention it again.
+
+
+Create two short sentences about an alarm.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a photo.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a picture.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a game.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a movie.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a song.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a cat.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a dog.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a bird.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a flower.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a box.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a gift.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a clock.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a toy.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a printer.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a router.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a speaker.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a calendar.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a map.
+Mention it once, then refer to it again.
+
+
+Create two short sentences about a page.
+Mention it once, then refer to it again.
+
+
+Say two sentences about an interview.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about an app.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a website.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a button.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a page.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a word.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a sentence.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a mistake.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a notebook.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a pen.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a file.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a folder.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a report.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a document.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a meeting.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a task.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a project.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a printer.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a router.
+First mention it, then mention the same thing again.
+
+
+Say two sentences about a speaker.
+First mention it, then mention the same thing again.
