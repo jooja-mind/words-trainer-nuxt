@@ -28,7 +28,8 @@ const items = computed<NavigationMenuItem[]>(() => {
         { label: 'Train', icon: 'ion:mic', to: '/interview' },
         { label: 'Stats', icon: 'ion:bar-chart', to: '/interview/stats' }
       ]
-    }
+    },
+    { label: 'Fluency', icon: 'ion:rocket', to: '/fluency' }
   ]
 
   return base
