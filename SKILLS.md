@@ -32,22 +32,35 @@ Report always:
 - migrations applied: yes/no
 - pushed: yes/no
 
-## 3) Hosting topology
+## 3) Fluency rollout
+
+One-time after first fluency release:
+- `npm run fluency:filldb`
+
+Checks:
+- `/fluency` route loads (usually redirects to `/login` if unauth)
+- `GET /api/fluency/skill/list` works with auth
+- `GET /api/token/elevenlabs` should not throw runtime dependency errors
+
+Required env:
+- `ELEVENLABS_API_KEY`
+
+## 4) Hosting topology
 
 - App process: `127.0.0.1:3018`
 - nginx upstream entrypoint: `127.0.0.1:3000`
 - Public hostname: `jooja-words-trainer.leverton.dev`
 - Cloudflare Tunnel routes hostname -> local nginx
 
-## 4) Auth + AI routes
+## 5) Auth + AI routes
 
 - App uses password login via `/api/auth/login`.
 - AI-assisted routes require `OPENAI_API_KEY` in `.env`:
-  - `POST /api/words/batch` (batch parser/import)
+  - `POST /api/words/batch`
   - recap/interview routes
-- If AI routes fail, first check env in service context (`EnvironmentFile=.env`) and service restart.
+- If AI/STT routes fail, first check env in service context (`EnvironmentFile=.env`) and service restart.
 
-## 5) Content import
+## 6) Content import
 
 Fast path:
 - Put source file into `data/imports/`

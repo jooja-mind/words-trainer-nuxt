@@ -1,6 +1,6 @@
 # words-trainer-nuxt
 
-Adaptive English trainer (Nuxt + Prisma + PostgreSQL) with vocabulary and speaking/interview practice.
+Adaptive English trainer (Nuxt + Prisma + PostgreSQL) with vocabulary and speaking/interview/fluency practice.
 
 Public URL (Cloudflare Tunnel):
 - `https://jooja-words-trainer.leverton.dev`
@@ -19,6 +19,7 @@ Build story (Jooja + [@powerdot](https://github.com/powerdot)):
 - **Stats** - aggregate training metrics
 - **Recap** - short speaking/writing recap flow
 - **Interview** - AI-assisted interview practice
+- **Fluency (MVP)** - short speaking prompts + STT + instant feedback loop
 - **Login/Auth** - password-based access for protected routes
 
 ---
@@ -38,26 +39,29 @@ Build story (Jooja + [@powerdot](https://github.com/powerdot)):
 
 - `app/app.vue` - top navigation + layout
 - `app/pages/login.vue` - auth page
-- `app/pages/settings.vue` - vocabulary management (batch import + list)
-- `app/components/addWord.vue` - floating quick-add widget
+- `app/pages/settings.vue` - vocabulary management
 - `app/pages/trainer.vue` - adaptive quiz
 - `app/pages/marathon.vue` - weak-words mode
 - `app/pages/stats.vue` - training stats
 - `app/pages/recap.vue` - recap practice
 - `app/pages/interview.vue` - interview practice
-- `app/composables/useQuizDisplayMode.ts` - quiz display mode (term/translation) persisted in localStorage
+- `app/pages/fluency/index.vue` - fluency mode UI
+- `app/components/recorder/*` - mic/volume/controls for speaking flows
 
 - `server/api/auth/*` - login/logout
 - `server/api/words/*` - CRUD + review
 - `server/api/quiz/*` - next/answer/stats/marathon
 - `server/api/recap/*` - recap generation/submission
 - `server/api/interview/*` - interview random question/submission
+- `server/api/fluency/*` - fluency skill list, question fetch, answer submit
+- `server/api/token/elevenlabs.get.ts` - ephemeral token endpoint for ElevenLabs
 - `server/utils/prisma.ts` - Prisma client singleton
 - `prisma/schema.prisma` - DB schema
 
+- `fluency/about_mvp.md` - fluency spec and behavior
+- `fluency/fillDB.ts` - one-time fluency seed script
+
 - `deploy/systemd/words-trainer.service` - production systemd user service
-- `data/imports/` - raw import files
-- `scripts/` - import/maintenance scripts
 
 ---
 
@@ -74,8 +78,9 @@ npm ci
 ```bash
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DB?schema=public"
 PASSWORD="..."                 # app login password
-OPENAI_API_KEY="..."           # for AI-powered routes
-NATIVE_LANGUAGE="Russian"      # target translation language for imported words
+OPENAI_API_KEY="..."           # AI-powered routes
+ELEVENLABS_API_KEY="..."       # fluency realtime token endpoint
+NATIVE_LANGUAGE="Russian"      # translation language for imported words
 ```
 
 3) Apply migrations:
@@ -84,13 +89,19 @@ NATIVE_LANGUAGE="Russian"      # target translation language for imported words
 npx prisma migrate deploy
 ```
 
-4) Start dev:
+4) One-time fluency seed (after fluency rollout):
+
+```bash
+npm run fluency:filldb
+```
+
+5) Start dev:
 
 ```bash
 npm run dev
 ```
 
-5) Production build:
+6) Production build:
 
 ```bash
 npm run build
@@ -130,31 +141,6 @@ sudo loginctl enable-linger powerdot
 
 ---
 
-## Adaptive methodology
-
-### Trainer (`/trainer`)
-`GET /api/quiz/next` ranks words by blended priority:
-- recent mistake pressure
-- time since last seen
-- low repetition count
-- status bonus (`HARD` > `NEW` > `EASY`)
-
-Question format: **term -> 4 definition options**.
-
-Display mode switch is available (term/translation) and persisted client-side.
-
-On answer (`POST /api/quiz/answer`):
-- wrong -> `HARD`
-- correct with enough history -> `EASY`
-- otherwise -> `NEW`
-
-### Mistakes Marathon (`/marathon`)
-`GET /api/quiz/marathon` selects words with mistakes and sorts by KPI:
-- KPI = `correct / wrong`
-- lower KPI first, then higher wrong count
-
----
-
 ## API summary
 
 ### Auth
@@ -163,7 +149,7 @@ On answer (`POST /api/quiz/answer`):
 
 ### Words
 - `GET /api/words?status=NEW|HARD|EASY`
-- `POST /api/words/batch` (GPT parsing + dedupe + create)
+- `POST /api/words/batch`
 - `PATCH /api/words/:id`
 - `DELETE /api/words/:id`
 - `POST /api/words/:id/review`
@@ -182,6 +168,12 @@ On answer (`POST /api/quiz/answer`):
 - `GET /api/interview/random`
 - `POST /api/interview/submit`
 
+### Fluency
+- `GET /api/fluency/skill/list`
+- `GET /api/fluency/question`
+- `POST /api/fluency/question/submitAnswer`
+- `GET /api/token/elevenlabs` (protected)
+
 ---
 
 ## Deploy checklist (short)
@@ -192,4 +184,5 @@ On answer (`POST /api/quiz/answer`):
 4. `npm ci`
 5. `npm run build`
 6. `systemctl --user restart words-trainer.service`
-7. health checks
+7. If first fluency rollout: `npm run fluency:filldb`
+8. health checks
