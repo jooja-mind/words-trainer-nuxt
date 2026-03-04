@@ -459,7 +459,7 @@ export function useSTT(options: UseSTTOptions = {}) {
         sourceType,
         credential: temporaryToken.value,
         sampleRate,
-        languageCode: '',
+        languageCode: 'eng',
       })
 
 

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useSTT } from '~/composables/stt/useSTT'
+import { useInputDevices } from '~/composables/stt/useInputDevices';
+
 const {
   state,
   getProviderOptions,
@@ -26,21 +29,6 @@ const {
 });
 
 
-
-
-function handleAudioBridge(b16int: ArrayBuffer, sourceType: STTSourceType) {
-  audioBridge(b16int, sourceType)
-}
-
-function handleStartRecognition(sourceType: STTSourceType, sampleRate: number) {
-  requestStartRecognition(sourceType, sampleRate)
-}
-
-function handleStopRecognition(sourceType: STTSourceType) {
-  requestStopRecognition(sourceType)
-}
-
-
 const {
   vol: micVol,
   isSoundDetected: isMicSoundDetected,
@@ -50,12 +38,12 @@ const {
 } = useAudioBridgeStream({
   sourceType: 'mic',
   shouldBridge: () => Boolean(state.mic.recognition),
-  onAudioBridge: (b16int, sourceType) => handleAudioBridge(b16int, sourceType),
-  onRecognitionStart: (sourceType, sampleRate) => handleStartRecognition(sourceType, sampleRate),
-  onRecognitionStop: (sourceType) => handleStopRecognition(sourceType),
+  onAudioBridge: (b16int, sourceType) => audioBridge(b16int, sourceType),
+  onRecognitionStart: (sourceType, sampleRate) => requestStartRecognition(sourceType, sampleRate),
+  onRecognitionStop: (sourceType) => requestStopRecognition(sourceType),
 })
 
-const { inputDevices, selectedInputDevice, loadInputDevices } = useInputDevices()
+const { inputDevices, selectedInputDevice } = useInputDevices()
 
 async function startMicRecorder() {
   try {
@@ -103,6 +91,15 @@ async function getUserMediaForSelectedInputDevice() {
     })
   }
 }
+
+let lastFinalized = computed(()=>{
+  const lastHistoryEntry = state.mic.history.slice()[state.mic.history.length - 1]
+  return lastHistoryEntry;
+})
+
+onUnmounted(() => {
+  stopAll()
+})
 </script>
 
 <template>
@@ -110,33 +107,35 @@ async function getUserMediaForSelectedInputDevice() {
     <UPageHeader title="Fluency Trainer" headline="Extreme" />
     <UPageBody>
       <UCard variant="subtle">
-        <UButton @click="testTokenWorkerEndpoint">
-          Start fetching token
-        </UButton>
-        <hr>
         <RecorderControl :isActive="isMicActive" :vol="micVol" :isSoundDetected="isMicSoundDetected"
         :inputDevices="inputDevices" @start="startMicRecorder" @stop="stopMicRecorder"
-        v-model:selected-input-device="selectedInputDevice" />
+        v-model:selected-input-device="selectedInputDevice" v-show="false" />
         <hr>
-        <div class="history">
-          <div><strong>history mic:</strong></div>
-          <ul>
-            <li>
-              <strong>live:</strong> {{ state.mic.liveText || '—' }}
-            </li>
-            <li v-for="(entry, index) in state.mic.history.slice().reverse()" :key="index">
-              {{ new Date(entry.timestampStart).toLocaleTimeString() }} - {{ new
-                Date(entry.timestampEnd).toLocaleTimeString()
-              }}:
-              {{ entry.text }}
-            </li>
-          </ul>
+        <div class="speaking">
+          <div class="live" v-if="!!state.mic.liveText">{{ state.mic.liveText }}</div>
+          <div class="final" v-if="!state.mic.liveText && lastFinalized">{{ lastFinalized.text }}</div>
+          <div class="empty" v-if="!state.mic.liveText && !lastFinalized">
+            <em>Start speaking...</em>
+          </div>
         </div>
+        <hr>
+        <UButton v-if="isMicActive" @click="stopMicRecorder" label="Stop mic recorder" color="error" variant="soft" />
+        <UButton v-if="!isMicActive" @click="startMicRecorder" label="Start mic recorder" color="primary" variant="soft" />
       </UCard>
     </UPageBody>
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.speaking{
+  text-align: center;
+  font-size: 1.5em;
 
+  .live{
+    color: #ffffff9a;
+  }
+  .final{
+    color: #fff;
+  }
+}
 </style>

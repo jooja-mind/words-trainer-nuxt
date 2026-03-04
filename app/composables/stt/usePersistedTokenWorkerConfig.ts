@@ -1,37 +1,25 @@
 import { onMounted, watch, type Ref } from 'vue'
-import type { STTProviderId } from '@/composables/useSTT'
 
-type ProviderLanguageById = Partial<Record<STTProviderId, string>>
+type ProviderLanguageById = Partial<Record<string, string>>
 
 type TokenWorkerConfig = {
   baseUrl: string
   apiKey: string
-  provider: STTProviderId
   providerLanguageById: ProviderLanguageById
 }
 
 type UsePersistedTokenWorkerConfigOptions = {
   baseUrl: Ref<string>
   apiKey: Ref<string>
-  provider: Ref<STTProviderId>
-  providerLanguageById: Readonly<Ref<Record<STTProviderId, string>>>
+  providerLanguageById: Readonly<Ref<Record<string, string>>>
   setBaseUrl: (value: string) => void
   setApiKey: (value: string) => void
-  setProvider: (provider: STTProviderId) => void | boolean
-  setProviderLanguage: (provider: STTProviderId, language: string) => void | boolean
-  supportedProviders: readonly STTProviderId[]
-  supportedLanguageOptionsByProvider: Record<STTProviderId, readonly string[]>
+  supportedProviders: readonly string[]
+  supportedLanguageOptionsByProvider: Record<string, readonly string[]>
   storageKey?: string
 }
 
 const DEFAULT_STORAGE_KEY = 'stt_token_worker_config'
-
-function isSTTProviderId(
-  value: unknown,
-  supportedProviders: readonly STTProviderId[],
-): value is STTProviderId {
-  return typeof value === 'string' && supportedProviders.includes(value as STTProviderId)
-}
 
 function isObjectRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value)
@@ -55,7 +43,6 @@ export function usePersistedTokenWorkerConfig(options: UsePersistedTokenWorkerCo
     const payload: TokenWorkerConfig = {
       baseUrl: options.baseUrl.value,
       apiKey: options.apiKey.value,
-      provider: options.provider.value,
       providerLanguageById: createProviderLanguageSnapshot(),
     }
 
@@ -72,9 +59,6 @@ export function usePersistedTokenWorkerConfig(options: UsePersistedTokenWorkerCo
       const parsedConfig = JSON.parse(rawValue) as Partial<TokenWorkerConfig>
       const persistedBaseUrl = typeof parsedConfig.baseUrl === 'string' ? parsedConfig.baseUrl : ''
       const persistedApiKey = typeof parsedConfig.apiKey === 'string' ? parsedConfig.apiKey : ''
-      const persistedProvider = isSTTProviderId(parsedConfig.provider, options.supportedProviders)
-        ? parsedConfig.provider
-        : options.provider.value
 
       if (persistedBaseUrl) {
         options.setBaseUrl(persistedBaseUrl)
@@ -82,10 +66,6 @@ export function usePersistedTokenWorkerConfig(options: UsePersistedTokenWorkerCo
 
       if (persistedApiKey) {
         options.setApiKey(persistedApiKey)
-      }
-
-      if (persistedProvider !== options.provider.value) {
-        options.setProvider(persistedProvider)
       }
 
       const persistedProviderLanguageById = isObjectRecord(parsedConfig.providerLanguageById)
@@ -104,8 +84,6 @@ export function usePersistedTokenWorkerConfig(options: UsePersistedTokenWorkerCo
           hasInvalidProviderLanguage = true
           continue
         }
-
-        options.setProviderLanguage(providerId, persistedLanguage)
       }
 
       // Migrate legacy payloads that had no provider/apiKey or
@@ -121,7 +99,6 @@ export function usePersistedTokenWorkerConfig(options: UsePersistedTokenWorkerCo
           JSON.stringify({
             baseUrl: persistedBaseUrl,
             apiKey: persistedApiKey,
-            provider: persistedProvider,
             providerLanguageById: createProviderLanguageSnapshot(),
           } satisfies TokenWorkerConfig),
         )
@@ -139,7 +116,6 @@ export function usePersistedTokenWorkerConfig(options: UsePersistedTokenWorkerCo
     () => [
       options.baseUrl.value,
       options.apiKey.value,
-      options.provider.value,
       ...options.supportedProviders.map((providerId) => options.providerLanguageById.value[providerId] ?? ''),
     ],
     () => {
