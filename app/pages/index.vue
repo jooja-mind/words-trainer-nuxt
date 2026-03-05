@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import TrainerPage from './trainer.vue'
+import TrainerPage from './vocab/index.vue'
 </script>

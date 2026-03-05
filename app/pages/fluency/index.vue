@@ -245,20 +245,6 @@ onUnmounted(() => {
     <UPageHeader title="Fluency Trainer" headline="Extreme" />
     <UPageBody>
 
-      <div class="top">
-        <div class="topWrap">
-          <RecorderControl :isActive="isMicActive" :vol="micVol" :isSoundDetected="isMicSoundDetected"
-          :inputDevices="inputDevices" @start="startMicRecorder" @stop="stopMicRecorder"
-          v-model:selected-input-device="selectedInputDevice" :is-muted="muted" @mute="mute" @unmute="unmute" />
-        </div>
-
-        <div class="topWrap" v-if="screen != 'welcome'">
-          <div class="challenge" :class="{passed: uniqueQuestionsPassed.length == questionsCountChallenge}">
-            {{ uniqueQuestionsPassed.length }} / {{ questionsCountChallenge }}
-          </div>
-        </div>
-      </div>
-
       <UCard variant="subtle" v-if="screen === 'welcome'">
         What skill would you like to practice?
         <div class="skillSelector">
@@ -306,6 +292,20 @@ onUnmounted(() => {
         </div>
       </UCard>
 
+      <div class="top">
+        <div class="topWrap">
+          <RecorderControl :isActive="isMicActive" :vol="micVol" :isSoundDetected="isMicSoundDetected"
+          :inputDevices="inputDevices" @start="startMicRecorder" @stop="stopMicRecorder"
+          v-model:selected-input-device="selectedInputDevice" :is-muted="muted" @mute="mute" @unmute="unmute" />
+        </div>
+
+        <div class="topWrap" v-if="screen != 'welcome'">
+          <div class="challenge" :class="{passed: uniqueQuestionsPassed.length == questionsCountChallenge}">
+            {{ uniqueQuestionsPassed.length }} / {{ questionsCountChallenge }}
+          </div>
+        </div>
+      </div>
+
       <UCard variant="outline" v-if="isLocalhost">
         Debug:
         Mic state: {{ isMicActive ? 'active' : 'inactive' }}, vol: {{ micVol.toFixed(2) }}, sound detected: {{ isMicSoundDetected }}, muted: {{ muted ? 'yes' : 'no' }}
@@ -328,7 +328,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-top: -2rem;
   justify-content: space-between;
 
   .topWrap{

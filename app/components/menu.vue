@@ -14,10 +14,10 @@ const items = computed<NavigationMenuItem[]>(() => {
       label: 'Vocab',
       icon: 'ion:library',
       children: [
-        { label: 'Trainer', icon: 'ion:book', to: '/trainer' },
-        { label: 'Marathon', icon: 'ion:fireball', to: '/marathon' },
-        { label: 'Stats', icon: 'ion:bar-chart', to: '/stats' },
-        { label: 'Setup', icon: 'ion:ios-settings', to: '/settings' }
+        { label: 'Trainer', icon: 'ion:book', to: '/vocab/trainer' },
+        { label: 'Marathon', icon: 'ion:fireball', to: '/vocab/marathon' },
+        { label: 'Stats', icon: 'ion:bar-chart', to: '/vocab/stats' },
+        { label: 'Setup', icon: 'ion:ios-settings', to: '/vocab/settings' }
       ]
     },
     { label: 'Recap', icon: 'ion:sparkles-sharp', to: '/recap' },
