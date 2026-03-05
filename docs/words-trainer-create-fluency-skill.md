@@ -1,43 +1,43 @@
-# words-trainer-create-fluency-skill - актуальная инструкция
+# words-trainer-create-fluency-skill - canonical instructions
 
-Этот файл - единственный источник правды по созданию и обновлению скилла `words-trainer-create-fluency-skill`.
+This file is the single source of truth for creating and updating the `words-trainer-create-fluency-skill` skill.
 
-## Цель
+## Purpose
 
-Скилл нужен для поддержки практики английской флюентности на базе словаря пользователя: упражнения, короткие диалоги, микро-дриллы, ежедневные задания.
+This skill supports English fluency practice based on a user's vocabulary set: exercises, short dialogs, micro-drills, and daily practice tasks.
 
-## Где лежит скилл
+## Skill location
 
-- Папка: `skills/words-trainer-create-fluency-skill/`
-- Основной файл: `skills/words-trainer-create-fluency-skill/SKILL.md`
+- Folder: `skills/words-trainer-create-fluency-skill/`
+- Main file: `skills/words-trainer-create-fluency-skill/SKILL.md`
 
-## Процесс обновления
+## Update workflow
 
-1. Сначала обновить этот файл, если изменился процесс.
-2. Обновить `SKILL.md` скилла (кратко, без лишней теории).
-3. При необходимости добавить:
-   - `references/*.md` для подробных правил и шаблонов
-   - `scripts/*` для повторяемых шагов
-4. Проверить, что в `SKILL.md` есть ссылка на этот файл.
-5. Прогнать 1-2 реальных сценария использования.
-6. Сделать commit и push в `main`.
+1. Update this file first if the process changes.
+2. Update the skill `SKILL.md` (keep it short and practical).
+3. Add extra resources if needed:
+   - `references/*.md` for detailed rules/templates
+   - `scripts/*` for repeatable deterministic steps
+4. Ensure `SKILL.md` links to this file.
+5. Validate with 1-2 real usage scenarios.
+6. Commit and push to `main`.
 
-## Минимальные требования к SKILL.md
+## Minimum requirements for SKILL.md
 
-- frontmatter:
+- Valid frontmatter:
   - `name: words-trainer-create-fluency-skill`
-  - `description: ...` (что делает + когда применять)
-- короткая пошаговая инструкция
-- явная ссылка на этот файл
+  - `description: ...` (what it does + when to use)
+- Short step-by-step body
+- Explicit link to this file
 
-## Чеклист перед commit
+## Pre-commit checklist
 
-- [ ] Имя скилла совпадает с именем папки
-- [ ] Description покрывает реальные триггеры
-- [ ] Нет мусорных файлов (README/CHANGELOG и т.п.)
-- [ ] Ссылка на эту инструкцию корректна
-- [ ] Изменения закоммичены и запушены в `main`
+- [ ] Skill name matches folder name
+- [ ] Description covers real trigger cases
+- [ ] No clutter files (README/CHANGELOG/etc.)
+- [ ] Link to this instruction file is correct
+- [ ] Changes are committed and pushed to `main`
 
-## Важно
+## Note
 
-Если появится стабильный пайплайн генерации упражнений, вынести его в `scripts/` и вызывать из скилла, а не делать вручную.
+If a stable exercise-generation pipeline appears, move it into `scripts/` and call it from the skill instead of doing manual steps.
