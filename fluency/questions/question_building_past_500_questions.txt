@@ -1,0 +1,999 @@
+Ask what he did yesterday.
+
+Ask what she ate yesterday.
+
+Ask what they watched last night.
+
+Ask where he went yesterday evening.
+
+Ask where she was last night.
+
+Ask when they arrived home last night.
+
+Ask why he stayed up late last night.
+
+Ask why she woke up early yesterday.
+
+Ask how they got home last night.
+
+Ask who he met yesterday.
+
+Ask what time she went to bed last night.
+
+Ask what time they woke up yesterday.
+
+Ask if he worked yesterday.
+
+Ask if she cooked dinner last night.
+
+Ask if they went out last night.
+
+Ask whether he drank coffee yesterday morning.
+
+Ask whether she studied English yesterday.
+
+Ask whether they had dinner at home last night.
+
+Ask what he bought yesterday.
+
+Ask what she said yesterday.
+
+Ask what he did last week.
+
+Ask what she worked on last week.
+
+Ask what they learned last week.
+
+Ask where he went last week.
+
+Ask where she traveled last week.
+
+Ask when they finished the project last week.
+
+Ask why he took a break last week.
+
+Ask why she changed her plan last week.
+
+Ask how they handled the problem last week.
+
+Ask who he talked to last week.
+
+Ask what meeting she had last week.
+
+Ask what task they finished last week.
+
+Ask if he had many meetings last week.
+
+Ask if she worked from home last week.
+
+Ask if they cooked at home last week.
+
+Ask whether he exercised last week.
+
+Ask whether she practiced English last week.
+
+Ask whether they visited friends last week.
+
+Ask what he bought last week.
+
+Ask what she watched last week.
+
+Ask what he did last weekend.
+
+Ask what she did last weekend.
+
+Ask what they did last weekend.
+
+Ask where he went last weekend.
+
+Ask where she went last weekend.
+
+Ask when they returned last weekend.
+
+Ask why he stayed home last weekend.
+
+Ask why she went out last weekend.
+
+Ask how they spent Sunday last weekend.
+
+Ask who he met last weekend.
+
+Ask what she cooked last weekend.
+
+Ask what they watched last weekend.
+
+Ask if he went for a walk last weekend.
+
+Ask if she visited a cafe last weekend.
+
+Ask if they watched a movie last weekend.
+
+Ask whether he slept a lot last weekend.
+
+Ask whether she studied on Sunday last weekend.
+
+Ask whether they cleaned the house last weekend.
+
+Ask what he bought last weekend.
+
+Ask what she read last weekend.
+
+Ask what he did earlier today.
+
+Ask what she did earlier today.
+
+Ask what they did earlier today.
+
+Ask where he went earlier today.
+
+Ask where she went earlier today.
+
+Ask when they started work earlier today.
+
+Ask when he finished his first task today.
+
+Ask why she changed her plan today.
+
+Ask how they handled a small problem today.
+
+Ask who he talked to earlier today.
+
+Ask what she ate earlier today.
+
+Ask what they bought earlier today.
+
+Ask if he had a call earlier today.
+
+Ask if she sent a message earlier today.
+
+Ask if they took a break earlier today.
+
+Ask whether he drank coffee earlier today.
+
+Ask whether she studied earlier today.
+
+Ask whether they went outside earlier today.
+
+Ask what surprised him earlier today.
+
+Ask what made her smile earlier today.
+
+Ask what he did this morning.
+
+Ask what she ate this morning.
+
+Ask what they talked about this morning.
+
+Ask where he went this morning.
+
+Ask where she was this morning.
+
+Ask when they started work this morning.
+
+Ask why he was late this morning.
+
+Ask why she rushed this morning.
+
+Ask how they got to work this morning.
+
+Ask who he called this morning.
+
+Ask what time she woke up this morning.
+
+Ask what time they left home this morning.
+
+Ask if he drank tea this morning.
+
+Ask if she checked her phone this morning.
+
+Ask if they had breakfast this morning.
+
+Ask whether he exercised this morning.
+
+Ask whether she wrote any messages this morning.
+
+Ask whether they took a taxi this morning.
+
+Ask what he wore this morning.
+
+Ask what she read this morning.
+
+Ask what he did at work yesterday.
+
+Ask what she worked on yesterday.
+
+Ask what they discussed in the meeting yesterday.
+
+Ask what bug he fixed yesterday.
+
+Ask what report she wrote yesterday.
+
+Ask where they worked yesterday.
+
+Ask when he finished the task yesterday.
+
+Ask when she joined the call yesterday.
+
+Ask why they changed the plan yesterday.
+
+Ask how he solved the issue yesterday.
+
+Ask who she met at work yesterday.
+
+Ask who they emailed yesterday.
+
+Ask if he had a meeting yesterday.
+
+Ask if she sent an email yesterday.
+
+Ask if they worked late yesterday.
+
+Ask whether he checked logs yesterday.
+
+Ask whether she reviewed the document yesterday.
+
+Ask whether they deployed yesterday.
+
+Ask what he learned at work yesterday.
+
+Ask what she completed yesterday.
+
+Ask what he studied yesterday.
+
+Ask what she practiced yesterday.
+
+Ask what they learned yesterday.
+
+Ask what word he learned yesterday.
+
+Ask what grammar she practiced yesterday.
+
+Ask where they studied yesterday.
+
+Ask when he started studying yesterday.
+
+Ask when she finished studying yesterday.
+
+Ask why they studied yesterday.
+
+Ask how he practiced speaking yesterday.
+
+Ask who she studied with yesterday.
+
+Ask who they talked to in English yesterday.
+
+Ask if he reviewed a lesson yesterday.
+
+Ask if she wrote notes yesterday.
+
+Ask if they practiced speaking yesterday.
+
+Ask whether he used flashcards yesterday.
+
+Ask whether she watched an English video yesterday.
+
+Ask whether they repeated phrases yesterday.
+
+Ask what he forgot yesterday.
+
+Ask what she corrected yesterday.
+
+Ask what he ate yesterday.
+
+Ask what she cooked yesterday.
+
+Ask what they had for dinner yesterday.
+
+Ask what he drank yesterday.
+
+Ask what she ordered yesterday.
+
+Ask where they ate yesterday.
+
+Ask when he had lunch yesterday.
+
+Ask when she cooked dinner yesterday.
+
+Ask why they ate out yesterday.
+
+Ask how he made coffee yesterday.
+
+Ask who cooked dinner yesterday.
+
+Ask who they ate with yesterday.
+
+Ask if he ate breakfast yesterday.
+
+Ask if she drank tea yesterday.
+
+Ask if they cooked at home yesterday.
+
+Ask whether he tried a new food yesterday.
+
+Ask whether she bought groceries yesterday.
+
+Ask whether they ordered delivery yesterday.
+
+Ask what he bought at the store yesterday.
+
+Ask what she snacked on yesterday.
+
+Ask what he did at home yesterday.
+
+Ask what she cleaned yesterday.
+
+Ask what they organized yesterday.
+
+Ask what he fixed yesterday.
+
+Ask what she moved yesterday.
+
+Ask where they put the keys yesterday.
+
+Ask when he cleaned the room yesterday.
+
+Ask when she washed dishes yesterday.
+
+Ask why they opened the window yesterday.
+
+Ask how he organized his desk yesterday.
+
+Ask who cleaned the kitchen yesterday.
+
+Ask who did the chores yesterday.
+
+Ask if he washed dishes yesterday.
+
+Ask if she made the bed yesterday.
+
+Ask if they cleaned the house yesterday.
+
+Ask whether he took out the trash yesterday.
+
+Ask whether she did laundry yesterday.
+
+Ask whether they fixed something yesterday.
+
+Ask what he found at home yesterday.
+
+Ask what she lost yesterday.
+
+Ask what app he used yesterday.
+
+Ask what she installed yesterday.
+
+Ask what they searched for yesterday.
+
+Ask what he fixed on his laptop yesterday.
+
+Ask what she updated yesterday.
+
+Ask where they saved the file yesterday.
+
+Ask when he backed up data yesterday.
+
+Ask when she restarted the device yesterday.
+
+Ask why they updated the app yesterday.
+
+Ask how he solved the tech problem yesterday.
+
+Ask who she messaged yesterday.
+
+Ask who they called yesterday.
+
+Ask if he updated his phone yesterday.
+
+Ask if she restarted her laptop yesterday.
+
+Ask if they used cloud storage yesterday.
+
+Ask whether he charged his phone last night.
+
+Ask whether she deleted any files yesterday.
+
+Ask whether they changed a password yesterday.
+
+Ask what he downloaded yesterday.
+
+Ask what she opened yesterday.
+
+Ask what he purchased at the store yesterday.
+
+Ask what she ordered online yesterday.
+
+Ask what they paid for yesterday.
+
+Ask what he compared yesterday before buying.
+
+Ask what she bought at the grocery store yesterday.
+
+Ask where they shopped yesterday.
+
+Ask when he went shopping yesterday.
+
+Ask when she paid yesterday.
+
+Ask why they bought that item yesterday.
+
+Ask how he chose the product yesterday.
+
+Ask who she bought a gift for yesterday.
+
+Ask who they met while shopping yesterday.
+
+Ask if he bought food yesterday.
+
+Ask if she bought clothes yesterday.
+
+Ask if they ordered something online yesterday.
+
+Ask whether he read reviews yesterday.
+
+Ask whether she checked prices yesterday.
+
+Ask whether they used a shopping list yesterday.
+
+Ask what he returned yesterday.
+
+Ask what she forgot to buy yesterday.
+
+Ask where he traveled last month.
+
+Ask where she went on her last trip.
+
+Ask what they did on their last trip.
+
+Ask what he packed for the trip.
+
+Ask what she visited in the city.
+
+Ask when they arrived at the hotel.
+
+Ask when he left the airport.
+
+Ask why she chose that hotel.
+
+Ask how they got to the city center.
+
+Ask who he traveled with.
+
+Ask who she met during the trip.
+
+Ask who they called from the hotel.
+
+Ask if he took the train on the trip.
+
+Ask if she flew on her last trip.
+
+Ask if they used a map.
+
+Ask whether he packed light.
+
+Ask whether she visited a museum.
+
+Ask whether they ate at a restaurant.
+
+Ask what he bought as a souvenir.
+
+Ask what she enjoyed most on the trip.
+
+Ask what he watched last night.
+
+Ask what she read yesterday evening.
+
+Ask what they played last weekend.
+
+Ask what he listened to yesterday.
+
+Ask what she did for fun yesterday.
+
+Ask where they went for a walk yesterday.
+
+Ask when he played the game yesterday.
+
+Ask when she relaxed yesterday.
+
+Ask why they stayed home yesterday.
+
+Ask how he relaxed after work yesterday.
+
+Ask who she met yesterday evening.
+
+Ask who they talked to yesterday.
+
+Ask if he watched a movie yesterday.
+
+Ask if she listened to music yesterday.
+
+Ask if they played games yesterday.
+
+Ask whether he went for a walk yesterday.
+
+Ask whether she watched videos yesterday.
+
+Ask whether they read before bed last night.
+
+Ask what he enjoyed yesterday.
+
+Ask what she disliked yesterday.
+
+Ask who he called yesterday.
+
+Ask who she sent messages to yesterday.
+
+Ask who they spoke to yesterday.
+
+Ask what he said in the meeting yesterday.
+
+Ask what she wrote in the chat yesterday.
+
+Ask what they asked yesterday.
+
+Ask where he met his friend yesterday.
+
+Ask when she replied yesterday.
+
+Ask why they called yesterday.
+
+Ask how he explained the problem yesterday.
+
+Ask how she asked for help yesterday.
+
+Ask how they solved the misunderstanding yesterday.
+
+Ask if he replied quickly yesterday.
+
+Ask if she sent a voice message yesterday.
+
+Ask if they had a long call yesterday.
+
+Ask whether he apologized yesterday.
+
+Ask whether she thanked someone yesterday.
+
+Ask whether they discussed the plan yesterday.
+
+Ask what he promised yesterday.
+
+Ask what she agreed to yesterday.
+
+Ask how he felt yesterday.
+
+Ask how she felt last night.
+
+Ask how they felt after the meeting yesterday.
+
+Ask what made him happy yesterday.
+
+Ask what made her stressed yesterday.
+
+Ask what made them tired yesterday.
+
+Ask why he felt nervous yesterday.
+
+Ask why she felt upset yesterday.
+
+Ask how they calmed down yesterday.
+
+Ask how he relaxed yesterday evening.
+
+Ask what improved her mood yesterday.
+
+Ask what ruined their mood yesterday.
+
+Ask if he felt tired yesterday.
+
+Ask if she felt stressed yesterday.
+
+Ask if they felt good yesterday.
+
+Ask whether he slept well last night.
+
+Ask whether she took a break yesterday.
+
+Ask whether they had a calm evening yesterday.
+
+Ask what surprised him yesterday.
+
+Ask what worried her yesterday.
+
+Ask what he did to rest yesterday.
+
+Ask what she did to stay healthy last week.
+
+Ask what they did after exercise yesterday.
+
+Ask what he ate to feel better yesterday.
+
+Ask what she drank yesterday to wake up.
+
+Ask when they went to bed last night.
+
+Ask when he took a break yesterday.
+
+Ask why she felt tired yesterday.
+
+Ask how they recovered yesterday.
+
+Ask how he relaxed his back yesterday.
+
+Ask if he exercised yesterday.
+
+Ask if she drank enough water yesterday.
+
+Ask if they slept well last night.
+
+Ask whether he stretched yesterday.
+
+Ask whether she walked yesterday.
+
+Ask whether they took breaks yesterday.
+
+Ask what medicine he took yesterday.
+
+Ask what helped her sleep last night.
+
+Ask what they did when they felt sick.
+
+Ask what he avoided eating yesterday.
+
+Ask what problem he solved yesterday.
+
+Ask what bug she fixed yesterday.
+
+Ask what issue they had yesterday.
+
+Ask what he tried first yesterday.
+
+Ask what she changed yesterday.
+
+Ask where they found the problem yesterday.
+
+Ask when he noticed the issue yesterday.
+
+Ask when she fixed it yesterday.
+
+Ask why the problem happened yesterday.
+
+Ask how he fixed it yesterday.
+
+Ask how she found the solution yesterday.
+
+Ask how they prevented the issue yesterday.
+
+Ask if he asked for help yesterday.
+
+Ask if she restarted the service yesterday.
+
+Ask if they changed the plan yesterday.
+
+Ask whether he made the same mistake yesterday.
+
+Ask whether she tested the fix yesterday.
+
+Ask whether they documented the change yesterday.
+
+Ask what he learned from the problem yesterday.
+
+Ask what she would do differently next time.
+
+Ask what he did after work yesterday.
+
+Ask where she went after work yesterday.
+
+Ask when they started the call yesterday.
+
+Ask why he left early yesterday.
+
+Ask how she got home yesterday.
+
+Ask who they met at the cafe yesterday.
+
+Ask what he ate for dinner last night.
+
+Ask where she bought groceries yesterday.
+
+Ask when they finished dinner yesterday.
+
+Ask why they chose that restaurant yesterday.
+
+Ask how he paid yesterday.
+
+Ask who she called last night.
+
+Ask what movie they watched last night.
+
+Ask where he sat during the meeting yesterday.
+
+Ask when she sent the email yesterday.
+
+Ask why they changed the schedule yesterday.
+
+Ask how he fixed the bug yesterday.
+
+Ask who they chatted with yesterday.
+
+Ask what he bought yesterday evening.
+
+Ask where she worked yesterday.
+
+Ask if he went to work yesterday.
+
+Ask if she cooked dinner yesterday.
+
+Ask if they studied English yesterday.
+
+Ask if he called you yesterday.
+
+Ask if she bought groceries yesterday.
+
+Ask if they watched a movie last night.
+
+Ask if he went for a walk yesterday.
+
+Ask if she worked from home yesterday.
+
+Ask whether they cleaned the house yesterday.
+
+Ask if he drank coffee yesterday morning.
+
+Ask whether she sent an email yesterday.
+
+Ask whether they had a meeting yesterday.
+
+Ask if he slept well last night.
+
+Ask whether she took a taxi yesterday.
+
+Ask whether they ate out yesterday.
+
+Ask if he forgot his keys yesterday.
+
+Ask if she lost her phone yesterday.
+
+Ask if they arrived late yesterday.
+
+Ask whether he fixed the problem yesterday.
+
+Ask whether she finished the task yesterday.
+
+Ask what he did two days ago.
+
+Ask what she ate two days ago.
+
+Ask where they went three days ago.
+
+Ask what he bought last month.
+
+Ask what she watched last month.
+
+Ask where they traveled last year.
+
+Ask when he started the habit last year.
+
+Ask when she moved to that city.
+
+Ask why they changed jobs last year.
+
+Ask how he learned that skill.
+
+Ask who she met last year.
+
+Ask who they worked with last month.
+
+Ask if he visited his family last year.
+
+Ask if she studied abroad before.
+
+Ask if they lived in that city before.
+
+Ask whether he worked late last month.
+
+Ask whether she traveled alone last year.
+
+Ask whether they changed their routine last month.
+
+Ask what he did during the last holiday.
+
+Ask what she did during the last vacation.
+
+Ask what he liked as a child.
+
+Ask what she did after school as a child.
+
+Ask what they played as kids.
+
+Ask where he grew up.
+
+Ask where she went to school.
+
+Ask when they learned to ride a bike.
+
+Ask why he chose that university.
+
+Ask why she moved to that city.
+
+Ask how they learned English at school.
+
+Ask who taught him English.
+
+Ask who her best friend was at school.
+
+Ask who they lived with as kids.
+
+Ask if he played sports as a child.
+
+Ask if she read books as a child.
+
+Ask if they traveled with family as kids.
+
+Ask whether he had a pet as a child.
+
+Ask whether she liked math at school.
+
+Ask whether they had a computer at home.
+
+Ask what he remembers most from school.
+
+Ask what she learned first in English.
+
+Ask what he did last year.
+
+Ask what she learned last year.
+
+Ask what they worked on last year.
+
+Ask where he traveled last year.
+
+Ask where she lived last year.
+
+Ask when they started that project last year.
+
+Ask when he changed jobs last year.
+
+Ask why she started learning English last year.
+
+Ask why they moved last year.
+
+Ask how he improved his skills last year.
+
+Ask who she worked with last year.
+
+Ask who they met last year.
+
+Ask if he traveled a lot last year.
+
+Ask if she studied a new skill last year.
+
+Ask if they changed their routine last year.
+
+Ask whether he worked remotely last year.
+
+Ask whether she visited family last year.
+
+Ask whether they bought something big last year.
+
+Ask what he achieved last year.
+
+Ask what she enjoyed last year.
+
+Ask what job he had before.
+
+Ask what she did before this job.
+
+Ask what they tried for the first time before.
+
+Ask where he worked before.
+
+Ask where she lived before.
+
+Ask when they met for the first time.
+
+Ask when he started his first job.
+
+Ask why she changed careers.
+
+Ask why they chose that path.
+
+Ask how he learned programming.
+
+Ask who helped her at the start.
+
+Ask who they learned from.
+
+Ask if he had a hard interview before.
+
+Ask if she failed an exam before.
+
+Ask if they made a big mistake before.
+
+Ask whether he traveled alone before.
+
+Ask whether she worked abroad before.
+
+Ask whether they lived in another country before.
+
+Ask what he learned from that experience.
+
+Ask what she would change about the past.
+
+Ask what mistake he made yesterday.
+
+Ask what mistake she made last week.
+
+Ask what mistake they made last month.
+
+Ask what he learned from that mistake.
+
+Ask what she learned from that situation.
+
+Ask what they changed after the mistake.
+
+Ask why he made that mistake.
+
+Ask why she missed the deadline.
+
+Ask why they forgot the plan.
+
+Ask how he fixed the mistake.
+
+Ask how she corrected the error.
+
+Ask how they avoided the same problem later.
+
+Ask who helped him fix it.
+
+Ask who helped her understand it.
+
+Ask who they asked for advice.
+
+Ask if he repeated the same mistake before.
+
+Ask if she apologized after the mistake.
+
+Ask if they explained what happened.
+
+Ask whether he wrote down the lesson.
+
+Ask whether she did something differently next time.
+
+Ask about what he did yesterday.
+
+Ask about where she went yesterday.
+
+Ask about what they ate last night.
+
+Ask about what he watched last night.
+
+Ask about why she was late yesterday.
+
+Ask about how they got home last night.
+
+Ask about who he met yesterday.
+
+Ask about what she bought yesterday.
+
+Ask about what they said in the meeting yesterday.
+
+Ask about what he fixed yesterday.
+
+Ask whether he worked yesterday.
+
+Ask if she studied yesterday.
+
+Ask if they cooked dinner yesterday.
+
+Ask if he called yesterday.
+
+Ask if she replied yesterday.
+
+Ask whether they went out last night.
+
+Ask how well he slept last night.
+
+Ask whether she practiced English yesterday.
+
+Ask if they cleaned their house yesterday.
+
+Ask what happened yesterday.

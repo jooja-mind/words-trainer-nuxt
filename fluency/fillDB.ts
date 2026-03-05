@@ -35,6 +35,18 @@ async function main() {
     'present_simple_500_questions.txt': {
       skillName: 'Present Simple',
       evaluationPromptPath: 'skills/present_simple_prompt.txt'
+    },
+    'question_building_present_500_questions.txt': {
+      skillName: 'Question Building Present',
+      evaluationPromptPath: 'skills/question_building_present_prompt.txt'
+    },
+    'question_building_past_500_questions.txt': {
+      skillName: 'Question Building Past',
+      evaluationPromptPath: 'skills/question_building_past_prompt.txt'
+    },
+    'question_building_future_500_questions.txt': {
+      skillName: 'Question Building Future',
+      evaluationPromptPath: 'skills/question_building_future_prompt.txt'
     }
   };
 

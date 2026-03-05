@@ -1,0 +1,999 @@
+Ask morning routine.
+
+Ask breakfast.
+
+Ask lunch time.
+
+Ask evening routine.
+
+Ask bedtime habit.
+
+Ask weekend routine.
+
+Ask workday routine.
+
+Ask morning drink.
+
+Ask daily walk.
+
+Ask after-work habit.
+
+Ask phone checking habit.
+
+Ask reading habit.
+
+Ask exercise habit.
+
+Ask study habit.
+
+Ask coffee habit.
+
+Ask tea habit.
+
+Ask sleep schedule.
+
+Ask shower routine.
+
+Ask commute routine.
+
+Ask night routine.
+
+Ask what he eats for breakfast.
+
+Ask what she eats for lunch.
+
+Ask what they cook for dinner.
+
+Ask what he drinks in the morning.
+
+Ask what she drinks at work.
+
+Ask what they snack on.
+
+Ask what he orders at a cafe.
+
+Ask what she keeps in the fridge.
+
+Ask what they bake on weekends.
+
+Ask what he avoids eating.
+
+Ask what she buys at the grocery store.
+
+Ask what they drink with dinner.
+
+Ask what he eats when he is hungry.
+
+Ask what she cooks when she is busy.
+
+Ask what they like to eat at home.
+
+Ask if he likes spicy food.
+
+Ask if she drinks tea every day.
+
+Ask if they cook often.
+
+Ask whether he eats fruit in the morning.
+
+Ask whether she orders delivery often.
+
+Ask about his room.
+
+Ask her kitchen.
+
+Ask their bathroom.
+
+Ask his desk.
+
+Ask her bed area.
+
+Ask their closet.
+
+Ask his shelf.
+
+Ask her window area.
+
+Ask their front door area.
+
+Ask his living room.
+
+Ask what he keeps on the table.
+
+Ask what she cleans most often.
+
+Ask what they do in the kitchen.
+
+Ask what he fixes at home.
+
+Ask what she organizes in the house.
+
+Ask where she keeps her keys.
+
+Ask where they put their shoes.
+
+Ask if he cleans his room often.
+
+Ask if she makes the bed in the morning.
+
+Ask whether they keep plants at home.
+
+Ask about his job.
+
+Ask her workday.
+
+Ask their meetings.
+
+Ask his emails.
+
+Ask her tasks.
+
+Ask their schedule.
+
+Ask his project workflow.
+
+Ask her reporting habit.
+
+Ask their team communication.
+
+Ask his work tools.
+
+Ask where she works.
+
+Ask where they keep project files.
+
+Ask how he starts a difficult task.
+
+Ask how she organizes her workday.
+
+Ask why they use that tool.
+
+Ask if he works from home.
+
+Ask if she has meetings every day.
+
+Ask if they use chat at work.
+
+Ask whether he checks email often.
+
+Ask whether she writes reports regularly.
+
+Ask his English practice.
+
+Ask her study habit.
+
+Ask their learning routine.
+
+Ask his notebook use.
+
+Ask her reading habit.
+
+Ask their review habit.
+
+Ask his grammar practice.
+
+Ask her speaking practice.
+
+Ask their listening practice.
+
+Ask his vocabulary habit.
+
+Ask where she studies.
+
+Ask where they keep their notes.
+
+Ask how he remembers new words.
+
+Ask how she practices speaking.
+
+Ask why they study English.
+
+Ask if he practices every day.
+
+Ask if she reads in English often.
+
+Ask if they use flashcards.
+
+Ask whether he reviews old lessons.
+
+Ask whether she records her voice.
+
+Ask his favorite app.
+
+Ask her phone use.
+
+Ask their internet habits.
+
+Ask his laptop use.
+
+Ask her cloud storage.
+
+Ask their search habits.
+
+Ask his video call setup.
+
+Ask her update routine.
+
+Ask their automation habits.
+
+Ask his backup routine.
+
+Ask where she keeps important files.
+
+Ask where they store passwords.
+
+Ask how he organizes browser tabs.
+
+Ask how she uses AI tools.
+
+Ask why they prefer that app.
+
+Ask if he uses a laptop every day.
+
+Ask if she checks notifications often.
+
+Ask if they use cloud storage.
+
+Ask whether he charges his phone at night.
+
+Ask whether she updates apps automatically.
+
+Ask his favorite hobby.
+
+Ask her free time.
+
+Ask their weekend activities.
+
+Ask his reading for fun.
+
+Ask her evening hobby.
+
+Ask their music habits.
+
+Ask his after-work activities.
+
+Ask her quiet evenings.
+
+Ask their boredom routine.
+
+Ask his solo activities.
+
+Ask where she goes on weekends.
+
+Ask where they relax after work.
+
+Ask how he spends a free evening.
+
+Ask how she relaxes at home.
+
+Ask why they enjoy that hobby.
+
+Ask if he watches movies often.
+
+Ask if she plays games on weekends.
+
+Ask if they read before bed.
+
+Ask whether he goes for walks often.
+
+Ask whether she listens to music every day.
+
+Ask his favorite food.
+
+Ask her favorite drink.
+
+Ask their favorite music.
+
+Ask his favorite movies.
+
+Ask her preferred weather.
+
+Ask their favorite places.
+
+Ask his favorite type of work.
+
+Ask her favorite books.
+
+Ask their preferred games.
+
+Ask his favorite time of day.
+
+Ask where she prefers to work.
+
+Ask where they like to eat out.
+
+Ask how he likes his coffee.
+
+Ask how she likes to spend weekends.
+
+Ask why they prefer tea over coffee.
+
+Ask if he likes quiet places.
+
+Ask if she prefers mornings or evenings.
+
+Ask if they enjoy big cities.
+
+Ask whether he likes working alone.
+
+Ask whether she prefers simple routines.
+
+Ask who he talks to most often.
+
+Ask who she spends the most time with.
+
+Ask who they call every week.
+
+Ask who he asks for help.
+
+Ask who she meets on weekends.
+
+Ask what they talk about with friends.
+
+Ask what he does with his family.
+
+Ask what she does for her partner.
+
+Ask what they do together in the evening.
+
+Ask what he says when he greets people.
+
+Ask where she meets her friends.
+
+Ask where they spend time together.
+
+Ask how he helps people close to him.
+
+Ask how she shows care.
+
+Ask why they enjoy spending time together.
+
+Ask if he calls his parents often.
+
+Ask if she sees her friends every week.
+
+Ask if they spend weekends together.
+
+Ask whether he texts his friends every day.
+
+Ask whether she talks to her family often.
+
+Ask what he does to stay healthy.
+
+Ask what she eats for more energy.
+
+Ask what they do when they feel tired.
+
+Ask what he drinks after exercise.
+
+Ask what she does before sleep.
+
+Ask what they do to relax.
+
+Ask which foods he avoids eating.
+
+Ask what she does on stressful days.
+
+Ask what they do for short breaks.
+
+Ask what he does with low energy.
+
+Ask where she goes for walks.
+
+Ask where they exercise.
+
+Ask how he relaxes after work.
+
+Ask how she reduces stress.
+
+Ask why they try to sleep early.
+
+Ask if he exercises every week.
+
+Ask if she drinks enough water.
+
+Ask if they sleep well.
+
+Ask whether he takes breaks during work.
+
+Ask whether she stretches in the morning.
+
+Ask what he does on rainy days.
+
+Ask what she wears in cold weather.
+
+Ask what they do on hot days.
+
+Ask what he likes about spring.
+
+Ask what she enjoys in summer.
+
+Ask what they do in winter evenings.
+
+Ask what he keeps with him when it rains.
+
+Ask what she drinks on hot days.
+
+Ask what they do when it is windy.
+
+Ask what he watches during bad weather.
+
+Ask where she goes on sunny days.
+
+Ask where they stay when it rains.
+
+Ask how he feels in cold weather.
+
+Ask how she prepares for winter.
+
+Ask why they like autumn.
+
+Ask if he likes rainy weather.
+
+Ask if she wears a coat in winter.
+
+Ask if they stay home on stormy days.
+
+Ask whether he opens the window in summer.
+
+Ask whether she carries an umbrella in spring.
+
+Ask what he does at the airport.
+
+Ask what she packs for trips.
+
+Ask what they do at hotels.
+
+Ask what he visits in new cities.
+
+Ask what she checks before traveling.
+
+Ask what they carry in their bags.
+
+Ask what he does on the train.
+
+Ask what she does in cafes while traveling.
+
+Ask what they look for in a hotel.
+
+Ask what he buys at markets.
+
+Ask where she likes to travel.
+
+Ask where they stay on trips.
+
+Ask how he gets around the city.
+
+Ask how she prepares for travel.
+
+Ask why they like visiting new places.
+
+Ask if he likes train travel.
+
+Ask if she travels often.
+
+Ask if they visit parks in new cities.
+
+Ask whether he packs light.
+
+Ask whether she checks the map often.
+
+Ask what he buys every week.
+
+Ask what she looks for before buying clothes.
+
+Ask what they order online.
+
+Ask what he compares before a purchase.
+
+Ask what she usually buys at the grocery store.
+
+Ask what they keep on shopping lists.
+
+Ask what he avoids buying.
+
+Ask what she checks before paying.
+
+Ask what they buy for the house.
+
+Ask what he buys for work.
+
+Ask where she shops for food.
+
+Ask where they buy clothes.
+
+Ask how he chooses a product.
+
+Ask how she saves money while shopping.
+
+Ask why they buy things online.
+
+Ask if he shops online often.
+
+Ask if she compares prices.
+
+Ask if they buy fresh food every week.
+
+Ask whether he reads reviews before buying.
+
+Ask whether she uses a shopping list.
+
+Ask what he keeps on his desk.
+
+Ask what she has in her bag.
+
+Ask what they keep near the bed.
+
+Ask what he uses every day.
+
+Ask what she carries with her.
+
+Ask what they keep in the kitchen.
+
+Ask what he leaves on the table.
+
+Ask what she stores in drawers.
+
+Ask what they put on shelves.
+
+Ask what he checks before leaving home.
+
+Ask where she keeps her phone.
+
+Ask where they put their keys.
+
+Ask how he organizes small items.
+
+Ask how she keeps her desk tidy.
+
+Ask why they keep that item nearby.
+
+Ask if he keeps water on the desk.
+
+Ask if she carries a charger in her bag.
+
+Ask if they use notebooks often.
+
+Ask whether he leaves his phone on the table.
+
+Ask whether she keeps a bottle near her.
+
+Ask what his room looks like.
+
+Ask what her desk looks like.
+
+Ask what their kitchen looks like.
+
+Ask what his neighborhood looks like.
+
+Ask what her workspace looks like.
+
+Ask what their favorite cafe looks like.
+
+Ask what he notices first in a room.
+
+Ask what she sees from the window.
+
+Ask what they keep near the door.
+
+Ask what he likes in his room.
+
+Ask where she puts decorative things.
+
+Ask where they keep the most useful items.
+
+Ask how he arranges things on the desk.
+
+Ask how she keeps the room comfortable.
+
+Ask why they like that space.
+
+Ask if his room feels cozy.
+
+Ask if her desk is organized.
+
+Ask if they keep many things on shelves.
+
+Ask whether he changes his room often.
+
+Ask whether she likes simple spaces.
+
+Ask what he does after work.
+
+Ask where she usually studies.
+
+Ask when they eat dinner.
+
+Ask why he drinks coffee.
+
+Ask how she learns new words.
+
+Ask who they talk to at work.
+
+Ask what he watches at night.
+
+Ask where she keeps her notebook.
+
+Ask when they start work.
+
+Ask why he goes for walks.
+
+Ask how she organizes tasks.
+
+Ask who they call on weekends.
+
+Ask what he needs for class.
+
+Ask where she buys groceries.
+
+Ask when they check messages.
+
+Ask why he likes that app.
+
+Ask how she relaxes in the evening.
+
+Ask who they meet after work.
+
+Ask what he carries in his bag.
+
+Ask where she works best.
+
+Ask if he likes coffee.
+
+Ask if she works from home.
+
+Ask if they cook every day.
+
+Ask if he studies English now.
+
+Ask if she uses a laptop at work.
+
+Ask if they watch movies on weekends.
+
+Ask if he drinks tea in the morning.
+
+Ask if she checks her phone often.
+
+Ask if they go for walks at night.
+
+Ask if he keeps notes in a notebook.
+
+Ask whether she likes rainy weather.
+
+Ask whether they use AI tools.
+
+Ask whether he reads before bed.
+
+Ask whether she drives to work.
+
+Ask whether they eat breakfast every day.
+
+Ask if he keeps a charger in his bag.
+
+Ask if she studies at home.
+
+Ask if they buy food online.
+
+Ask whether he plays games in the evening.
+
+Ask whether she prefers tea to coffee.
+
+Ask what he cooks for dinner.
+
+Ask what she puts in a salad.
+
+Ask what they keep in the fridge.
+
+Ask what he uses to cut vegetables.
+
+Ask what she drinks with breakfast.
+
+Ask what desserts they bake on weekends.
+
+Ask what he makes when he has little time.
+
+Ask what she eats with tea.
+
+Ask what they wash after dinner.
+
+Ask what he does before cooking.
+
+Ask where she keeps spices.
+
+Ask where they put clean plates.
+
+Ask how he makes soup.
+
+Ask how she cooks eggs.
+
+Ask why they cook at home.
+
+Ask if he cooks every day.
+
+Ask if she uses the oven often.
+
+Ask if they eat dinner late.
+
+Ask whether he drinks water with meals.
+
+Ask whether she keeps fruit in the kitchen.
+
+Ask what he does first at work.
+
+Ask what she checks before starting a task.
+
+Ask what they do when they get stuck.
+
+Ask what he writes down during meetings.
+
+Ask what she reviews before sending an email.
+
+Ask what they repeat every morning.
+
+Ask what he does when he needs focus.
+
+Ask what she does during short breaks.
+
+Ask what they do before ending the day.
+
+Ask what he avoids during work hours.
+
+Ask where she keeps task lists.
+
+Ask where they store work documents.
+
+Ask how he plans his day.
+
+Ask how she stays organized.
+
+Ask why they use that routine.
+
+Ask if he plans tasks in the morning.
+
+Ask if she uses reminders.
+
+Ask if they take short breaks often.
+
+Ask whether he checks progress during the day.
+
+Ask whether she finishes work at the same time every day.
+
+Ask what he practices in English.
+
+Ask what she says when she needs time to think.
+
+Ask what they do when they forget a word.
+
+Ask what he repeats out loud.
+
+Ask what she records during practice.
+
+Ask what they focus on first.
+
+Ask what he finds hardest in speaking.
+
+Ask what she finds easiest in speaking.
+
+Ask what they use to practice pronunciation.
+
+Ask what he does after making a mistake.
+
+Ask where she practices speaking.
+
+Ask where they write useful phrases.
+
+Ask how he remembers sentence patterns.
+
+Ask how she improves fluency.
+
+Ask why they practice every day.
+
+Ask if he speaks English every day.
+
+Ask if she records her answers.
+
+Ask if they repeat corrected sentences.
+
+Ask whether he practices with questions.
+
+Ask whether she tries to answer quickly.
+
+Ask what he does when he wakes up too early.
+
+Ask what she does when she cannot sleep.
+
+Ask what they do when they lose focus.
+
+Ask what he does when he feels hungry at work.
+
+Ask what she does when someone interrupts her.
+
+Ask what they do when the internet is slow.
+
+Ask what he does when he feels cold at home.
+
+Ask what she does when she has ten minutes free.
+
+Ask what they do when they want silence.
+
+Ask what he does when he feels stressed.
+
+Ask where she goes when she needs quiet.
+
+Ask where they take short breaks.
+
+Ask how he calms down quickly.
+
+Ask how she gets back to work after a break.
+
+Ask why they change plans sometimes.
+
+Ask if he drinks water when he is tired.
+
+Ask if she stands up during breaks.
+
+Ask if they turn off notifications while working.
+
+Ask whether he takes a walk when stressed.
+
+Ask whether she listens to music when she needs focus.
+
+Ask what he usually notices first in a room.
+
+Ask what she usually does when a day starts badly.
+
+Ask what they usually do when plans change.
+
+Ask what he usually says when he greets someone.
+
+Ask what she usually checks first on her phone.
+
+Ask what they usually do on quiet evenings.
+
+Ask what he usually buys every week.
+
+Ask what she usually avoids eating.
+
+Ask what they usually talk about with friends.
+
+Ask what he usually does when he needs motivation.
+
+Ask where she usually sits when she works.
+
+Ask where they usually go on weekends.
+
+Ask how he usually chooses what to do first.
+
+Ask how she usually explains difficult things.
+
+Ask why they usually wake up early.
+
+Ask if he usually works in the morning.
+
+Ask if she usually makes lists.
+
+Ask if they usually eat at home.
+
+Ask whether he usually finishes tasks early.
+
+Ask whether she usually studies in the evening.
+
+Ask what he does every morning.
+
+Ask what she drinks every day.
+
+Ask what they wear in winter.
+
+Ask what he reads before bed.
+
+Ask what she listens to while working.
+
+Ask what they buy every week.
+
+Ask what he uses for work.
+
+Ask what she keeps in her bag.
+
+Ask what they do after dinner.
+
+Ask what he studies now as a regular habit.
+
+Ask where she works as a usual place.
+
+Ask where they eat lunch on workdays.
+
+Ask how he starts his usual workday.
+
+Ask how she usually learns new words.
+
+Ask why they take breaks during work.
+
+Ask if he drinks coffee every morning.
+
+Ask if she uses the same app every day.
+
+Ask if they go to the same cafe often.
+
+Ask whether he checks messages regularly.
+
+Ask whether she practices English daily.
+
+Ask about bun ingredients.
+
+Ask what he does at his job.
+
+Ask about her daily routine.
+
+Ask about their favorite drink.
+
+Ask about his breakfast.
+
+Ask about her evening routine.
+
+Ask about their work schedule.
+
+Ask about his study habits.
+
+Ask about her favorite app.
+
+Ask about their weekend routine.
+
+Ask about his coffee habit.
+
+Ask about her favorite food.
+
+Ask about their exercise routine.
+
+Ask what his room is like.
+
+Ask about her desk setup.
+
+Ask if he likes tea.
+
+Ask if she works at home.
+
+Ask how often they cook.
+
+Ask whether he studies English every day.
+
+Ask whether she goes to bed late.
+
+Ask what he does after waking up.
+
+Ask what she does before going to sleep.
+
+Ask what they do during lunch breaks.
+
+Ask what he uses at work every day.
+
+Ask what she studies in the evening.
+
+Ask what they drink in the afternoon.
+
+Ask what he keeps on his phone.
+
+Ask what she writes in her notebook.
+
+Ask what they buy on weekends.
+
+Ask what he watches online.
+
+Ask where she relaxes after work.
+
+Ask where they usually eat dinner.
+
+Ask how he starts conversations.
+
+Ask how she chooses what to study.
+
+Ask why they prefer simple routines.
+
+Ask if he checks his phone in the morning.
+
+Ask if she drinks coffee at work.
+
+Ask if they cook dinner at home.
+
+Ask whether he reads English every day.
+
+Ask whether she takes notes in class.

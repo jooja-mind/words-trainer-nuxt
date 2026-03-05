@@ -1,0 +1,999 @@
+Ask what he will do tomorrow.
+
+Ask what she will eat tomorrow.
+
+Ask what they will work on tomorrow.
+
+Ask where he will go tomorrow.
+
+Ask where she will be tomorrow morning.
+
+Ask when they will start tomorrow.
+
+Ask when he will wake up tomorrow.
+
+Ask why she will stay home tomorrow.
+
+Ask why they will leave early tomorrow.
+
+Ask how he will get to work tomorrow.
+
+Ask who she will meet tomorrow.
+
+Ask who they will call tomorrow.
+
+Ask if he will work tomorrow.
+
+Ask if she will cook tomorrow.
+
+Ask if they will study tomorrow.
+
+Ask whether he will drink coffee tomorrow morning.
+
+Ask whether she will exercise tomorrow.
+
+Ask whether they will go out tomorrow night.
+
+Ask what he will buy tomorrow.
+
+Ask what she will wear tomorrow.
+
+Ask what he will do next week.
+
+Ask what she will work on next week.
+
+Ask what they will learn next week.
+
+Ask where he will go next week.
+
+Ask where she will travel next week.
+
+Ask when they will start the project next week.
+
+Ask when he will take a break next week.
+
+Ask why she will change her routine next week.
+
+Ask why they will meet next week.
+
+Ask how he will organize next week.
+
+Ask who she will work with next week.
+
+Ask who they will meet next week.
+
+Ask if he will have many meetings next week.
+
+Ask if she will work from home next week.
+
+Ask if they will cook at home next week.
+
+Ask whether he will exercise next week.
+
+Ask whether she will practice English next week.
+
+Ask whether they will visit friends next week.
+
+Ask what he will buy next week.
+
+Ask what she will watch next week.
+
+Ask what he will do next weekend.
+
+Ask what she will do next weekend.
+
+Ask what they will do next weekend.
+
+Ask where he will go next weekend.
+
+Ask where she will go next weekend.
+
+Ask when they will come back next weekend.
+
+Ask why he will stay home next weekend.
+
+Ask why she will go out next weekend.
+
+Ask how they will spend Sunday next weekend.
+
+Ask who he will meet next weekend.
+
+Ask what she will cook next weekend.
+
+Ask what they will watch next weekend.
+
+Ask if he will go for a walk next weekend.
+
+Ask if she will visit a cafe next weekend.
+
+Ask if they will watch a movie next weekend.
+
+Ask whether he will sleep late next weekend.
+
+Ask whether she will study on Sunday next weekend.
+
+Ask whether they will clean the house next weekend.
+
+Ask what he will buy next weekend.
+
+Ask what she will read next weekend.
+
+Ask what he will do later today.
+
+Ask what she will eat later today.
+
+Ask what they will talk about later today.
+
+Ask where he will go later today.
+
+Ask where she will be later today.
+
+Ask when they will start later today.
+
+Ask when he will finish work later today.
+
+Ask why she will stay busy later today.
+
+Ask why they will go out later today.
+
+Ask how he will get home later today.
+
+Ask who she will call later today.
+
+Ask who they will meet later today.
+
+Ask if he will work later today.
+
+Ask if she will send a message later today.
+
+Ask if they will have dinner together later today.
+
+Ask whether he will drink tea later today.
+
+Ask whether she will study later today.
+
+Ask whether they will leave home later today.
+
+Ask what he will buy later today.
+
+Ask what she will do after work later today.
+
+Ask what he will do tonight.
+
+Ask what she will eat tonight.
+
+Ask what they will watch tonight.
+
+Ask where he will go tonight.
+
+Ask where she will sleep tonight.
+
+Ask when they will have dinner tonight.
+
+Ask when he will go to bed tonight.
+
+Ask why she will stay up late tonight.
+
+Ask why they will meet tonight.
+
+Ask how he will relax tonight.
+
+Ask who she will see tonight.
+
+Ask who they will talk to tonight.
+
+Ask if he will cook tonight.
+
+Ask if she will study tonight.
+
+Ask if they will go out tonight.
+
+Ask whether he will watch a movie tonight.
+
+Ask whether she will read tonight.
+
+Ask whether they will order food tonight.
+
+Ask what he will drink tonight.
+
+Ask what she will wear tonight.
+
+Ask what he will do at work tomorrow.
+
+Ask what she will work on tomorrow.
+
+Ask what they will discuss in the meeting tomorrow.
+
+Ask what bug he will fix tomorrow.
+
+Ask what report she will write tomorrow.
+
+Ask where they will work tomorrow.
+
+Ask when he will finish the task tomorrow.
+
+Ask when she will join the call tomorrow.
+
+Ask why they will change the plan tomorrow.
+
+Ask how he will solve the issue tomorrow.
+
+Ask who she will meet at work tomorrow.
+
+Ask who they will email tomorrow.
+
+Ask if he will have a meeting tomorrow.
+
+Ask if she will send an email tomorrow.
+
+Ask if they will work late tomorrow.
+
+Ask whether he will check the logs tomorrow.
+
+Ask whether she will review the document tomorrow.
+
+Ask whether they will deploy tomorrow.
+
+Ask what he will learn at work tomorrow.
+
+Ask what she will complete tomorrow.
+
+Ask what he will study tomorrow.
+
+Ask what she will practice tomorrow.
+
+Ask what they will learn tomorrow.
+
+Ask what word he will learn tomorrow.
+
+Ask what grammar she will practice tomorrow.
+
+Ask where they will study tomorrow.
+
+Ask when he will start studying tomorrow.
+
+Ask when she will finish studying tomorrow.
+
+Ask why they will study tomorrow.
+
+Ask how he will practice speaking tomorrow.
+
+Ask who she will study with tomorrow.
+
+Ask who they will talk to in English tomorrow.
+
+Ask if he will review a lesson tomorrow.
+
+Ask if she will write notes tomorrow.
+
+Ask if they will practice speaking tomorrow.
+
+Ask whether he will use flashcards tomorrow.
+
+Ask whether she will watch an English video tomorrow.
+
+Ask whether they will repeat phrases tomorrow.
+
+Ask what he will focus on tomorrow.
+
+Ask what she will correct tomorrow.
+
+Ask what he will eat tomorrow.
+
+Ask what she will cook tomorrow.
+
+Ask what they will have for dinner tomorrow.
+
+Ask what he will drink tomorrow.
+
+Ask what she will order tomorrow.
+
+Ask where they will eat tomorrow.
+
+Ask when he will have lunch tomorrow.
+
+Ask when she will cook dinner tomorrow.
+
+Ask why they will eat out tomorrow.
+
+Ask how he will make coffee tomorrow.
+
+Ask who will cook dinner tomorrow.
+
+Ask who they will eat with tomorrow.
+
+Ask if he will eat breakfast tomorrow.
+
+Ask if she will drink tea tomorrow.
+
+Ask if they will cook at home tomorrow.
+
+Ask whether he will try a new food tomorrow.
+
+Ask whether she will buy groceries tomorrow.
+
+Ask whether they will order delivery tomorrow.
+
+Ask what he will buy at the store tomorrow.
+
+Ask what she will snack on tomorrow.
+
+Ask what he will do at home tomorrow.
+
+Ask what she will clean tomorrow.
+
+Ask what they will organize tomorrow.
+
+Ask what he will fix tomorrow.
+
+Ask what she will move tomorrow.
+
+Ask where they will put the keys tomorrow.
+
+Ask when he will clean the room tomorrow.
+
+Ask when she will wash dishes tomorrow.
+
+Ask why they will open the window tomorrow.
+
+Ask how he will organize his desk tomorrow.
+
+Ask who will clean the kitchen tomorrow.
+
+Ask who will do the chores tomorrow.
+
+Ask if he will wash dishes tomorrow.
+
+Ask if she will make the bed tomorrow.
+
+Ask if they will clean the house tomorrow.
+
+Ask whether he will take out the trash tomorrow.
+
+Ask whether she will do laundry tomorrow.
+
+Ask whether they will fix something tomorrow.
+
+Ask what he will look for at home tomorrow.
+
+Ask what she will change at home tomorrow.
+
+Ask what app he will use tomorrow.
+
+Ask what she will install tomorrow.
+
+Ask what they will search for tomorrow.
+
+Ask what he will fix on his laptop tomorrow.
+
+Ask what she will update tomorrow.
+
+Ask where they will save the file tomorrow.
+
+Ask when he will back up data tomorrow.
+
+Ask when she will restart the device tomorrow.
+
+Ask why they will update the app tomorrow.
+
+Ask how he will solve the tech problem tomorrow.
+
+Ask who she will message tomorrow.
+
+Ask who they are going to call tomorrow.
+
+Ask if he will update his phone tomorrow.
+
+Ask if she will restart her laptop tomorrow.
+
+Ask if they will use cloud storage tomorrow.
+
+Ask whether he will charge his phone tonight.
+
+Ask whether she will delete any files tomorrow.
+
+Ask whether they will change a password tomorrow.
+
+Ask what he will download tomorrow.
+
+Ask what she will open tomorrow.
+
+Ask what he is going to buy tomorrow.
+
+Ask what she will order online tomorrow.
+
+Ask what they will pay for tomorrow.
+
+Ask what he will compare tomorrow before buying.
+
+Ask what she will buy at the grocery store tomorrow.
+
+Ask where they will shop tomorrow.
+
+Ask when he will go shopping tomorrow.
+
+Ask when she will pay tomorrow.
+
+Ask why they will buy that item tomorrow.
+
+Ask how he will choose the product tomorrow.
+
+Ask who she will buy a gift for tomorrow.
+
+Ask who they will meet while shopping tomorrow.
+
+Ask if he will buy food tomorrow.
+
+Ask if she will buy clothes tomorrow.
+
+Ask if they will order something online tomorrow.
+
+Ask whether he will read reviews tomorrow.
+
+Ask whether she will check prices tomorrow.
+
+Ask whether they will use a shopping list tomorrow.
+
+Ask what he will replace tomorrow.
+
+Ask what she will remember to buy tomorrow.
+
+Ask where he will travel next month.
+
+Ask where she will go on her next trip.
+
+Ask what they will do on their next trip.
+
+Ask what he will pack for the trip.
+
+Ask what she will visit in the city.
+
+Ask when they will arrive at the hotel.
+
+Ask when he will leave the airport.
+
+Ask why she will choose that hotel.
+
+Ask how they will get to the city center.
+
+Ask who he will travel with.
+
+Ask who she will meet during the trip.
+
+Ask who they will call from the hotel.
+
+Ask if he will take the train on the trip.
+
+Ask if she will fly on her next trip.
+
+Ask if they will use a map.
+
+Ask whether he will pack light.
+
+Ask whether she will visit a museum.
+
+Ask whether they will eat at a restaurant.
+
+Ask what he will buy as a souvenir.
+
+Ask what she will enjoy most on the trip.
+
+Ask what he will watch tomorrow night.
+
+Ask what she will read tomorrow evening.
+
+Ask what they will play next weekend.
+
+Ask what he will listen to tomorrow.
+
+Ask what she will do for fun tomorrow.
+
+Ask where they will go for a walk tomorrow.
+
+Ask when he will play the game tomorrow.
+
+Ask when she will relax tomorrow.
+
+Ask why they will stay home tomorrow.
+
+Ask how he will relax after work tomorrow.
+
+Ask who she will meet tomorrow evening.
+
+Ask who they will talk to tomorrow.
+
+Ask if he will watch a movie tomorrow.
+
+Ask if she will listen to music tomorrow.
+
+Ask if they will play games tomorrow.
+
+Ask whether he will go for a walk tomorrow.
+
+Ask whether she will watch videos tomorrow.
+
+Ask whether they will read before bed tomorrow night.
+
+Ask what he will enjoy tomorrow.
+
+Ask what she will choose to do tomorrow.
+
+Ask who he will call tomorrow.
+
+Ask who she is going to message tomorrow.
+
+Ask who they are going to talk to tomorrow.
+
+Ask what he will say in the meeting tomorrow.
+
+Ask what she will write in the chat tomorrow.
+
+Ask what they will ask tomorrow.
+
+Ask where he will meet his friend tomorrow.
+
+Ask when she will reply tomorrow.
+
+Ask why they will call tomorrow.
+
+Ask how he will explain the problem tomorrow.
+
+Ask how she will ask for help tomorrow.
+
+Ask how they will solve the misunderstanding tomorrow.
+
+Ask if he will reply quickly tomorrow.
+
+Ask if she will send a voice message tomorrow.
+
+Ask if they will have a long call tomorrow.
+
+Ask whether he will apologize tomorrow.
+
+Ask whether she will thank someone tomorrow.
+
+Ask whether they will discuss the plan tomorrow.
+
+Ask what he will promise tomorrow.
+
+Ask what she will agree to tomorrow.
+
+Ask how he will feel tomorrow.
+
+Ask how she will feel tonight.
+
+Ask how they will feel after the meeting tomorrow.
+
+Ask what will make him happy tomorrow.
+
+Ask what will make her stressed tomorrow.
+
+Ask what will make them tired tomorrow.
+
+Ask why he will feel nervous tomorrow.
+
+Ask why she will feel excited tomorrow.
+
+Ask how they will calm down tomorrow.
+
+Ask how he will relax tomorrow evening.
+
+Ask what will improve her mood tomorrow.
+
+Ask what might ruin their mood tomorrow.
+
+Ask if he will feel tired tomorrow.
+
+Ask if she will feel stressed tomorrow.
+
+Ask if they will feel better tomorrow.
+
+Ask whether he will sleep well tonight.
+
+Ask whether she will take a break tomorrow.
+
+Ask whether they will have a calm evening tomorrow.
+
+Ask what will surprise him tomorrow.
+
+Ask what will worry her tomorrow.
+
+Ask what he will do to rest tomorrow.
+
+Ask what she will do to stay healthy next week.
+
+Ask what they will do after exercise tomorrow.
+
+Ask what he will eat to feel better tomorrow.
+
+Ask what she will drink tomorrow to wake up.
+
+Ask when they will go to bed tonight.
+
+Ask when he will take a break tomorrow.
+
+Ask why she will feel tired tomorrow.
+
+Ask how they will recover tomorrow.
+
+Ask how he will relax his back tomorrow.
+
+Ask if he will exercise tomorrow.
+
+Ask if she will drink enough water tomorrow.
+
+Ask if they will sleep well tonight.
+
+Ask whether he will stretch tomorrow.
+
+Ask whether she will walk tomorrow.
+
+Ask whether they will take breaks tomorrow.
+
+Ask what medicine he will take tomorrow.
+
+Ask what will help her sleep tonight.
+
+Ask what they will do if they feel sick tomorrow.
+
+Ask what he will avoid eating tomorrow.
+
+Ask what problem he will solve tomorrow.
+
+Ask what bug she will fix tomorrow.
+
+Ask what issue they will handle tomorrow.
+
+Ask what he will try first tomorrow.
+
+Ask what she will change tomorrow.
+
+Ask where they will look for the problem tomorrow.
+
+Ask when he will notice the issue tomorrow.
+
+Ask when she will fix it tomorrow.
+
+Ask why the problem might happen tomorrow.
+
+Ask how he will fix it tomorrow.
+
+Ask how she will find the solution tomorrow.
+
+Ask how they will prevent the issue tomorrow.
+
+Ask if he will ask for help tomorrow.
+
+Ask if she will restart the service tomorrow.
+
+Ask if they will change the plan tomorrow.
+
+Ask whether he will make the same mistake again.
+
+Ask whether she will test the fix tomorrow.
+
+Ask whether they will document the change tomorrow.
+
+Ask what he will learn from the problem tomorrow.
+
+Ask what she will do differently next time.
+
+Ask what he will do after work tomorrow.
+
+Ask where she will go after work tomorrow.
+
+Ask when they will start the call tomorrow.
+
+Ask why he will leave early tomorrow.
+
+Ask how she will get home tomorrow.
+
+Ask who they will meet at the cafe tomorrow.
+
+Ask what he will eat for dinner tomorrow night.
+
+Ask where she will buy groceries tomorrow.
+
+Ask when they will finish dinner tomorrow.
+
+Ask why they will choose that restaurant tomorrow.
+
+Ask how he will pay tomorrow.
+
+Ask who she will call tomorrow night.
+
+Ask what they will watch tomorrow night.
+
+Ask where he will sit during the meeting tomorrow.
+
+Ask when she will send the email tomorrow.
+
+Ask why they will change the schedule tomorrow.
+
+Ask how he will fix the bug tomorrow.
+
+Ask who they will speak to tomorrow.
+
+Ask what he will buy tomorrow evening.
+
+Ask where she will work tomorrow.
+
+Ask if he will go to work tomorrow.
+
+Ask if she will cook dinner tomorrow.
+
+Ask if they will study English tomorrow.
+
+Ask if he will call you tomorrow.
+
+Ask if she will buy groceries tomorrow.
+
+Ask if they will watch a movie tomorrow night.
+
+Ask if he will go for a walk tomorrow.
+
+Ask if she will work from home tomorrow.
+
+Ask whether they will clean the house tomorrow.
+
+Ask if he will drink coffee tomorrow morning.
+
+Ask whether she will send an email tomorrow.
+
+Ask whether they will have a meeting tomorrow.
+
+Ask if he will sleep well tonight.
+
+Ask whether she will take a taxi tomorrow.
+
+Ask whether they will eat out tomorrow.
+
+Ask if he will forget his keys tomorrow.
+
+Ask if she will lose track of time tomorrow.
+
+Ask if they will arrive late tomorrow.
+
+Ask whether he will fix the problem tomorrow.
+
+Ask whether she will finish the task tomorrow.
+
+Ask what he will do in two days.
+
+Ask what she will eat in two days.
+
+Ask where they will go in three days.
+
+Ask what he will buy next month.
+
+Ask what she will watch next month.
+
+Ask where they will travel next year.
+
+Ask when he will start the habit next year.
+
+Ask when she will move to that city.
+
+Ask why they will change jobs next year.
+
+Ask how he will learn that skill.
+
+Ask who she will meet next year.
+
+Ask who they will work with next month.
+
+Ask if he will visit his family next year.
+
+Ask if she will study abroad later.
+
+Ask if they will live in that city one day.
+
+Ask whether he will work late next month.
+
+Ask whether she will travel alone next year.
+
+Ask whether they will change their routine next month.
+
+Ask what he will do during the next holiday.
+
+Ask what she will do during the next vacation.
+
+Ask what he is going to do tomorrow.
+
+Ask what she is going to study next week.
+
+Ask what they are going to cook tonight.
+
+Ask where he is going to go tomorrow.
+
+Ask where she is going to stay next weekend.
+
+Ask when they are going to start.
+
+Ask when he is going to leave home tomorrow.
+
+Ask why she is going to change her routine.
+
+Ask why they are going to meet tomorrow.
+
+Ask how he is going to prepare.
+
+Ask who she is going to meet tomorrow.
+
+Ask who they are going to call later today.
+
+Ask if he is going to work tomorrow.
+
+Ask if she is going to cook tonight.
+
+Ask if they are going to study later today.
+
+Ask whether he is going to buy a new laptop.
+
+Ask whether she is going to practice English tomorrow.
+
+Ask whether they are going to travel next month.
+
+Ask what he is going to focus on tomorrow.
+
+Ask what she is going to wear tonight.
+
+Ask what he will do next year.
+
+Ask what she will learn next year.
+
+Ask what they will work on next year.
+
+Ask where he will travel next year.
+
+Ask where she will live next year.
+
+Ask when they will start that project next year.
+
+Ask when he will change jobs.
+
+Ask why she will start learning a new skill.
+
+Ask why they will move next year.
+
+Ask how he will improve his skills next year.
+
+Ask who she will work with next year.
+
+Ask who they will meet next year.
+
+Ask if he will travel a lot next year.
+
+Ask if she will study a new skill next year.
+
+Ask if they will change their routine next year.
+
+Ask whether he will work remotely next year.
+
+Ask whether she will visit family next year.
+
+Ask whether they will buy something big next year.
+
+Ask what he will achieve next year.
+
+Ask what she will enjoy most next year.
+
+Ask what job he will have in the future.
+
+Ask what she will do after this job.
+
+Ask what they will try for the first time next.
+
+Ask where he will work in the future.
+
+Ask where she will live in the future.
+
+Ask when they will meet again.
+
+Ask when he will start his next role.
+
+Ask why she will change careers.
+
+Ask why they will choose that path.
+
+Ask how he will learn the new skill.
+
+Ask who will help her at the start.
+
+Ask who they will learn from next.
+
+Ask if he will have a hard interview soon.
+
+Ask if she will take an exam soon.
+
+Ask if they will make a big change soon.
+
+Ask whether he will travel alone one day.
+
+Ask whether she will work abroad one day.
+
+Ask whether they will live in another country one day.
+
+Ask what he will learn from the next experience.
+
+Ask what she will change in the future.
+
+Ask what mistake he might make tomorrow.
+
+Ask what mistake she might make next week.
+
+Ask what mistake they might make next month.
+
+Ask what he will learn if that happens.
+
+Ask what she will learn from the next situation.
+
+Ask what they will change after that.
+
+Ask why he might make that mistake.
+
+Ask why she might miss the deadline.
+
+Ask why they might forget the plan.
+
+Ask how he will fix the mistake.
+
+Ask how she will correct the error.
+
+Ask how they will avoid the same problem next time.
+
+Ask who will help him fix it.
+
+Ask who will help her understand it.
+
+Ask who they will ask for advice.
+
+Ask if he will repeat the same mistake again.
+
+Ask if she will apologize if she is wrong.
+
+Ask if they will explain what happened.
+
+Ask whether he will write down the lesson.
+
+Ask whether she will do something differently next time.
+
+Ask about what he will do tomorrow.
+
+Ask about where she will go tomorrow.
+
+Ask about what they will eat tomorrow night.
+
+Ask about what he will watch tomorrow night.
+
+Ask about why she will be late tomorrow.
+
+Ask about how they will get home tomorrow night.
+
+Ask about who he will meet tomorrow.
+
+Ask about what she will buy tomorrow.
+
+Ask about what they will say in the meeting tomorrow.
+
+Ask about what he will fix tomorrow.
+
+Ask whether he will work tomorrow.
+
+Ask if she will study tomorrow.
+
+Ask if they will cook dinner tomorrow.
+
+Ask if he will call tomorrow.
+
+Ask if she will reply tomorrow.
+
+Ask if they will go out tomorrow night.
+
+Ask how well he will sleep tonight.
+
+Ask whether she will practice English tomorrow.
+
+Ask if they will clean their house tomorrow.
+
+Ask what will happen tomorrow.

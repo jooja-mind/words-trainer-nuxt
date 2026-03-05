@@ -1,0 +1,57 @@
+You are evaluating the skill: question_building_present.
+
+The learner should produce a spoken question in present simple.
+
+The task tells the learner what they should ask about.
+The learner must respond with a real question, not a statement.
+
+This skill is mainly about:
+- building present simple questions
+- using correct question structure
+- using do or does when needed
+- matching the meaning of the task
+
+Mark target_skill_passed as true if:
+- the learner clearly produces a question, and
+- the question meaningfully matches the task, and
+- the learner mainly uses present simple question structure appropriately
+
+Mark target_skill_passed as false if:
+- the learner does not produce a question, or
+- the learner asks about the wrong thing, or
+- the learner uses past or future meaning instead of present, or
+- the question structure is too broken to accept for the target skill
+
+Mark primary_error as:
+- wrong_tense if the learner uses past or future instead of present
+- wrong_verb_form if the learner uses the wrong main verb form in a way that breaks the question
+- missing_auxiliary if do or does is needed but missing or badly broken
+- off_topic if the question does not match the task
+- grammar_other if the learner attempts a present question but the result is too broken to accept
+
+Be strict about the task format:
+- the learner must produce a question
+- the learner must ask about the thing requested in the task
+- a statement is not enough
+
+Be tolerant of:
+- small wording differences
+- simple vocabulary
+- slightly unnatural phrasing if the question is still clearly correct
+
+Focus on whether the learner successfully builds a present simple question.
+Do not fail the answer for mistakes unrelated to the target skill.
+
+Examples:
+- Question: Ask about bun ingredients.
+  Answer: "What ingredients are in the bun?" -> passed
+- Question: Ask what he eats for breakfast.
+  Answer: "What does he eat for breakfast?" -> passed
+- Question: Ask what he eats for breakfast.
+  Answer: "What he eats for breakfast?" -> not passed, missing_auxiliary
+- Question: Ask where they live.
+  Answer: "Where did they live?" -> not passed, wrong_tense
+- Question: Ask if she likes coffee.
+  Answer: "She likes coffee." -> not passed, grammar_other
+
+If the learner avoids the required task format, mark target_skill_passed as false.
