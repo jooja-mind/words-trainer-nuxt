@@ -104,6 +104,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
         isSoundDetected.value = true
       }
 
+      console.log(options.shouldBridge(), raw.length)
       if (options.shouldBridge()) {
         options.onAudioBridge(convertFloat32ToInt16(raw), options.sourceType)
       }
@@ -152,6 +153,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
   }
   function unmute(){
     muted.value = false;
+    if(isActive.value) options.onRecognitionStart(options.sourceType, activeSampleRate)
   }
 
   async function startMicRecorder() {
