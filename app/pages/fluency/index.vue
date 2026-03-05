@@ -228,6 +228,17 @@ function backToWelcome(){
   screen.value = 'welcome';
 }
 
+let liveText = computed(()=>{
+  let countWords = state.mic.liveText.trim().split(/\s+/).length;
+  if(countWords <= 1) return "";
+  return state.mic.liveText;
+});
+let finalizedText = computed(()=>{
+  let countWords = state.mic.finalText.trim().split(/\s+/).length;
+  if(countWords <= 1) return "";
+  return state.mic.finalText;
+});
+
 onMounted(()=>{
   loadSkills()
   if(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'){
@@ -262,9 +273,9 @@ onUnmounted(() => {
           <div class="skillName">{{ question.skill.name }}</div>
           <p class="questionText">{{ question.text }}</p>
           <div class="speaking">
-            <div class="live" v-if="!!state.mic.liveText">{{ state.mic.liveText }}</div>
-            <div class="final" v-if="!state.mic.liveText && lastFinalized">{{ lastFinalized.text }}</div>
-            <div class="empty shimmer" v-if="!state.mic.liveText && !lastFinalized">
+            <div class="live" v-if="!!liveText">{{ liveText }}</div>
+            <div class="final" v-if="!liveText && finalizedText">{{ finalizedText }}</div>
+            <div class="empty shimmer" v-if="!liveText && !finalizedText">
               Start speaking...
             </div>
           </div>
