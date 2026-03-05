@@ -1,7 +1,5 @@
 import { arrayBufferToBase64, resamplePcm16 } from '@/composables/stt/audioUtils'
 
-type ElevenLabsSourceType = 'mic' | 'screen'
-
 type ElevenLabsCloseMeta = {
   code: number
   reason: string
@@ -9,10 +7,10 @@ type ElevenLabsCloseMeta = {
 }
 
 type ElevenLabsRealtimeCallbacks = {
-  onLiveTranscript: (sourceType: ElevenLabsSourceType, text: string) => void
-  onFinalTranscript: (sourceType: ElevenLabsSourceType, text: string) => void
-  onError: (sourceType: ElevenLabsSourceType, message: string) => void
-  onClose: (sourceType: ElevenLabsSourceType, meta: ElevenLabsCloseMeta) => void
+  onLiveTranscript: (text: string) => void
+  onFinalTranscript: (text: string) => void
+  onError: (message: string) => void
+  onClose: (meta: ElevenLabsCloseMeta) => void
 }
 
 type ElevenLabsCommitStrategy = 'manual' | 'vad'
@@ -34,14 +32,12 @@ type ElevenLabsConnection = {
 }
 
 type StartParams = {
-  sourceType: ElevenLabsSourceType
   credential: string
   sampleRate: number
   languageCode?: string | null
 }
 
 type SendAudioParams = {
-  sourceType: ElevenLabsSourceType
   b16int: ArrayBuffer
 }
 
@@ -70,25 +66,21 @@ function toStringOrEmpty(value: unknown): string {
 }
 
 function emitError(
-  sourceType: ElevenLabsSourceType,
   payload: ElevenLabsEventPayload,
   callbacks: ElevenLabsRealtimeCallbacks,
 ) {
   const directError = toStringOrEmpty(payload.error)
   const message = toStringOrEmpty(payload.message)
   const fallbackText = toStringOrEmpty(payload.message_type) || 'ElevenLabs realtime error'
-  callbacks.onError(sourceType, directError || message || fallbackText)
+  callbacks.onError(directError || message || fallbackText)
 }
 
 export function createElevenLabsRealtimeClient(
   callbacks: ElevenLabsRealtimeCallbacks,
   options: ElevenLabsRealtimeOptions = {},
 ) {
-  const connections: Partial<Record<ElevenLabsSourceType, ElevenLabsConnection>> = {}
-  const startVersionBySource: Record<ElevenLabsSourceType, number> = {
-    mic: 0,
-    screen: 0,
-  }
+  let connection: ElevenLabsConnection | null = null
+  let startVersion = 0;
 
   const wsEndpoint = options.wsEndpoint ?? DEFAULT_WS_ENDPOINT
   const modelId = options.modelId ?? DEFAULT_MODEL_ID
@@ -97,14 +89,11 @@ export function createElevenLabsRealtimeClient(
   const targetSampleRate = Math.max(1, Math.trunc(options.targetSampleRate ?? DEFAULT_TARGET_SAMPLE_RATE))
   const maxBufferedMessages = Math.max(1, options.maxBufferedMessages ?? DEFAULT_MAX_BUFFERED_MESSAGES)
 
-  function clearConnection(sourceType: ElevenLabsSourceType) {
-    const connection = connections[sourceType]
-    if (!connection) {
-      return
-    }
+  function clearConnection() {
+    if (!connection) return
 
     connection.queue.length = 0
-    delete connections[sourceType]
+    connection = null
   }
 
   function enqueueMessage(connection: ElevenLabsConnection, payload: string) {
@@ -123,8 +112,7 @@ export function createElevenLabsRealtimeClient(
     connection.queue.push(payload)
   }
 
-  function flushQueue(sourceType: ElevenLabsSourceType) {
-    const connection = connections[sourceType]
+  function flushQueue() {
     if (!connection || connection.ws.readyState !== WebSocket.OPEN) {
       return
     }
@@ -142,7 +130,7 @@ export function createElevenLabsRealtimeClient(
     enqueueMessage(connection, JSON.stringify(payload))
   }
 
-  function handleElevenLabsMessage(sourceType: ElevenLabsSourceType, rawPayload: string) {
+  function handleElevenLabsMessage(rawPayload: string) {
     const payload = safeJsonParse(rawPayload)
     if (!payload) {
       return
@@ -158,7 +146,7 @@ export function createElevenLabsRealtimeClient(
       if (!partialText) {
         return
       }
-      callbacks.onLiveTranscript(sourceType, partialText)
+      callbacks.onLiveTranscript(partialText)
       return
     }
 
@@ -170,22 +158,21 @@ export function createElevenLabsRealtimeClient(
       if (!finalText) {
         return
       }
-      callbacks.onFinalTranscript(sourceType, finalText)
+      callbacks.onFinalTranscript(finalText)
       return
     }
 
     if (messageType.includes('error')) {
-      emitError(sourceType, payload, callbacks)
+      emitError(payload, callbacks)
     }
   }
 
-  async function start({ sourceType, credential, sampleRate, languageCode }: StartParams) {
-    if (connections[sourceType]) {
+  async function start({ credential, sampleRate, languageCode }: StartParams) {
+    if (!!connection) {
       return
     }
 
-    startVersionBySource[sourceType] += 1
-    const startVersion = startVersionBySource[sourceType]
+    startVersion += 1
 
     const wsUrl = new URL(wsEndpoint)
     wsUrl.searchParams.set('token', credential)
@@ -200,54 +187,53 @@ export function createElevenLabsRealtimeClient(
 
     const ws = new WebSocket(wsUrl.toString())
 
-    const connection: ElevenLabsConnection = {
+    const conn: ElevenLabsConnection = {
       ws,
       queue: [],
       isStopping: false,
       sourceSampleRate: sampleRate,
     }
 
-    connections[sourceType] = connection
+    connection = conn
 
     ws.addEventListener('open', () => {
-      const activeConnection = connections[sourceType]
-      if (activeConnection !== connection || startVersionBySource[sourceType] !== startVersion) {
+      const activeConnection = connection
+      if (activeConnection !== connection || startVersion !== startVersion) {
         ws.close()
         return
       }
-      flushQueue(sourceType)
+      flushQueue()
     })
 
     ws.addEventListener('message', (event) => {
       if (typeof event.data !== 'string') {
         return
       }
-      handleElevenLabsMessage(sourceType, event.data)
+      handleElevenLabsMessage(event.data)
     })
 
     ws.addEventListener('error', () => {
-      if (connection.isStopping) {
+      if (connection && connection.isStopping) {
         return
       }
-      callbacks.onError(sourceType, 'ElevenLabs websocket error')
+      callbacks.onError('ElevenLabs websocket error')
     })
 
     ws.addEventListener('close', (event) => {
-      const isActiveConnection = connections[sourceType] === connection
+      const isActiveConnection = connection === conn
       if (isActiveConnection) {
-        clearConnection(sourceType)
+        clearConnection()
       }
 
-      callbacks.onClose(sourceType, {
+      callbacks.onClose({
         code: event.code,
         reason: event.reason,
-        expected: connection.isStopping || event.code === 1000,
+        expected: conn.isStopping || event.code === 1000,
       })
     })
   }
 
-  function sendAudio({ sourceType, b16int }: SendAudioParams) {
-    const connection = connections[sourceType]
+  function sendAudio({ b16int }: SendAudioParams) {
     if (!connection) {
       return
     }
@@ -268,10 +254,9 @@ export function createElevenLabsRealtimeClient(
     })
   }
 
-  function stop(sourceType: ElevenLabsSourceType) {
-    startVersionBySource[sourceType] += 1
+  function stop() {
+    startVersion += 1
 
-    const connection = connections[sourceType]
     if (!connection) {
       return
     }
@@ -281,7 +266,7 @@ export function createElevenLabsRealtimeClient(
 
     if (connection.ws.readyState === WebSocket.OPEN) {
       connection.ws.close(1000, 'Client stop')
-      clearConnection(sourceType)
+      clearConnection()
       return
     }
 
@@ -289,12 +274,11 @@ export function createElevenLabsRealtimeClient(
       connection.ws.close()
     }
 
-    clearConnection(sourceType)
+    clearConnection()
   }
 
   function stopAll() {
-    stop('mic')
-    stop('screen')
+    stop()
   }
 
   return {

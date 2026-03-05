@@ -1,14 +1,11 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import MicrophoneStream from 'microphone-stream'
 
-export type SourceType = 'mic' | 'screen'
-
-type UseAudioBridgeStreamOptions<TSource extends SourceType> = {
-  sourceType: TSource
+type UseAudioBridgeStreamOptions = {
   shouldBridge: () => boolean
-  onAudioBridge: (b16int: ArrayBuffer, sourceType: TSource) => void
-  onRecognitionStart: (sourceType: TSource, sampleRate: number) => void
-  onRecognitionStop: (sourceType: TSource) => void,
+  onAudioBridge: (b16int: ArrayBuffer) => void
+  onRecognitionStart: (sampleRate: number) => void
+  onRecognitionStop: () => void,
   selectedInputDevice: Ref<string>
 }
 
@@ -28,8 +25,8 @@ function convertFloat32ToInt16(buffer: Float32Array): ArrayBuffer {
   return converted.buffer
 }
 
-export function useAudioBridgeStream<TSource extends SourceType>(
-  options: UseAudioBridgeStreamOptions<TSource>,
+export function useAudioBridgeStream(
+  options: UseAudioBridgeStreamOptions,
 ) {
   const vol = ref(0)
   const isSoundDetected = ref(false)
@@ -63,7 +60,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
       return
     }
 
-    options.onRecognitionStart(options.sourceType, activeSampleRate)
+    options.onRecognitionStart(activeSampleRate)
     shouldResumeAfterReconnect = false
   }
 
@@ -84,7 +81,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
     activeSampleRate = sampleRate
 
     micStream.setStream(stream)
-    options.onRecognitionStart(options.sourceType, sampleRate)
+    options.onRecognitionStart(activeSampleRate)
 
     if (!navigator.onLine) {
       shouldResumeAfterReconnect = true
@@ -106,7 +103,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
 
       console.log(options.shouldBridge(), raw.length)
       if (options.shouldBridge()) {
-        options.onAudioBridge(convertFloat32ToInt16(raw), options.sourceType)
+        options.onAudioBridge(convertFloat32ToInt16(raw))
       }
     })
   }
@@ -130,7 +127,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
     isActive.value = false
 
     if (emitStop && hadActiveStream) {
-      options.onRecognitionStop(options.sourceType)
+      options.onRecognitionStop()
     }
   }
 
@@ -153,7 +150,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
   }
   function unmute(){
     muted.value = false;
-    if(isActive.value) options.onRecognitionStart(options.sourceType, activeSampleRate)
+    if(isActive.value) options.onRecognitionStart(activeSampleRate)
   }
 
   async function startMicRecorder() {
