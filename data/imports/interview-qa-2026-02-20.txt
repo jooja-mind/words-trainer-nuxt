@@ -1,0 +1,338 @@
+# Answers
+
+## About you and motivation
+
+### Tell about yourself
+
+Hi, I’m Ilya. I’m a full-stack engineer. I mostly work with TypeScript, Node.js, and Vue.
+
+In my recent projects, I worked on important parts of the product like payments, analytics, and real-time features. I care a lot about reliability and clean code.
+
+I can take a task from start to finish: understand requirements, design a solution, build it, test it, deploy it, and then monitor it in production.
+
+### Why are you looking for a new job?
+
+I’m looking for a new role because I want to settle long-term and build my career in one place.
+
+In the last few years I had to move a lot, but now I’m ready for stability.
+
+That’s why I’m focusing on Canada and a Canadian employer — I want to relocate, stay long-term, and grow with the team.
+
+### Why our company/product?
+
+I’m interested in your product because [1 specific thing: mission/benefit/market/feature].
+
+What caught my attention is [a detail that shows you've researched the company].
+
+Given my experience with [relevant experience], I’m confident I can help with [reliability/performance/shipping features].
+
+### What do you like/dislike about past projects?
+
+In my last job, I had a lot of ownership. I could influence decisions and architecture.
+
+I liked working with Unity developers and QA. It helped us release faster and avoid late bugs.
+
+I learned many things in production: Grafana, Vue 3, ClickHouse, and RabbitMQ. I enjoy learning new tools and using them at work.
+
+In incidents, the team was helpful. We worked together and fixed issues quickly, even after hours.
+
+The hardest part was changing priorities. It was hard to plan. I tried to help by writing clearer tickets, giving better estimates, and sharing status updates.
+
+Now I want a team that moves fast, but plans more consistently.
+
+### What kind of work excites you? And what kind of work irritates you?
+
+I’m most motivated when I can own an important part of the product from start to finish and see real results. I like shipping features that users notice, improving performance and reliability, and making systems simpler.
+
+I also enjoy working closely with product and QA because we get feedback fast and can improve quickly.
+
+I don’t like when priorities change every day without a clear reason, or when we only fix symptoms instead of the real root cause. I’m happiest when the team agrees on priorities and keeps improving the process.
+
+## On experience and contribution (behavioral)
+
+### The most powerful project: what have you personally done?
+
+My strongest project was a microservices platform for AmayaKids. I led backend and frontend work, and I focused on payments and authentication. I built Node.js/TypeScript services, worked with PostgreSQL and Redis, and delivered Vue admin tools. I also set up monitoring with Grafana/Prometheus and improved CI/CD with GitHub Actions. In production, it supported over a million players and made troubleshooting and releases much smoother.
+
+### A difficult task: how did you approach it, what was difficult, how did it end?
+
+One of my hardest tasks was adding two payment providers to one product. They were different: statuses and callbacks were not the same. So I had to test a lot.
+
+I wrote the full payment flow for each provider: success, failed payments, retries, refunds, and how we confirm the final result. Then I made one common backend interface, so the product works the same way with both providers.
+
+The hardest part was when providers behaved differently: “final” status came at different times, and callbacks could come in the wrong order. I added logs, metrics, and alerts, and I made a test checklist with QA.
+
+Finally, both integrations worked in production. It became easier to debug and easier to change later.
+
+### Error/fail: what happened, how did you fix it, what did you learn?
+
+Yes. I made a mistake with a migration script. It moved users and data between servers. I ran it every day using cron.
+
+The script did not stop sometimes. So cron started it again and again. After some time, we had hundreds of running processes.
+
+They used many SSH connections to the database. Then cron became unreliable and some jobs failed.
+
+I fixed it. I stopped the extra processes and made the script always exit. Then I added checks and an alert if too many processes appear.
+
+I learned: scheduled jobs need limits and monitoring, or problems grow over time.
+
+### The case “did more than expected.”
+
+I had a GeoIP routing task. The request was: one country goes to IP A, others go to IP B. But it needed a lot of manual steps: Nginx setup, SSL certificates, and the same settings on two servers.
+
+I knew we would do this again, so I made a small Node.js tool. It creates the Nginx config and helps with SSL setup. I put it on a shared server and wrote instructions in Notion.
+
+After that, this work became much faster: minutes instead of hours, and fewer mistakes.
+
+### When it was necessary to convince/sell an idea to the team.
+
+In my previous role, I worked a lot with Unity and backend/web teams. Unity developers used my APIs, so we talked often about how features should work from start to finish.
+
+I don’t write C#, but I helped define the API: formats, names, error handling, and the flow. Sometimes we disagreed about endpoints and edge cases.
+
+I tried to make it teamwork, not an argument. We drew a simple diagram and compared a few options by performance, effort, and user stability. Then we chose one clear contract, documented it, and both teams implemented it.
+
+## Teamwork and conflicts
+
+### There was a conflict with a colleague/manager: how did you resolve it?
+
+Yes, I had conflicts, but not personal. Mostly about priorities or technical choices.
+
+One time we disagreed about an API contract. Someone wanted a fast fix for the deadline. I thought it could cause issues later.
+
+I had a short 1:1. We agreed on the goal. I explained the risks with a few examples. Then I offered two options: a safe small fix now, and a better solution later.
+
+We agreed, wrote it down, and continued calmly.
+
+### What do you do if you don't agree with a decision?
+
+If I disagree, I ask questions to understand the goal first. Then I explain my concerns and suggest an alternative. If needed, I propose a small test. After the decision, I commit to it and focus on results.
+
+### How do you give/receive feedback?
+
+When I give feedback, I talk about what happened and why it matters. I don’t blame the person. I give feedback early, in a private talk. I also suggest what to do next.
+
+When I get feedback, I stay calm. I ask questions and examples. If it is true, I make a plan and try to improve. Later I check if it is better.
+
+### How do you work with designers/analysts/QA/product managers?
+
+I like working with other teams, and I try to keep the process clear.
+
+With product and analysts, I ask: what is the goal, how do we measure success, and what are the edge cases. Then I write a short summary.
+
+With designers, I check the flow early. I ask about loading, empty, and error states, and accessibility. I also talk about technical limits early.
+
+With QA, we agree on acceptance criteria. I share test scenarios for hard cases. I also add logs and feature flags to make testing easier.
+
+I keep communication short: small check-ins, clear tickets, and early demos. This helps us avoid surprises before release.
+
+### Was there someone who was dragging the team down? What did they do?
+
+Yes, sometimes. I don’t call people “lazy”. Usually there is a problem: unclear tasks, too much work, or missing context.
+
+First, I talk 1:1 and ask what blocks them. Then we make a simple plan: smaller tasks, clear next steps, and short check-ins. If needed, we work together (pairing).
+
+If they need skills, I help with examples. If it’s about priorities, we agree on deadlines and responsibilities.
+
+If it still hurts the team, I talk to my manager and share facts. I want to help the person and keep delivery on track.
+
+## Communication and clarity
+
+### How do you explain a complex thing to a non-techie?
+
+I explain hard things in a simple way. I talk about the goal, not the technical words.
+
+For example, I say: “We keep the popular data in fast memory, so the site is faster and the database is not busy.”
+
+Then I ask what is most important: speed, cost, or reliability. After that, I give a short summary.
+
+### How do you write status updates?
+
+My status updates are short. I say: what I did, what I do next, and what can block me.
+
+If there is a risk, I say it early. I also suggest options. Sometimes I add links to PRs or tickets. I want the update to be clear, not long.
+
+### How do you know the requirements if they are unclear?
+
+If requirements are not clear, I make them clear early. First, I ask about the goal and how we know it works.
+
+Then I ask about important details: users, edge cases, limits, and what happens on failure. I also ask what is not included and what we can do later.
+
+I write a short summary with acceptance criteria and assumptions. If we are still not sure, I suggest a small prototype or a short spike. We agree on a minimal safe version, ship it, and improve step by step.
+
+### How do you formalize agreements?
+
+After we talk, I write the agreement in a ticket or a short note in Notion/Confluence.
+
+I write: the decision, what is included, how we accept it, who owns it, and open questions. If it is about an API, I add an example request/response and version notes.
+
+Then I send the link in chat so everyone can agree.
+
+## Self-organization and priorities
+
+### How do you plan your day/week?
+
+Every day I choose 2–3 main tasks. I keep some time for surprises. I try to finish one thing fully, not start many things.
+
+In the evening or next morning I check progress and plan again. If priorities change, I change my plan. If there is a risk for the deadline, I tell the team early.
+
+### How do you choose what to do first when you have a lot of tasks?
+
+When there are many tasks, I prioritize by impact and risk first. I ask: what unblocks others, what affects users or revenue, and what reduces the biggest risk. Then I look at deadlines and dependencies — I try to do the work that unblocks the most things early. If priorities aren’t clear, I quickly sync with the PM/lead and propose an order with trade-offs. And I prefer shipping a small valuable slice end-to-end rather than starting many tasks in parallel.
+
+### What do you do when you're on a deadline?
+
+When I have many tasks, I choose what is most important and most risky first. I think: what helps the team move, what helps users or money, and what removes big risks.
+
+Then I check deadlines and dependencies. I do tasks that unblock others early. If it’s still not clear, I talk to the PM/lead and suggest an order with pros and cons.
+
+I prefer to ship a small useful part first, not start many tasks at the same time.
+
+### How do you estimate deadlines (and what if you miss them)?
+
+I estimate by breaking the work into small parts. I compare it with similar tasks I did before. I also include time for testing, review, and release.
+
+If something is unclear, I say it early. I add some buffer or do a short spike to learn more.
+
+If I will miss the estimate, I tell the team early. I explain why and offer options: do less, split it, ask for help, or change the deadline. I prefer to be transparent.
+
+## Pressure, risks, food incidents
+
+### What do you do if the prod drops?
+
+If production is down, I first try to make it stable and reduce damage. I check how many users are affected. I look at dashboards and logs. Then I do the fastest safe action: rollback, turn off a feature flag, or restart/scale a service.
+
+In parallel, I send short updates and call the right people. After things are stable, I find the root cause using metrics and logs, fix it, and release.
+
+Then I improve prevention: better alerts, a short runbook, and safer releases.
+
+### What do you do if you don't understand the cause of a bug?
+
+If I can’t find the root cause, I work step by step. First I reproduce the bug and write what should happen vs what happens.
+
+Then I check recent changes, logs, and metrics. I isolate parts of the system until I have a few ideas to test.
+
+I add temporary logs or test in a safe environment. If I’m still stuck or it’s a production issue, I ask someone to review with me and I share what I already tried and what info we still need.
+
+### When do you escalate a problem and to whom?
+
+I escalate when the problem is serious, urgent, or blocked by something I can’t fix. For example: production impact, missing access, unclear requirements, or another team.
+
+I go to the right person first: on-call/tech lead for incidents, PM for scope, or another team for dependencies. If it’s still blocked, I go to the engineering manager.
+
+When I escalate, I share: what happened, what I tried, impact now, and 1–2 next options.
+
+### Have you had any experience with on-call/night incidents - how did you cope?
+
+Yes, I had incidents after hours. I stay calm and follow a process.
+
+First I make the system stable. Then I check logs and metrics and send short updates.
+
+After that, I improve monitoring and alerts so it happens less often. I can do on-call, but I also want fewer incidents over time.
+
+### [todo] How do you debug production incidents?
+
+## Quality, responsibility, engineering maturity
+
+### How do you understand “done” (Definition of Done)?
+
+For me, “done” means: it matches the requirements, it’s reviewed, tested, and safe to deploy. And we can support it in production: we have short docs and basic monitoring if needed.
+
+### What is more important: speed or quality?
+
+For me it’s not speed vs quality. It depends on the context. We can move fast, but we must keep correctness, security, and reliability.
+
+If time is short, I reduce scope and ship a small safe version first, then improve it. For payments and login, quality is a must. For small UI changes, speed can be more important.
+
+The key is to talk about trade-offs clearly and reduce risk with tests, feature flags, and monitoring.
+
+### How do you prevent bugs from recurring?
+
+After I fix a bug, I try to stop it from happening again. I fix the real cause, not only the result.
+
+I add a test for this case. I improve validation or error handling if needed. I also add logs/metrics to see the problem early next time.
+
+If it was a process mistake, I update the checklist or docs. For risky changes, I use feature flags or gradual rollout.
+
+### When is refactoring justified and when is it not?
+
+Refactoring is good when it solves real problems: fewer bugs, better speed, better stability, or faster development. I also do it when one part breaks often and changes are risky.
+
+Refactoring is not good when it’s only “clean code”, high risk, or no clear benefit — especially before a deadline. Then I prefer small refactors during feature work, with tests and safe release, not a big rewrite.
+
+## Growth and learning
+
+### What have you been studying lately and why?
+
+Recently I learned GeoDNS — routing users to the best server by region.
+
+We needed better speed and stability in different locations. I set DNS rules and made sure servers in each region were configured the same. Users were sent to the correct endpoint automatically, and product teams didn’t need to change anything.
+
+### How do you fill in the gaps when you don't know the topic?
+
+When I don’t know something, I first ask what result we need and what limits we have.
+
+Then I read official docs and try small tests. I set a time limit so I don’t read forever.
+
+I make a small prototype to check the idea, then I implement step by step and ask for reviews.
+
+If I’m still stuck, I ask a senior teammate early and I explain what I already tried.
+
+### What skill do you want to improve next?
+
+Professionally, I want to keep sharpening my Node.js expertise — especially new APIs and runtime improvements in recent versions like Node 22, and how to apply them in real production services: performance, observability, and reliability.
+As a hobby project, I’m also interested in building a small voice assistant with a wake word like “Hey Siri” — mostly because it’s a fun way to practice audio pipelines and real-time systems, but my main growth focus for work is still Node.js backend.
+
+### Where do you see yourself in 1-2 years?
+
+In 1–2 years, I want to be a trusted engineer in the team. I want to know the system well, own important parts, and deliver reliable results.
+
+I want to get better at scalable Node.js services, monitoring, and reliability. I also want to help the team: mentor others, improve the process, and reduce incidents.
+
+I’m looking for a long-term place to grow.
+
+## Culture and values (culture fit)
+
+### Which team do you feel comfortable in?
+
+I feel best in a team with clear goals and calm communication. I like shared ownership. I like when priorities are clear and decisions are written down. I also like working with PM, QA, and design.
+
+I’m okay with direct feedback and early demos. I don’t want a lot of bureaucracy, but I want a stable process so we can move fast and keep quality.
+
+### What kind of management is right for you?
+
+I work best with a manager who explains the goal and context, and then gives me freedom to do the work. I like regular check-ins, but not micromanagement.
+
+It’s helpful when the manager removes blockers, protects focus time, and makes priorities clear. I also like direct and respectful feedback early.
+
+### What is “healthy” communication for you?
+
+Healthy communication is clear and respectful. People share context, ask early, and talk about risks without blaming.
+
+We write decisions down. Feedback is direct but polite. If we disagree, we focus on the problem, not on people.
+
+If something breaks, we do a short post-mortem to learn, not to blame.
+
+### What are red flags in a company for you?
+
+My red flags are about team culture. For example: priorities change every day, people blame each other, and overtime is normal.
+
+It’s also bad when quality and reliability are not important, and decisions are not documented. I’m flexible, but I want a healthy long-term environment where we can deliver and improve.
+
+## Terms and expectations (usually closer to the end)
+
+### Salary expectations.
+
+Based on the scope and my experience, I’m targeting **around 100 to 120 thousand CAD base**. I’m flexible depending on total compensation, benefits, and the relocation support, and I’m happy to adjust once we confirm the level and expectations.
+
+### Work format (remote/office/hybrid), relocation.
+
+I’m aiming for relocation and I’m happy with either office or hybrid once I’m in Canada. In the meantime, I can work remotely while the relocation process is being arranged. I’m flexible on the exact format — what matters most to me is joining the team long-term and integrating properly after the move.
+
+### When ready to start work.
+
+I’m available to start immediately.
+
+### Are there any offers in parallel?
+
+At the moment I don’t have an offer yet, but I’m actively interviewing. Your role is one of my top priorities, so I’m happy to move quickly. If anything changes on my side, I’ll let you know right away.
