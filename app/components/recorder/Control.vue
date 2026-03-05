@@ -6,39 +6,50 @@ defineProps<{
   isActive: boolean;
   vol: number;
   isSoundDetected: boolean;
+  isMuted: boolean;
   inputDevices?: {
     label: string;
     deviceId: string;
   }[];
 }>()
 
+let emits = defineEmits(['start', 'stop', 'mute', 'unmute']);
+
 const selectedInputDevice = defineModel('selectedInputDevice', {
   type: String,
   default: '',
 });
 
-defineEmits<{
-  start: [];
-  stop: [];
-}>()
+function mute(){
+  emits('mute')
+}
+function unmute(){
+  emits('unmute')
+}
 </script>
 
 <template>
   <div class="holder">
-    <VolumeTrack :vol="vol" />
-    <UButton color="error" icon="ion:record" @click="$emit('start')" :disabled="isActive">Start</UButton>
-    <UButton color="warning" icon="ion:stop-sharp" @click="$emit('stop')" :disabled="!isActive"></UButton>
+    <!-- <VolumeTrack :vol="vol" /> -->
+    <!-- <UButton color="error" icon="ion:record" @click="emits('start')" :disabled="isActive">Start</UButton> -->
+    <!-- <UButton color="warning" icon="ion:stop-sharp" @click="emits('stop')" :disabled="!isActive"></UButton> -->
 
-    <template v-if="isActive">
+    <div>
+      <UButton v-if="!isMuted" @click="mute" icon="ion:ios-mic-off" variant="soft"/>
+      <UButton v-else @click="unmute" icon="ion:ios-mic-off" color="error" variant="soft"/>
+    </div>
+
+    <!-- <template v-if="isActive">
       <UBadge color="neutral" class="rounded-full" v-if="!isSoundDetected">Waiting for sound...</UBadge>
       <UBadge color="success" class="rounded-full" v-else>Sound OK</UBadge>
-    </template>
+    </template> -->
 
     <template v-if="inputDevices">
       <USelectMenu
         v-model="selectedInputDevice"
         value-key="value"
         :items="inputDevices.map(d => ({ label: d.label, value: d.deviceId }))"
+        style="max-width: 200px;"
       />
     </template>
   </div>

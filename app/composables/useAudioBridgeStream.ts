@@ -8,7 +8,8 @@ type UseAudioBridgeStreamOptions<TSource extends SourceType> = {
   shouldBridge: () => boolean
   onAudioBridge: (b16int: ArrayBuffer, sourceType: TSource) => void
   onRecognitionStart: (sourceType: TSource, sampleRate: number) => void
-  onRecognitionStop: (sourceType: TSource) => void
+  onRecognitionStop: (sourceType: TSource) => void,
+  selectedInputDevice: Ref<string>
 }
 
 type StopOptions = {
@@ -94,6 +95,7 @@ export function useAudioBridgeStream<TSource extends SourceType>(
     }
 
     streamWithEvents.on('data', (chunk) => {
+      if(muted.value) return;
       const raw = MicrophoneStream.toRaw(chunk as never)
 
       vol.value = raw.filter((value) => value >= 0).reduce((acc, value) => acc + value, 0)
@@ -141,11 +143,69 @@ export function useAudioBridgeStream<TSource extends SourceType>(
     window.removeEventListener('online', resumeRecognitionAfterReconnect)
   })
 
+  let muted = ref(false);
+  function mute(){
+    muted.value = true;
+    setTimeout(() => {
+      vol.value = 0;
+    }, 100);
+  }
+  function unmute(){
+    muted.value = false;
+  }
+
+  async function startMicRecorder() {
+    try {
+      const stream = await getUserMediaForSelectedInputDevice()
+      bindStream(stream)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function getUserMediaForSelectedInputDevice() {
+    if (!options.selectedInputDevice.value) {
+      return navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: true,
+      })
+    }
+
+    try {
+      return await navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: {
+          deviceId: { exact: options.selectedInputDevice.value },
+          autoGainControl: true,
+          echoCancellation: true,
+          noiseSuppression: true,
+        },
+      })
+    } catch (error) {
+      const isDeviceUnavailableError =
+        error instanceof DOMException &&
+        (error.name === 'OverconstrainedError' || error.name === 'NotFoundError')
+
+      if (!isDeviceUnavailableError) {
+        throw error
+      }
+
+      return navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: true,
+      })
+    }
+  }
+
   return {
     vol,
     isSoundDetected,
     isActive,
     bindStream,
     stop,
+    muted,
+    mute,
+    unmute,
+    startMicRecorder
   }
 }

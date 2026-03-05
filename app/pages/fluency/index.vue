@@ -9,18 +9,6 @@ const {
   requestStopRecognition,
   stopAll,
 } = useSTT({
-  onBridgeAudio: ({ b16int, sourceType }) => {
-    console.log('audioBridge:', { sourceType, b16int })
-    // socket.emit('audio', { b16int, sourceType, sessionToken: state.token });
-  },
-  onBridgeStart: ({ sourceType, token, tokenExpiresAt }) => {
-    console.log('requestStartRecognition:', { sourceType, tokenExpiresAt })
-    // socket.emit('start_recognition', { sourceType, token, tokenExpiresAt });
-  },
-  onBridgeStop: ({ sourceType }) => {
-    console.log('requestStopRecognition:', { sourceType })
-    // socket.emit('stop_recognition', { sourceType });
-  },
   onProviderError: ({ sourceType, message }) => {
     console.error('sttError:', { sourceType, message })
   },
@@ -30,6 +18,7 @@ const {
   },
 });
 
+const { inputDevices, selectedInputDevice } = useInputDevices()
 
 const {
   vol: micVol,
@@ -37,62 +26,24 @@ const {
   bindStream: bindMicStream,
   stop: stopMicBridge,
   isActive: isMicActive,
+  muted,
+  mute,
+  unmute,
+  startMicRecorder
 } = useAudioBridgeStream({
   sourceType: 'mic',
   shouldBridge: () => Boolean(state.mic.recognition),
   onAudioBridge: (b16int, sourceType) => audioBridge(b16int, sourceType),
   onRecognitionStart: (sourceType, sampleRate) => requestStartRecognition(sourceType, sampleRate),
   onRecognitionStop: (sourceType) => requestStopRecognition(sourceType),
+  selectedInputDevice
 })
-
-const { inputDevices, selectedInputDevice } = useInputDevices()
-
-async function startMicRecorder() {
-  try {
-    const stream = await getUserMediaForSelectedInputDevice()
-    bindMicStream(stream)
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 function stopMicRecorder() {
   stopMicBridge({ stopTracks: true })
 }
 
-async function getUserMediaForSelectedInputDevice() {
-  if (!selectedInputDevice.value) {
-    return navigator.mediaDevices.getUserMedia({
-      video: false,
-      audio: true,
-    })
-  }
 
-  try {
-    return await navigator.mediaDevices.getUserMedia({
-      video: false,
-      audio: {
-        deviceId: { exact: selectedInputDevice.value },
-        autoGainControl: true,
-        echoCancellation: true,
-        noiseSuppression: true,
-      },
-    })
-  } catch (error) {
-    const isDeviceUnavailableError =
-      error instanceof DOMException &&
-      (error.name === 'OverconstrainedError' || error.name === 'NotFoundError')
-
-    if (!isDeviceUnavailableError) {
-      throw error
-    }
-
-    return navigator.mediaDevices.getUserMedia({
-      video: false,
-      audio: true,
-    })
-  }
-}
 
 let lastFinalized = computed(()=>{
   const lastHistoryEntry = state.mic.history.slice()[state.mic.history.length - 1]
@@ -103,13 +54,11 @@ let lastFinalized = computed(()=>{
 
 let screen = ref<'welcome' | 'loading' | 'question' | 'evaluating' | 'result'>('welcome');
 
-// let skillList = ref<{id: number, name: string}[]>([]);
 let skill = reactive({
   list: [] as {id: number, name: string}[],
   loading: true,
   selected: 0
 })
-
 async function loadSkills(){
   skill.loading = true;
   try {
@@ -295,12 +244,19 @@ onUnmounted(() => {
   <main class="wrap">
     <UPageHeader title="Fluency Trainer" headline="Extreme" />
     <UPageBody>
-      <RecorderControl :isActive="isMicActive" :vol="micVol" :isSoundDetected="isMicSoundDetected"
-      :inputDevices="inputDevices" @start="startMicRecorder" @stop="stopMicRecorder"
-      v-model:selected-input-device="selectedInputDevice" v-show="false" />
 
-      <div class="challenge" :class="{passed: uniqueQuestionsPassed.length == questionsCountChallenge}" v-if="screen != 'welcome'">
-        {{ uniqueQuestionsPassed.length }} / {{ questionsCountChallenge }}
+      <div class="top">
+        <div class="topWrap">
+          <RecorderControl :isActive="isMicActive" :vol="micVol" :isSoundDetected="isMicSoundDetected"
+          :inputDevices="inputDevices" @start="startMicRecorder" @stop="stopMicRecorder"
+          v-model:selected-input-device="selectedInputDevice" :is-muted="muted" @mute="mute" @unmute="unmute" />
+        </div>
+
+        <div class="topWrap" v-if="screen != 'welcome'">
+          <div class="challenge" :class="{passed: uniqueQuestionsPassed.length == questionsCountChallenge}">
+            {{ uniqueQuestionsPassed.length }} / {{ questionsCountChallenge }}
+          </div>
+        </div>
       </div>
 
       <UCard variant="subtle" v-if="screen === 'welcome'">
@@ -352,7 +308,7 @@ onUnmounted(() => {
 
       <UCard variant="outline" v-if="isLocalhost">
         Debug:
-        Mic state: {{ isMicActive ? 'active' : 'inactive' }}, vol: {{ micVol.toFixed(2) }}, sound detected: {{ isMicSoundDetected }}
+        Mic state: {{ isMicActive ? 'active' : 'inactive' }}, vol: {{ micVol.toFixed(2) }}, sound detected: {{ isMicSoundDetected }}, muted: {{ muted ? 'yes' : 'no' }}
         <br>
         Recognition: {{ state.mic.recognition ? 'active' : 'inactive' }}
         <hr>
@@ -368,11 +324,24 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
+.top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+
+  .topWrap{
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px;
+    border-radius: 8px;
+  }
+}
+
 .challenge{
   text-align: right;
   font-size: 14px;
   color: #b8bfdb;
-  margin-bottom: 1rem;
 
   &.passed{
     color: #4ade80;
@@ -431,6 +400,7 @@ onUnmounted(() => {
     color: #4ade80;
     font-size: 4em;
     margin-bottom: -15px;
+    animation: pop 0.3s ease;
   }
 
   .yourAnswer{
@@ -448,6 +418,17 @@ onUnmounted(() => {
     font-size: 14px;
     color: #b8bfdb;
     margin-bottom: 2rem;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>
