@@ -119,21 +119,7 @@ set -a && source .env && set +a
 npm run fluency:filldb
 ```
 
-## 7) Build and release checks (without API validation)
-
-```bash
-npm run build
-```
-
-If service is used:
-
-```bash
-systemctl --user restart words-trainer.service
-systemctl --user status words-trainer.service
-journalctl --user -u words-trainer.service -n 80 --no-pager
-```
-
-## 8) Done criteria
+## 7) Done criteria
 
 A mode is considered done only if all are true:
 - approved design exists (response format, criteria, feedback policy, examples)
@@ -142,9 +128,8 @@ A mode is considered done only if all are true:
 - questions count is >= 500 and unique
 - `fillDB.ts` contains mode mapping
 - seed completed without breaking existing data
-- build passes
 
-## 9) Commit and push
+## 8) Commit and push
 
 ```bash
 git add fluency/fillDB.ts fluency/skills/ fluency/questions/ docs/words-trainer-create-fluency-skill.md
