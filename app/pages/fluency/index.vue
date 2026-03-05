@@ -290,8 +290,10 @@ onUnmounted(() => {
 
       <UCard variant="subtle" v-if="screen === 'result'">
         <div class="result">
-          <div v-if="result.passed" class="passed">
-            <Icon name="ion:checkmark-circle"/>
+          <div class="passedHolder" v-if="result.passed">
+            <div class="passed">
+              <Icon name="ion:checkmark-circle"/>
+            </div>
           </div>
           <div v-else>
             <div class="yourAnswer">{{ result.yourAnswer }}</div>
@@ -406,11 +408,15 @@ onUnmounted(() => {
 .result{
   text-align: center;
 
-  .passed{
-    color: #4ade80;
-    font-size: 4em;
+  .passedHolder{
+    min-height: 100px;
     margin-bottom: -15px;
-    animation: pop 0.3s ease;
+
+    .passed{
+      color: #4ade80;
+      font-size: 4em;
+      animation: pop 0.3s ease;
+    }
   }
 
   .yourAnswer{
