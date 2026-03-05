@@ -1,28 +1,22 @@
 import { createElevenLabsRealtimeClient } from '@/composables/stt/elevenLabsRealtimeClient'
 
-export type STTSourceType = 'mic' | 'screen'
-
 type STTProviderErrorPayload = {
-  sourceType: STTSourceType
   message: string
 }
 
 type STTBridgeStartPayload = {
-  sourceType: STTSourceType
   token: string
   tokenExpiresAt: number | null
   sampleRate: number
 }
 
 type STTBridgeStopPayload = {
-  sourceType: STTSourceType
   token?: string
   tokenExpiresAt: number | null
   sampleRate: number
 }
 
 type STTBridgeAudioPayload = {
-  sourceType: STTSourceType
   b16int: ArrayBuffer
 }
 
@@ -37,7 +31,6 @@ export type STTProviderLanguageOption = {
 
 export type STTProvider = {
   label: string
-  supportedSources: STTSourceType[]
   languageOptions: readonly STTProviderLanguageOption[]
   defaultLanguage: string
 }
@@ -53,9 +46,7 @@ type STTSourceState = {
 
 export type STTState = {
   error: string | null
-  mic: STTSourceState
-  screen: STTSourceState
-}
+} & STTSourceState;
 
 type OpenAIRealtimeSession = Record<string, unknown>
 
@@ -77,7 +68,7 @@ type UseSTTOptions = {
   onBridgeStop?: (payload: STTBridgeStopPayload) => void
   onBridgeAudio?: (payload: STTBridgeAudioPayload) => void
   onProviderError?: (payload: STTProviderErrorPayload) => void
-  onFinalTranscript?: (sourceType: STTSourceType, finalizedObject: HistoryEntry) => void
+  onFinalTranscript?: (finalizedObject: HistoryEntry) => void
 }
 
 export type HistoryEntry = {
@@ -85,72 +76,6 @@ export type HistoryEntry = {
   timestampEnd: number
   text: string
 }
-
-const ASSEMBLY_LANGUAGE_OPTIONS = Object.freeze([
-  { value: 'en', label: 'English' },
-  { value: 'multi', label: 'Auto (Multilingual beta: en/es/fr/de/it/pt)' },
-]) as readonly STTProviderLanguageOption[]
-
-const OPENAI_LANGUAGE_OPTIONS = Object.freeze([
-  { value: 'auto', label: 'Auto-detect' },
-  { value: 'af', label: 'Afrikaans' },
-  { value: 'ar', label: 'Arabic' },
-  { value: 'hy', label: 'Armenian' },
-  { value: 'az', label: 'Azerbaijani' },
-  { value: 'be', label: 'Belarusian' },
-  { value: 'bs', label: 'Bosnian' },
-  { value: 'bg', label: 'Bulgarian' },
-  { value: 'ca', label: 'Catalan' },
-  { value: 'zh', label: 'Chinese' },
-  { value: 'hr', label: 'Croatian' },
-  { value: 'cs', label: 'Czech' },
-  { value: 'da', label: 'Danish' },
-  { value: 'nl', label: 'Dutch' },
-  { value: 'en', label: 'English' },
-  { value: 'et', label: 'Estonian' },
-  { value: 'fi', label: 'Finnish' },
-  { value: 'fr', label: 'French' },
-  { value: 'gl', label: 'Galician' },
-  { value: 'de', label: 'German' },
-  { value: 'el', label: 'Greek' },
-  { value: 'he', label: 'Hebrew' },
-  { value: 'hi', label: 'Hindi' },
-  { value: 'hu', label: 'Hungarian' },
-  { value: 'is', label: 'Icelandic' },
-  { value: 'id', label: 'Indonesian' },
-  { value: 'it', label: 'Italian' },
-  { value: 'ja', label: 'Japanese' },
-  { value: 'kn', label: 'Kannada' },
-  { value: 'kk', label: 'Kazakh' },
-  { value: 'ko', label: 'Korean' },
-  { value: 'lv', label: 'Latvian' },
-  { value: 'lt', label: 'Lithuanian' },
-  { value: 'mk', label: 'Macedonian' },
-  { value: 'ms', label: 'Malay' },
-  { value: 'mr', label: 'Marathi' },
-  { value: 'mi', label: 'Maori' },
-  { value: 'ne', label: 'Nepali' },
-  { value: 'no', label: 'Norwegian' },
-  { value: 'fa', label: 'Persian' },
-  { value: 'pl', label: 'Polish' },
-  { value: 'pt', label: 'Portuguese' },
-  { value: 'ro', label: 'Romanian' },
-  { value: 'ru', label: 'Russian' },
-  { value: 'sr', label: 'Serbian' },
-  { value: 'sk', label: 'Slovak' },
-  { value: 'sl', label: 'Slovenian' },
-  { value: 'es', label: 'Spanish' },
-  { value: 'sw', label: 'Swahili' },
-  { value: 'sv', label: 'Swedish' },
-  { value: 'tl', label: 'Tagalog' },
-  { value: 'ta', label: 'Tamil' },
-  { value: 'th', label: 'Thai' },
-  { value: 'tr', label: 'Turkish' },
-  { value: 'uk', label: 'Ukrainian' },
-  { value: 'ur', label: 'Urdu' },
-  { value: 'vi', label: 'Vietnamese' },
-  { value: 'cy', label: 'Welsh' },
-]) as readonly STTProviderLanguageOption[]
 
 const ELEVENLABS_LANGUAGE_OPTIONS = Object.freeze([
   { value: 'auto', label: 'Auto-detect' },
@@ -251,20 +176,6 @@ const ELEVENLABS_LANGUAGE_OPTIONS = Object.freeze([
 
 const STT_PROVIDERS: readonly STTProvider[] = Object.freeze([
   {
-    id: 'assemblyai',
-    label: 'AssemblyAI',
-    supportedSources: ['mic', 'screen'],
-    languageOptions: ASSEMBLY_LANGUAGE_OPTIONS,
-    defaultLanguage: 'en',
-  },
-  {
-    id: 'openai',
-    label: 'OpenAI',
-    supportedSources: ['mic', 'screen'],
-    languageOptions: OPENAI_LANGUAGE_OPTIONS,
-    defaultLanguage: 'auto',
-  },
-  {
     id: 'elevenlabs',
     label: 'ElevenLabs',
     supportedSources: ['mic', 'screen'],
@@ -284,48 +195,28 @@ type TemporaryProviderToken = {
 
 
 export function useSTT(options: UseSTTOptions = {}) {
-  const startVersionBySource: Record<STTSourceType, number> = {
-    mic: 0,
-    screen: 0,
-  }
+  let startVersion = 0;
 
-  const sourceReadyByType: Record<STTSourceType, boolean> = {
-    mic: false,
-    screen: false,
-  }
+  let sourceReady = false;
 
-  const pendingAudioChunksBySource: Record<STTSourceType, ArrayBuffer[]> = {
-    mic: [],
-    screen: [],
-  }
+  const pendingAudioChunks = [] as ArrayBuffer[]
 
-  const activeBridgeTokenBySource: Partial<Record<STTSourceType, TemporaryProviderToken>> = {}
+  let activeBridgeToken: TemporaryProviderToken | null = null
   const maxPendingAudioChunks = Math.max(1, options.maxPendingAudioChunks ?? DEFAULT_MAX_PENDING_AUDIO_CHUNKS)
 
   const state = reactive<STTState>({
     error: null,
-    mic: {
-      recognition: false,
-      liveText: '',
-      liveTextStartedAt: 0,
-      finalText: '',
-      sampleRate: DEFAULT_SAMPLE_RATE,
-      history: [],
-    },
-    screen: {
-      recognition: false,
-      liveText: '',
-      liveTextStartedAt: 0,
-      finalText: '',
-      sampleRate: DEFAULT_SAMPLE_RATE,
-      history: [],
-    },
+    recognition: false,
+    liveText: '',
+    liveTextStartedAt: 0,
+    finalText: '',
+    sampleRate: DEFAULT_SAMPLE_RATE,
+    history: [],
   })
 
-  function reportError(sourceType: STTSourceType, message: string) {
+  function reportError(message: string) {
     state.error = message
     options.onProviderError?.({
-      sourceType,
       message,
     })
   }
@@ -334,72 +225,71 @@ export function useSTT(options: UseSTTOptions = {}) {
     state.error = null
   }
 
-  function setLiveTranscript(sourceType: STTSourceType, text: string) {
-    if(!state[sourceType].liveText && !!text) {
-      state[sourceType].liveTextStartedAt = Date.now()
+  function setLiveTranscript(text: string) {
+    if(!state.liveText && !!text) {
+      state.liveTextStartedAt = Date.now()
     }
-    state[sourceType].liveText = text
+    state.liveText = text
   }
 
-  function appendFinalTranscript(sourceType: STTSourceType, text: string) {
-    state[sourceType].finalText = `${state[sourceType].finalText} ${text}`.trim()
-    state[sourceType].liveText = ''
+  function appendFinalTranscript(text: string) {
+    state.finalText = `${state.finalText} ${text}`.trim()
+    state.liveText = ''
   }
 
-  function bumpStartVersion(sourceType: STTSourceType): number {
-    startVersionBySource[sourceType] += 1
-    return startVersionBySource[sourceType]
+  function bumpStartVersion(): number {
+    startVersion += 1
+    return startVersion
   }
 
   function isCurrentStartVersion(
-    sourceType: STTSourceType,
     startVersion: number,
   ): boolean {
     return (
-      startVersionBySource[sourceType] === startVersion &&
-      state[sourceType].recognition
+      startVersion === startVersion &&
+      state.recognition
     )
   }
 
-  function clearPendingAudio(sourceType: STTSourceType) {
-    pendingAudioChunksBySource[sourceType].length = 0
+  function clearPendingAudio() {
+    pendingAudioChunks.length = 0
   }
 
-  function resetSourceRuntime(sourceType: STTSourceType) {
-    sourceReadyByType[sourceType] = false
-    clearPendingAudio(sourceType)
-    delete activeBridgeTokenBySource[sourceType]
+  function resetSourceRuntime() {
+    sourceReady = false
+    clearPendingAudio()
+    activeBridgeToken = null
   }
 
-  function enqueuePendingAudio(sourceType: STTSourceType, b16int: ArrayBuffer) {
-    const queue = pendingAudioChunksBySource[sourceType]
+  function enqueuePendingAudio( b16int: ArrayBuffer) {
+    const queue = pendingAudioChunks
     if (queue.length >= maxPendingAudioChunks) {
       queue.shift()
     }
     queue.push(b16int)
   }
 
-  function dispatchBridgeAudio(sourceType: STTSourceType, b16int: ArrayBuffer) {
-      elevenLabsClient.sendAudio({ sourceType, b16int })
+  function dispatchBridgeAudio(b16int: ArrayBuffer) {
+      elevenLabsClient.sendAudio({ b16int })
       return
   }
 
-  function flushPendingAudio(sourceType: STTSourceType) {
-    if (!sourceReadyByType[sourceType]) {
+  function flushPendingAudio() {
+    if (!sourceReady) {
       return
     }
 
-    const queue = pendingAudioChunksBySource[sourceType]
+    const queue = pendingAudioChunks
     while (
       queue.length > 0 &&
-      sourceReadyByType[sourceType] &&
-      state[sourceType].recognition
+      sourceReady &&
+      state.recognition
     ) {
       const chunk = queue.shift()
       if (!chunk) {
         continue
       }
-      dispatchBridgeAudio(sourceType, chunk)
+      dispatchBridgeAudio(chunk)
     }
   }
 
@@ -432,80 +322,76 @@ export function useSTT(options: UseSTTOptions = {}) {
   }
 
   async function startSourceRecognition(
-    sourceType: STTSourceType,
     sampleRate: number,
     startVersion: number,
   ) {
     try {
       const temporaryToken = await requestTemporaryProviderToken()
-      if (!isCurrentStartVersion(sourceType, startVersion)) {
+      if (!isCurrentStartVersion(startVersion)) {
         return
       }
 
-      activeBridgeTokenBySource[sourceType] = temporaryToken
+      activeBridgeToken = temporaryToken
 
       options.onBridgeStart?.({
-        sourceType,
         token: temporaryToken.value,
         tokenExpiresAt: temporaryToken.expiresAt,
         sampleRate,
       })
 
-      if (!isCurrentStartVersion(sourceType, startVersion)) {
+      if (!isCurrentStartVersion(startVersion)) {
         return
       }
 
 
       await elevenLabsClient.start({
-        sourceType,
         credential: temporaryToken.value,
         sampleRate,
         languageCode: 'eng',
       })
 
 
-      if (!isCurrentStartVersion(sourceType, startVersion)) {
+      if (!isCurrentStartVersion(startVersion)) {
         return
       }
 
-      sourceReadyByType[sourceType] = true
-      flushPendingAudio(sourceType)
+      sourceReady = true
+      flushPendingAudio()
     } catch (error) {
-      if (!isCurrentStartVersion(sourceType, startVersion)) {
+      if (!isCurrentStartVersion(startVersion)) {
         return
       }
 
-      state[sourceType].recognition = false
-      resetSourceRuntime(sourceType)
+      state.recognition = false
+      resetSourceRuntime()
       const message = error instanceof Error ? error.message : String(error)
-      reportError(sourceType, message)
+      reportError(message)
     }
   }
 
   const elevenLabsClient = createElevenLabsRealtimeClient(
     {
-      onLiveTranscript: (sourceType, text) => {
-        setLiveTranscript(sourceType, text)
+      onLiveTranscript: (text) => {
+        setLiveTranscript(text)
       },
-      onFinalTranscript: (sourceType, text) => {
-        setFinalTranscript(sourceType, text)
+      onFinalTranscript: (text) => {
+        setFinalTranscript(text)
       },
-      onError: (sourceType, message) => {
-        state[sourceType].recognition = false
-        resetSourceRuntime(sourceType)
-        state[sourceType].liveText = ''
-        reportError(sourceType, message)
+      onError: (message) => {
+        state.recognition = false
+        resetSourceRuntime()
+        state.liveText = ''
+        reportError(message)
       },
-      onClose: (sourceType, meta) => {
-        state[sourceType].recognition = false
-        resetSourceRuntime(sourceType)
-        state[sourceType].liveText = ''
+      onClose: (meta) => {
+        state.recognition = false
+        resetSourceRuntime()
+        state.liveText = ''
 
         if (!meta.expected && meta.code !== 1000) {
           const closeReason = meta.reason.trim()
           const reasonPart = closeReason ? `: ${closeReason}` : ''
           reportError(
-            sourceType,
             `ElevenLabs websocket closed unexpectedly (${meta.code})${reasonPart}`,
           )
         }
@@ -521,39 +407,37 @@ export function useSTT(options: UseSTTOptions = {}) {
 
 
   function requestStartRecognition(
-    sourceType: STTSourceType,
     sampleRate = DEFAULT_SAMPLE_RATE,
   ) {
-    const startVersion = bumpStartVersion(sourceType)
-    const sourceState = state[sourceType]
+    const startVersion = bumpStartVersion()
+    const sourceState = state
 
     sourceState.sampleRate = sampleRate
     sourceState.liveText = ''
     sourceState.liveTextStartedAt = 0;
     sourceState.recognition = true
-    resetSourceRuntime(sourceType)
+    resetSourceRuntime()
     clearError()
 
-    void startSourceRecognition(sourceType, sampleRate, startVersion)
+    void startSourceRecognition(sampleRate, startVersion)
   }
 
-  function requestStopRecognition(sourceType: STTSourceType) {
-    bumpStartVersion(sourceType)
-    const sourceState = state[sourceType]
+  function requestStopRecognition() {
+    bumpStartVersion()
+    const sourceState = state
     const wasRecognitionActive = sourceState.recognition
-    const wasSourceReady = sourceReadyByType[sourceType]
-    const activeBridgeToken = activeBridgeTokenBySource[sourceType]
+    const wasSourceReady = sourceReady
+    // const activeBridgeToken = activeBridgeToken
 
     sourceState.recognition = false
     sourceState.liveText = ''
     sourceState.liveTextStartedAt = 0
-    resetSourceRuntime(sourceType)
+    resetSourceRuntime()
 
-    elevenLabsClient.stop(sourceType)
+    elevenLabsClient.stop()
 
     if (wasRecognitionActive && wasSourceReady) {
       options.onBridgeStop?.({
-        sourceType,
         token: activeBridgeToken?.value,
         tokenExpiresAt: activeBridgeToken?.expiresAt ?? null,
         sampleRate: sourceState.sampleRate,
@@ -561,55 +445,50 @@ export function useSTT(options: UseSTTOptions = {}) {
     }
   }
 
-  function audioBridge(b16int: ArrayBuffer, sourceType: STTSourceType) {
-    const sourceState = state[sourceType]
-    if (!sourceState.recognition) {
+  function audioBridge(b16int: ArrayBuffer) {
+    if (!state.recognition) {
       return
     }
 
-    if (!sourceReadyByType[sourceType]) {
-      enqueuePendingAudio(sourceType, b16int)
+    if (!sourceReady) {
+      enqueuePendingAudio(b16int)
       return
     }
 
-    dispatchBridgeAudio(sourceType, b16int)
+    dispatchBridgeAudio(b16int)
   }
 
-  function clearTranscript(sourceType: STTSourceType) {
-    state[sourceType].finalText = ''
-    state[sourceType].liveText = ''
-    state[sourceType].liveTextStartedAt = 0
+  function clearTranscript() {
+    state.finalText = ''
+    state.liveText = ''
+    state.liveTextStartedAt = 0
   }
 
-  function setFinalTranscript(sourceType: STTSourceType, text: string) {
-    state[sourceType].finalText = text
-    state[sourceType].liveText = '';
+  function setFinalTranscript(text: string) {
+    state.finalText = text
+    state.liveText = '';
     let finalizedObject = {
-      timestampStart: state[sourceType].liveTextStartedAt,
+      timestampStart: state.liveTextStartedAt,
       timestampEnd: Date.now(),
       text,
     };
-    state[sourceType].history.push(finalizedObject)
+    state.history.push(finalizedObject)
     if(options.onFinalTranscript){
-      options.onFinalTranscript(sourceType, finalizedObject)
+      options.onFinalTranscript(finalizedObject)
     }
   }
 
   function stopAll() {
-    requestStopRecognition('mic')
-    requestStopRecognition('screen')
+    requestStopRecognition()
 
     // Ensure no stale connections remain if provider changed mid-session.
     elevenLabsClient.stopAll()
 
-    state.mic.history = []
-    state.screen.history = []
-    state.mic.finalText = ''
-    state.screen.finalText = ''
-    state.mic.liveText = ''
-    state.screen.liveText = ''
-    state.mic.liveTextStartedAt = 0
-    state.screen.liveTextStartedAt = 0
+    state.history = []
+    state.finalText = ''
+    state.liveText = ''
+    state.liveTextStartedAt = 0
+    state.liveTextStartedAt = 0
     clearError()
   }
 

@@ -9,11 +9,11 @@ const {
   requestStopRecognition,
   stopAll,
 } = useSTT({
-  onProviderError: ({ sourceType, message }) => {
-    console.error('sttError:', { sourceType, message })
+  onProviderError: ({ message }) => {
+    console.error('sttError:', { message })
   },
-  onFinalTranscript: (sourceType, finalizedObject) => {
-    console.log('finalTranscript:', { sourceType, finalizedObject });
+  onFinalTranscript: (finalizedObject) => {
+    console.log('finalTranscript:', { finalizedObject });
     answerQuestion(finalizedObject);
   },
 });
@@ -31,11 +31,10 @@ const {
   unmute,
   startMicRecorder
 } = useAudioBridgeStream({
-  sourceType: 'mic',
-  shouldBridge: () => Boolean(state.mic.recognition),
-  onAudioBridge: (b16int, sourceType) => audioBridge(b16int, sourceType),
-  onRecognitionStart: (sourceType, sampleRate) => requestStartRecognition(sourceType, sampleRate),
-  onRecognitionStop: (sourceType) => requestStopRecognition(sourceType),
+  shouldBridge: () => Boolean(state.recognition),
+  onAudioBridge: (b16int) => audioBridge(b16int),
+  onRecognitionStart: (sampleRate) => requestStartRecognition(sampleRate),
+  onRecognitionStop: () => requestStopRecognition(),
   selectedInputDevice
 })
 
@@ -46,7 +45,7 @@ function stopMicRecorder() {
 
 
 let lastFinalized = computed(()=>{
-  const lastHistoryEntry = state.mic.history.slice()[state.mic.history.length - 1]
+  const lastHistoryEntry = state.history.slice()[state.history.length - 1]
   return lastHistoryEntry;
 })
 
@@ -229,14 +228,14 @@ function backToWelcome(){
 }
 
 let liveText = computed(()=>{
-  let countWords = state.mic.liveText.trim().split(/\s+/).length;
+  let countWords = state.liveText.trim().split(/\s+/).length;
   if(countWords <= 1) return "";
-  return state.mic.liveText;
+  return state.liveText;
 });
 let finalizedText = computed(()=>{
-  let countWords = state.mic.finalText.trim().split(/\s+/).length;
+  let countWords = state.finalText.trim().split(/\s+/).length;
   if(countWords <= 1) return "";
-  return state.mic.finalText;
+  return state.finalText;
 });
 
 onMounted(()=>{
@@ -291,8 +290,10 @@ onUnmounted(() => {
 
       <UCard variant="subtle" v-if="screen === 'result'">
         <div class="result">
-          <div v-if="result.passed" class="passed">
-            <Icon name="ion:checkmark-circle"/>
+          <div class="passedHolder" v-if="result.passed">
+            <div class="passed">
+              <Icon name="ion:checkmark-circle"/>
+            </div>
           </div>
           <div v-else>
             <div class="yourAnswer">{{ result.yourAnswer }}</div>
@@ -321,7 +322,7 @@ onUnmounted(() => {
         Debug:
         Mic state: {{ isMicActive ? 'active' : 'inactive' }}, vol: {{ micVol.toFixed(2) }}, sound detected: {{ isMicSoundDetected }}, muted: {{ muted ? 'yes' : 'no' }}
         <br>
-        Recognition: {{ state.mic.recognition ? 'active' : 'inactive' }}
+        Recognition: {{ state.recognition ? 'active' : 'inactive' }}
         <hr>
         <UButton @click="debugScreen('welcome')" label="Go to welcome" color="primary" variant="outline"/>
         <UButton @click="debugScreen('loading')" label="Go to loading" color="primary" variant="outline"/>
@@ -407,11 +408,15 @@ onUnmounted(() => {
 .result{
   text-align: center;
 
-  .passed{
-    color: #4ade80;
-    font-size: 4em;
+  .passedHolder{
+    min-height: 100px;
     margin-bottom: -15px;
-    animation: pop 0.3s ease;
+
+    .passed{
+      color: #4ade80;
+      font-size: 4em;
+      animation: pop 0.3s ease;
+    }
   }
 
   .yourAnswer{
