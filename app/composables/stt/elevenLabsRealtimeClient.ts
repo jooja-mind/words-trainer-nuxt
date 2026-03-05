@@ -195,6 +195,8 @@ export function createElevenLabsRealtimeClient(
     if (languageCode) {
       wsUrl.searchParams.set('language_code', languageCode)
     }
+    wsUrl.searchParams.set('min_speech_duration_ms', '750')
+    wsUrl.searchParams.set('min_silence_duration_ms', '500')
 
     const ws = new WebSocket(wsUrl.toString())
 

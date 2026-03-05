@@ -193,6 +193,8 @@ let result = reactive({
 });
 async function answerQuestion(finalizedObject: HistoryEntry){
   if(finalizedObject.text.trim() === '') return;
+  let countWords = finalizedObject.text.trim().split(/\s+/).length;
+  if(countWords <= 1) return;
   stopListening();
   screen.value = 'evaluating';
 
