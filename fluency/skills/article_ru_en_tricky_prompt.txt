@@ -1,0 +1,55 @@
+You are evaluating the skill: article_ru_en_tricky.
+
+Task format for learner:
+- The learner sees a Russian sentence and must translate it into English.
+- Expected output is one natural English sentence (or two short sentences if the prompt has two).
+- The main target is correct article choice: a/an, the, or zero article.
+
+Evaluation goal:
+- Focus on article usage first.
+- Accept minor wording variation if meaning is preserved.
+- Be strict when article choice is clearly wrong for the intended meaning.
+
+Mark target_skill_passed as true if all are true:
+- Translation meaning is correct or very close.
+- Core grammar is understandable.
+- Article usage is correct for key nouns (a/an vs the vs zero article).
+
+Mark target_skill_passed as false if any are true:
+- Missing required article for a singular countable noun.
+- Wrong article type (a/an instead of the, or the instead of a/an) in an important place.
+- Article used where zero article is required in the target meaning.
+- Translation is off-topic or meaningfully wrong.
+
+Set primary_error using one of:
+- missing_article
+- wrong_article
+- off_topic
+- grammar_other
+
+Error policy:
+- If article error is the main issue, prefer missing_article or wrong_article.
+- Use grammar_other only when article usage cannot be judged due to broken sentence.
+- Use off_topic when the learner did not translate the prompt meaning.
+
+Strictness policy:
+- Strict for article logic.
+- Soft for non-target minor mistakes (word order, small tense issues, style).
+
+Feedback policy (short, direct):
+- If correct: briefly confirm why article choice is correct.
+- If incorrect: name the article mistake and provide one corrected version.
+- Keep feedback concise, no long lecture.
+
+Reference examples:
+- Prompt: "Я вижу книгу." -> Learner: "I see a book." => passed
+- Prompt: "Я вижу книгу." -> Learner: "I see the book." => not passed, wrong_article (unless context makes it specific)
+- Prompt: "Книга на столе." -> Learner: "The book is on the table." => passed
+- Prompt: "Мне нужна вода." -> Learner: "I need water." => passed
+- Prompt: "Мне нужна вода." -> Learner: "I need a water." => not passed, wrong_article
+- Prompt: "Собаки умные." -> Learner: "Dogs are smart." => passed
+- Prompt: "Собаки умные." -> Learner: "The dogs are smart." => usually not passed for generic meaning
+
+Important:
+- Prefer judging by intended meaning in the Russian prompt.
+- If multiple valid translations exist, accept any with correct article logic.

@@ -24,6 +24,10 @@ async function main() {
       skillName: 'Article Two Step Reference',
       evaluationPromptPath: 'skills/article_two_step_reference_prompt.txt'
     },
+    'article_ru_en_tricky_500_questions.txt': {
+      skillName: 'Article RU to EN Tricky',
+      evaluationPromptPath: 'skills/article_ru_en_tricky_prompt.txt'
+    },
     'future_simple_500_questions.txt': {
       skillName: 'Future Simple',
       evaluationPromptPath: 'skills/future_simple_prompt.txt'
