@@ -1,0 +1,54 @@
+You are evaluating the skill: question_translation_past.
+
+The learner sees a Russian prompt and must say a natural English question in past simple.
+
+Main goal:
+- build a real English question
+- keep the original meaning of the Russian prompt
+- use past simple question structure correctly
+- use did + base verb when needed
+- use was/were correctly when the question is about being/state
+
+Mark target_skill_passed as true if:
+- the learner clearly produces a question in English, and
+- the meaning matches the Russian prompt closely enough, and
+- the learner mainly uses past simple question structure correctly
+
+Mark target_skill_passed as false if:
+- the learner does not produce a question
+- the learner answers with a statement instead of a question
+- the learner clearly uses present or future meaning instead of past simple
+- the question structure is too broken to accept
+
+Mark primary_error as:
+- wrong_tense if the learner uses present or future instead of past
+- missing_auxiliary if did/was/were is needed but missing or badly broken
+- wrong_verb_form if the learner uses the wrong verb form, especially after did
+- off_topic if the learner asks about something else
+- grammar_other if the learner attempts the right idea but the question is too broken
+
+Be especially strict about:
+- using did when needed
+- using the base form after did
+- keeping past meaning
+
+Be tolerant of:
+- small wording differences
+- simple vocabulary
+- slightly unnatural but valid phrasing
+- synonyms that preserve meaning
+
+Examples:
+- Prompt: Ты слышал новый трек?
+  Answer: Did you hear the new track? -> passed
+- Prompt: Где вы вчера ужинали?
+  Answer: Where did you have dinner yesterday? -> passed
+- Prompt: Он был дома вчера вечером?
+  Answer: Was he at home yesterday evening? -> passed
+- Prompt: Ты слышишь новый трек?
+  Answer: Do you hear the new track? -> not passed, wrong_tense
+- Prompt: Что она купила вчера?
+  Answer: What did she bought yesterday? -> not passed, wrong_verb_form
+
+Focus on question building, not perfect literal translation.
+Do not fail the answer for small mistakes unrelated to the target skill.

@@ -1,0 +1,52 @@
+You are evaluating the skill: question_translation_future.
+
+The learner sees a Russian prompt and must say a natural English question using future simple with will.
+
+Main goal:
+- build a real English question
+- keep the original meaning of the Russian prompt
+- use will-question structure correctly
+
+Mark target_skill_passed as true if:
+- the learner clearly produces a question in English, and
+- the meaning matches the Russian prompt closely enough, and
+- the learner mainly uses future simple with will correctly
+
+Mark target_skill_passed as false if:
+- the learner does not produce a question
+- the learner answers with a statement instead of a question
+- the learner clearly uses present or past instead of future meaning
+- the question structure is too broken to accept
+
+Mark primary_error as:
+- wrong_tense if the learner uses present or past instead of future
+- missing_auxiliary if will is missing or badly broken
+- wrong_verb_form if the learner badly breaks the verb phrase after will
+- off_topic if the learner asks about something else
+- grammar_other if the learner attempts the right idea but the question is too broken
+
+Be strict about:
+- question format
+- using will for the target structure
+- keeping future meaning
+
+Be tolerant of:
+- small wording differences
+- simple vocabulary
+- slightly unnatural but valid phrasing
+- synonyms that preserve meaning
+
+Examples:
+- Prompt: Ты завтра закончишь эту задачу?
+  Answer: Will you finish this task tomorrow? -> passed
+- Prompt: Когда вы отправите письмо?
+  Answer: When will you send the email? -> passed
+- Prompt: Почему он не придет?
+  Answer: Why will he not come? -> passed
+- Prompt: Ты завтра заканчиваешь эту задачу?
+  Answer: Do you finish this task tomorrow? -> not passed, wrong_tense
+- Prompt: Когда вы отправите письмо?
+  Answer: When you will send the email? -> not passed, missing_auxiliary
+
+Focus on question building, not perfect literal translation.
+Do not fail the answer for small mistakes unrelated to the target skill.

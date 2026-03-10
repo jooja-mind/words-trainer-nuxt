@@ -51,6 +51,18 @@ async function main() {
     'question_building_future_500_questions.txt': {
       skillName: 'Question Building Future',
       evaluationPromptPath: 'skills/question_building_future_prompt.txt'
+    },
+    'question_translation_present_500_questions.txt': {
+      skillName: 'Present Question Translation',
+      evaluationPromptPath: 'skills/question_translation_present_prompt.txt'
+    },
+    'question_translation_past_500_questions.txt': {
+      skillName: 'Past Question Translation',
+      evaluationPromptPath: 'skills/question_translation_past_prompt.txt'
+    },
+    'question_translation_future_500_questions.txt': {
+      skillName: 'Future Question Translation',
+      evaluationPromptPath: 'skills/question_translation_future_prompt.txt'
     }
   };
 
