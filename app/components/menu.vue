@@ -1,11 +1,33 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
+import type { DailyCompleted, DailySections } from '@prisma/client';
 
 const config = useRuntimeConfig()
 
 async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
   window.location.href = '/login'
+}
+
+let needToFinishDaily = ref(false)
+async function loadDaily(){
+  type DailyResponse = {
+    date: string;
+    sectionsCount: number;
+    sectionsCompletedCount: number;
+    sections: DailySections[];
+    compeletedToday: DailyCompleted[];
+  };
+  try {
+    let dailyData = await $fetch<DailyResponse>('/api/daily')
+    if(dailyData.sectionsCompletedCount == dailyData.sectionsCount){
+      needToFinishDaily.value = false;
+    } else {
+      needToFinishDaily.value = true;
+    }
+  } catch (error) {
+    console.error('Error loading daily data:', error)
+  }
 }
 
 const items = computed<NavigationMenuItem[]>(() => {
@@ -29,10 +51,31 @@ const items = computed<NavigationMenuItem[]>(() => {
         { label: 'Stats', icon: 'ion:bar-chart', to: '/interview/stats' }
       ]
     },
-    { label: 'Fluency', icon: 'ion:rocket', to: '/fluency' }
-  ]
+    { label: 'Fluency', icon: 'ion:rocket', to: '/fluency' },
+  ];
+
+  if(needToFinishDaily.value){
+    base.push({ 
+      label: 'Daily', 
+      icon: 'ion:calendar', 
+      to: '/daily', 
+      chip: {
+        color: 'error'
+      }
+    })
+  }else{
+    base.push({ 
+      label: 'Daily', 
+      icon: 'ion:calendar', 
+      to: '/daily'
+    })
+  }
 
   return base
+});
+
+onMounted(() => {
+  loadDaily();
 })
 </script>
 

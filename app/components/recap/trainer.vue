@@ -165,8 +165,10 @@ let submittedCount = ref(0);
           :rows="3"
           placeholder="Your theme: e.g. A day in a software team preparing for release"
         />
-        <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Create text</UButton>
-        <p class="actionInfo" v-if="!generatedText">Ask GPT to create new text for retelling.</p>
+        <div>
+          <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Generate text</UButton>
+          <p class="actionInfo" v-if="!generatedText">Ask GPT to generate new text for retelling.</p>
+        </div>
       </div>
     </UCard>
 

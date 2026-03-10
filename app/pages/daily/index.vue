@@ -202,6 +202,21 @@ function debugScreen(s: string){
     section.submitted.count = 0;
     section.submitted.correct = false;
     section.complited = false;
+  }else if(s === 'allCompleted'){
+    data.data = {
+      date: moment().format('YYYY-MM-DD'),
+      sectionsCount: 2,
+      sectionsCompletedCount: 2,
+      sections: [
+        { id: 1, orderIndex: 1, sectionKey: 'vocab', name: 'Vocab', target: { submittedCount: 5 }, autoEnd: true },
+        { id: 2, orderIndex: 2, sectionKey: 'recap', name: 'Recap', target: { submittedCount: 3 }, autoEnd: false },
+      ],
+      compeletedToday: [
+        { id: 1, sectionKey: 'vocab', date: moment().format('YYYY-MM-DD'), completedInSeconds: 120, startedAt: new Date(), endedAt: new Date(), stats: {} },
+        { id: 2, sectionKey: 'recap', date: moment().format('YYYY-MM-DD'), completedInSeconds: 300, startedAt: new Date(), endedAt: new Date(), stats: {} },
+      ]
+    }
+    screen.value = 'complete';
   }
 }
 
@@ -233,9 +248,7 @@ onUnmounted(() => {
 <template>
   <main class="wrap">
     <UPageBody>
-      <UCard variant="subtle" v-if="data.loading">
-        <Loader/>
-      </UCard>
+      <Loader v-if="data.loading" style="margin: 0 auto;"/>
       <template v-else>
         <template v-if="data.data?.sectionsCount == 0">
           <UCard variant="subtle">
@@ -249,7 +262,6 @@ onUnmounted(() => {
               <br>
               ✨ {{ moment(data.data?.date).format('YYYY.MM.DD') }} 🌟
             </div>
-            <!-- <UCard variant="subtle" v-if="screen == 'start'"> -->
             <div v-if="screen == 'start'">
               <template v-if="data.data?.sectionsCompletedCount == 0">
                 <div class="welcome">
@@ -275,7 +287,6 @@ onUnmounted(() => {
                 </div>
               </template>
             </div>
-            <!-- </UCard> -->
             <template v-else-if="screen == 'task'">
               <div class="sectionName">
                 {{ section.name }}
@@ -351,9 +362,10 @@ onUnmounted(() => {
         <br>
         <UButton @click="debugScreen('welcome')" label="Welcome Screen" color="primary" variant="outline"/>
         <UButton @click="debugScreen('loading')" label="Loading Screen" color="primary" variant="outline"/>
+        <UButton @click="debugScreen('complete')" label="Complete Screen" color="primary" variant="outline"/>
+        <UButton @click="debugScreen('allCompleted')" label="All Completed Screen" color="primary" variant="outline"/>
         <br>
         <UButton @click="debugScreen('train-vocab')" label="Train Vocab Screen" color="primary" variant="outline"/>
-        <UButton @click="debugScreen('complete')" label="Complete Screen" color="primary" variant="outline"/>
         <br>
         <UButton @click="debugScreen('train-recap')" label="Train Recap Screen" color="primary" variant="outline"/>
         <br>
@@ -477,6 +489,9 @@ onUnmounted(() => {
 
   .icon{
     color: #4CAF50;
+    width: 64px;
+    height: 64px;
+
     svg{
       width: 64px;
       height: 64px;

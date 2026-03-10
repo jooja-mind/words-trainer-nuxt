@@ -50,7 +50,7 @@ async function startQuiz(){
   <Quiz
     :quizCurrent="quizCurrent" 
     :finished="finished"
-    :start-click-info="`Press «Build test (${props.limit})» — for selection based on mistakes, recency, and rarity of repetition.`"
+    :start-click-info="`Press «Start» — for selection based on mistakes, recency, and rarity of repetition.`"
     v-model:selectedOptionId="selectedOptionId" 
     v-model:answered="answered"
     v-model:answerResult="answerResult"
