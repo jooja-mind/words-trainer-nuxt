@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useHead({ title: "Vocabulary Trainer" });
+
 const quizStats = ref<any>(null)
 
 async function loadStats(){

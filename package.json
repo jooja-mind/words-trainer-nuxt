@@ -12,6 +12,7 @@
     "test:daily-contract": "bash ./scripts/daily-contract-check.sh"
   },
   "dependencies": {
+    "@number-flow/vue": "^0.5.0",
     "@nuxt/ui": "^4.4.0",
     "@prisma/client": "^6.14.0",
     "axios": "^1.13.6",
