@@ -98,3 +98,22 @@ model FluencyAnswer {
   answer String
   createdAt DateTime @default(now())
 }
+
+model DailySections {
+  id         Int      @id @default(autoincrement())
+  name       String
+  sectionKey String   @unique
+  orderIndex Int
+  autoEnd    Boolean  @default(false)
+  target     Json
+}
+
+model DailyCompleted {
+  id                 Int      @id @default(autoincrement())
+  date               String @db.VarChar(10) // Format: YYYY-MM-DD
+  sectionKey         String
+  stats              Json
+  startedAt          DateTime
+  endedAt            DateTime
+  completedInSeconds Int
+}

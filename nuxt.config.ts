@@ -33,6 +33,9 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon.png' }
+      ],
+      script: [
+        { src: 'https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js' }
       ]
     }
   },

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 let view = ref<'add' | 'about'>('add');
 
+let wordInput = ref();
+
 let word = ref<string>('');
 let wordInfo = reactive({
     "id": "",
@@ -32,21 +34,50 @@ async function addWord() {
   }
 }
 
+function closeDescription(){
+    view.value = 'add';
+  if(!isBigScreen()) {
+    minimized.value = true;
+  }
+}
+
+async function maximize(){
+  minimized.value = false;
+  await nextTick();
+  if(wordInput.value){
+    wordInput.value.inputRef.focus();
+  }
+}
+
+function isBigScreen() {
+  return window.innerWidth > 500;
+}
+
+let minimized = ref(false);
+onMounted(() => {
+  minimized.value = !isBigScreen();
+})
 </script>
 
 <template>
-  <div class="quickWordAddHolder" :class="{about: view=='about'}">
+  <div class="mini" v-if="minimized" @click="maximize()">
+    <Icon name="material-symbols:book-4-spark"/>
+  </div>
+  <div class="quickWordAddHolder" :class="{about: view=='about'}" v-else>
     <div class="addWord" v-if="view=='add'">
-      <div class="title">Add Word</div>
+      <div class="top">
+        <div class="title">Add Word</div>
+        <UButton class="closeButton" color="primary" variant="link" icon="ion:close" @click="minimized=true" style="display: none;" />
+      </div>
       <div class="panel">
-        <UInput placeholder="Term..." :disabled="loading" v-model="word" @keyup.enter="addWord" />
-        <UButton color="primary" variant="link" icon="ion:plus" :loading="loading" @click="addWord" :disabled="!word" />
+        <UInput ref="wordInput" placeholder="Term..." :disabled="loading" v-model="word" @keyup.enter="addWord" />
+        <UButton class="addButton" color="primary" variant="link" icon="ion:plus" :loading="loading" @click="addWord" :disabled="!word" />
       </div>
     </div>
     <div class="aboutWord" v-if="view=='about'">
       <div class="flex justify-between items-center">
         <div class="word">{{ wordInfo.term }}</div>
-        <UButton color="primary" variant="link" icon="ion:close" @click="view='add'" />
+        <UButton color="primary" variant="link" icon="ion:close" @click="closeDescription" class="p-0" />
       </div>
       <p v-if="wordInfo.translation" class="text-gray-400">{{ wordInfo.translation }}</p>
       <p v-if="wordInfo.definition" class="mt-1">{{ wordInfo.definition }}</p>
@@ -55,7 +86,9 @@ async function addWord() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+
+
 .quickWordAddHolder{
   position: fixed;
   bottom: 20px;
@@ -66,31 +99,72 @@ async function addWord() {
   padding-right: 4px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.1);
   max-width: 600px;
-}
-.quickWordAddHolder.about{
-  padding-right: 10px;
-}
-.title{
-  font-size: 14px;
-  cursor: default;
-}
-.panel{
-  display: flex;
-  gap: 2px;
-  margin-top: .5rem;
-}
-.word{
-  font-size: 16px;
-  font-weight: 500;
+
+  .top{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  &.about{
+    padding-right: 10px;
+  }
+  .title{
+    font-size: 16px;
+    cursor: default;
+  }
+  .panel{
+    display: flex;
+    gap: 2px;
+    margin-top: .5rem;
+  }
+  .word{
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
 
 /* .quickWordAddHolder.about for iphone */
 @media (max-width: 500px) {
+  .quickWordAddHolder {
+    width: calc(100vw - 40px);
+    left: 20px;
+    right: 20px;
+  }
+
+  :deep(.addButton){
+    display: none !important;
+  }
+  :deep(div){
+    width: calc(100% - 2px);
+  }
+
+  :deep(.closeButton){
+    display: block !important;
+    padding: 0;
+  }
+
   .quickWordAddHolder.about{
     width: calc(100vw - 40px);
     left: 20px;
     right: 20px;
     bottom: 20px;
   }
+}
+
+.mini{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #000000;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  display: flex;
+  height: 64px;
+  width: 64px;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
 }
 </style>

@@ -12,11 +12,13 @@
     "test:daily-contract": "bash ./scripts/daily-contract-check.sh"
   },
   "dependencies": {
-    "@nuxt/ui": "^4.4.0",
+    "@number-flow/vue": "^0.5.0",
+    "@nuxt/ui": "^4.5.1",
     "@prisma/client": "^6.14.0",
     "axios": "^1.13.6",
     "buffer": "^6.0.3",
     "microphone-stream": "^6.0.1",
+    "moment": "^2.30.1",
     "nuxt": "^4.3.1",
     "nuxt-charts": "^2.1.3",
     "nuxt-echarts": "^1.0.1",
