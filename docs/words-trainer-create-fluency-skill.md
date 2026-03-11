@@ -140,6 +140,84 @@ git commit -m "Add fluency skill: <Skill Display Name>"
 git push origin main
 ```
 
+## 9) Lesson learned: how not to screw up Fluency question-building skills
+
+This section is based on a real failure while adding RU -> EN question-translation skills.
+
+### 9.1 Never trust mass generation without file review
+
+For question-building / translation skills, do **not**:
+- generate 3 skills at once and seed them blindly
+- trust template combinatorics / Cartesian products like `verb × object × wh-word × subject`
+- assume DB contents are correct just because a seed command finished
+- claim that a skill was updated unless the source file actually changed
+
+Why:
+- this creates broken Russian, bad semantics, fake confidence, and DB pollution
+- typical failures look like:
+  - bad morphology: `Он завтра попробуешь...`
+  - nonsense collocations: `Как ты попробуешь логи?`
+  - broken wh-frequency combos: `Когда ты часто...`, `Как ты часто...`
+
+### 9.2 Preferred workflow for risky Fluency skills
+
+Golden path:
+
+1. Rewrite **one file only**
+2. Review the raw `.txt` file directly
+3. Check:
+   - natural Russian
+   - no broken morphology
+   - no semantic garbage
+   - correct block format
+   - good grammar coverage
+4. Commit that file first
+5. Let Илья review the diff in GitHub if needed
+6. Only after approval, run `fillDB.ts`
+7. Seed **one skill at a time**
+8. Verify in DB that the new records match the reviewed file
+
+Short version:
+
+`rewrite file -> review file -> commit -> approve -> fillDB -> verify DB`
+
+### 9.3 Use sub-agents the right way
+
+If the content is large or quality-sensitive:
+- prefer a high-reasoning sub-agent
+- give it a narrow task: rewrite **one target file only**
+- require a short completion message instead of a giant dump
+- inspect the produced file before touching DB
+
+Do not ask a sub-agent to change many skills at once unless the work is already proven safe.
+
+### 9.4 Operator prompts that work well
+
+These user instructions proved especially effective and should shape future workflow:
+
+- `Давай начнем с малого.`
+  - forces the task into a narrow, testable scope
+- point to a **specific DB id** and inspect it
+  - turns vague quality concerns into concrete facts
+- `стой, делай как я говорю`
+  - useful when the agent starts drifting into explanations instead of controlled execution
+- ask the sub-agent to return only a short `готово`-style summary
+  - protects main-session context and keeps the process controllable
+
+### 9.5 Practical rule
+
+For Fluency question-building skills, quality comes from:
+- careful writing
+- narrow scope
+- visible review
+- DB verification
+
+Not from:
+- speed
+- bulk generation
+- optimistic assumptions
+- post-hoc patching in the database
+
 ## Related files
 
 - `fluency/fillDB.ts`
