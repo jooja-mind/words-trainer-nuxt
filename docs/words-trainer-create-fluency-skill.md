@@ -191,6 +191,22 @@ If the content is large or quality-sensitive:
 
 Do not ask a sub-agent to change many skills at once unless the work is already proven safe.
 
+### 9.4 Hard rule for Fluency question files
+
+For Fluency question sets, the main agent should **not** author the final 500-question file directly.
+
+Use this rule:
+- question files are drafted or rewritten by a **high-reasoning sub-agent**
+- the main agent acts as reviewer/operator
+- the main agent may inspect, validate, commit, and seed
+- but should not be the primary writer of large final question sets
+
+Reason:
+- this reduces drift
+- this protects main-session context
+- this improves quality for long-form question authoring work
+- this makes the workflow reproducible: `sub-agent -> review -> commit -> fillDB`
+
 ### 9.4 Operator prompts that work well
 
 These user instructions proved especially effective and should shape future workflow:
