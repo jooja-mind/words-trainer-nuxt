@@ -414,12 +414,12 @@ onUnmounted(() => {
     margin-bottom: 1em;
     text-align: center;
     transition: 0.3s color, 0.3s text-shadow;
-    text-shadow: 0px 0px 0px #ffffffcf;
+    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0);
     color: #3d5074;
 
     &.done{
       color: #4CAF50;
-      text-shadow: 0px 0px 30px #ffffffcf;
+      text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8);
     }
   }
 
@@ -430,11 +430,11 @@ onUnmounted(() => {
     text-align: center;
     transition: 0.3s color, 0.3s text-shadow;
     color: #3d5074;
-    text-shadow: 0px 0px 0px #ffffffcf;
+    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0);
 
     &.done{
       color: #4CAF50;
-      text-shadow: 0px 0px 30px #ffffffcf;
+      text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8);
     }
   }
 }
