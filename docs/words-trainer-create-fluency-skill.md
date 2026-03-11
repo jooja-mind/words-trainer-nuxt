@@ -63,6 +63,9 @@ Current parser logic in `fluency/fillDB.ts`:
 
 - minimum 500 questions
 - all questions must be unique
+- never generate final question sets with blind template combinatorics / Cartesian products (`verb × object × wh-word × subject`)
+- for question-building skills, write prompts thoughtfully or use high-reasoning sub-agents to draft them, then review before seeding
+- if a generated prompt sounds non-native, semantically broken, or mechanically inflected, discard it instead of patching around it
 
 ## 3) What must be created in project
 
