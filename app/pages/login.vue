@@ -1,27 +1,6 @@
 <script setup lang="ts">
-const password = ref('')
-const error = ref('')
-const loading = ref(false)
-
-async function submit() {
-  error.value = ''
-  loading.value = true
-  try {
-    const res = await $fetch('/api/auth/login', {
-      method: 'POST',
-      body: { password: password.value }
-    })
-    if ((res as any).ok) {
-      window.location.href = '/'
-    } else {
-      error.value = 'Wrong password'
-    }
-  } catch (e) {
-    error.value = 'Wrong password'
-  } finally {
-    loading.value = false
-  }
-}
+let userStore = useUserStore();
+let password = ref('');
 </script>
 
 <template>
@@ -29,10 +8,10 @@ async function submit() {
     <UCard variant="subtle">
       <div class="title">Enter password</div>
       <div class="inputs">
-       <UInput v-model="password" type="password" placeholder="Password" @keyup.enter="submit" :disabled="loading" />
-       <UButton @click="submit" size="lg" :disabled="loading">Login</UButton>
+       <UInput v-model="password" type="password" placeholder="Password" @keyup.enter="userStore.login({ password })" :disabled="userStore.loginData.loading" />
+       <UButton @click="userStore.login({ password })" size="lg" :disabled="userStore.loginData.loading">Login</UButton>
       </div>
-      <p v-if="error" class="err">{{ error }}</p>
+      <p v-if="userStore.loginData.error" class="err">{{ userStore.loginData.error }}</p>
     </UCard>
   </main>
 </template>

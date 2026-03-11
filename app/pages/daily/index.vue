@@ -20,6 +20,8 @@ let data = reactive<{
   data: null
 });
 
+let userStore = useUserStore();
+
 async function load(runNextSectionAfterLoad = false){
   try {
     data.loading = true;
@@ -38,6 +40,7 @@ async function load(runNextSectionAfterLoad = false){
         setTimeout(() => {
           confetti.addConfetti();
         }, 600);
+        userStore.dailyData.isCompletedToday = true;
       }
     }
   } catch (error) {
@@ -312,7 +315,7 @@ onUnmounted(() => {
                 <p>Section {{ section.sectionKey }} is not implemented yet.</p>
               </UCard>
               <div class="mannualEnd" v-if="section.complited">
-                <UButton @click="endSection" color="success" size="xl">Done — End section!</UButton>
+                <UButton @click="endSection" color="success" size="xl" icon="lets-icons:flag-finish-fill">Done — End section!</UButton>
               </div>
             </template>
             <template v-else-if="screen == 'complete'">

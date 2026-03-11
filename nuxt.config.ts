@@ -5,7 +5,7 @@ import type { PluginOption } from 'vite'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@vite-pwa/nuxt', "nuxt-charts"],
+  modules: ['@nuxt/ui', '@vite-pwa/nuxt', "nuxt-charts", '@pinia/nuxt'],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     appPassword: process.env.APP_PASSWORD || '',
