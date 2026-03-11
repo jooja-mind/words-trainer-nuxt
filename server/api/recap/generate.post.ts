@@ -8,8 +8,8 @@ export default defineEventHandler(async (event) => {
   const body = await readBody<{ theme?: string }>(event)
   const theme = String(body?.theme || '').trim()
   const triggerPrompt = theme
-    ? `Write a random story in English, 2 paragraphs, 150–200 words total. Clear and neutral tone, suitable for retelling. Keep it clearly related to this theme: "${theme}".`
-    : 'Write a random story in English, 2 paragraphs, 150–200 words total. Clear and neutral tone, suitable for retelling.'
+    ? `Write a random story in English, 2 paragraphs, 150-200 words total. Clear and neutral tone, suitable for retelling. Treat this theme as an open situation rather than a fixed plot: "${theme}". Invent specific people, setting, details, and outcome. Avoid cliches and do not reuse a standard storyline.`
+    : 'Write a random story in English, 2 paragraphs, 150-200 words total. Clear and neutral tone, suitable for retelling. Invent specific people, setting, details, and outcome. Avoid cliches and do not reuse a standard storyline.'
 
   let result = await GPT.ask<{ text: string }>({
     model: 'gpt-5.2',
