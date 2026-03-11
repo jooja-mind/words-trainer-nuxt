@@ -20,6 +20,8 @@ let data = reactive<{
   data: null
 });
 
+let userStore = useUserStore();
+
 async function load(runNextSectionAfterLoad = false){
   try {
     data.loading = true;
@@ -38,6 +40,7 @@ async function load(runNextSectionAfterLoad = false){
         setTimeout(() => {
           confetti.addConfetti();
         }, 600);
+        userStore.dailyData.isCompletedToday = true;
       }
     }
   } catch (error) {
@@ -312,7 +315,7 @@ onUnmounted(() => {
                 <p>Section {{ section.sectionKey }} is not implemented yet.</p>
               </UCard>
               <div class="mannualEnd" v-if="section.complited">
-                <UButton @click="endSection" color="success" size="xl">Done — End section!</UButton>
+                <UButton @click="endSection" color="success" size="xl" icon="lets-icons:flag-finish-fill">Done — End section!</UButton>
               </div>
             </template>
             <template v-else-if="screen == 'complete'">
@@ -414,12 +417,12 @@ onUnmounted(() => {
     margin-bottom: 1em;
     text-align: center;
     transition: 0.3s color, 0.3s text-shadow;
-    text-shadow: 0px 0px 0px #ffffffcf;
+    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0);
     color: #3d5074;
 
     &.done{
       color: #4CAF50;
-      text-shadow: 0px 0px 30px #ffffffcf;
+      text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8);
     }
   }
 
@@ -430,11 +433,11 @@ onUnmounted(() => {
     text-align: center;
     transition: 0.3s color, 0.3s text-shadow;
     color: #3d5074;
-    text-shadow: 0px 0px 0px #ffffffcf;
+    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0);
 
     &.done{
       color: #4CAF50;
-      text-shadow: 0px 0px 30px #ffffffcf;
+      text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8);
     }
   }
 }

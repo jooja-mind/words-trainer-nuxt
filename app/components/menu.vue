@@ -2,33 +2,9 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
 import type { DailyCompleted, DailySections } from '@prisma/client';
 
+let userStore = useUserStore();
+
 const config = useRuntimeConfig()
-
-async function logout() {
-  await $fetch('/api/auth/logout', { method: 'POST' })
-  window.location.href = '/login'
-}
-
-let needToFinishDaily = ref(false)
-async function loadDaily(){
-  type DailyResponse = {
-    date: string;
-    sectionsCount: number;
-    sectionsCompletedCount: number;
-    sections: DailySections[];
-    compeletedToday: DailyCompleted[];
-  };
-  try {
-    let dailyData = await $fetch<DailyResponse>('/api/daily')
-    if(dailyData.sectionsCompletedCount == dailyData.sectionsCount){
-      needToFinishDaily.value = false;
-    } else {
-      needToFinishDaily.value = true;
-    }
-  } catch (error) {
-    console.error('Error loading daily data:', error)
-  }
-}
 
 const items = computed<NavigationMenuItem[]>(() => {
   const base: NavigationMenuItem[] = [
@@ -54,13 +30,13 @@ const items = computed<NavigationMenuItem[]>(() => {
     { label: 'Fluency', icon: 'ion:rocket', to: '/fluency' },
   ];
 
-  if(needToFinishDaily.value){
+  if(!userStore.dailyData.isCompletedToday){
     base.push({ 
       label: 'Daily', 
       icon: 'ion:calendar', 
       to: '/daily', 
       chip: {
-        color: 'error'
+        color: userStore.dailyData.loading ? 'info' : 'error'
       }
     })
   }else{
@@ -75,7 +51,7 @@ const items = computed<NavigationMenuItem[]>(() => {
 });
 
 onMounted(() => {
-  loadDaily();
+  userStore.fetchDailyData();
 })
 </script>
 
@@ -107,7 +83,7 @@ onMounted(() => {
         color="error"
         variant="soft"
         class="w-full justify-center"
-        @click="logout"
+        @click="userStore.logout()"
       />
     </template>
 
@@ -118,7 +94,7 @@ onMounted(() => {
         icon="ion:log-out"
         aria-label="Logout"
         class="hidden lg:inline-flex"
-        @click="logout"
+        @click="userStore.logout()"
       />
     </template>
   </UHeader>

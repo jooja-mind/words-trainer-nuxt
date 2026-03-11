@@ -92,6 +92,7 @@ let question = reactive({
     id: 0
   },
   displayedAt: new Date(),
+  recordingStartedAt: new Date(),
   loading: false
 })
 async function getQuestion(){
@@ -109,8 +110,7 @@ async function getQuestion(){
         name: string;
         id: number;
       };
-    }>('/api/fluency/question', { query })
-    await startMicRecorder();
+    }>('/api/fluency/question', { query });
     question.id = res.id;
     question.text = res.text;
     question.skill = res.skill;
@@ -145,7 +145,7 @@ async function answerQuestion(finalizedObject: HistoryEntry){
       questionId: question.id,
       answer: finalizedObject.text,
       speechDurationMs: finalizedObject.timestampEnd - finalizedObject.timestampStart,
-      reactionDelayMs: finalizedObject.timestampStart - question.displayedAt.getTime(),
+      reactionDelayMs: question.recordingStartedAt.getTime() - question.displayedAt.getTime(),
     }
     let res = await $fetch<{ 
       evaluation: {
@@ -248,6 +248,22 @@ let finalizedText = computed(()=>{
 let emits = defineEmits(['submitted']);
 let submittedCount = ref(0);
 
+function startAnswerRecording(){
+  question.recordingStartedAt = new Date();
+  startMicRecorder();
+}
+
+defineShortcuts({
+  arrowRight: () => {
+    if(screen.value === 'question' && !isMicActive.value){
+      startAnswerRecording();
+    }
+    if(screen.value === 'result' && !result.passed){
+      getQuestion();
+    }
+  }
+})
+
 onMounted(()=>{
   loadSkills()
   if(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'){
@@ -280,8 +296,23 @@ onUnmounted(() => {
       <div class="speaking">
         <div class="live" v-if="!!liveText">{{ liveText }}</div>
         <div class="final" v-if="!liveText && finalizedText">{{ finalizedText }}</div>
-        <div class="empty shimmer" v-if="!liveText && !finalizedText">
-          Start speaking...
+        <div v-if="!liveText && !finalizedText">
+          <template v-if="!isMicActive">
+            <div class="buttonWithKbd">
+              <UButton @click="startAnswerRecording" label="Start recording" color="primary" icon="ion:mic"/>
+              <div class="or">or</div>
+              <UKbd value="arrowright" />
+            </div>
+          </template>
+          <template v-else>
+            <div class="empty shimmer" v-if="state.recognition">
+              Start speaking...
+            </div>
+
+            <div class="empty" v-else>
+              Loading...
+            </div>
+          </template>
         </div>
       </div>
       <div class="actions">
@@ -305,7 +336,11 @@ onUnmounted(() => {
         <div class="yourAnswer">{{ result.yourAnswer }}</div>
         <div class="correctAnswer">{{ result.correctAnswer }}</div>
         <div class="explanation">{{ result.feedback }}</div>
-        <UButton @click="getQuestion" label="Try again" color="primary" icon="ion:refresh"/>
+        <div class="buttonWithKbd">
+          <UButton @click="getQuestion" label="Try again" color="primary" icon="ion:refresh"/>
+          <div class="or">or</div>
+          <UKbd value="arrowright" />
+        </div>
       </div>
     </div>
   </UCard>
@@ -367,6 +402,19 @@ onUnmounted(() => {
 
 .skillSelector{
   margin: 1rem 0;
+}
+
+.buttonWithKbd{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  justify-content: center;
+
+  .or{
+    color: #b8bfdb;
+    font-size: 14px;
+  }
 }
 
 .question{

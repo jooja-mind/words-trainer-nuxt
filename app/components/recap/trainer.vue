@@ -5,26 +5,56 @@ const useRandomTheme = ref(true)
 const THEME_STORAGE_KEY = 'recap_theme'
 const RANDOM_ENABLED_STORAGE_KEY = 'recap_random_enabled'
 const PRESET_THEMES = [
-  'A developer accidentally breaking something important right before the weekend',
-  'A person moving to a new country and facing small daily challenges',
-  'A team celebrating a success that almost did not happen',
-  'Someone receiving unexpected bad news during an ordinary workday',
-  'A beginner trying a new hobby and failing in a funny way',
-  'A difficult conversation between two coworkers with different opinions',
-  'A person making a risky decision that later changes everything',
-  'A customer having a surprisingly good or bad service experience',
-  'A small misunderstanding that turns into a big problem',
-  'Someone learning an important lesson after making a confident mistake',
-  'A person missing an important bus or train and having to improvise',
-  'Someone meeting an old friend by accident in an unexpected place',
-  'A family preparing for guests when everything starts going wrong',
-  'A person losing their phone for a few stressful hours',
-  'Someone trying to cook a meal for the first time and making mistakes',
-  'A neighbor asking for help at an inconvenient moment',
-  'A person forgetting about an important appointment and rushing to fix it',
-  'Someone buying something expensive and immediately regretting it',
-  'A quiet day that suddenly turns into a memorable adventure',
-  'A small argument between friends that leads to an honest conversation'
+  'A routine task becoming unexpectedly complicated',
+  'A person adjusting to unfamiliar rules and habits',
+  'A team working under pressure while trying to stay calm',
+  'Unexpected news changing the mood of an ordinary day',
+  'Someone trying something new without feeling fully prepared',
+  'A conversation shaped by different priorities',
+  'A decision that feels risky even without obvious danger',
+  'An everyday service experience that leaves a strong impression',
+  'A misunderstanding caused more by assumptions than facts',
+  'A moment when confidence turns out to be incomplete',
+  'Travel plans being disrupted by small practical problems',
+  'Running into someone from the past in a surprising context',
+  'Preparing for visitors while several small things go wrong',
+  'Losing access to something important for a short time',
+  'Trying to handle an unfamiliar task with limited experience',
+  'Being asked for help at a slightly inconvenient moment',
+  'Realizing too late that something important was forgotten',
+  'Questioning an expensive or ambitious choice soon after making it',
+  'An ordinary day slowly becoming memorable for unexpected reasons',
+  'A small disagreement leading to a more honest exchange',
+  'A plan changing because one detail was overlooked',
+  'A person trying to look confident while feeling uncertain',
+  'Balancing politeness with honesty in a delicate situation',
+  'A simple problem turning out to have emotional consequences',
+  'An attempt to help creating extra complications',
+  'A day shaped by interruptions and shifting priorities',
+  'A choice between comfort and opportunity',
+  'A familiar place suddenly feeling different',
+  'Cooperating with someone whose style is completely different',
+  'Trying to fix a mistake without drawing too much attention',
+  'A situation where timing matters more than talent',
+  'A conversation that changes someone’s first impression',
+  'One practical responsibility affecting several other plans',
+  'A person noticing a pattern that others ignore',
+  'A short interaction with surprisingly lasting consequences',
+  'Trying to protect personal time while remaining helpful',
+  'Good intentions not being enough to solve a problem',
+  'A moment of hesitation before doing something necessary',
+  'An event revealing hidden tension inside a group',
+  'A person rethinking what success actually means',
+  'A software team preparing for a release while key details remain unclear',
+  'A developer dealing with a bug that behaves differently every time',
+  'A product discussion where technical limits and business goals do not fully match',
+  'A new teammate trying to understand an unfamiliar codebase and team routine',
+  'A meeting about priorities after several tasks start competing for attention',
+  'A project moving forward even though some decisions were never fully agreed on',
+  'A person trying to explain a technical problem to someone non-technical',
+  'A team noticing late that a small implementation detail affects the whole feature',
+  'An engineer balancing speed, quality, and pressure from deadlines',
+  'A workday shaped by notifications, context switching, and unfinished thoughts'
 ]
 const status = reactive({
   generatingText: false,
@@ -163,7 +193,7 @@ let submittedCount = ref(0);
           v-if="!useRandomTheme"
           v-model="theme"
           :rows="3"
-          placeholder="Your theme: e.g. A day in a software team preparing for release"
+          placeholder="Your theme: e.g. A routine task becoming unexpectedly complicated"
         />
         <div>
           <UButton size="lg" color="primary" v-if="!generatedText" @click="generateText" style="margin-top: 10px;">Generate text</UButton>
