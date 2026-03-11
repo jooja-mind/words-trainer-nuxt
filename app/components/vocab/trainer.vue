@@ -62,8 +62,7 @@ async function startQuiz(){
     @dont-knowed="dontKnow"
   >
     <template #stats>
-      <span v-if="quizQuestions.length">Progress: {{ quizProgress }}</span>
-      <span v-if="quizQuestions.length">Score: {{ quizScore }}</span>
+      <span v-if="quizQuestions.length">{{ quizProgress }}</span>
     </template>
   </Quiz>
 </template>
