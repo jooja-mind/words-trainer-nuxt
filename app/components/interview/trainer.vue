@@ -62,7 +62,10 @@ async function submitRecording(blob: Blob) {
     evaluation.value = res
     showAnswer.value = true;
     submittedCount.value++
-    emits('submitted', { submittedCount: submittedCount.value, correct: res.verdict === 'acceptable' })
+    if(res.verdict === 'acceptable') {
+      correctCount.value++;
+    }
+    emits('submitted', { submittedCount: submittedCount.value, correctCount: correctCount.value });
   } catch (error) {
     console.error('Error submitting recording:', error)
     alert('Failed to submit recording. Please try again.')
@@ -79,6 +82,7 @@ function retellAgain(){
 
 let emits = defineEmits(['submitted']);
 let submittedCount = ref(0);
+let correctCount = ref(0);
 
 onMounted(async ()=> {
   await loadQuestion();

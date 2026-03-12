@@ -63,7 +63,7 @@ const section = reactive({
   autoEnd: false,
   submitted: {
     count: 0,
-    correct: false
+    correctCount: 0
   }
 });
 
@@ -84,16 +84,16 @@ function startSection(nextSection?: DailySections){
   section.complited = false;
   section.autoEnd = sectionToStart.autoEnd;
   section.submitted.count = 0;
-  section.submitted.correct = false;
+  section.submitted.correctCount = 0;
   section.name = sectionToStart.name;
   screen.value = 'task';
 }
 
-function submitHandler({submittedCount, correct}: {submittedCount: number, correct: boolean}){
+function submitHandler({submittedCount, correctCount}: {submittedCount: number, correctCount: number}){
   let completedConditions: boolean[] = [];
 
   if(submittedCount) section.submitted.count = submittedCount;
-  if(correct) section.submitted.correct = correct;
+  if(correctCount) section.submitted.correctCount = correctCount;
 
   for(let i = 0; i < Object.keys(section.target).length; i++){
     let key = Object.keys(section.target)[i]!;
@@ -101,8 +101,8 @@ function submitHandler({submittedCount, correct}: {submittedCount: number, corre
 
     if(key == 'submittedCount'){
       completedConditions.push(submittedCount >= value);
-    } else if(key == 'correct'){
-      completedConditions.push(correct == true);
+    } else if(key == 'correctCount'){
+      completedConditions.push(correctCount >= value);
     } else {
       console.warn('Unknown target key:', key);
     }
@@ -144,6 +144,7 @@ async function endSection(){
 }
 
 let debugSubmittedCount = ref(0);
+let debugCorrectCount = ref(0);
 function debugScreen(s: string){
   data.loading = false;
   if(s === 'welcome'){
@@ -184,7 +185,7 @@ function debugScreen(s: string){
     startSection({
       sectionKey: 'interview',
       name: 'Interview',
-      target: { correct: true },
+      target: { correctCount: 1 },
       autoEnd: false
     } as any);
   }else if(s === 'train-fluency'){
@@ -196,14 +197,16 @@ function debugScreen(s: string){
     } as any);
   }else if(s === 'emit-submitted-1-f'){
     debugSubmittedCount.value++;
-    submitHandler({ submittedCount: debugSubmittedCount.value, correct: false });
+    submitHandler({ submittedCount: debugSubmittedCount.value, correctCount: debugCorrectCount.value });
   }else if(s === 'emit-submitted-1-t'){
     debugSubmittedCount.value++;
-    submitHandler({ submittedCount: debugSubmittedCount.value, correct: true });
+    debugCorrectCount.value++;
+    submitHandler({ submittedCount: debugSubmittedCount.value, correctCount: debugCorrectCount.value });
   }else if(s === 'clear-submitted'){
     debugSubmittedCount.value = 0;
+    debugCorrectCount.value = 0;
     section.submitted.count = 0;
-    section.submitted.correct = false;
+    section.submitted.correctCount = 0;
     section.complited = false;
   }else if(s === 'allCompleted'){
     data.data = {
@@ -298,13 +301,8 @@ onUnmounted(() => {
                 <div class="submittedCount" v-if="Object.hasOwn(section.target, 'submittedCount')" :class="{done: section.submitted.count >= section.target.submittedCount}">
                   <NumberFlow :value="section.submitted.count" :suffix="` / ${section.target.submittedCount}`" />
                 </div>
-                <div class="correct" v-if="Object.hasOwn(section.target, 'correct')" :class="{done: !!section.submitted.correct}">
-                  <div class="waiting" v-if="!section.submitted.correct">
-                    Waiting for correct answer...
-                  </div>
-                  <div class="passed" v-if="section.submitted.correct">
-                    Successfully Passed!
-                  </div>
+                <div class="correct" v-if="Object.hasOwn(section.target, 'correctCount')" :class="{done: section.submitted.correctCount >= section.target.correctCount}">
+                  <NumberFlow :value="section.submitted.correctCount" :suffix="` / ${section.target.correctCount}`" />
                 </div>
               </div>
               <VocabTrainer @submitted="submitHandler" v-if="section.sectionKey == 'vocab'"/>
@@ -379,7 +377,7 @@ onUnmounted(() => {
         <UButton @click="debugScreen('emit-submitted-1-f')" label="Emit Submitted +1, not correct" color="primary" variant="outline"/>
         <UButton @click="debugScreen('emit-submitted-1-t')" label="Emit Submitted +1, correct" color="primary" variant="outline"/>
         <UButton @click="debugScreen('clear-submitted')" label="Clear Submitted" color="primary" variant="outline"/>
-        {{ debugSubmittedCount }}
+        {{ debugSubmittedCount }}a/{{ debugCorrectCount }}c
         <hr>
         <p><b>Section Debug:</b></p>
         <p>Section key: {{ section.sectionKey }}</p>

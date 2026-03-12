@@ -15,6 +15,7 @@ const finished = computed(() => answered.value && quizIndex.value >= quizQuestio
 
 let emits = defineEmits(['submitted']);
 let submittedCount = ref(0);
+let correctCount = ref(0);
 
 let props = defineProps({
   limit: {
@@ -24,13 +25,16 @@ let props = defineProps({
 })
 
 async function submitAnswer({correct}: {correct:boolean}){
-  if(correct) quizScore.value++;
+  if(correct) {
+    quizScore.value++;
+    correctCount.value++;
+  }
   submittedCount.value++;
-  emits('submitted', { correct, submittedCount: submittedCount.value });
+  emits('submitted', { correct: correctCount.value, submittedCount: submittedCount.value });
 }
 async function dontKnow(){ 
   submittedCount.value++;
-  emits('submitted', { correct: false, submittedCount: submittedCount.value });
+  emits('submitted', { correct: correctCount.value, submittedCount: submittedCount.value });
 }
 
 //
@@ -39,6 +43,7 @@ async function startQuiz(){
   quizQuestions.value = data.questions;
   quizIndex.value = 0;
   quizScore.value = 0;
+  correctCount.value = 0;
   selectedOptionId.value=null;
   answered.value=false;
   answerResult.value=null;
