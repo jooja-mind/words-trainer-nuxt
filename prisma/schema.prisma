@@ -117,3 +117,9 @@ model DailyCompleted {
   endedAt            DateTime
   completedInSeconds Int
 }
+
+model RecapTopic {
+  id        Int      @id @default(autoincrement())
+  text      String
+  createdAt DateTime @default(now())
+}
