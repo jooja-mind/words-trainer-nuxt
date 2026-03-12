@@ -5,6 +5,15 @@ let emit = defineEmits(['start', 'nextQuestioned', 'dontKnowed', 'answerSubmitte
 
 let { quizDisplayMode, items: quizDisplayModeItems } = useQuizDisplayMode();
 
+let props = defineProps({
+  quizCurrent: Object as () => QuizQuestion | null,
+  startText: { type: String, default: 'Start' },
+  startClickInfo: { type: String, default: '' },
+  errorMessage: { type: String, default: '' },
+  finished: { type: Boolean, default: false },
+  testCount: { type: Number, default: 0 }
+})
+
 let selectedOptionId = defineModel<string | null>('selectedOptionId');
 let answered = defineModel<boolean>('answered', { default: false });
 let answerResult = defineModel<{ correct: boolean; correctDefinition?: string | null } | null>('answerResult', { default: null });
@@ -15,6 +24,12 @@ let quizQuestions = defineModel<QuizQuestion[]>('quizQuestions', { default: () =
 function start(){
   translation.value = '';
   emit('start');
+  if(translationInput.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
+    console.log('Focusing input on quiz start');
+    nextTick(() => {
+      translationInput.value?.focus();
+    });
+  }
 }
 
 async function nextQuestion(){
@@ -86,21 +101,25 @@ let showExample = ref(false);
 
 let translationInput = ref<HTMLInputElement | null>(null);
 
+watch(() => props.testCount, () => {
+  console.log('testCount changed, current:', props.testCount);
+  nextTick(() => {
+    if(translationInput.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
+      console.log('Focusing input on testCount change');
+      nextTick(() => {
+        translationInput.value?.focus();
+      });
+    }
+  });
+})
+
 defineShortcuts({
   enter: () => {
     if(!props.finished && !!answered.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
       nextQuestion();
     }
   }
-})
-
-let props = defineProps({
-  quizCurrent: Object as () => QuizQuestion | null,
-  startText: { type: String, default: 'Start' },
-  startClickInfo: { type: String, default: '' },
-  errorMessage: { type: String, default: '' },
-  finished: { type: Boolean, default: false }
-})
+});
 </script>
 
 <template>
