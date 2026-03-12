@@ -17,7 +17,7 @@ function start(){
   emit('start');
 }
 
-function nextQuestion(){
+async function nextQuestion(){
   if(quizIndex.value<quizQuestions.value.length-1){ 
     quizIndex.value++;
     selectedOptionId.value=null;
@@ -26,6 +26,10 @@ function nextQuestion(){
     answerTranslation.value=null
     translation.value = '';
     emit('nextQuestioned');
+    if(translationInput.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
+      await nextTick();
+      translationInput.value.focus();
+    }
   }
 }
 
@@ -80,6 +84,16 @@ async function dontKnow(){
 
 let showExample = ref(false);
 
+let translationInput = ref<HTMLInputElement | null>(null);
+
+defineShortcuts({
+  enter: () => {
+    if(!props.finished && !!answered.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
+      nextQuestion();
+    }
+  }
+})
+
 let props = defineProps({
   quizCurrent: Object as () => QuizQuestion | null,
   startText: { type: String, default: 'Start' },
@@ -118,7 +132,7 @@ let props = defineProps({
         </label>
       </div>
       <div v-if="quizDisplayMode === 'TRANSLATION_INPUT'">
-        <input type="text" class="w-full mt-2" v-model="translation" :disabled="answered || loading" placeholder="Type your translation here" @keypress.enter="submitAnswer" />
+        <input ref="translationInput" type="text" class="w-full mt-2" v-model="translation" :disabled="answered || loading" placeholder="Type your translation here" @keypress.enter="submitAnswer" />
       </div>
       <div class="actions" v-if="!finished">
         <UButton size="lg" color="primary" v-if="!answered" :disabled="quizDisplayMode === 'TRANSLATION_INPUT' ? !translation : !selectedOptionId" @click="submitAnswer" :loading="loading">Submit answer</UButton>
