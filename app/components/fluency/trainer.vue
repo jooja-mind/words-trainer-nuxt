@@ -167,6 +167,8 @@ async function answerQuestion(finalizedObject: HistoryEntry){
     result.passed = res.evaluation.target_skill_passed;
     screen.value = 'result';
 
+    submittedCount.value += 1;
+
     if(res.evaluation.target_skill_passed){
       if(!uniqueQuestionsPassed.value.includes(question.id)){
         uniqueQuestionsPassed.value.push(question.id);
@@ -181,11 +183,10 @@ async function answerQuestion(finalizedObject: HistoryEntry){
         getQuestion();
       }, 1000);
 
-      submittedCount.value += 1;
-      emits('submitted', { submittedCount: submittedCount.value, correct: true });
-    }else{
-      emits('submitted', { submittedCount: submittedCount.value, correct: false });
+      correctCount.value += 1;
     }
+
+    emits('submitted', { submittedCount: submittedCount.value, correctCount: correctCount.value });
   } catch (error) {
     console.error('Failed to answer question:', error)
     alert('Failed to answer question. Please try again later.');
@@ -247,6 +248,7 @@ let finalizedText = computed(()=>{
 
 let emits = defineEmits(['submitted']);
 let submittedCount = ref(0);
+let correctCount = ref(0);
 
 function startAnswerRecording(){
   question.recordingStartedAt = new Date();

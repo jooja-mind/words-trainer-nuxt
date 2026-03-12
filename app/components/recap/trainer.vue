@@ -158,7 +158,10 @@ async function submitRecording(blob: Blob) {
     evaluation.value = res
     step.value = 'result'
     submittedCount.value++
-    emits('submitted', { submittedCount: submittedCount.value })
+    if(res.score > 50) {
+      correctCount.value++;
+    }
+    emits('submitted', { submittedCount: submittedCount.value, correctCount: correctCount.value });
   } catch (error) {
     console.error('Error submitting recording:', error)
     alert('Failed to submit recording. Please try again.')
@@ -174,6 +177,7 @@ function backToGenerate() {
 
 let emits = defineEmits(['submitted']);
 let submittedCount = ref(0);
+let correctCount = ref(0);
 </script>
 
 <template>
