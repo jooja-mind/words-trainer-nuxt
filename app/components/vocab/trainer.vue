@@ -38,6 +38,7 @@ async function dontKnow(){
 }
 
 //
+let testCount = ref(0);
 async function startQuiz(){
   const data = await $fetch<{questions:QuizQuestion[]}>('/api/quiz/next?limit=' + props.limit);
   quizQuestions.value = data.questions;
@@ -48,6 +49,7 @@ async function startQuiz(){
   answered.value=false;
   answerResult.value=null;
   answerTranslation.value=null
+  testCount.value++;
 }
 </script>
 
@@ -56,6 +58,7 @@ async function startQuiz(){
     :quizCurrent="quizCurrent" 
     :finished="finished"
     :start-click-info="`Press «Start» — for selection based on mistakes, recency, and rarity of repetition.`"
+    :testCount="testCount"
     v-model:selectedOptionId="selectedOptionId" 
     v-model:answered="answered"
     v-model:answerResult="answerResult"
