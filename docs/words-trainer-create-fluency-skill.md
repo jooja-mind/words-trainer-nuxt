@@ -207,7 +207,7 @@ Reason:
 - this improves quality for long-form question authoring work
 - this makes the workflow reproducible: `sub-agent -> review -> commit -> fillDB`
 
-### 9.4 Operator prompts that work well
+### 9.5 Operator prompts that work well
 
 These user instructions proved especially effective and should shape future workflow:
 
@@ -220,7 +220,7 @@ These user instructions proved especially effective and should shape future work
 - ask the sub-agent to return only a short `готово`-style summary
   - protects main-session context and keeps the process controllable
 
-### 9.5 Practical rule
+### 9.6 Practical rule
 
 For Fluency question-building skills, quality comes from:
 - careful writing
@@ -233,6 +233,14 @@ Not from:
 - bulk generation
 - optimistic assumptions
 - post-hoc patching in the database
+
+## Current examples in repo
+
+- `Present Question Translation`
+- `Past Question Translation`
+- `Future Question Translation`
+
+These are useful references for future RU -> EN question-building skills.
 
 ## Related files
 
