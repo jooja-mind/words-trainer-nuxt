@@ -203,7 +203,7 @@ let submittedCount = ref(0);
     </UCard>
 
     <UCard variant="subtle" v-if="step === 'record'">
-      <pre v-if="generatedText" class="text">{{ generatedText }}</pre>
+      <pre v-if="generatedText" class="text" :class="{blured: !!recording}">{{ generatedText }}</pre>
       <UButton size="sm" variant="outline" style="margin-top: 10px;" @click="backToGenerate">Regenerate text</UButton>
     </UCard>
 
@@ -258,6 +258,14 @@ ul{
 }
 ul li{
   list-style: disc;
+}
+
+.blured{
+  filter: blur(4px);
+
+  &:hover{
+    filter: none;
+  }
 }
 
 @media (max-width: 640px) {
