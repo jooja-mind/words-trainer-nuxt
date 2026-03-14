@@ -1,7 +1,8 @@
-<template>
-  <TrainerPage />
-</template>
-
 <script setup lang="ts">
-import TrainerPage from './vocab/trainer.vue'
+import DailyPage from './daily/index.vue'
 </script>
+
+
+<template>
+  <DailyPage />
+</template>

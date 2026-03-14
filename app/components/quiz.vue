@@ -107,7 +107,9 @@ watch(() => props.testCount, () => {
     if(translationInput.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
       console.log('Focusing input on testCount change');
       nextTick(() => {
-        translationInput.value?.focus();
+        setTimeout(() => {
+          translationInput.value?.focus();
+        }, 100);
       });
     }
   });

@@ -31,7 +31,7 @@ const items = computed<NavigationMenuItem[]>(() => {
   ];
 
   if(!userStore.dailyData.isCompletedToday){
-    base.push({ 
+    base.unshift({ 
       label: 'Daily', 
       icon: 'ion:calendar', 
       to: '/daily', 
@@ -40,7 +40,7 @@ const items = computed<NavigationMenuItem[]>(() => {
       }
     })
   }else{
-    base.push({ 
+    base.unshift({ 
       label: 'Daily', 
       icon: 'ion:calendar', 
       to: '/daily'
