@@ -28,6 +28,10 @@ async function main() {
       skillName: 'Article RU to EN Tricky',
       evaluationPromptPath: 'skills/article_ru_en_tricky_prompt.txt'
     },
+    'calque_natural_spoken_500_questions.txt': {
+      skillName: 'Calque to Natural Spoken English',
+      evaluationPromptPath: 'skills/calque_natural_spoken_prompt.txt'
+    },
     'future_simple_500_questions.txt': {
       skillName: 'Future Simple',
       evaluationPromptPath: 'skills/future_simple_prompt.txt'
