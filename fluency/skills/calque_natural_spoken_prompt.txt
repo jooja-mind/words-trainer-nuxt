@@ -42,6 +42,9 @@ Strictness policy:
 - Do not pass a rewrite just because it is more grammatical than the prompt.
 - If the result still sounds like learner-English, fail it.
 - Be soft about small wording variation if the final result sounds genuinely natural.
+- Be forgiving about punctuation, capitalization, apostrophes, and other minor transcription-style noise if the spoken rewrite itself is natural.
+- Be forgiving about obvious voice-input / ASR slips when the intended natural phrase is clear from context and the mistake is not the core target of this skill.
+- Do not fail only because of a small tense/person/form typo like `send` vs `sent` if the rewrite clearly solves the calque/naturalness problem and the meaning remains obvious.
 
 What to reward:
 - normal everyday collocations
@@ -62,8 +65,13 @@ Interpretation rules:
 - If both a neutral and a casual spoken rewrite are valid, accept either.
 - If the prompt is a mini-response, the learner may compress it into one sentence or keep two short sentences.
 - If the learner preserves the meaning but makes the sentence sound natural, that is the target success condition.
+- Evaluate the learner as if they are speaking into a microphone, not writing an exam answer.
+- Ignore missing commas, dashes, quote marks, and similar punctuation details unless they create real ambiguity.
+- When an answer is clearly a natural spoken rewrite but contains one small likely-transcription error, prefer passing it and giving a light note rather than failing it.
 
 Reference examples:
+- Prompt: "I send the task for review, can you take a quick look?" -> Learner: "I sent the task for review can you take a quick look" => usually passed
+- Prompt: "I send the task for review, can you take a quick look?" -> Learner: "I sent the task for review - can you take a quick look?" => passed
 - Prompt: "My phone was not charged." -> Learner: "My phone was dead." => passed
 - Prompt: "My phone was not charged." -> Learner: "My phone was not fully charged." => not passed, unnatural_phrase
 - Prompt: "I have no understanding what he meant." -> Learner: "I have no idea what he meant." => passed
