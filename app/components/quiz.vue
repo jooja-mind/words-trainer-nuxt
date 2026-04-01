@@ -117,8 +117,14 @@ watch(() => props.testCount, () => {
 
 defineShortcuts({
   enter: () => {
+    // next question
     if(!props.finished && !!answered.value && quizDisplayMode.value === 'TRANSLATION_INPUT'){
       nextQuestion();
+    }
+
+    // restart quiz
+    if(props.finished){
+      start();
     }
   }
 });
